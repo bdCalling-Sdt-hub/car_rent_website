@@ -13,7 +13,7 @@ const AboutUsPage = () => {
                     <div>
                         <HeadingTitle title='About Nardo' />
                         <p className='max-w-xs'>Take a look under the hood of the
-                            world's largest car sharing
+                            world s largest car sharing
                             marketplace</p>
                     </div>
                 </div>
@@ -24,8 +24,8 @@ const AboutUsPage = () => {
                     <HeadingTitle title='Your perfect vehicle awaits' />
                 </div>
                 <div className='max-w-4xl space-y-10 mx-auto'>
-                    <p>Nardo is the newest and fastest growing peer to peer car-sharing marketplace in the UK. Whether you're flying in, need a car nearby or for a special occasion, Nardo lets you skip the traditional rental process and choose from a unique selection of vehicles, from daily cars to luxurious rides, all shared by local hosts and at a great price!</p>
-                    <p>For aspiring entrepreneurs, Nardo provides an opportunity to build and grow their own car-sharing businesses, using the platform to reach their goals. With a mission to make better use of the world’s 1.5 billion cars, Nardo turns underutilized vehicles into valuable assets, empowering everyone to take control of their journey.</p>
+                    <p>Nardo is the newest and fastest growing peer to peer car-sharing marketplace in the UK. Whether you are flying in, need a car nearby or for a special occasion, Nardo lets you skip the traditional rental process and choose from a unique selection of vehicles, from daily cars to luxurious rides, all shared by local hosts and at a great price!</p>
+                    <p>For aspiring entrepreneurs, Nardo provides an opportunity to build and grow their own car-sharing businesses, using the platform to reach their goals. With a mission to make better use of the  1.5 billion cars, Nardo turns underutilized vehicles into valuable assets, empowering everyone to take control of their journey.</p>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@ const AboutUsPage = () => {
                         <p className='font-semibold text-[32px]'>Meet the team</p>
                         <p className='max-w-sm mt-5'>From the executive leadership team to the board
                             of directors, get to know the leadership team
-                            pioneering the way to put the world’s 1.5 billion
+                            pioneering the way to put the  1.5 billion
                             cars to better user</p>
                     </div>
                     <Image height={800} width={800} className='' src={img1} alt='img' />
@@ -47,13 +47,13 @@ const AboutUsPage = () => {
 
             <div className='py-10'>
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-between '>
-                <Image height={800} width={800} className='' src={team} alt='img' />
+                <Image height={1500} width={1500} className='' src={team} alt='img' />
 
                     <div className=' mx-auto'>
                         <p className='font-semibold text-[32px]'>Meet the team</p>
                         <p className='max-w-sm mt-5'>From the executive leadership team to the board
                             of directors, get to know the leadership team
-                            pioneering the way to put the world’s 1.5 billion
+                            pioneering the way to put the  1.5 billion
                             cars to better user</p>
                     </div>
                 </div>
