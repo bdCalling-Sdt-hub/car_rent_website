@@ -1,5 +1,6 @@
 import React from 'react'
 import HeadingTitle from '../shared/HeadingTitle'
+import Accordion from '../Accordion'
 
 const Faqs = () => {
     return (
@@ -8,6 +9,7 @@ const Faqs = () => {
                 <HeadingTitle title={'Explore Our FAQs'} />
                 <p className='mt-5'>FAQ</p>
             </div>
+            <Accordion/>
         </div>
     )
 }
