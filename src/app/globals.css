@@ -7,6 +7,19 @@
   --foreground: #171717;
 }
 
+:root {
+  --font-arial: Arial, sans-serif;
+}
+
+/* Default to Arial for the whole app */
+body {
+  font-family: var(--font-arial);
+}
+
+/* Apply Lora font selectively */
+.font-lora {
+  font-family: var(--font-lora);
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
