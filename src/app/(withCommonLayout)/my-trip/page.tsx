@@ -23,6 +23,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import CompleteTrip from '@/components/CompleteTrip'
 
 
 const MyTripPage = () => {
@@ -120,7 +121,7 @@ const MyTripPage = () => {
                     </TabsContent>
                     <TabsContent value="password">
                         <div>
-
+                            <CompleteTrip/>
                         </div>
                     </TabsContent>
                 </Tabs>
