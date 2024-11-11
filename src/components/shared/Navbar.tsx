@@ -38,9 +38,9 @@ const Navbar = () => {
                             <div className='font-lora  '>
                                 <Link href='/' className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GoGitMerge /> Tips</Link>
                                 <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</p>
-                                <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</p>
-                                <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</p>
-                                <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</p>
+                                <Link href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
+                                <Link href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
+                                <Link href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>
                                 <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdOutlineHelpCenter /> Help Center</p>
                                 <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><LuUser /> Profile</p>
                                 <Link href={'/login'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Sign in</Link>

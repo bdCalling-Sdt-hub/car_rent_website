@@ -30,7 +30,7 @@ const LoginPage = () => {
               <button className='bg-black w-full text-white rounded-md py-2 font-lora'>Sign in</button>
             </Form.Item>
           </Form>
-          <p className='text-center mt-8'>Don't have an account? <span className='font-semibold'>Sign Up</span></p>
+          <p className='text-center mt-8'>Don&apos;t have an account? <span className='font-semibold'>Sign Up</span></p>
         </div>
       </div>
   )

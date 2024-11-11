@@ -1,6 +1,5 @@
 import React from 'react'
 import HeadingTitle from '../shared/HeadingTitle'
-import BrandCaurosel from '../BrandCaurosel'
 import DestinationCaurosel from '../DestinationCaurosel'
 
 const BrowseDestination = () => {
