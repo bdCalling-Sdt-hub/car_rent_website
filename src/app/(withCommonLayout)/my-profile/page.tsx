@@ -13,8 +13,8 @@ import img from '../../../assets/car.png'
 import img1 from '../../../assets/driver.png'
 import Image from 'next/image'
 
-import { Form, Modal } from 'antd'
-import { Input } from '@/components/ui/input'
+import { Form, Input, Modal } from 'antd'
+// import { Input } from '@/components/ui/input'
 const MyProfilePage = () => {
     return (
         <div className='container mx-auto'>
@@ -41,32 +41,51 @@ const MyProfilePage = () => {
                     </TabsList>
                     <TabsContent value="account">
                         <div className=' font-lora  my-10'>
-
+                            <p className='text-center text-[#555555] text-[24px]'>Edit Your Profile</p>
                             <Form layout='vertical' >
                                 <Form.Item label="User Name">
                                     <Input placeholder="User Name" />
                                 </Form.Item>
                                 <Form.Item label="Email">
-                                <Input placeholder="example@gmail.com" />
+                                    <Input placeholder="example@gmail.com" />
                                 </Form.Item>
                                 <Form.Item label="Contact Number">
-                                <Input placeholder="+99999000455" />
+                                    <Input placeholder="+99999000455" />
                                 </Form.Item>
                                 <Form.Item label="Address">
-                                <Input placeholder="68/Joker vita, gotham city" />
+                                    <Input placeholder="68/Joker vita, gotham city" />
                                 </Form.Item>
-                                
-                               <Form.Item className=' text-center'>
-                                <button className='bg-black  text-white px-4 py-2 rounded-sm'>Save Changes</button>
-                                </Form.Item> 
-                                
+
+                                <Form.Item className=' text-center'>
+                                    <button className='bg-black  text-white px-4 py-2 rounded-sm'>Save Changes</button>
+                                </Form.Item>
+
                             </Form>
                         </div>
                     </TabsContent>
                     <TabsContent value="password">
                         <div>
                             {/* <CompleteTrip/> */}
-                            password
+                            <p className='text-center text-[#555555] text-[24px]'>Change Password</p>
+
+                            <Form
+                                layout='vertical'
+                            >
+                                
+                                <Form.Item label="Current Password">
+                                    <Input.Password placeholder='Current Password' className='p-2' />
+                                </Form.Item>
+                                <Form.Item label="New Password">
+                                    <Input.Password placeholder='New Password' className='p-2' />
+                                </Form.Item>
+                                <Form.Item label="Confirm Password">
+                                    <Input.Password placeholder='Confirm Password' className='p-2' />
+                                </Form.Item>
+                               
+                                <Form.Item className='text-center'>
+                                    <button className='bg-black  text-white rounded-sm px-4 py-2 font-lora'>Save Changes</button>
+                                </Form.Item>
+                            </Form>
                         </div>
                     </TabsContent>
                 </Tabs>
