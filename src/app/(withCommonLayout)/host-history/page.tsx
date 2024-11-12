@@ -11,6 +11,7 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import HostCars from '@/components/HostCars/HostCars'
+import HostOrder from '@/components/HostOrder/HostOrder'
 const HostHistoryPage = () => {
     return (
         <div className='my-10 container mx-auto'>
@@ -42,9 +43,7 @@ const HostHistoryPage = () => {
 
                     </TabsContent>
                     <TabsContent value="order">
-                        <div>
-                            <h1>Order</h1>
-                        </div>
+                        <HostOrder/>
                     </TabsContent>
                     <TabsContent value="history">
                         <div>
