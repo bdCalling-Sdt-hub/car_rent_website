@@ -37,7 +37,7 @@ const Navbar = () => {
                         <PopoverContent>
                             <div className='font-lora  '>
                                 <Link href='/my-trip' className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GoGitMerge /> Tips</Link>
-                                <p className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</p>
+                                <Link href={'/host-history'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</Link>
                                 <Link href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
                                 <Link href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
                                 <Link href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>
