@@ -27,8 +27,8 @@ const Navbar = () => {
                 </div>
                 <div className='flex items-center gap-2'>
                     <div className='flex items-center'>
-                        <button className='bg-[#272121] px-5 py-2 rounded-full text-white'>Become a partner</button>
-                        <p className='bg-[#272121] text-white p-3 rounded-full hover:rotate-45 duration-300 cursor-pointer'><MdArrowOutward /></p>
+                        <Link href={'/host-home'} className='bg-[#272121] px-5 py-2 rounded-full text-white'>Become a partner</Link>
+                        <Link href={'/host-home'} className='bg-[#272121] text-white p-3 rounded-full hover:rotate-45 duration-300 cursor-pointer'><MdArrowOutward /></Link>
                     </div>
                     <Popover>
                         <PopoverTrigger>
