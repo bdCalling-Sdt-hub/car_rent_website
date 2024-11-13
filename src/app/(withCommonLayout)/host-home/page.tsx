@@ -11,7 +11,7 @@ const HostHomePage = () => {
             <p className='mb-5'>FIND YOUR DRIVE</p>
             <HeadingTitle title='Start a car sharing' />
             <p className='pt-5 text-4xl font-medium pb-8'>business on Nardo</p>
-            <Link href='/' className='bg-[#6A6A6A] text-white px-5 py-4 rounded-sm'>Get Start</Link>
+            <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm'>Get Start</Link>
             <div className='mt-10'>
                 <Image src={img} alt='img' height={1600} width={1600} className='w-full h-[50vh]' />
             </div>
@@ -33,7 +33,7 @@ const HostHomePage = () => {
                         <p className='font-bold text-4xl font-lora'>NARDO</p>
                         <p className='text-4xl'>You cold earn</p>
                         <p className='font-lora text-2xl pb-10'>Static rate of average £40 per day</p>
-                        <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-5 py-4 rounded-sm '>Get Start</Link>
+                        <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm '>Get Start</Link>
                     </div>
                 </div>
                 <div className='col-span-6'>
@@ -43,7 +43,7 @@ const HostHomePage = () => {
             <div className='text-center mt-20 max-w-xl mx-auto space-y-4'>
                 <p className='text-4xl font-bold'>Start building your business plan</p>
                 <p className='pb-10'>List your first car to get started today and build your plan to take control of your financial future tomorrow.</p>
-                <Link href='/' className='bg-[#6A6A6A] text-white px-5 py-4 rounded-sm '>Get Start</Link>
+                <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm '>Get Start</Link>
 
             </div>
         </div>
