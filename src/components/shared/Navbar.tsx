@@ -10,7 +10,7 @@ import { CiUser } from 'react-icons/ci';
 import { GoGitMerge } from 'react-icons/go';
 import { GrHistory } from 'react-icons/gr';
 import { RiHomeLine } from 'react-icons/ri';
-import { IoIosInformationCircleOutline } from 'react-icons/io';
+import { IoIosInformationCircleOutline, IoMdNotificationsOutline } from 'react-icons/io';
 import { FiPhone } from 'react-icons/fi';
 import { PiSignInLight } from 'react-icons/pi';
 import { LuUser } from 'react-icons/lu';
@@ -47,6 +47,9 @@ const Navbar = () => {
                             </div>
                         </PopoverContent>
                     </Popover>
+                    <Link href={'/notification'} className='bg-[#BCBABA26] p-2 rounded-full'>
+                        <IoMdNotificationsOutline size={20} />
+                    </Link>
                 </div>
             </div>
         </div>
