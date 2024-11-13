@@ -9,12 +9,9 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import img from '../../../assets/car.png'
-import img1 from '../../../assets/driver.png'
 import Image from 'next/image'
 
-import { Form, Input, Modal } from 'antd'
-// import { Input } from '@/components/ui/input'
+import { Form, Input } from 'antd'
 const MyProfilePage = () => {
     return (
         <div className='container mx-auto'>

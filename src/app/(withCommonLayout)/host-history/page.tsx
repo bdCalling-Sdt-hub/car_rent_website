@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/tabs"
 import HostCars from '@/components/HostCars/HostCars'
 import HostOrder from '@/components/HostOrder/HostOrder'
+import HostHistoryInfo from '@/components/HostHistoryInfo/HostHistoryInfo'
+import HostEarning from '@/components/HostEarning/HostEarning'
 const HostHistoryPage = () => {
     return (
         <div className='my-10 container mx-auto'>
@@ -46,14 +48,10 @@ const HostHistoryPage = () => {
                         <HostOrder/>
                     </TabsContent>
                     <TabsContent value="history">
-                        <div>
-                            <h1>history</h1>
-                        </div>
+                        <HostHistoryInfo/>
                     </TabsContent>
                     <TabsContent value="earning">
-                        <div>
-                            <h1>earning</h1>
-                        </div>
+                       <HostEarning/>
                     </TabsContent>
                 </Tabs>
             </div>

@@ -28,7 +28,7 @@ const HostCars = () => {
           <p>3 days Discount -30£</p>
           <p>£40/Per day</p>
           <p className='font-semibold'>Description :</p>
-          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.</p>
         </div>
       </div>
       <div className='grid grid-cols-12 gap-5 border p-4 rounded-md font-lora'>
@@ -53,7 +53,7 @@ const HostCars = () => {
           <p>3 days Discount -30£</p>
           <p>£40/Per day</p>
           <p className='font-semibold'>Description :</p>
-          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.</p>
         </div>
       </div>
       <div className='grid grid-cols-12 gap-5 border p-4 rounded-md font-lora'>
@@ -78,7 +78,7 @@ const HostCars = () => {
           <p>3 days Discount -30£</p>
           <p>£40/Per day</p>
           <p className='font-semibold'>Description :</p>
-          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+          <p className='leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.</p>
         </div>
       </div>
     </div>

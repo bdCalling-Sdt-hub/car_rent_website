@@ -1,6 +1,6 @@
 import img from '../../assets/logo.png';
 import Image from 'next/image';
-import { MdArrowOutward, MdMenu, MdOutlineHelpCenter } from 'react-icons/md';
+import { MdArrowOutward, MdMenu } from 'react-icons/md';
 import {
     Popover,
     PopoverContent,

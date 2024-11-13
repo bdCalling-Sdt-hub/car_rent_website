@@ -86,3 +86,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+:where(.css-dev-only-do-not-override-apn68).ant-picker .ant-picker-input {
+
+  width: 66%;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-picker-outlined:hover {
+  /* border-color: #4096ff; */
+  background-color: #EBEBEB;
+}
