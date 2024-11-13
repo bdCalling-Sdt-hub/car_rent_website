@@ -33,7 +33,7 @@ const HostHomePage = () => {
                         <p className='font-bold text-4xl font-lora'>NARDO</p>
                         <p className='text-4xl'>You cold earn</p>
                         <p className='font-lora text-2xl pb-10'>Static rate of average £40 per day</p>
-                        <Link href='/' className='bg-[#6A6A6A] text-white px-5 py-4 rounded-sm '>Get Start</Link>
+                        <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-5 py-4 rounded-sm '>Get Start</Link>
                     </div>
                 </div>
                 <div className='col-span-6'>

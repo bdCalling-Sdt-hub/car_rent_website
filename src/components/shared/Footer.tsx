@@ -6,6 +6,7 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { HiOutlineMailOpen } from 'react-icons/hi';
 import { LuPhone } from 'react-icons/lu';
+import Link from 'next/link';
 const Footer = () => {
     return (
         <div className=' bg-gradient-to-b from-[#060606] to-[#505050] py-20'>
@@ -23,12 +24,12 @@ const Footer = () => {
                     <p  className='flex items-center gap-2'><LuPhone /> 302-158-125</p>
                     <p className='flex items-center gap-2'><IoLocationOutline /> 3651 25th st, Milami, Florida, USA</p>
                 </div>
-                <div className='space-y-4'>
+                <div className='space-y-4 flex flex-col'>
                     <p className='font-bold text-[20px] '>Useful Link</p>
-                    <p >About Us</p>
-                    <p>contact Us</p>
-                    <p>Privacy Policy</p>
-                    <p>Terms & Condition</p>
+                    <Link href={'/about-us'} >About Us</Link>
+                    <Link href={'/Contact-us'}>contact Us</Link>
+                    <Link href={'/privacy-policy'}>Privacy Policy</Link>
+                    <Link href={'/terms-condition'}>Terms & Condition</Link>
                 </div>
                 <div className='space-y-4'>
                     <p className='font-bold text-[20px] '>Social Media Links</p>
