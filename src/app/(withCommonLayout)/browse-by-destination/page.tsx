@@ -54,7 +54,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                             <div className='flex items-center justify-between'>
                                 <p><span className='font-semibold'>£280 </span>/  per day</p>
-                                <Link className='bg-[#528AAE] text-white p-3 rounded-full' href={'/'}><MdArrowOutward /></Link>
+                                <Link className='bg-[#528AAE] text-white p-3 rounded-full' href={`/browse-by-destination/:id`}><MdArrowOutward /></Link>
                             </div>
                         </div>
                     </CarouselItem>
@@ -150,7 +150,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                             <div className='flex items-center justify-between'>
                                 <p><span className='font-semibold'>£280 </span>/  per day</p>
-                                <Link className='bg-[#528AAE] text-white p-3 rounded-full' href={'/'}><MdArrowOutward /></Link>
+                                <Link className='bg-[#528AAE] text-white p-3 rounded-full' href={`/browse-by-destination/:id`}><MdArrowOutward /></Link>
                             </div>
                         </div>
                     </CarouselItem>
