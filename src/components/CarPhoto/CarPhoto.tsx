@@ -21,6 +21,7 @@ const CarPhoto = () => {
                 <p className='mb-2'>Door</p>
                 <Input placeholder='type here' />
             </div>
+            
             <div className='mt-10'>
                 <p className='mb-2'>Fuel type</p>
                 <Input placeholder='type here' />
@@ -35,7 +36,7 @@ const CarPhoto = () => {
                     <Input placeholder='type here' />
                 </div>
             </div>
-            
+
         </div>
     )
 }

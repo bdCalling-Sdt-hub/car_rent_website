@@ -34,11 +34,11 @@ const MultiStepForm = () => {
         }
     };
 
-    const handleBack = () => {
-        if (currentStep > 1) {
-            setCurrentStep((prev) => prev - 1);
-        }
-    };
+    // const handleBack = () => {
+    //     if (currentStep > 1) {
+    //         setCurrentStep((prev) => prev - 1);
+    //     }
+    // };
     return (
         <div className="container mx-auto py-10 font-lora">
             {/* Progress bar */}

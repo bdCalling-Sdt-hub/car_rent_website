@@ -3,6 +3,7 @@ import img from '../../assets/car.png'
 import img1 from '../../assets/car1.png'
 import Image from 'next/image'
 import { CiLocationOn } from 'react-icons/ci'
+import Chart from '../Chart/Chart'
 const HostEarning = () => {
     return (
         <div className='font-lora '>
@@ -19,6 +20,10 @@ const HostEarning = () => {
                     <p>yearly Income</p>
                     <p>$15,836</p>
                 </div>
+            </div>
+
+            <div className='mt-10'>
+                <Chart/>
             </div>
 
             <div className='mt-10 space-y-10'>
