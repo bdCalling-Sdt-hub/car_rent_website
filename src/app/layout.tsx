@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Lora } from "next/font/google";
+import "leaflet/dist/leaflet.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

@@ -23,7 +23,7 @@ const CarDetailsPage = () => {
             </div>
             <div className='grid grid-cols-2  justify-between mt-10 gap-20'>
                 <div className='col-span-1'>
-                    <h1 className='font-bold text-[48px]'>BMW M2 Car 2017</h1>
+                    <h1 className='font-bold text-[48px]'>BMW M2 Car  2017</h1>
                     <div className='flex gap-2 '>
                         <p className='bg-[#BCBABA26] px-4 py-2 rounded-full ' >luxury car</p>
                         <div className='flex items-center gap-1'>
