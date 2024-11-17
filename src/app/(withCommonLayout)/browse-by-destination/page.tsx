@@ -16,9 +16,8 @@ import { LuDoorClosed, LuFuel } from 'react-icons/lu'
 import { RiShoppingBagLine } from 'react-icons/ri'
 import Link from 'next/link'
 import { MdArrowOutward } from 'react-icons/md'
-import ClientReview from '@/components/ClientReview/ClientReview'
-import BrowseDestination from '@/components/BrowseDestination/BrowseDestination'
-import Faqs from '@/components/Faqs/Faqs'
+import HitRoad from '@/components/HitRoad/HitRoad'
+import MapParent from '@/components/Map/MapParent'
 
 const BrowseByDestinationPage = () => {
     return (
@@ -160,9 +159,13 @@ const BrowseByDestinationPage = () => {
                 <CarouselNext className="-top-8 right-1 " />
             </Carousel>
 
-            <ClientReview/>
-            <BrowseDestination/>
-            <Faqs/>
+            <HitRoad />
+            <div>
+                <p>Rental Car in London</p>
+                <div className=''>
+                    <MapParent height={500} />
+                </div>
+            </div>
 
         </div>
     )

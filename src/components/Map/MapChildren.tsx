@@ -11,8 +11,11 @@ const fixLeafletIcons = () => {
         shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     });
 };
+interface LeafletMapProps {
+    height: number;
+}
 
-const LeafletMap: React.FC = () => {
+const LeafletMap: React.FC<LeafletMapProps> = ({height}) => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const leafletMap = useRef<L.Map | null>(null); 
 
@@ -35,7 +38,10 @@ const LeafletMap: React.FC = () => {
         // };
     }, []);
 
-    return <div ref={mapRef} className="h-[1200px] w-full" />;
+    return <div ref={mapRef}  style={{
+        height: `${height}px`,
+        width: '100%',
+    }} />;
 };
 
 export default LeafletMap;

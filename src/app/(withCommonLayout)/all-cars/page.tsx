@@ -9,7 +9,8 @@ const AllCarsPage = () => {
   return (
     <div className="container mx-auto my-10 font-lora">
       <FilterBar/>
-      <div className="grid grid-cols-2 justify-between gap-5">
+      <div className="grid grid-cols-2 justify-between items-center gap-5">
+
         <div>
           <p className="text-[24px] font-semibold">200+ cars available</p>
           <p className="text-sm mb-8">These cars are located in and around London</p>
@@ -45,7 +46,7 @@ const AllCarsPage = () => {
           </div>
         </div>
         <div className="-z-10 ">
-          <MapParent />
+          <MapParent height={850} />
         </div>
 
       </div>
