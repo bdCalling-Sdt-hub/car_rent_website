@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { MdArrowOutward } from 'react-icons/md'
 import HitRoad from '@/components/HitRoad/HitRoad'
 import MapParent from '@/components/Map/MapParent'
+import TopHostedCar from '@/components/TopHostedCar/TopHostedCar'
 
 const BrowseByDestinationPage = () => {
     return (
@@ -159,9 +160,16 @@ const BrowseByDestinationPage = () => {
                 <CarouselNext className="-top-8 right-1 " />
             </Carousel>
 
+            <div className='my-16'>
+                <div className='text-center'>
+                    <HeadingTitle title='Top hosts in los Angeles, CA' />
+                </div>
+                <TopHostedCar/>
+            </div>
+
             <HitRoad />
             <div>
-                <p>Rental Car in London</p>
+                <p className='py-5 text-2xl'>Rental Car in London</p>
                 <div className=''>
                     <MapParent height={500} />
                 </div>
