@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
+import Link from 'next/link'
 const CarDetailsPage = () => {
     return (
         <div className='container mx-auto my-10 font-lora'>
@@ -57,7 +58,7 @@ const CarDetailsPage = () => {
                         </div>
                     </div>
                     <p>Description : </p>
-                    <p className='mt-5 font-thin leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn t anything embarrassing hidden in the middle of text.</p>
+                    <p className='mt-5 font-thin leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn t anything embarrassing hidden in the middle of text.</p>
                 </div>
                 <div className='col-span-1'>
                     <p className='text-5xl'><span className='font-bold'>£280</span> <span className='text-[#525252]'>/ day</span></p>
@@ -100,7 +101,7 @@ const CarDetailsPage = () => {
                         </div>
 
                         {/* Continue Button */}
-                        <Button className="w-full bg-[#525252] text-white">Continue</Button>
+                        <div className='text-center'> <Link href={'/get-approved-driver'} className="w-full bg-[#525252]  px-16 rounded-md  py-2 text-white">Continue</Link></div>
 
                         {/* Breakdown */}
                         <div className="space-y-4">
