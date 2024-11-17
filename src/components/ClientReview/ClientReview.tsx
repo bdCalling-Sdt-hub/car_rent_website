@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { IoIosStar } from 'react-icons/io'
 const ClientReview = () => {
     return (
-        <div className='font-lora'>
+        <div className='font-lora container mx-auto'>
             <div className='text-center my-14'>
                 <HeadingTitle title={'Client Review'} />
                 <p className='mt-2'>Testimonials</p>

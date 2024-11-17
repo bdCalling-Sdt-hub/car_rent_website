@@ -1,5 +1,6 @@
 import BrowseBrand from '@/components/BrowseBrand/BrowseBrand'
 import BrowseDestination from '@/components/BrowseDestination/BrowseDestination'
+import ClientReview from '@/components/ClientReview/ClientReview'
 import Faqs from '@/components/Faqs/Faqs'
 import Hero from '@/components/Hero/Hero'
 import Overview from '@/components/Overview/Overview'
@@ -13,6 +14,7 @@ const page = () => {
             <Hero />
             <BrowseBrand/>
             <BrowseDestination/>
+            <ClientReview/>
             <Overview/>
             <Faqs/>
         </>
