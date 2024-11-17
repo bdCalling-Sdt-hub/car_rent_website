@@ -35,7 +35,7 @@ const LeafletMap: React.FC = () => {
         // };
     }, []);
 
-    return <div ref={mapRef} className="h-[400px] w-full" />;
+    return <div ref={mapRef} className="h-[1200px] w-full" />;
 };
 
 export default LeafletMap;
