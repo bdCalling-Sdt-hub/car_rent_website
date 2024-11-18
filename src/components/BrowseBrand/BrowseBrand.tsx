@@ -4,7 +4,7 @@ import BrandCaurosel from '../BrandCaurosel'
 
 const BrowseBrand = () => {
     return (
-        <div className='container mx-auto py-20 px-2 md:px-0'>
+        <div className='container mx-auto py-10 md:py-20 px-2 md:px-0'>
             <HeadingTitle title={'Browse by Brand'} />
 
             <div className='md:mt-5 mt-2 '>
