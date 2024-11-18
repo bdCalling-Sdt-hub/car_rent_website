@@ -16,7 +16,7 @@ const BrandCaurosel = () => {
         <div className="mt-10">
             <Carousel>
                 <CarouselContent>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basis-1/2">
                         <Link href={'/browse-by-brand'}>
                             <div className="hover:text-[#528AAE] bg-[#F9F9F9] text-center hover:shadow-lg">
                                 <Image src={img} height={500} width={500} alt='img' />
@@ -24,25 +24,25 @@ const BrandCaurosel = () => {
                             </div>
                         </Link>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basis-1/2">
                         <div className="hover:text-[#528AAE] bg-[#F9F9F9] text-center hover:shadow-lg">
                             <Image src={img2} height={500} width={500} alt='img' />
                             <p className="text-xl py-2">BMW</p>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basis-1/2">
                         <div className="hover:text-[#528AAE] bg-[#F9F9F9] text-center  hover:shadow-lg">
                             <Image src={img3} height={500} width={500} alt='img' />
                             <p className="text-xl py-2">VW</p>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basis-1/2">
                         <div className="hover:text-[#528AAE] bg-[#F9F9F9] text-center hover:shadow-lg">
                             <Image src={img4} height={500} width={500} alt='img' />
                             <p className="text-xl py-2">Audi</p>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basis-1/2">
                         <div className="hover:text-[#528AAE] bg-[#F9F9F9] text-center hover:shadow-lg">
                             <Image src={img} height={500} width={500} alt='img' />
                             <p className="text-xl py-2">Mercedes</p>
