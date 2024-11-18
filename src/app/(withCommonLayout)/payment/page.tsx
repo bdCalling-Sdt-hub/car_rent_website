@@ -74,7 +74,7 @@ const PaymentForm: React.FC = () => {
             </div>
 
             {/* Expiration Date & CVC */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 pb-8">
               <Input placeholder="" className="w-full" />
               <Input placeholder="CVC" className="w-full" />
             </div>

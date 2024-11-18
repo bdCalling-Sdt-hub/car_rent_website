@@ -1,6 +1,6 @@
 import img from '../../assets/logo.png';
 import Image from 'next/image';
-import { MdArrowOutward, MdMenu } from 'react-icons/md';
+import { MdArrowOutward, MdCarRental, MdMenu } from 'react-icons/md';
 import {
     Popover,
     PopoverContent,
@@ -19,14 +19,16 @@ import Link from 'next/link';
 const Navbar = () => {
 
     return (
-        <div className='bg-[#F9F9F9]'>
+        <div className='bg-[#F9F9F9] py-4 md:py-0'>
             <div className='container flex items-center justify-between'>
-                <div className='flex items-center ml-10'>
-                    <p className='font-bold text-[40px]'>NARDO</p>
-                    <Image src={img} height={100} width={100} className='h-10 w-10' alt='logo' />
-                </div>
+                <Link href={'/'}>
+                    <div className='flex items-center gap-1 ml-10'>
+                        <p className='font-bold text-[20px] md:text-[40px]'>NARDO</p>
+                        <Image src={img} height={100} width={100} className=' h-5 md:h-10 w-5 md:w-10' alt='logo' />
+                    </div>
+                </Link>
                 <div className='flex items-center gap-2'>
-                    <div className='flex items-center'>
+                    <div className='hidden md:flex items-center'>
                         <Link href={'/host-home'} className='bg-[#272121] px-5 py-2 rounded-full text-white'>Become a partner</Link>
                         <Link href={'/host-home'} className='bg-[#272121] text-white p-3 rounded-full hover:rotate-45 duration-300 cursor-pointer'><MdArrowOutward /></Link>
                     </div>
@@ -41,6 +43,7 @@ const Navbar = () => {
                                 <Link href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
                                 <Link href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
                                 <Link href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>
+                                <Link href={'/host-home'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdCarRental /> Become Host</Link>
                                 <Link href={'/my-profile'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><LuUser /> Profile</Link>
                                 <Link href={'/login'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Sign in</Link>
                                 <Link href={'/register'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight /> Sign Up</Link>

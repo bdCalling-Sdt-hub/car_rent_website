@@ -8,7 +8,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import img from '../../../assets/car.png'
+import img from '../../../assets/car.jpg'
 import img1 from '../../../assets/driver.png'
 import Image from 'next/image'
 import { FaRegStar } from 'react-icons/fa6'

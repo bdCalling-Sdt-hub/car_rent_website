@@ -10,13 +10,13 @@ import React from 'react'
 const page = () => {
     return (
         <>
-            <TakenDateTime/>
+            <TakenDateTime />
             <Hero />
-            <BrowseBrand/>
-            <BrowseDestination/>
-            <ClientReview/>
-            <Overview/>
-            <Faqs/>
+            <BrowseBrand />
+            <BrowseDestination />
+            <ClientReview />
+            <Overview />
+            <Faqs />
         </>
     )
 }

@@ -25,7 +25,7 @@ const TakenDateTime = () => {
     };
 
     return (
-        <div className='py-10 container mx-auto font-lora'>
+        <div className='py-10 hidden md:block container mx-auto font-lora'>
             <div className='flex items-center justify-between bg-[#EBEBEB]  rounded-full px-8 py-2 max-w-4xl mx-auto'>
                 <div>
                     <p className='flex items-center gap-1'><CiLocationOn /> Location</p>
@@ -54,7 +54,7 @@ const TakenDateTime = () => {
                                 </div>
                             </PopoverContent>
                         </Popover>
-                        <TimePicker className='bg-[#EBEBEB] border-none ' use12Hours format="h:mm a" onChange={onChange} />
+                        <TimePicker className='bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none ' use12Hours format="h:mm a" onChange={onChange} />
                     </div>
                 </div>
                 <div>
@@ -82,7 +82,7 @@ const TakenDateTime = () => {
                                     </div>
                                 </PopoverContent>
                             </Popover>
-                            <TimePicker className='bg-[#EBEBEB] border-none ' use12Hours format="h:mm a" onChange={onChange} />
+                            <TimePicker className='bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none ' use12Hours format="h:mm a" onChange={onChange} />
                         </div>
                     </div>
                 </div>
