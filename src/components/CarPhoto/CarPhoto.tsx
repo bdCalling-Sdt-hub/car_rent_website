@@ -4,7 +4,6 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import hostCar1 from "../../assets/hostcar.png";
 import hostCar3 from "../../assets/hostimg2.png";
-// import hostCar2 from "../../assets/car.png";
 import Image from "next/image";
 
 const CarPhoto = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../../assets/car.png'
+import img from '../../assets/car.jpg'
 import img1 from '../../assets/chat2.png'
 import Image from 'next/image'
 import { CiLocationOn } from 'react-icons/ci'

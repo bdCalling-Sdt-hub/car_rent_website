@@ -1,6 +1,6 @@
 import React from 'react'
 import img from '../../../../assets/car0.png'
-import img2 from '../../../../assets/car.png'
+import img2 from '../../../../assets/car.jpg'
 import img3 from '../../../../assets/carD.png'
 import img4 from '../../../../assets/driver.png'
 import Image from 'next/image'

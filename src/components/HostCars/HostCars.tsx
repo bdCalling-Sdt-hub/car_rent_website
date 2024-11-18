@@ -22,7 +22,7 @@ const HostCars = () => {
 
             </div>
             <div>
-              <Link href={'/'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
+              <Link href={'/host-history/:id'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
             </div>
           </div>
           <p>3 days Discount -30£</p>
@@ -47,7 +47,7 @@ const HostCars = () => {
 
             </div>
             <div>
-              <Link href={'/'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
+              <Link href={'/gdg'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
             </div>
           </div>
           <p>3 days Discount -30£</p>
@@ -72,7 +72,7 @@ const HostCars = () => {
 
             </div>
             <div>
-              <Link href={'/'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
+              <Link href={'/host-history/:id'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex items-center gap-1'>Edit <CiEdit size={20} /></Link>
             </div>
           </div>
           <p>3 days Discount -30£</p>

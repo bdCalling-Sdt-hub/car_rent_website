@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { FaRegStar } from 'react-icons/fa6'
-import img from '../assets/car.png'
+import img from '../assets/car.jpg'
 import img1 from '../assets/driver.png'
 const CompleteTrip = () => {
     return (

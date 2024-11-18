@@ -27,7 +27,7 @@ const HostHistoryPage = () => {
                     </div>
                 </div>
                 <div>
-                    <Link className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 ' href={'/'} >Add a new car <IoAdd /> </Link>
+                    <Link className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 ' href={''} >Add a new car <IoAdd /> </Link>
                 </div>
             </div>
 
