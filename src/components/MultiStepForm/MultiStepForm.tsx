@@ -18,6 +18,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import DriverLicense from "../DriverLicense/DriverLicense";
 import CarDetails from "../CarDetails/CarDetails";
 import CarPhoto from "../CarPhoto/CarPhoto";
+import ViewStep from "../ViewStep/ViewStep";
+import Link from "next/link";
+
 
 
 const TotalSteps = 7;
@@ -57,7 +60,7 @@ const MultiStepForm = () => {
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>
-                <Button variant="outline">View all Steps</Button>
+                <ViewStep/>
             </div>
 
             {/* Conditional rendering for each form step */}
@@ -85,13 +88,18 @@ const MultiStepForm = () => {
                 )}
 
             </div>
-
+           
+           
             {/* Navigation controls */}
             <div className=" mt-4">
 
-                <Button className="bg-[#6A6A6A] px-10" onClick={handleNext} disabled={currentStep === TotalSteps}>
-                    Continue
-                </Button>
+                {
+                    currentStep === 7 ? <Link href={'/host-history'} className="bg-[#6A6A6A] py-2 rounded-md text-white px-10"  >
+                        Send Request
+                    </Link> : <Button className="bg-[#6A6A6A] px-10" onClick={handleNext} disabled={currentStep === TotalSteps}>
+                        Continue
+                    </Button>
+                }
             </div>
         </div>
     )

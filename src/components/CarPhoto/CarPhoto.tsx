@@ -1,6 +1,11 @@
 import React from 'react'
 import HeadingTitle from '../shared/HeadingTitle'
 import { Input } from '../ui/input'
+import { Button } from '../ui/button'
+import hostCar1 from "../../assets/hostcar.png";
+import hostCar3 from "../../assets/hostimg2.png";
+// import hostCar2 from "../../assets/car.png";
+import Image from "next/image";
 
 const CarPhoto = () => {
     return (
@@ -36,7 +41,19 @@ const CarPhoto = () => {
                     <Input placeholder='type here' />
                 </div>
             </div>
+            <div className='mt-10 flex justify-between  gap-10 '>
+                <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} />
+                <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar3} />
+                <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} />
+                {/* <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} />
+                <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} /> */}
+            </div>
 
+            <div className="mt-8">
+                <Button className="bg-[#6A6A6A] px-10"  >
+                    Add Photos
+                </Button>
+            </div>
         </div>
     )
 }

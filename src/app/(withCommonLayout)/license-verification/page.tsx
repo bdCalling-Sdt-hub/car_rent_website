@@ -1,7 +1,7 @@
 "use client"
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 const LicenseVerificationPage = () => {
@@ -23,12 +23,12 @@ const LicenseVerificationPage = () => {
         new Date(0, i).toLocaleString("default", { month: "long" })
       );
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-8">
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">Get approved to drive</h1>
         <p className="text-gray-600">
-          Since this is your first trip, you’ll need to provide us with some
+          Since this is your first trip, you ll need to provide us with some
           information before you can check out.
         </p>
       </div>
@@ -41,8 +41,8 @@ const LicenseVerificationPage = () => {
 
       {/* Driver's License Number */}
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Driver's license number
+        <label className="block text-sm font-medium text-[#6A6A6A] mb-2">
+          Drivers license number
         </label>
         <Input placeholder="Type here" />
       </div>
@@ -115,7 +115,7 @@ const LicenseVerificationPage = () => {
       </div>
 
       {/* License Date of Birth */}
-      <div>
+      <div className='pb-8'>
         <label className="block text-sm font-medium text-gray-600 mb-2">
           License Date of Birth
         </label>
@@ -160,7 +160,7 @@ const LicenseVerificationPage = () => {
       </div>
 
       {/* Continue Button */}
-      <Button className="w-full bg-gray-800 text-white">Continue</Button>
+      <Link href={'/payment'}  className="w-full bg-[#6A6A6A] px-12 py-3 rounded-md  text-white">Continue</Link>
     </div>
   )
 }
