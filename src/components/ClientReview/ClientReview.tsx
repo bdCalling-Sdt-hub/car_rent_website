@@ -13,15 +13,15 @@ import Image from 'next/image'
 import { IoIosStar } from 'react-icons/io'
 const ClientReview = () => {
     return (
-        <div className='font-lora container mx-auto'>
-            <div className='text-center my-14'>
+        <div className='font-lora container mx-auto px-2'>
+            <div className='text-center my-5 md:my-14'>
                 <HeadingTitle title={'Client Review'} />
                 <p className='mt-2'>Testimonials</p>
             </div>
 
             <Carousel>
-                <CarouselContent>
-                    <CarouselItem className="basis-1/3">
+                <CarouselContent >
+                    <CarouselItem className="md:basis-1/3 basis-1/1">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <div className='flex gap-5'>
                                 <Image src={img} height={300} width={300} className='h-20 w-20' alt="img" />
@@ -39,11 +39,11 @@ const ClientReview = () => {
                                 </div>
 
                             </div>
-                            <p className='leading-6'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
+                            <p className='leading-7 text-[#525252] w-52 md:w-full'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
 
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/3">
+                    <CarouselItem className="md:basis-1/3 basis-1/1">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <div className='flex gap-5'>
                                 <Image src={img1} height={300} width={300} className='h-20 w-20' alt="img" />
@@ -61,11 +61,11 @@ const ClientReview = () => {
                                 </div>
 
                             </div>
-                            <p className='leading-6'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
+                            <p className='leading-7 text-[#525252] w-52 md:w-full'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
 
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/3">
+                    <CarouselItem className="md:basis-1/3 basis-1/1">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <div className='flex gap-5'>
                                 <Image src={img} height={300} width={300} className='h-20 w-20' alt="img" />
@@ -83,11 +83,11 @@ const ClientReview = () => {
                                 </div>
 
                             </div>
-                            <p className='leading-6'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
+                            <p className='leading-7 text-[#525252] w-52 md:w-full'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
 
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/3">
+                    <CarouselItem className="md:basis-1/3 basis-1/1">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <div className='flex gap-5'>
                                 <Image src={img1} height={300} width={300} className='h-20 w-20' alt="img" />
@@ -105,7 +105,7 @@ const ClientReview = () => {
                                 </div>
 
                             </div>
-                            <p className='leading-6 '>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
+                            <p className='leading-7  text-[#525252] w-52 md:w-full'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal Read more</p>
 
                         </div>
                     </CarouselItem>

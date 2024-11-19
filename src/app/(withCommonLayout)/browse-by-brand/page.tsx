@@ -16,16 +16,16 @@ import { MdArrowOutward } from 'react-icons/md'
 
 const BrowseByBrandPage = () => {
     return (
-        <div className='container mx-auto my-10 font-lora'>
+        <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
             <div className='text-center'>
                 <HeadingTitle title='Rent a Tesla' />
-                <p className='mt-4'>Discover the Nardo car rental marketplace</p>
+                <p className='mt-4 mb-14'>Discover the Nardo car rental marketplace</p>
             </div>
             <TakenDateTime />
             <div>
                 <Carousel>
                     <CarouselContent>
-                        <CarouselItem className="basis-1/4">
+                        <CarouselItem className="md:basis-1/4 basic-1/2">
                             <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                 <Image src={img} height={300} width={300} alt="img" />
                                 <div className='flex items-center gap-2'>
@@ -49,7 +49,7 @@ const BrowseByBrandPage = () => {
                                 </div>
                             </div>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/4">
+                        <CarouselItem className="md:basis-1/4 basic-1/2">
                             <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                 <Image src={img1} height={300} width={300} alt="img" />
                                 <div className='flex items-center gap-2'>
@@ -73,7 +73,7 @@ const BrowseByBrandPage = () => {
                                 </div>
                             </div>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/4">
+                        <CarouselItem className="md:basis-1/4 basic-1/2">
                             <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                 <Image src={img} height={300} width={300} alt="img" />
                                 <div className='flex items-center gap-2'>
@@ -97,7 +97,7 @@ const BrowseByBrandPage = () => {
                                 </div>
                             </div>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/4">
+                        <CarouselItem className="md:basis-1/4 basic-1/2">
                             <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                 <Image src={img1} height={300} width={300} alt="img" />
                                 <div className='flex items-center gap-2'>
@@ -121,7 +121,7 @@ const BrowseByBrandPage = () => {
                                 </div>
                             </div>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/4">
+                        <CarouselItem className="md:basis-1/4 basic-1/2">
                             <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                 <Image src={img} height={300} width={300} alt="img" />
                                 <div className='flex items-center gap-2'>

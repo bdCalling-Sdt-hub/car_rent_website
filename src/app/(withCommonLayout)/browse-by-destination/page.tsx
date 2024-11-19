@@ -22,7 +22,7 @@ import TopHostedCar from '@/components/TopHostedCar/TopHostedCar'
 
 const BrowseByDestinationPage = () => {
     return (
-        <div className='container mx-auto my-10 font-lora'>
+        <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
             <div className='text-center'>
                 <HeadingTitle title='Rent cars in Honolulu, HI' />
                 <p className='mt-5 font-lora'>Discover the Nardo car rental marketplace</p>
@@ -30,11 +30,11 @@ const BrowseByDestinationPage = () => {
             <TakenDateTime />
 
             <div className='my-5'>
-                <p className='text-[32px] font-semibold'>Top rated rental cars in Los Angeles, CA</p>
+                <p className='md:text-[32px] text-[18px] mb-20 md:mb-0 font-semibold'>Top rated rental cars in Los Angeles, CA</p>
             </div>
             <Carousel>
                 <CarouselContent>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basic-1/2">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <Image src={img} height={300} width={300} alt="img" />
                             <div className='flex items-center gap-2'>
@@ -58,7 +58,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basic-1/2">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <Image src={img1} height={300} width={300} alt="img" />
                             <div className='flex items-center gap-2'>
@@ -82,7 +82,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basic-1/2">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <Image src={img} height={300} width={300} alt="img" />
                             <div className='flex items-center gap-2'>
@@ -106,7 +106,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basic-1/2">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <Image src={img1} height={300} width={300} alt="img" />
                             <div className='flex items-center gap-2'>
@@ -130,7 +130,7 @@ const BrowseByDestinationPage = () => {
                             </div>
                         </div>
                     </CarouselItem>
-                    <CarouselItem className="basis-1/4">
+                    <CarouselItem className="md:basis-1/4 basic-1/2">
                         <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                             <Image src={img} height={300} width={300} alt="img" />
                             <div className='flex items-center gap-2'>

@@ -13,8 +13,8 @@ import img3 from '../../assets/driver2.png'
 import { CiStar } from 'react-icons/ci'
 const TopHostedCar = () => {
     return (
-        <div className='my-20'>
-            <div className='grid grid-cols-2 gap-5'>
+        <div className='md:my-20 my-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 px-2 md:px-0'>
                 <div className='col-span-1'>
                     <div className='flex items-center gap-5'>
                         <Image src={img2} height={300} className='h-14 w-14' width={300} alt="img" />
@@ -45,10 +45,10 @@ const TopHostedCar = () => {
                     </div>
                 </div>
                 <div className='col-span-1'>
-                    <p className='text-xl mb-2 font-semibold'>MD. Hasan vehicles</p>
+                    <p className='text-xl mb-10 font-semibold '>MD. Hasan vehicles</p>
                     <Carousel>
                         <CarouselContent>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -72,7 +72,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img1} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -96,7 +96,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -120,7 +120,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img1} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -144,7 +144,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -175,7 +175,7 @@ const TopHostedCar = () => {
                     </Carousel>
                 </div>
             </div>
-            <div className='grid grid-cols-2 gap-5 mt-20'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 mt-20 px-2 md:px-0 '>
                 <div className='col-span-1'>
                     <div className='flex items-center gap-5'>
                         <Image src={img3} height={300} className='h-14 w-14' width={300} alt="img" />
@@ -209,7 +209,7 @@ const TopHostedCar = () => {
                     <p className='text-xl mb-2 font-semibold'>Techia M.s vehicles</p>
                     <Carousel>
                         <CarouselContent>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -233,7 +233,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img1} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -257,7 +257,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -281,7 +281,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img1} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>
@@ -305,7 +305,7 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-                            <CarouselItem className="basis-1/2">
+                            <CarouselItem className="md:basis-1/2">
                                 <div className='bg-[#F9F9F9] p-4 rounded-md space-y-4'>
                                     <Image src={img} height={300} width={300} alt="img" />
                                     <div className='flex items-center gap-2'>

@@ -4,7 +4,7 @@ import img from '../../assets/london.jpg'
 import Image from 'next/image'
 const HitRoad = () => {
     return (
-        <div className='my-14 grid grid-cols-2 gap-10'>
+        <div className='my-14 grid grid-cols-1  md:grid-cols-2 gap-10'>
             <div className='col-span-1'>
                 <HeadingTitle title='Hit the road' />
                 <p className='text-2xl mt-4'>Rent cars in London</p>
