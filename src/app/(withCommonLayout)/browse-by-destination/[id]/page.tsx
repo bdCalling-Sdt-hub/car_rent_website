@@ -17,21 +17,21 @@ import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
 import Link from 'next/link'
 const CarDetailsPage = () => {
     return (
-        <div className='container mx-auto my-10 font-lora'>
+        <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
             <TakenDateTime />
             <p className='pb-2'><span className='text-sm text-[#B0B0B0] '>Home </span>/ Service details</p>
             <p className='text-2xl font-medium mb-5'>Details</p>
-            <div className='grid grid-cols-12 gap-5 '>
-                <div className='col-span-7'>
-                    <Image alt='img' className='w-full h-full ' src={img2} height={1200} width={1200} />
+            <div className='grid grid-cols-1 md:grid-cols-12 gap-5 '>
+                <div className='md:col-span-7 '>
+                    <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
                 </div>
-                <div className='col-span-5 space-y-4'>
+                <div className='md:col-span-5 space-y-4'>
                     <Image alt='img' className='w-full ' src={img} height={300} width={300} />
                     <Image alt='img' className='w-full ' src={img3} height={300} width={300} />
 
                 </div>
             </div>
-            <div className='grid grid-cols-2  justify-between mt-10 gap-20'>
+            <div className='grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20'>
                 <div className='col-span-1'>
                     <h1 className='font-bold text-[48px]'>BMW M2 Car  2017</h1>
                     <div className='flex gap-2 '>
