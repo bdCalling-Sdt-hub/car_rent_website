@@ -1,3 +1,4 @@
+"use client"
 import img from '../../assets/logo.png';
 import Image from 'next/image';
 import { MdArrowOutward, MdCarRental, MdMenu } from 'react-icons/md';
@@ -15,9 +16,12 @@ import { FiPhone } from 'react-icons/fi';
 import { PiSignInLight } from 'react-icons/pi';
 import { LuUser } from 'react-icons/lu';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [popoverOpen, setPopoverOpen] = useState(false);
 
+    const closePopover = () => setPopoverOpen(false);
     return (
         <div className='bg-[#F9F9F9] py-4 md:py-0'>
             <div className='container flex items-center justify-between'>
@@ -32,29 +36,29 @@ const Navbar = () => {
                         <Link href={'/host-home'} className='bg-[#272121] px-5 py-2 rounded-full text-white'>Become a partner</Link>
                         <Link href={'/host-home'} className='bg-[#272121] text-white p-3 rounded-full hover:rotate-45 duration-300 cursor-pointer'><MdArrowOutward /></Link>
                     </div>
-                    <Popover>
+                    <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
                         <PopoverTrigger>
                             <p className='border flex px-5 py-2 items-center gap-2 rounded-full '> <MdMenu /> <CiUser /></p>
                         </PopoverTrigger>
                         <PopoverContent>
                             <div className='font-lora grid grid-cols-1 md:grid-cols-2'>
                                 <div className='col-span-1'>
-                                    <Link href='/my-trip' className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GoGitMerge /> Trips</Link>
-                                    <Link href={'/host-history'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</Link>
-                                    <Link href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
-                                    <Link href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
-                                    <Link href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>
-                                    <Link href={'/host-home'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdCarRental /> Become Host</Link>
+                                    <Link href='/my-trip' onClick={closePopover} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GoGitMerge /> Trips</Link>
+                                    <Link onClick={closePopover} href={'/host-history'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</Link>
+                                    <Link onClick={closePopover} href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
+                                    <Link onClick={closePopover} href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
+                                    <Link onClick={closePopover} href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>
+                                    <Link onClick={closePopover} href={'/host-home'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdCarRental /> Become Host</Link>
                                 </div>
                                 <div className='col-span-1'>
-                                   
-                                    <Link href={'/my-profile'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><LuUser /> Profile</Link>
-                                    <Link href={'/login'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Sign in</Link>
-                                    <Link href={'/register'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight /> Sign Up</Link>
-                                    
-                                    <Link href={'/trust-and-safety'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Trust & Safety</Link>
-                                    <Link href={'/tips-and-tricks'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Tips & tricks</Link>
-                                    <Link href={'/listing-vehicle'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Hosting Guide</Link>
+
+                                    <Link onClick={closePopover} href={'/my-profile'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><LuUser /> Profile</Link>
+                                    <Link onClick={closePopover} href={'/login'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Sign in</Link>
+                                    <Link onClick={closePopover} href={'/register'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight /> Sign Up</Link>
+
+                                    <Link onClick={closePopover} href={'/trust-and-safety'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Trust & Safety</Link>
+                                    <Link onClick={closePopover} href={'/tips-and-tricks'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Tips & tricks</Link>
+                                    <Link onClick={closePopover} href={'/listing-vehicle'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Hosting Guide</Link>
                                 </div>
 
                             </div>
