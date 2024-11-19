@@ -14,15 +14,17 @@ import Image from 'next/image'
 import { Form, Input } from 'antd'
 const MyProfilePage = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto px-2 md:px-0'>
             <div className='my-10'>
                 <HeadingTitle title="My Profile" />
             </div>
             <div className='flex items-center justify-center' style={{ backgroundImage: `url(${bg.src})`, backgroundSize: 'contain', height: '300px' }}>
-                <div className='max-w-[40%] mx-auto flex  items-center gap-5'>
-                    <Image height={200} width={200} className='h-24 w-24' src={profile} alt='profile' />
+                <div className='md:max-w-[40%] max-w-[100%] mx-auto md:flex   items-center gap-5'>
+                    <div className='flex items-center justify-center'>
+                        <Image height={200} width={200} className='h-24 w-24 ' src={profile} alt='profile' />
+                    </div>
                     <div>
-                        <p>Hello</p>
+                        <p className='text-center md:text-left'>Hello</p>
                         <p className='font-semibold text-[24px]'>Rudaba jaman</p>
                     </div>
                 </div>
@@ -30,9 +32,9 @@ const MyProfilePage = () => {
 
             </div>
 
-            <div className='max-w-xl  mx-auto mt-10'>
+            <div className='md:max-w-xl w-full  mx-auto mt-10'>
                 <Tabs defaultValue="account" className="w-full">
-                    <TabsList className="grid w-[60%] grid-cols-2 gap-5 mb-10">
+                    <TabsList className="grid md:w-[60%] grid-cols-2 gap-5 mb-10">
                         <TabsTrigger value="account" className='px-20'>Edit Profile</TabsTrigger>
                         <TabsTrigger value="password" className='px-20'>Change Password</TabsTrigger>
                     </TabsList>
@@ -68,7 +70,7 @@ const MyProfilePage = () => {
                             <Form
                                 layout='vertical'
                             >
-                                
+
                                 <Form.Item label="Current Password">
                                     <Input.Password placeholder='Current Password' className='p-2' />
                                 </Form.Item>
@@ -78,7 +80,7 @@ const MyProfilePage = () => {
                                 <Form.Item label="Confirm Password">
                                     <Input.Password placeholder='Confirm Password' className='p-2' />
                                 </Form.Item>
-                               
+
                                 <Form.Item className='text-center'>
                                     <button className='bg-black  text-white rounded-sm px-4 py-2 font-lora'>Save Changes</button>
                                 </Form.Item>
