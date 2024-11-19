@@ -43,13 +43,13 @@ const MultiStepForm = () => {
     //     }
     // };
     return (
-        <div className="container mx-auto py-10 font-lora">
+        <div className="container mx-auto py-10 font-lora px-2 md:px-0">
             {/* Progress bar */}
             <div>
                 <p>List your car</p>
-                <div className="flex gap-5 my-5">
-                    <p className="border-r-2 pr-3">{`Step ${currentStep} of ${TotalSteps}`}</p>
-                    <p className="border-r-2 pr-3">Next Car availability</p>
+                <div className="md:flex gap-5 my-5">
+                    <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${TotalSteps}`}</p>
+                    <p className="md:border-r-2 pr-3">Next Car availability</p>
                     <p className="text-[#1E3F66]">Start over</p>
                 </div>
             </div>
@@ -105,7 +105,7 @@ const MultiStepForm = () => {
     )
 }
 const Step2 = () => (
-    <div className="max-w-[60%]">
+    <div className="md:max-w-[60%] w-full ">
         <HeadingTitle title="License Plate" />
         <p className="mt-5">Your license plate information won t be publicly visible</p>
         <p className="mt-10 pb-2">Plate Number</p>
@@ -114,9 +114,9 @@ const Step2 = () => (
 );
 
 const Step1 = () => (
-    <div className="max-w-[60%]">
+    <div className="md:max-w-[60%] w-full ">
         <HeadingTitle title="Location" />
-        <p className="mt-10 mb-1">Where is your car located?</p>
+        <p className="mt-10 mb-1">Where is your car locatedss?</p>
         <Input placeholder="Where your car located?" />
         <div className="w-full">
             <p className="my-2">Select City</p>
@@ -184,7 +184,7 @@ const Step1 = () => (
 );
 
 const Step3 = () => (
-    <div className="max-w-[60%]">
+    <div className="md:max-w-[60%] w-full">
         <HeadingTitle title="Make and model" />
 
         <div className="w-full mt-5">
@@ -291,7 +291,7 @@ const Step4 = () => (
         </div>
         <div className="mt-10 mb-5">
             <p className="pb-2">Vehicle type</p>
-            <RadioGroup defaultValue="option-one" className="flex gap-10">
+            <RadioGroup defaultValue="option-one" className="md:flex gap-10">
                 <div className="flex items-center space-x-2 mt-2">
                     <RadioGroupItem value="option-one" id="option-one" />
                     <Label htmlFor="option-one">Car</Label>

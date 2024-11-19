@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 const HostHomePage = () => {
     return (
-        <div className='container mx-auto py-10'>
+        <div className='container mx-auto py-10 px-2 md:px-0'>
             <p className='mb-5'>FIND YOUR DRIVE</p>
             <HeadingTitle title='Start a car sharing' />
             <p className='pt-5 text-4xl font-medium pb-8'>business on Nardo</p>
@@ -27,7 +27,7 @@ const HostHomePage = () => {
                 <p className='pt-5 text-5xl font-bold pb-8'>welcome</p>
                 <p className='mt-10 max-w-3xl mx-auto leading-8'>Whether you want to host a few cars to earn extra income to pay for life s expenses, or build a small shop with a portfolio of cars, start with one car and scale how you want.</p>
             </div>
-            <div className='grid grid-cols-12 mt-10 '>
+            <div className='grid grid-cols-1 md:grid-cols-12 mt-10 '>
                 <div className='col-span-6 flex items-center justify-center'>
                     <div className='text-center space-y-4'>
                         <p className='font-bold text-4xl font-lora'>NARDO</p>
@@ -36,7 +36,7 @@ const HostHomePage = () => {
                         <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm '>Get Start</Link>
                     </div>
                 </div>
-                <div className='col-span-6'>
+                <div className='col-span-6 mt-8 md:mt-0'>
                     <Image src={img2} alt='img' height={1200} width={1200} />
                 </div>
             </div>

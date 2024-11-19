@@ -17,7 +17,7 @@ import {
 const DriverLicense = () => {
     const [date, setDate] = React.useState<Date>()
     return (
-        <div className='max-w-[60%]'>
+        <div className='md:max-w-[60%] w-full'>
             <HeadingTitle title='Driver license' />
             <p className='mt-10'>Enter your info exactly as it appears on your license so Nardo can verify your eligibility
                 to drive</p>

@@ -22,7 +22,7 @@ const CarDetails = () => {
             <HeadingTitle title="Car Details" />
             <div className="container mx-auto py-4">
                 <h2 className="text-xl  mb-4">Car Features</h2>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {features.map((feature, index) => (
                         <label key={index} className="flex items-center space-x-2">
                             <Checkbox

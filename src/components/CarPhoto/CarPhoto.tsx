@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const CarPhoto = () => {
     return (
-        <div className='max-w-[60%]'>
+        <div className='md:max-w-[60%] w-full'>
             <HeadingTitle title='Car Photos' />
             <p className='mt-5'>High quality photos increase your earning potentially by attracting more mores guests. Upload
                 at lest 6 photos, including multiple exterior angles with the whole car in frame, as well as interior shots. Learn more here.</p>
@@ -40,7 +40,7 @@ const CarPhoto = () => {
                     <Input placeholder='type here' />
                 </div>
             </div>
-            <div className='mt-10 flex justify-between  gap-10 '>
+            <div className='mt-10 md:flex justify-between space-y-2 md:space-y-0  gap-10 '>
                 <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} />
                 <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar3} />
                 <Image alt="img" className='h-52 w-full object-cover' height={800} width={800} src={hostCar1} />
