@@ -16,8 +16,8 @@ import HostHistoryInfo from '@/components/HostHistoryInfo/HostHistoryInfo'
 import HostEarning from '@/components/HostEarning/HostEarning'
 const HostHistoryPage = () => {
     return (
-        <div className='my-10 container mx-auto'>
-            <div className='flex items-center  justify-between '>
+        <div className='my-10 container mx-auto px-2 md:px-0'>
+            <div className='md:flex items-center  justify-between '>
                 <div className='flex items-center gap-5'>
                     <Image className='rounded-full h-20 w-20 object-cover' src={img} height={200} width={200} alt='img' />
                     <div className='font-lora space-y-1'>
@@ -27,13 +27,13 @@ const HostHistoryPage = () => {
                     </div>
                 </div>
                 <div>
-                    <Link className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 ' href={''} >Add a new car <IoAdd /> </Link>
+                    <Link className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 justify-center  mt-5 md:mt-0' href={''} >Add a new car <IoAdd /> </Link>
                 </div>
             </div>
 
             <div className='mt-10'>
                 <Tabs defaultValue="car" className="w-full">
-                    <TabsList className="grid grid-cols-4 w-[70%] gap-5 mb-10">
+                    <TabsList className="grid grid-cols-4 md:w-[70%] w-full gap-5 mb-10">
                         <TabsTrigger value="car" className='bg-white data-[state=active]:bg-[#528AAE]'>Car</TabsTrigger>
                         <TabsTrigger value="order" className='bg-white data-[state=active]:bg-[#528AAE]'>Order</TabsTrigger>
                         <TabsTrigger value="history" className='bg-white data-[state=active]:bg-[#528AAE]'>History</TabsTrigger>
