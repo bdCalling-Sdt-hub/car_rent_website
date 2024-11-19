@@ -12,13 +12,13 @@ const ContactUsPage = () => {
         <div className='container mx-auto'>
             <div className="flex flex-col items-center py-10 px-4 max-w-lg mx-auto text-center">
                 {/* Header Section */}
-                <div className="flex justify-between w-full mb-6 text-gray-700 py-10">
-                    <div className="text-sm flex items-center gap-2">
-                    <CiMail />
+                <div className="md:flex justify-between w-full mb-6 text-gray-700 py-10">
+                    <div className="text-sm flex items-center gap-2 mb-2 md:mb-0">
+                        <CiMail />
                         <span>Email: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></span>
                     </div>
                     <div className="text-sm flex items-center gap-2">
-                    <FiPhone />
+                        <FiPhone />
                         <span>Phone: +1 888 750-6866</span>
                     </div>
                 </div>
