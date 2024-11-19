@@ -33,8 +33,8 @@ const EditHostCarPage = () => {
         );
     };
     return (
-        <div className='container mx-auto my-10 font-lora'>
-            <div className='grid grid-cols-2 gap-5 '>
+        <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
+            <div className='grid grid-cols-1  md:grid-cols-2 gap-5 '>
                 <div className='space-y-4'>
                     <Image alt='img' className='w-full h-[40vh] rounded-md' height={800} width={800} src={img} />
                     <Image alt='img' className='w-full h-[40vh] rounded-md' height={800} width={800} src={img2} />
@@ -50,7 +50,6 @@ const EditHostCarPage = () => {
 
 
             <div className="max-w-4xl  space-y-8 mt-10">
-                {/* Section 1: Car Location */}
                 <div className="space-y-4">
                     <h2 className="text-lg font-semibold">Where is your car located?</h2>
                     <div className="grid grid-cols-2 gap-4">
@@ -59,7 +58,6 @@ const EditHostCarPage = () => {
                     </div>
                 </div>
 
-                {/* Section 2: Make and Model */}
                 <div className="space-y-4 ">
                     <h2 className="text-lg font-semibold">Make and model</h2>
                     <div className="space-y-4">
@@ -69,10 +67,9 @@ const EditHostCarPage = () => {
                     </div>
                 </div>
 
-                {/* Section 3: Transmission */}
                 <div className="space-y-4">
                     <h2 className="text-lg font-semibold">Transmission</h2>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label className="block text-sm font-medium mb-2">Transmission</label>
                             <div className="flex items-center space-x-4">
@@ -103,10 +100,9 @@ const EditHostCarPage = () => {
                     </div>
                 </div>
 
-                {/* Section 4: Driver's License */}
                 <div className="space-y-4">
                     <h2 className="text-lg font-semibold">Driver's license</h2>
-                    <div className="grid grid-cols-2  gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                         <div>
                             <label className="block text-sm font-medium mb-2">Driving License Number</label>
                             <Input placeholder="Driver's license number" />
@@ -142,7 +138,7 @@ const EditHostCarPage = () => {
                         </div>
 
                     </div>
-                    <div className="grid grid-cols-2  gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                         <div>
                             <label className="block text-sm font-medium mb-2">Price per day</label>
                             <Input placeholder="Driver's license number" />
@@ -178,7 +174,7 @@ const EditHostCarPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex items-center gap-4'>
+                <div className='md:flex items-center gap-4'>
                     <div className='w-full'>
                         <label className="block text-sm font-medium mb-2">maximum travel distance for one day</label>
                         <Input placeholder="Type here"  />
@@ -200,7 +196,7 @@ const EditHostCarPage = () => {
                 </div>
 
                 <p className='text-4xl font-semibold'>Car Details</p>                        
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {features.map((feature, index) => (
                         <label key={index} className="flex items-center space-x-2">
                             <Checkbox
@@ -214,7 +210,6 @@ const EditHostCarPage = () => {
                     ))}
                 </div>
                     <p className='text-sm text-gray-600 mt-5'>Apple CarPlay is a registrar trademark of apple inc. Android is a trademark of google LLC.  </p>
-                {/* Description Section */}
                 <div className='mt-10'>
                     <h3 className="text-lg font-semibold">Description</h3>
                     <p className="text-sm text-gray-600">
@@ -247,7 +242,6 @@ const EditHostCarPage = () => {
                     </div>
                 </div>
 
-                {/* Save Button */}
                 <Button className="w-full bg-gray-800 text-white">Update</Button>
             </div>
         </div>
