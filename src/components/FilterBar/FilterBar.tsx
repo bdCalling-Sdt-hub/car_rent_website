@@ -8,30 +8,29 @@ import { GoLocation } from "react-icons/go";
 
 const FilterBar = () => {
     return (
-        <div className="flex flex-wrap items-center space-x-2  rounded-lg">
+        <div className="md:flex flex-wrap items-center space-x-2  rounded-lg ">
             {/* Location Input */}
-            <div className="flex  gap-10 items-center mb-4">
+            <div className="md:flex  gap-10 items-center mb-4">
                 <div className="flex items-center space-x-2  border-b">
                     <GoLocation />
                     <Input placeholder="Location" className="w-56 border-none" />
                 </div>
 
                 {/* Date and Time Filters */}
-                <div className="flex items-center space-x-2 border-b">
+                <div className="flex items-center  space-x-2 border-b">
                     <p>From</p>
-                    <Input type="date" placeholder="From" className="w-36 border-none" />
-                    <Input type="time" placeholder="Add time" className="w-28 border-none" />
+                    <Input type="date" placeholder="From" className="w-[36] text-xs md:text-sm  border-none" />
+                    <Input type="time" placeholder="Add time" className="w-28 text-xs md:text-sm  border-none" />
 
                 </div>
                 <div className="flex items-center  space-x-2 border-b">
                     <p>Until</p>
-                    <Input type="date" placeholder="Until" className="w-36 border-none" />
-                    <Input type="time" placeholder="Add time" className="w-28 border-none" />
+                    <Input type="date" placeholder="Until" className="w-36 text-xs md:text-sm  border-none" />
+                    <Input type="time" placeholder="Add time" className="w-28 text-xs md:text-sm  border-none" />
                 </div>
             </div>
 
-            {/* Dropdown Filters */}
-            <div className="flex items-center gap-8 justify-between  w-full  my-2">
+            <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2    w-full  my-2">
                 <Select>
                     <SelectTrigger className="">Daily Price</SelectTrigger>
                     <SelectContent>
@@ -75,8 +74,7 @@ const FilterBar = () => {
                     </SelectContent>
                 </Select>
                 <Button variant="outline">Electric</Button>
-                {/* Filters Button */}
-                <Button className="flex items-center space-x-1 bg-gray-200 hover:bg-gray-200 text-gray-800">
+                <Button className="flex items-center  bg-gray-200 hover:bg-gray-200 text-gray-800">
                     <span className="text-sm">All Filters (3)</span>
                 </Button>
             </div>
