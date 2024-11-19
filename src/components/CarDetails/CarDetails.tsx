@@ -40,7 +40,7 @@ const CarDetails = () => {
                 <div className='mt-10'>
                     <h3 className="text-lg font-semibold">Description</h3>
                     <p className="text-sm text-gray-600">
-                        Tell guests what makes your car unique and why they'll love driving it.
+                        Tell guests what makes your car unique and why they love driving it.
                     </p>
                     <Textarea
                         placeholder="No need to include your contact info or pickup instructions. Guests will receive those once they book your car."

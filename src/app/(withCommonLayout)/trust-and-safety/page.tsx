@@ -21,7 +21,7 @@ const TrustAndSafetyPage = () => {
                         Distinct from protection plans is the third-party auto liability insurance provided to all hosts by ERS (Syndicate 218 at Lloyds) managed by UKI Syndicate Management Limited and underwritten by Great Lakes Insurance SE, UK Branch. Policies are issued in your own name and are both authorised and regulated by the Financial Conduct Authority.
                     </p>
                     <p className="text-gray-700">
-                        You can choose a plan for your vehicle when you create your listing and change the plan at any time. Changes will apply to future trips; we can't apply changes to pending trip requests or outside of the UK.
+                        You can choose a plan for your vehicle when you create your listing and change the plan at any time. Changes will apply to future trips; we cant apply changes to pending trip requests or outside of the UK.
                     </p>
                     <p className="text-gray-700">
                         Protection plans described here arent available to Hosts whose vehicles are registered outside the UK. Nor are they available to Hosts who offer to begin a trip or deliver a vehicle outside of the UK.
@@ -75,7 +75,7 @@ const TrustAndSafetyPage = () => {
                             <tr>
                                 <td className="border border-gray-300 p-2 text-gray-700">Loss of hosting income</td>
                                 <td className="border border-gray-300 p-2 text-gray-700">
-                                    Reimbursement for vehicle's potential earnings, based on the last 60 days' average earnings, up to a maximum of £300
+                                    Reimbursement for vehicles potential earnings, based on the last 60 days average earnings, up to a maximum of £300
                                 </td>
                                 <td className="border border-gray-300 p-2 text-gray-700">Not included</td>
                             </tr>

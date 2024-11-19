@@ -17,9 +17,9 @@ const ListingVehiclePage = () => {
                     <p className="text-gray-700">
                         Start by
                         <a href="#" className="text-blue-500 underline">creating a Turo account.</a> Once you do, get approved to use Turo by going to your
-                        <a href="#" className="text-blue-500 underline">Account page,</a> tapping “Get Approved to Drive,” and completing the information. Be sure to confirm you meet the age requirements to list your vehicle.
+                        <a href="#" className="text-blue-500 underline">Account page,</a> tapping Get Approved to Drive,” and completing the information. Be sure to confirm you meet the age requirements to list your vehicle.
                         <span className="font-bold">US, Australia and Canada hosts</span> must be at least 21 years old, and
-                        <span className="font-bold">UK hosts</span> must be at least 18 years old to list in ABI 1-50. In addition, hosts in all countries must have a valid driver's license.
+                        <span className="font-bold">UK hosts</span> must be at least 18 years old to list in ABI 1-50. In addition, hosts in all countries must have a valid driver license.
                     </p>
                 </div>
 

@@ -101,7 +101,7 @@ const EditHostCarPage = () => {
                 </div>
 
                 <div className="space-y-4">
-                    <h2 className="text-lg font-semibold">Driver's license</h2>
+                    <h2 className="text-lg font-semibold">Driver license</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                         <div>
                             <label className="block text-sm font-medium mb-2">Driving License Number</label>
@@ -213,7 +213,7 @@ const EditHostCarPage = () => {
                 <div className='mt-10'>
                     <h3 className="text-lg font-semibold">Description</h3>
                     <p className="text-sm text-gray-600">
-                        Tell guests what makes your car unique and why they'll love driving it.
+                        Tell guests what makes your car unique and why they ll love driving it.
                     </p>
                     <Textarea
                         placeholder="No need to include your contact info or pickup instructions. Guests will receive those once they book your car."
