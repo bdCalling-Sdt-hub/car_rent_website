@@ -17,9 +17,9 @@ const GetApprovedDriverPage = () => {
         if (country) setSelectedCountry(country);
     };
     return (
-        <div className='max-w-4xl mx-auto my-8 font-lora'>
-            <p className='text-4xl font-semibold'>Get approved to drive</p>
-            <p className='text-sm'>Since this is your first trip, you ll need to provide us with some information before you can check out</p>
+        <div className='max-w-4xl mx-auto my-8 font-lora '>
+            <p className='text-xl md:text-4xl font-semibold px-2 md:px-0'>Get approved to drive</p>
+            <p className='text-sm px-2 md:px-0'>Since this is your first trip, you ll need to provide us with some information before you can check out</p>
 
             <div className=" mx-auto p-4 space-y-6 mt-10">
                 {/* Email Verification */}
