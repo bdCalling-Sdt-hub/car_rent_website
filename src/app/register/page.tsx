@@ -3,6 +3,7 @@ import { Checkbox, Form, Input } from 'antd'
 import Image from 'next/image'
 import React from 'react'
 import img from '../../assets/login.png'
+import Link from 'next/link'
 
 const RegisterPage = () => {
     return (
@@ -37,7 +38,7 @@ const RegisterPage = () => {
                         <button className='bg-black w-full text-white rounded-md py-2 font-lora'>Sign up</button>
                     </Form.Item>
                 </Form>
-                <p className='text-center mt-8'>Already have an account? <span className='font-semibold'>Sign up</span></p>
+                <p className='text-center mt-8'>Already have an account? <Link href={'/login'} className='font-semibold'>Sign In</Link></p>
             </div>
         </div>
     )
