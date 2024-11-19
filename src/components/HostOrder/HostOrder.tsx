@@ -7,12 +7,12 @@ const HostOrder = () => {
     return (
         <div className='font-lora'>
             <p className='pb-5'>Running order </p>
-            <div className='grid grid-cols-6 gap-10 border-b pb-8'>
+            <div className='grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8'>
                 <div className='col-span-1'>
                     <Image alt='img' className='w-full' height={300} width={300} src={img} />
                 </div>
-                <div className='col-span-4'>
-                    <div className='flex  gap-10'>
+                <div className='md:col-span-4 col-span-1'>
+                    <div className='md:flex  gap-10'>
                         <div className='space-y-2'>
                             <p className='text-xl font-medium'>Mercedes-Benz E-Class 2017</p>
                             <p>Start Date : 05-12-2024 Time : 07 : 30 AM</p>
@@ -40,12 +40,12 @@ const HostOrder = () => {
                 </div>
 
             </div>
-            <div className='grid grid-cols-6 gap-10 mt-10 border-b pb-8'>
+            <div className='grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mt-5'>
                 <div className='col-span-1'>
                     <Image alt='img' className='w-full' height={300} width={300} src={img} />
                 </div>
-                <div className='col-span-4'>
-                    <div className='flex  gap-10'>
+                <div className='md:col-span-4 col-span-1'>
+                    <div className='md:flex  gap-10'>
                         <div className='space-y-2'>
                             <p className='text-xl font-medium'>Mercedes-Benz E-Class 2017</p>
                             <p>Start Date : 05-12-2024 Time : 07 : 30 AM</p>
@@ -73,6 +73,7 @@ const HostOrder = () => {
                 </div>
 
             </div>
+
 
         </div>
     )
