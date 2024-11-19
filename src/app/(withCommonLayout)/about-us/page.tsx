@@ -6,20 +6,20 @@ import team from '../../../assets/team.png'
 import HeadingTitle from '@/components/shared/HeadingTitle'
 const AboutUsPage = () => {
     return (
-        <div className='container mx-auto'>
-            <div className=' py-10 relative mb-20'>
-                <div className='flex items-center gap-24'>
+        <div className='container mx-auto px-2 md:px-0'>
+            <div className=' md:py-10 py-5 relative md:mb-20'>
+                <div className='md:flex items-center gap-24'>
                     <Image alt='about' className='z-20 ' height={600} width={600} src={img} />
-                    <div>
+                    <div className='mt-5 md:mt-0'>
                         <HeadingTitle title='About Nardo' />
                         <p className='max-w-xs'>Take a look under the hood of the
                             world s largest car sharing
                             marketplace</p>
                     </div>
                 </div>
-                <div className='bg-[#BCBABA26] h-72  w-[50%] z-0 absolute top-1/3 left-24 '></div>
+                <div className='bg-[#BCBABA26] h-72 hidden md:block w-[50%] z-0 absolute top-1/3 left-24 '></div>
             </div>
-            <div className='py-10 '>
+            <div className='md:py-10 py-5'>
                 <div className='text-center pb-10'>
                     <HeadingTitle title='Your perfect vehicle awaits' />
                 </div>
