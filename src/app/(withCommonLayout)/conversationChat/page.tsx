@@ -6,14 +6,14 @@ import Image from 'next/image'
 import { VscSend } from 'react-icons/vsc'
 const ConversationPage = () => {
     return (
-        <div className='container mx-auto py-10'>
+        <div className='container mx-auto py-10 px-2 md:px-0'>
             <div className=''>
                 <HeadingTitle title='Conversation' />
             </div>
             <div className='bg-[#272121] mt-5 p-3  pl-4 rounded-md flex items-center gap-2'>
                 <Image src={img} className='h-14 w-14' height={200} width={200} alt='chat' />
                 <div className='text-white font-arial'>
-                    <p>Khushi Akter</p>
+                    <p>Shukumar Ghosh</p>
                     <p>+01 953 653 9885</p>
                 </div>
             </div>
@@ -66,10 +66,10 @@ const ConversationPage = () => {
                     </div>
 
                     {/* Message Input */}
-                    <div className="flex items-center p-4 px-2">
+                    <div className="flex items-center justify-center p-4 px-2">
                         <input type="text" placeholder="Type a message here..." className="flex-grow border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500" />
                         <button className="ml-2 bg-blue-500 text-white px-4 py-3 rounded-md">
-                        <VscSend size={25} />
+                        <VscSend size={21} />
                         </button>
                     </div>
                 </div>

@@ -27,23 +27,23 @@ import CompleteTrip from '@/components/CompleteTrip'
 
 const MyTripPage = () => {
     return (
-        <div className='container mx-auto'>
-            <div className='py-10'>
+        <div className='container mx-auto px-2 md:px-0'>
+            <div className='md:py-10 py-2'>
                 <HeadingTitle title='My Trip' />
             </div>
-            <div className='my-10'>
+            <div className='md:my-10 my-5'>
                 <Tabs defaultValue="account" className="w-full">
-                    <TabsList className="grid w-[30%] grid-cols-2 gap-5 mb-10">
+                    <TabsList className="grid w-[100%] md:w-[30%] grid-cols-2 gap-5 mb-10">
                         <TabsTrigger value="account" className=''>Current Trip</TabsTrigger>
                         <TabsTrigger value="password">Complete Trip</TabsTrigger>
                     </TabsList>
                     <TabsContent value="account">
-                        <div className='grid grid-cols-12 gap-5 font-lora '>
-                            <div className='col-span-8  flex items-center gap-5'>
-                                <Image alt='img' src={img} className='h-52 w-64' height={200} width={200} />
+                        <div className='grid grid-cols-1 md:grid-cols-12 gap-5 font-lora '>
+                            <div className='md:col-span-8 col-span-1  md:flex items-center gap-5'>
+                                <Image alt='img' src={img} className='h-52  w-full md:w-64' height={200} width={200} />
                                 <div className=''>
                                     <p className='font-semibold'>Hosted By :</p>
-                                    <div className='flex items-center gap-2'>
+                                    <div className='flex  items-center gap-2'>
                                         <Image alt='img' className='h-10 w-10' src={img1} height={200} width={200} />
                                         <div>
                                             <p className='font-medium'>Hasan</p>
@@ -55,12 +55,12 @@ const MyTripPage = () => {
                                     <p className='mt-2 text-[#272121]'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which See more...</p>
                                 </div>
                             </div>
-                            <div className='col-span-4   gap-5'>
+                            <div className='md:col-span-4  col-span-1  gap-5'>
                                 <div>
                                     <p className='mb-2'>Date : 05/12/2024</p>
-                                    <div className='flex gap-5'>
-                                        <Link className='bg-[#313131] text-white px-4  flex items-center gap-2 rounded-sm py-2' href={'/conversationChat'}>Chat With Host <IoChatbubbleOutline /></Link>
-                                        <Select>
+                                    <div className='flex items-center gap-5  '>
+                                        <Link className='bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3' href={'/conversationChat'}>Chat With Host <IoChatbubbleOutline /></Link>
+                                        <Select >
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Status" />
                                             </SelectTrigger>
@@ -77,7 +77,7 @@ const MyTripPage = () => {
                             </div>
                         </div>
 
-                        <div className='grid grid-cols-12 mt-10 '>
+                        <div className='grid grid-cols-1 md:grid-cols-12 mt-10 '>
                             <div className='col-span-4'>
                                 <p className='font-semibold'>BMW M2 Car 2017</p>
                                 <div className='flex items-center gap-5 my-2'>
