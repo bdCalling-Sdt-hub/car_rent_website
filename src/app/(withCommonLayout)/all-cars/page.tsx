@@ -23,7 +23,19 @@ const AllCarsPage = () => {
                 <p className="flex items-center gap-5 mt-2"><span className="bg-[#DFDEDE] px-4 py-1 rounded-full ">luxury car</span> <span className="flex items-center gap-1"><CiStar />4.5</span></p>
                 <p className="flex items-center gap-1 mt-2"><GoLocation /> London</p>
                 <p>£40/day</p>
-                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10$</p>
+                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10£</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={'/browse-by-destination/:id'}>
+            <div className="mt-5 md:flex items-center gap-4 border rounded-md">
+              <Image alt="img" height={200} width={300} src={img} />
+              <div className="space-y-4 p-2 md:p-0">
+                <p className="text-[24px]">Mercedes-Benz E-Class 2017</p> 
+                <p className="flex items-center gap-5 mt-2"><span className="bg-[#DFDEDE] px-4 py-1 rounded-full ">luxury car</span> <span className="flex items-center gap-1"><CiStar />4.5</span></p>
+                <p className="flex items-center gap-1 mt-2"><GoLocation /> London</p>
+                <p>£40/day</p>
+                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10£</p>
               </div>
             </div>
           </Link>
@@ -35,19 +47,7 @@ const AllCarsPage = () => {
                 <p className="flex items-center gap-5 mt-2"><span className="bg-[#DFDEDE] px-4 py-1 rounded-full ">luxury car</span> <span className="flex items-center gap-1"><CiStar />4.5</span></p>
                 <p className="flex items-center gap-1 mt-2"><GoLocation /> London</p>
                 <p>£40/day</p>
-                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10$</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={'/browse-by-destination/:id'}>
-            <div className="mt-5 md:flex items-center gap-4 border rounded-md">
-              <Image alt="img" height={200} width={300} src={img} />
-              <div className="space-y-4 p-2 md:p-0">
-                <p className="text-[24px]">Mercedes-Benz E-Class 2017</p>
-                <p className="flex items-center gap-5 mt-2"><span className="bg-[#DFDEDE] px-4 py-1 rounded-full ">luxury car</span> <span className="flex items-center gap-1"><CiStar />4.5</span></p>
-                <p className="flex items-center gap-1 mt-2"><GoLocation /> London</p>
-                <p>£40/day</p>
-                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10$</p>
+                <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">3 day -10£</p>
               </div>
             </div>
           </Link>

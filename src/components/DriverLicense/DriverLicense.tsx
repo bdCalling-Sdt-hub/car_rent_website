@@ -18,7 +18,7 @@ const DriverLicense = () => {
     const [date, setDate] = React.useState<Date>()
     return (
         <div className='md:max-w-[60%] w-full'>
-            <HeadingTitle title='Driver license' />
+            <HeadingTitle title='Driver Licence' />
             <p className='mt-10'>Enter your info exactly as it appears on your license so Nardo can verify your eligibility
                 to drive</p>
 
@@ -46,7 +46,7 @@ const DriverLicense = () => {
                 </div>
             </div>
             <div className='mt-5'>
-                <p className='pb-2'>License expiration date</p>
+                <p className='pb-2'>Licence expiration date</p>
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button
@@ -71,7 +71,7 @@ const DriverLicense = () => {
                 </Popover>
             </div>
             <div className='mt-5'>
-                <p className='pb-2'>License date of birth</p>
+                <p className='pb-2'>Licence date of birth</p>
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button

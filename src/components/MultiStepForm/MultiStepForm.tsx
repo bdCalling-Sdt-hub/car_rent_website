@@ -107,7 +107,7 @@ const MultiStepForm = () => {
 const Step2 = () => (
     <div className="md:max-w-[60%] w-full ">
         <HeadingTitle title="License Plate" />
-        <p className="mt-5">Your license plate information won t be publicly visible</p>
+        <p className="mt-5">Your Licence plate information won t be publicly visible</p>
         <p className="mt-10 pb-2">Plate Number</p>
         <Input placeholder="Enter your plate number" />
     </div>
@@ -116,7 +116,7 @@ const Step2 = () => (
 const Step1 = () => (
     <div className="md:max-w-[60%] w-full ">
         <HeadingTitle title="Location" />
-        <p className="mt-10 mb-1">Where is your car locatedss?</p>
+        <p className="mt-10 mb-1">Where is your car located?</p> 
         <Input placeholder="Where your car located?" />
         <div className="w-full">
             <p className="my-2">Select City</p>
