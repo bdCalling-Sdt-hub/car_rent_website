@@ -169,7 +169,7 @@ const BrowseByDestinationPage = () => {
 
             <HitRoad />
             <div>
-                <p className='py-5 text-2xl'>Rental Car in London</p>
+                <p className='py-5 text-2xl text-center'>Rental Car in London</p>
                 <div className=''>
                     <MapParent height={500} />
                 </div>

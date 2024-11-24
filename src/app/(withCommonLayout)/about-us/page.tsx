@@ -30,16 +30,13 @@ const AboutUsPage = () => {
             </div>
 
             <div className='py-10'>
-                <div className='text-center'>
-                    <HeadingTitle title='Want to dive deeper?' />
+                <div className='text-center mt-5'>
+                    <HeadingTitle title='Explore us further' />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-between '>
                     <div>
-                        <p className='font-semibold text-[32px]'>Meet the team</p>
-                        <p className='max-w-sm mt-5'>From the executive leadership team to the board
-                            of directors, get to know the leadership team
-                            pioneering the way to put the  1.5 billion
-                            cars to better user</p>
+                        <p className='font-semibold text-[32px]'>Meet the founders</p>
+                        <p className='max-w-sm mt-5'>Meet the minds behind the movement, from executive leadership to the board of directors, working to unlock the potential of the UK's 34 million cars</p>
                     </div>
                     <Image height={800} width={800} className='' src={img1} alt='img' />
                 </div>
@@ -50,11 +47,8 @@ const AboutUsPage = () => {
                 <Image height={1500} width={1500} className='' src={team} alt='img' />
 
                     <div className=' mx-auto'>
-                        <p className='font-semibold text-[32px]'>Meet the team</p>
-                        <p className='max-w-sm mt-5'>From the executive leadership team to the board
-                            of directors, get to know the leadership team
-                            pioneering the way to put the  1.5 billion
-                            cars to better user</p>
+                        {/* <p className='font-semibold text-[32px]'>Meet the team</p> */}
+                        <p className='max-w-sm mt-5'>Nardo, recognized as a Great Place to Work, is dedicated to building a supportive, approachable, innovative, and efficient workplace.Explore our open positions and become part of our team!</p>
                     </div>
                 </div>
             </div>
