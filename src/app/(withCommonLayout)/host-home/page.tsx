@@ -2,18 +2,22 @@ import HeadingTitle from '@/components/shared/HeadingTitle'
 import Link from 'next/link'
 import React from 'react'
 import img from '../../../assets/hostHome.png'
-import img2 from '../../../assets/hostimg2.png'
+import img2 from '../../../assets/newCar.png'
 import Image from 'next/image'
 
 const HostHomePage = () => {
     return (
         <div className='container mx-auto py-10 px-2 md:px-0'>
-            <p className='mb-5'>FIND YOUR DRIVE</p>
-            <HeadingTitle title='Start a car sharing' />
-            <p className='pt-5 text-4xl font-medium pb-8'>business on Nardo</p>
-            <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm'>Get Start</Link>
-            <div className='mt-10'>
-                <Image src={img} alt='img' height={1600} width={1600} className='w-full h-[50vh]' />
+            <div className='relative'>
+                <div className='absolute top-0 p-10'>
+                    <p className='mb-5'>FIND YOUR DRIVE</p>
+                    <HeadingTitle title='Start a car sharing' />
+                    <p className='pt-5 text-4xl font-medium pb-8'>business on Nardo</p>
+                    <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm'>Get Start</Link>
+                </div>
+                <div className='mt-10 '>
+                    <Image src={img} alt='img' height={1600} width={1600} className='w-full h-[50vh]' />
+                </div>
             </div>
             <div className='max-w-3xl mx-auto space-y-10 mt-10'>
                 <p className=''>Seize control of your financial future and fuel your entrepreneurial drive with NARDO, the world s largest car-sharing marketplace.
@@ -23,21 +27,21 @@ const HostHomePage = () => {
                 <p>Start by listing your first car today, then design your business plan and scale your portfolio quickly!</p>
             </div>
             <div className='mt-20 text-center'>
-                <HeadingTitle title='Entrepreneurs of all experience levels ' />
-                <p className='pt-5 text-5xl font-bold pb-8'>welcome</p>
-                <p className='mt-10 max-w-3xl mx-auto leading-8'>Whether you want to host a few cars to earn extra income to pay for life s expenses, or build a small shop with a portfolio of cars, start with one car and scale how you want.</p>
+                <HeadingTitle title='Open to entrepreneurs of all experience levels.' />
+                {/* <p className='pt-5 text-5xl font-bold pb-8'>welcome</p> */}
+                <p className='mt-20 max-w-3xl mx-auto leading-8 '>Whether you want to host a few cars to earn extra income to pay for life s expenses, or build a small shop with a portfolio of cars, start with one car and scale how you want.</p>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-12 mt-10 '>
-                <div className='col-span-6 flex items-center justify-center'>
-                    <div className='text-center space-y-4'>
+            <div className=' mt-10 relative'>
+                <div className='absolute flex items-center justify-center  h-full w-full'>
+                    <div className='text-center space-y-4 text-white '>
                         <p className='font-bold text-4xl font-lora'>NARDO</p>
                         <p className='text-4xl'>You cold earn</p>
                         <p className='font-lora text-2xl pb-10'>Static rate of average £40 per day</p>
                         <Link href='/host-home/License-plate' className='bg-[#6A6A6A] text-white px-8 py-4 rounded-sm '>Get Start</Link>
                     </div>
                 </div>
-                <div className='col-span-6 mt-8 md:mt-0'>
-                    <Image src={img2} alt='img' height={1200} width={1200} />
+                <div className=' mt-8 md:mt-0 bg-red-400 '>
+                    <Image src={img2} alt='img' className='w-full h-[60vh] ' height={1200} width={1200} />
                 </div>
             </div>
             <div className='text-center mt-20 max-w-xl mx-auto space-y-4'>
