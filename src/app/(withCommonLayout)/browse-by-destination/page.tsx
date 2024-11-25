@@ -24,8 +24,8 @@ const BrowseByDestinationPage = () => {
     return (
         <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
             <div className='text-center'>
-                <HeadingTitle title='Rent cars in Honolulu, HI' />
-                <p className='mt-5 font-lora'>Discover the Nardo car rental marketplace</p>
+                <HeadingTitle title='Rent cars in United Kingdom, HI' />
+                <p className='mt-12 font-lora'>Discover the Nardo car rental marketplace</p>
             </div>
             <TakenDateTime />
 
@@ -162,7 +162,7 @@ const BrowseByDestinationPage = () => {
 
             <div className='my-16'>
                 <div className='text-center'>
-                    <HeadingTitle title='Top hosts in los Angeles, CA' />
+                    <HeadingTitle title='Top hosts in London' />
                 </div>
                 <TopHostedCar/>
             </div>
