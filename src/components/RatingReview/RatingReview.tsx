@@ -9,7 +9,7 @@ const RatingReview = () => {
             <div className='flex items-center gap-5 mt-5  border-b  py-10'>
                 <Image alt='img' className='h-14 w-14' height={200} width={200} src={img} />
                 <div className='space-y-2  ' >
-                    <div className='flex items-center gap-1'>
+                    <div className='flex items-center gap-1 text-[#0CFEE8]'>
                         <FaStar />
                         <FaStar />
                         <FaStar />
@@ -23,7 +23,7 @@ const RatingReview = () => {
             <div className='flex items-center gap-5 mt-5  border-b  py-10'>
                 <Image alt='img' className='h-14 w-14' height={200} width={200} src={img} />
                 <div className='space-y-2  ' >
-                    <div className='flex items-center gap-1'>
+                    <div className='flex items-center gap-1 text-[#0CFEE8]'>
                         <FaStar />
                         <FaStar />
                         <FaStar />
@@ -37,7 +37,7 @@ const RatingReview = () => {
             <div className='flex items-center gap-5 mt-5  border-b  py-10'>
                 <Image alt='img' className='h-14 w-14' height={200} width={200} src={img} />
                 <div className='space-y-2  ' >
-                    <div className='flex items-center gap-1'>
+                    <div className='flex items-center gap-1 text-[#0CFEE8]'>
                         <FaStar />
                         <FaStar />
                         <FaStar />

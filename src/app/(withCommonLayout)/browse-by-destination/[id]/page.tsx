@@ -15,6 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
 import Link from 'next/link'
+import MapParent from '@/components/Map/MapParent'
 const CarDetailsPage = () => {
     return (
         <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
@@ -35,10 +36,11 @@ const CarDetailsPage = () => {
                 <div className='col-span-1'>
                     <h1 className='font-bold text-[48px]'>BMW M2 Car  2017</h1>
                     <div className='flex gap-2 '>
-                        <p className='bg-[#BCBABA26] px-4 py-2 rounded-full ' >luxury car</p>
+                        
                         <div className='flex items-center gap-1'>
-                            <IoIosStar /> 4.5
+                            <IoIosStar /> (4.5)
                         </div>
+                        <p className=' text-neutral-400' >(120 trip)</p>
                     </div>
                     <div className='flex items-center justify-between mt-5 max-w-xl text-[#525252]'>
                         <p className='flex items-center gap-2'><FaCar /> 4 Passenger</p>
@@ -49,7 +51,8 @@ const CarDetailsPage = () => {
                         <p className='flex items-center gap-2 text-[#525252]'> <RiShoppingBagLine />Auto</p>
                     </div>
                     <p>Hosted By</p>
-                    <div className='my-5 flex items-center gap-5'>
+                    <div className='my-5 bg-neutral-50 shadow-md py-4 px-3 inline-block'>
+                    <div className='  flex items-center gap-5'>
                         <Image alt='img' height={200} width={200} className='h-14 w-14' src={img4} />
                         <div>
                             <p>Hasan</p>
@@ -57,11 +60,14 @@ const CarDetailsPage = () => {
                             <p>120 trips, joined Aug 2017</p>
                         </div>
                     </div>
+                    </div>
                     <p>Description : </p>
                     <p className='mt-5 font-thin leading-8'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn t anything embarrassing hidden in the middle of text.</p>
+
+                    <RatingReview />
                 </div>
                 <div className='col-span-1'>
-                    <p className='text-5xl'><span className='font-bold'>£280</span> <span className='text-[#525252]'>/ day</span></p>
+                    <p className='text-5xl'><span className='font-bold'>£280</span> <span className='text-[#525252]'>/ Day</span></p>
                     <div className="mx-auto p-4 space-y-6">
                         {/* Trip Start */}
                         <div className="space-y-4">
@@ -95,13 +101,13 @@ const CarDetailsPage = () => {
                         </div>
 
                         {/* Discount */}
-                        <div className="flex justify-between items-center p-2 border border-gray-300 rounded-lg bg-gray-50">
+                        <div className="flex justify-between items-center p-3 rounded-lg bg-[#0CFEE8]">
                             <span>3 Days discount</span>
                             <span className="font-semibold">£10</span>
                         </div>
 
                         {/* Continue Button */}
-                        <div className='text-center'> <Link href={'/get-approved-driver'} className="w-full bg-[#525252]  px-16 rounded-md  py-2 text-white">Continue</Link></div>
+                        <div className='text-center'> <Link href={'/get-approved-driver'} className="w-full bg-[#0CFEE8]  px-16 rounded-md  py-2 ">Continue</Link></div>
 
                         {/* Breakdown */}
                         <div className="space-y-4">
@@ -155,8 +161,13 @@ const CarDetailsPage = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
-            <RatingReview />
+            
+
+            <div className="-z-10 ">
+          <MapParent height={950} />
+        </div>
 
         </div>
     )
