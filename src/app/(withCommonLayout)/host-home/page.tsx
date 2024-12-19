@@ -4,6 +4,7 @@ import React from 'react'
 import img from '../../../assets/hostHome.png'
 import img2 from '../../../assets/newCar.png'
 import Image from 'next/image'
+import CreateBusiness from '@/components/CreateBusiness/CreateBusiness'
 
 const HostHomePage = () => {
     return (
@@ -19,12 +20,17 @@ const HostHomePage = () => {
                     <Image src={img} alt='img' height={1600} width={1600} className='w-full h-[50vh]' />
                 </div>
             </div>
-            <div className='max-w-3xl mx-auto space-y-10 mt-10'>
+            <div className='max-w-5xl mx-auto space-y-10 mt-10'>
                 <p className=''>Seize control of your financial future and fuel your entrepreneurial drive with NARDO, the world s largest car-sharing marketplace.
                 </p>
                 <p>NARDO equips aspiring entrepreneurs with the resources to build a successful car-sharing portfolio and the potential to significantly boost their annual income.
                 </p>
                 <p>Start by listing your first car today, then design your business plan and scale your portfolio quickly!</p>
+
+            </div>
+
+            <div>
+                <CreateBusiness/>
             </div>
             <div className='mt-20 text-center'>
                 <HeadingTitle title='Open to entrepreneurs of all experience levels.' />

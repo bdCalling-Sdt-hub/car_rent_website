@@ -8,7 +8,7 @@ import FilterBar from "@/components/FilterBar/FilterBar";
 import Link from "next/link";
 const AllCarsPage = () => {
   return (
-    <div className="container mx-auto my-10 font-lora px-2 md:px-0">
+    <div className="  my-10 font-lora px-5 mx-2 md:px-0">
       <FilterBar />
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between items-center gap-5">
 
@@ -56,7 +56,7 @@ const AllCarsPage = () => {
           
         </div>
         <div className="-z-10 ">
-          <MapParent height={850} />
+          <MapParent height={950} />
         </div>
 
       </div>
