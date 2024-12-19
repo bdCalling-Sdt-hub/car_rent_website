@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import img from '../../../../assets/car0.png'
 import img2 from '../../../../assets/car.jpg'
 import img3 from '../../../../assets/carD.png'
@@ -7,7 +9,7 @@ import Image from 'next/image'
 import { IoIosStar } from 'react-icons/io'
 import { FaCar } from 'react-icons/fa6'
 import { LuDoorClosed, LuFuel } from 'react-icons/lu'
-import { RiShoppingBagLine } from 'react-icons/ri'
+import { RiGalleryLine, RiShoppingBagLine } from 'react-icons/ri'
 import { CiHeart, CiStar } from 'react-icons/ci'
 import RatingReview from '@/components/RatingReview/RatingReview'
 import { Input } from '@/components/ui/input'
@@ -16,7 +18,9 @@ import { Button } from '@/components/ui/button'
 import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
 import Link from 'next/link'
 import MapParent from '@/components/Map/MapParent'
+import { Modal } from 'antd'
 const CarDetailsPage = () => {
+    const [openModal, setOpenModal] = useState(false);
     return (
         <div className='container mx-auto my-10 font-lora px-2 md:px-0'>
             <TakenDateTime />
@@ -28,9 +32,14 @@ const CarDetailsPage = () => {
                 </div>
                 <div className='md:col-span-5 space-y-4'>
                     <Image alt='img' className='w-full ' src={img} height={300} width={300} />
+                    <div className='relative '>
                     <Image alt='img' className='w-full ' src={img3} height={300} width={300} />
-
+                    <div className='flex justify-center '>
+                    <button className='absolute bottom-2 flex gap-2 items-center bg-white text-black p-2 px-6 rounded z-50' onClick={() => setOpenModal(true)}> <RiGalleryLine className='text-xl'/>View 12 Photo</button>
+                    </div>
+                    </div>
                 </div>
+                
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20'>
                 <div className='col-span-1'>
@@ -168,6 +177,43 @@ const CarDetailsPage = () => {
             <div className="-z-10 ">
           <MapParent height={950} />
         </div>
+
+
+        <Modal
+        width={800}
+        centered
+        footer={false}
+        open={openModal}
+        onCancel={() => setOpenModal(false)}
+      >
+        <p className="text-center font-medium text-xl mb-5">All Images</p>
+        <div className="grid grid-cols-2 gap-5">
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+          <div className="space-y-5">
+          <Image alt='img' className='w-full h-full' src={img2} height={1200} width={1200} />
+          </div>
+        </div>
+      </Modal>
 
         </div>
     )

@@ -7,6 +7,7 @@ import { Elements, CardElement } from "@stripe/react-stripe-js";
 import { AlertCircle, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import background from "../../../assets/back.jpg";
 
 // Stripe Promise (Use your publishable key)
 const stripePromise = loadStripe("your-publishable-key-here");
@@ -19,7 +20,14 @@ const PaymentForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8 font-lora">
+    <div className=''
+    style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+    }}>
+      <div className="max-w-4xl mx-auto p-6 space-y-8 font-lora">
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">Get approved to drive</h1>
@@ -92,6 +100,7 @@ const PaymentForm: React.FC = () => {
         <h2 className="text-lg font-semibold">Address</h2>
         <Input placeholder="Enter your address" className="mt-2" />
       </div> */}
+    </div>
     </div>
   );
 };
