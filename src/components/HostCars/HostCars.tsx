@@ -15,14 +15,14 @@ const HostCars = () => {
             <div>
               <p className='text-[24px]'>Mercedes-Benz E-Class 2017</p>
               <div className='flex items-center gap-2'>
-                <p className='bg-[#E3E1E1] px-4 py-1 rounded-full'>luxury car</p>
+               
                 <p className='flex items-center gap-1'><CiStar /> 4.5</p>
                 <p className='flex items-center gap-1'> <CiLocationOn />London</p>
               </div>
 
             </div>
             <div>
-              <Link href={'/host-history/:id'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex justify-center my-5 items-center gap-1'>Edit <CiEdit size={20} /></Link>
+              <Link href={'/host-history/:id'} className='bg-[#0CFEE8] px-4 py-2 rounded-md text-black flex justify-center my-5 items-center gap-1'>Edit <CiEdit size={20} /></Link>
             </div>
           </div>
           <p>3 days Discount -30£</p>
@@ -41,14 +41,14 @@ const HostCars = () => {
             <div>
               <p className='text-[24px]'>Mercedes-Benz E-Class 2017</p>
               <div className='flex items-center gap-2'>
-                <p className='bg-[#E3E1E1] px-4 py-1 rounded-full'>luxury car</p>
+                
                 <p className='flex items-center gap-1'><CiStar /> 4.5</p>
                 <p className='flex items-center gap-1'> <CiLocationOn />London</p>
               </div>
 
             </div>
             <div>
-              <Link href={'/host-history/:id'} className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white flex justify-center my-5 items-center gap-1'>Edit <CiEdit size={20} /></Link>
+              <Link href={'/host-history/:id'} className='bg-[#0CFEE8] px-4 py-2 rounded-md text-black flex justify-center my-5 items-center gap-1'>Edit <CiEdit size={20} /></Link>
             </div>
           </div>
           <p>3 days Discount -30£</p>

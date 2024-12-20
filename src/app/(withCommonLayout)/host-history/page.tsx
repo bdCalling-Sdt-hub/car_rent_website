@@ -27,17 +27,17 @@ const HostHistoryPage = () => {
                     </div>
                 </div>
                 <div>
-                    <Link className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 justify-center  mt-5 md:mt-0' href={''} >Add a new car <IoAdd /> </Link>
+                    <Link href='/host-home/License-plate' className='flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 justify-center  mt-5 md:mt-0'  >Add a new car <IoAdd /> </Link>
                 </div>
             </div>
 
             <div className='mt-10'>
                 <Tabs defaultValue="car" className="w-full">
-                    <TabsList className="grid grid-cols-4 md:w-[70%] w-full gap-5 mb-10">
-                        <TabsTrigger value="car" className='bg-white data-[state=active]:bg-[#528AAE]'>Car</TabsTrigger>
-                        <TabsTrigger value="order" className='bg-white data-[state=active]:bg-[#528AAE]'>Order</TabsTrigger>
-                        <TabsTrigger value="history" className='bg-white data-[state=active]:bg-[#528AAE]'>History</TabsTrigger>
-                        <TabsTrigger value="earning" className='bg-white data-[state=active]:bg-[#528AAE]'>Earning</TabsTrigger>
+                    <TabsList className="grid grid-cols-4 md:w-[70%] rounded-none px-0 bg-white  border-b-4 w-full gap-5 mb-10">
+                        <TabsTrigger value="car" className=' data-[state=active]:bg-[#ffffff] data-[state=active]:border-[#0CFEE8] border-b-4 data-[state=active]:text-[#000000]'>Car</TabsTrigger>
+                        <TabsTrigger value="order" className='data-[state=active]:bg-[#ffffff] data-[state=active]:border-[#0CFEE8] border-b-4 data-[state=active]:text-[#000000]'>Order</TabsTrigger>
+                        <TabsTrigger value="history" className='data-[state=active]:bg-[#ffffff] data-[state=active]:border-[#0CFEE8] border-b-4 data-[state=active]:text-[#000000]'>History</TabsTrigger>
+                        <TabsTrigger value="earning" className='data-[state=active]:bg-[#ffffff] data-[state=active]:border-[#0CFEE8] border-b-4 data-[state=active]:text-[#000000]'>Earning</TabsTrigger>
                     </TabsList>
                     <TabsContent value="car">
 

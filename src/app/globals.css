@@ -95,3 +95,13 @@ body {
   /* border-color: #4096ff; */
   background-color: #EBEBEB;
 }
+
+
+:where(.css-dev-only-do-not-override-49qm).ant-rate .ant-rate-star {
+  position: relative;
+  display: inline-block;
+  color: black;
+  cursor: pointer;
+  
+}
+
