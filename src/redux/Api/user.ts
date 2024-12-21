@@ -11,7 +11,6 @@ const useApi = baseApi.injectEndpoints({
         };
       },
     }),
-
     otp: builder.mutation({
       query: (data) => {
         return {
