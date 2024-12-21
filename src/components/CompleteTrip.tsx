@@ -6,16 +6,7 @@ import img4 from "../assets/histori1.png";
 import img5 from "../assets/histori2.png";
 import img1 from "../assets/driver.png";
 import Link from "next/link";
-import { IoChatbubbleOutline } from "react-icons/io5";
-import { Modal, Rate, Select } from "antd";
-
-import {
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import { Modal, Rate } from "antd";
 import { MdOutlineStar } from "react-icons/md";
 import { RiGalleryLine } from "react-icons/ri";
 const CompleteTrip = () => {
@@ -111,9 +102,9 @@ const CompleteTrip = () => {
           </div>
 
           <p className="mt-6 text-[#272121]">
-            There are many variations of passages of Lorem Ipsum available, but
+            {` There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
-            humour, or randomised words which See more...
+            humour, or randomised words which See more...`}
           </p>
 
           <div className=" mt-10 ">
@@ -146,10 +137,10 @@ const CompleteTrip = () => {
             </div>
             <div className=" text-[#272121] space-y-2 mt-7">
               <p className="font-semibold">PICKUP AT CAR LOCATION</p>
-              <p className="text-sm">New York City, USA</p>
+              <p className="text-sm">{`New York City, USA`}</p>
               <p className="text-sm">
-                Statue of Liberty, Times Square, Central Park, Empire State
-                Building
+                {`Statue of Liberty, Times Square, Central Park, Empire State
+                Building`}
               </p>
             </div>
             <div className="">
@@ -217,31 +208,79 @@ const CompleteTrip = () => {
         open={openModal1}
         onCancel={() => setOpenModal1(false)}
       >
-         <p className="text-center font-medium text-xl mb-5">All Images</p>
+        <p className="text-center font-medium text-xl mb-5">All Images</p>
         <div className="grid grid-cols-2 gap-5">
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
           <div className="space-y-5">
-          <Image alt='img' className='w-full h-full' src={img} height={1200} width={1200} />
+            <Image
+              alt="img"
+              className="w-full h-full"
+              src={img}
+              height={1200}
+              width={1200}
+            />
           </div>
         </div>
       </Modal>

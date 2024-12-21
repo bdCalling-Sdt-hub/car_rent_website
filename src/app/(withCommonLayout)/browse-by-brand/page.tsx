@@ -5,7 +5,6 @@ import HeadingTitle from "@/components/shared/HeadingTitle";
 import TakenDateTime from "@/components/TakenDateTime/TakenDateTime";
 import React from "react";
 import img from "../../../assets/topCar.png";
-import img1 from "../../../assets/topCar1.png";
 import Image from "next/image";
 import {
   Carousel,

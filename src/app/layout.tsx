@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Lora } from "next/font/google";
 import "maplibre-gl/dist/maplibre-gl.css";
+import ReduxProvider from '@/provider/ReduxProvider'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = localFont({
 });
 const lora = Lora({
   subsets: ['latin'],
-  weight: ['400', '700'], // Define the font weights you need
-  variable: '--font-lora', // Define a CSS variable for Lora
+  weight: ['400', '700'], 
+  variable: '--font-lora',
 });
 
 export const metadata: Metadata = {
@@ -34,7 +35,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
       >
-        {children}
+        <ReduxProvider>
+           {children}
+        </ReduxProvider>
+       
       </body>
     </html>
   );
