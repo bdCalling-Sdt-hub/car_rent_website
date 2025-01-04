@@ -2,12 +2,12 @@
   "name": "car-rent",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+ "scripts": {
+  "dev": "next dev -H 192.168.10.26 -p 3000",
+  "build": "next build",
+  "start": "next start -H 192.168.10.26 -p 3000",
+  "lint": "next lint"
+},
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@next/font": "^14.2.15",

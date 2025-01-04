@@ -36,7 +36,7 @@ const AboutUsPage = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-between '>
                     <div>
                         <p className='font-semibold text-[32px]'>Meet the founders</p>
-                        <p className='max-w-sm mt-5'>Meet the minds behind the movement, from executive leadership to the board of directors, working to unlock the potential of the UK's 34 million cars</p>
+                        <p className='max-w-sm mt-5'>Meet the minds behind the movement, from executive leadership to the board of directors, working to unlock the potential of the UKs 34 million cars</p>
                     </div>
                     <Image height={800} width={800} className='' src={img1} alt='img' />
                 </div>
