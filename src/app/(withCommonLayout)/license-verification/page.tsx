@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import Link from 'next/link'
 import React, { useState } from 'react'
-
+import background from "../../../assets/back.jpg";
 const LicenseVerificationPage = () => {
     const [expirationDate, setExpirationDate] = useState({
         month: "Month",
@@ -23,7 +23,14 @@ const LicenseVerificationPage = () => {
         new Date(0, i).toLocaleString("default", { month: "long" })
       );
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
+    <div className=''
+    style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+    }}>
+      <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">Get approved to drive</h1>
@@ -44,7 +51,7 @@ const LicenseVerificationPage = () => {
         <label className="block text-sm font-medium text-[#6A6A6A] mb-2">
           Drivers license number
         </label>
-        <Input placeholder="Type here" />
+        <Input className='bg-[#ffffff00]' placeholder="Type here " />
       </div>
 
       {/* First Name and Last Name */}
@@ -53,13 +60,13 @@ const LicenseVerificationPage = () => {
           <label className="block text-sm font-medium text-gray-600 mb-2">
             First name
           </label>
-          <Input placeholder="Type here" />
+          <Input className='bg-[#ffffff00]' placeholder="Type here" />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-600 mb-2">
             Last name
           </label>
-          <Input placeholder="Type here" />
+          <Input className='bg-[#ffffff00]' placeholder="Type here" />
         </div>
       </div>
 
@@ -161,6 +168,7 @@ const LicenseVerificationPage = () => {
 
       {/* Continue Button */}
       <Link href={'/payment'}  className="w-full bg-[#6A6A6A] px-12 py-3 rounded-md  text-white">Continue</Link>
+    </div>
     </div>
   )
 }
