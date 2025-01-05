@@ -10,11 +10,11 @@ const RatingReview = () => {
                 <Image alt='img' className='h-14 w-14' height={200} width={200} src={img} />
                 <div className='space-y-2  ' >
                     <div className='flex items-center gap-1'>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                        <FaStar className='text-[#0CFEE8]' />
+                        <FaStar className='text-[#0CFEE8]' />
+                        <FaStar className='text-[#0CFEE8]' />
+                        <FaStar className='text-[#0CFEE8]' />
+                        <FaStar className='text-[#0CFEE8]' />
                     </div>
                     <p><span className='font-semibold text-xl'>Zubayer</span> <span className='font-thin'>October 24, 2024</span></p>
                     <p>Great and convenient experience. Car worked great and did the job. </p>

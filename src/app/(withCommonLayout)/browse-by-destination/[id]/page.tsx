@@ -95,13 +95,13 @@ const CarDetailsPage = () => {
                         </div>
 
                         {/* Discount */}
-                        <div className="flex justify-between items-center p-2 border border-gray-300 rounded-lg bg-gray-50">
+                        <div className="flex justify-between items-center p-2 border border-gray-300 rounded-lg bg-[#0CFEE8]">
                             <span>3 Days discount</span>
                             <span className="font-semibold">£10</span>
                         </div>
 
                         {/* Continue Button */}
-                        <div className='text-center'> <Link href={'/get-approved-driver'} className="w-full bg-[#525252]  px-16 rounded-md  py-2 text-white">Continue</Link></div>
+                        <div className='text-center'> <Link href={'/get-approved-driver'} className="w-full bg-[#0CFEE8]  px-16 rounded-md  py-2 ">Continue</Link></div>
 
                         {/* Breakdown */}
                         <div className="space-y-4">
