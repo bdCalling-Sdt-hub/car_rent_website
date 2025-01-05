@@ -1,7 +1,7 @@
 "use client"
 import HeadingTitle from '@/components/shared/HeadingTitle'
 import React from 'react'
-import bg from '../../../assets/profilebg.png'
+import bg from '../../../assets/back.jpg'
 import profile from '../../../assets/profile.png'
 import {
     Tabs,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/tabs"
 import Image from 'next/image'
 
+
 import { Form, Input } from 'antd'
 const MyProfilePage = () => {
     return (
@@ -18,7 +19,7 @@ const MyProfilePage = () => {
             <div className='my-10'>
                 <HeadingTitle title="My Profile" />
             </div>
-            <div className='flex items-center justify-center' style={{ backgroundImage: `url(${bg.src})`, backgroundSize: 'contain', height: '300px' }}>
+            <div className='flex items-center justify-center' style={{ backgroundImage: `url(${bg.src})`, backgroundSize: 'cover', height: '300px' }}>
                 <div className='md:max-w-[40%] max-w-[100%] mx-auto md:flex   items-center gap-5'>
                     <div className='flex items-center justify-center'>
                         <Image height={200} width={200} className='h-24 w-24 ' src={profile} alt='profile' />

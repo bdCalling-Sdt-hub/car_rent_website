@@ -34,10 +34,10 @@ const HostHistoryPage = () => {
             <div className='mt-10'>
                 <Tabs defaultValue="car" className="w-full">
                     <TabsList className="grid grid-cols-4 md:w-[70%] w-full gap-5 mb-10">
-                        <TabsTrigger value="car" className='bg-white data-[state=active]:bg-[#528AAE]'>Car</TabsTrigger>
-                        <TabsTrigger value="order" className='bg-white data-[state=active]:bg-[#528AAE]'>Order</TabsTrigger>
-                        <TabsTrigger value="history" className='bg-white data-[state=active]:bg-[#528AAE]'>History</TabsTrigger>
-                        <TabsTrigger value="earning" className='bg-white data-[state=active]:bg-[#528AAE]'>Earning</TabsTrigger>
+                        <TabsTrigger value="car" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Car</TabsTrigger>
+                        <TabsTrigger value="order" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Order</TabsTrigger>
+                        <TabsTrigger value="history" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>History</TabsTrigger>
+                        <TabsTrigger value="earning" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Earning</TabsTrigger>
                     </TabsList>
                     <TabsContent value="car">
 
