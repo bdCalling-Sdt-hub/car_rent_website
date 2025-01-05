@@ -21,7 +21,7 @@ const TopHostedCar = () => {
                         <div>
                             <p>MD. Hasan</p>
                             <div className='flex items-center gap-2'>
-                                <CiStar />
+                                <FaStar className='text-[#0CFEE8]' />
                                 <span>4.5</span>
                             </div>
                             <p>120trips, joined Aug 2017</p>
@@ -29,7 +29,7 @@ const TopHostedCar = () => {
                     </div>
                     <div>
                         <div className='flex items-center gap-1 mt-10'>
-                            <CiStar /><CiStar /><CiStar /><CiStar /><CiStar />
+                            <FaStar className='text-[#0CFEE8]' /><FaStar className='text-[#0CFEE8]' /><FaStar className='text-[#0CFEE8]'/><FaStar className='text-[#0CFEE8]' /><FaStar className='text-[#0CFEE8]' />
                         </div>
                         <p className='max-w-xl leading-8 mt-5'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
                         <p className='mt-5'>Ameer S - October 20,2024</p>
@@ -54,7 +54,7 @@ const TopHostedCar = () => {
                                     <div className='flex items-center gap-2'>
                                         <p className='bg-[#BCBABA26] px-2 py-1 rounded-full'>luxury car</p>
                                         <div className='flex items-center gap-1'>
-                                            <FaStar /> <span>4.5</span>
+                                            <FaStar className='text-[#0CFEE8]' /> <span>4.5</span>
                                         </div>
                                     </div>
                                     <p className='font-semibold text-xl'>BMW M2 Car 2017</p>
@@ -68,7 +68,7 @@ const TopHostedCar = () => {
                                     </div>
                                     <div className='flex items-center justify-between'>
                                         <p><span className='font-semibold'>£280 </span>/  per day</p>
-                                        <Link className='bg-[#528AAE] text-white p-3 rounded-full' href={`/browse-by-destination/:id`}><MdArrowOutward /></Link>
+                                        <Link className='bg-[#0CFEE8] text-white p-3 rounded-full' href={`/browse-by-destination/:id`}><MdArrowOutward /></Link>
                                     </div>
                                 </div>
                             </CarouselItem>

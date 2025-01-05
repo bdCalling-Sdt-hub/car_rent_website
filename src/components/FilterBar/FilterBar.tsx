@@ -12,19 +12,19 @@ const FilterBar = () => {
             {/* Location Input */}
             <div className="md:flex  gap-10 items-center mb-4">
                 <div className="flex items-center space-x-2  border-b">
-                    <GoLocation />
+                    <GoLocation className="text-[#0CFEE8]" />
                     <Input placeholder="Location" className="w-56 border-none" />
                 </div>
 
                 {/* Date and Time Filters */}
                 <div className="flex items-center  space-x-2 border-b">
-                    <p>From</p>
+                    <p className="text-[#0CFEE8]">From</p>
                     <Input type="date" placeholder="From" className="w-[36] text-xs md:text-sm  border-none" />
                     <Input type="time" placeholder="Add time" className="w-28 text-xs md:text-sm  border-none" />
 
                 </div>
                 <div className="flex items-center  space-x-2 border-b">
-                    <p>Until</p>
+                    <p  className="text-[#0CFEE8]">Until</p>
                     <Input type="date" placeholder="Until" className="w-36 text-xs md:text-sm  border-none" />
                     <Input type="time" placeholder="Add time" className="w-28 text-xs md:text-sm  border-none" />
                 </div>
