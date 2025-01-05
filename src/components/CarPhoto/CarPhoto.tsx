@@ -49,7 +49,7 @@ const CarPhoto = () => {
             </div>
 
             <div className="mt-8">
-                <Button className="bg-[#6A6A6A] px-10"  >
+                <Button className="bg-[#0CFEE8] text-black px-10"  >
                     Add Photos
                 </Button>
             </div>

@@ -56,7 +56,7 @@ const MultiStepForm = () => {
             <div className="flex items-center justify-between mb-4 gap-5">
                 <div className="relative w-full h-4 bg-[#DDEDFC] rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-[#528AAE] transition-all duration-300"
+                        className="h-full bg-[#0CFEE8] transition-all duration-300"
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>
@@ -94,9 +94,9 @@ const MultiStepForm = () => {
             <div className=" mt-4">
 
                 {
-                    currentStep === 7 ? <Link href={'/host-history'} className="bg-[#6A6A6A] py-2 rounded-md text-white px-10"  >
+                    currentStep === 7 ? <Link href={'/host-history'} className="bg-[#0CFEE8] py-2 rounded-md  px-10"  >
                         Send Request
-                    </Link> : <Button className="bg-[#6A6A6A] px-10" onClick={handleNext} disabled={currentStep === TotalSteps}>
+                    </Link> : <Button className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10" onClick={handleNext} disabled={currentStep === TotalSteps}>
                         Continue
                     </Button>
                 }

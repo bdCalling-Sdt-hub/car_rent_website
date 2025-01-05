@@ -11,7 +11,7 @@ import {
 import img from '../../../assets/car.jpg'
 import img1 from '../../../assets/driver.png'
 import Image from 'next/image'
-import { FaRegStar } from 'react-icons/fa6'
+import {FaStar } from 'react-icons/fa6'
 import Link from 'next/link'
 import { IoChatbubbleOutline } from 'react-icons/io5'
 import {
@@ -23,10 +23,18 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import CompleteTrip from '@/components/CompleteTrip'
+// import background from "../../../assets/back.jpg";
 
 
 const MyTripPage = () => {
     return (
+    //     <div className=''
+    // style={{
+    //     backgroundImage: `url(${background.src})`,
+    //     backgroundSize: 'cover',
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundPosition: 'center',
+    // }}>
         <div className='container mx-auto px-2 md:px-0'>
             <div className='md:py-10 py-2'>
                 <HeadingTitle title='My Trip' />
@@ -47,7 +55,7 @@ const MyTripPage = () => {
                                         <Image alt='img' className='h-10 w-10' src={img1} height={200} width={200} />
                                         <div>
                                             <p className='font-medium'>Hasan</p>
-                                            <p className='flex items-center gap-2'><FaRegStar /> 4.0 </p>
+                                            <p className='flex items-center gap-2'><FaStar className='text-[#0CFEE8]' /> 4.0 </p>
                                             <p>120 trips. Joined Aug 2017</p>
 
                                         </div>
@@ -61,7 +69,7 @@ const MyTripPage = () => {
                                     <div className='flex items-center gap-5  '>
                                         <Link className='bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3' href={'/conversationChat'}>Chat With Host <IoChatbubbleOutline /></Link>
                                         <Select >
-                                            <SelectTrigger className="w-[180px]">
+                                            <SelectTrigger className="w-[180px] bg-[#0CFEE8]">
                                                 <SelectValue placeholder="Status" />
                                             </SelectTrigger>
                                             <SelectContent>
@@ -130,6 +138,7 @@ const MyTripPage = () => {
                 <div></div>
             </div>
         </div>
+        // </div>
     )
 }
 
