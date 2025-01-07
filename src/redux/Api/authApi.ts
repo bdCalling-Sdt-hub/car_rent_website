@@ -19,8 +19,25 @@ const authApi = baseApi.injectEndpoints({
           body : data
         }
       }
+    }),
+    getProfile : builder.query({
+      query : ()=>{
+        return {
+          url : '/user/profile',
+          method : 'GET'
+        }
+      }
+    }),
+    changePassword :  builder.mutation({
+      query : (data)=>{
+        return {
+          url : '/auth/change-password',
+          method : 'PATCH',
+          body : data
+        }
+      }
     })
 
   }),
 });
-export const { useRegisterUserMutation  , useActiveAccountOtpMutation} = authApi
+export const { useRegisterUserMutation  , useActiveAccountOtpMutation , useGetProfileQuery , useChangePasswordMutation} = authApi

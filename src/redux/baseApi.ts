@@ -58,3 +58,6 @@ export const fetchServerData = async (endpoint: string) => {
   return result.data;
 };
 export default baseApi;
+
+
+export const imageUrl = "http://192.168.12.75:8056";
