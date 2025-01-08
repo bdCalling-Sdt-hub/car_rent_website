@@ -14,7 +14,7 @@ interface TFaq {
 }
 
 const Accordion = async () => {
-  const response = await fetch("http://192.168.12.75:8056/manage/get-faq", {
+  const response = await fetch("http://10.0.60.26:8056/manage/get-faq", {
     next: {
       revalidate: 30,
     },
