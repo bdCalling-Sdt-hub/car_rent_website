@@ -35,7 +35,6 @@ const MyProfilePage = () => {
         return <div>Error loading profile</div>;
     }
 
-    console.log(getProfile?.data);
 
     const handleUpdatePassword=(values : TPassword)=>{
         console.log(values);

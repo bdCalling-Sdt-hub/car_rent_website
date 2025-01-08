@@ -9,7 +9,32 @@ const infoApi = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        getPrivacyPolicy :  builder.query({
+            query : ()=>{
+                return {
+                    url : '/manage/get-privacy-policy',
+                    method : 'GET'
+                }
+            }
+        }),
+        postFeedback : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/feedback/post-feedback',
+                    method : 'POST',
+                    body : data
+                }
+            }
+        }),
+        getContactUs :  builder.query({
+            query : ()=>{
+                return {
+                    url : '/manage/get-contact-us',
+                    method : 'GET'
+                }
+            }
         })
     })
 })
-export const {useGetTermsAndConditionQuery} =  infoApi; 
+export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery} =  infoApi; 
