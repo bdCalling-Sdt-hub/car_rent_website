@@ -34,7 +34,31 @@ const infoApi = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
-        })
+        }),
+        getTipsAndTricks : builder.query({
+            query : ()=>{
+                return {
+                    url : '/manage/get-tips-tricks',
+                    method : 'GET'
+                }
+            }
+        }),
+        getTrustAndSafety : builder.query({
+            query : ()=>{
+                return {
+                    url : '/manage/get-trust-safety',
+                    method : 'GET'
+                }
+            }
+        }),
+        getHostingGuide : builder.query({
+            query : ()=>{
+                return {
+                    url : '/manage/get-host-guidelines',
+                    method : 'GET'
+                }
+            }
+        }),
     })
 })
-export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery} =  infoApi; 
+export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery} =  infoApi; 
