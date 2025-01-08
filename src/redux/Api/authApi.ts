@@ -35,7 +35,8 @@ const authApi = baseApi.injectEndpoints({
           url : '/user/profile',
           method : 'GET'
         }
-      }
+      },
+      providesTags : ['profile']
     }),
     changePassword :  builder.mutation({
       query : (data)=>{
@@ -45,8 +46,18 @@ const authApi = baseApi.injectEndpoints({
           body : data
         }
       }
+    }),
+    updateProfile : builder.mutation({
+      query : (formData)=>{
+        return {
+          url : "/user/edit-profile",
+          method : 'PATCH',
+          body : formData
+        }
+      },
+      invalidatesTags : ['profile']
     })
 
   }),
 });
-export const { useRegisterUserMutation  , useActiveAccountOtpMutation , useGetProfileQuery , useChangePasswordMutation , useLoginUserMutation} = authApi
+export const { useRegisterUserMutation  , useActiveAccountOtpMutation , useGetProfileQuery , useChangePasswordMutation , useLoginUserMutation , useUpdateProfileMutation} = authApi
