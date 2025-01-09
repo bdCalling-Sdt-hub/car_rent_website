@@ -41,7 +41,7 @@ const DestinationCaurosel = async () => {
                     <Image
                       src={`${imageUrl}${des?.destination_image}`}
                       height={500}
-                      className="md:h-36  md:w-36 h-20 w-20 rounded-full mx-auto"
+                      className="md:h-36  md:w-36 h-20 w-20 rounded-full border border-black mx-auto"
                       width={500}
                       alt="img"
                     />

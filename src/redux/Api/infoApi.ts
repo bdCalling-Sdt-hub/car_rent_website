@@ -59,6 +59,25 @@ const infoApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        getAllNotification : builder.query({
+            query : ()=>{
+                return {
+                    url : '/notification/get-all-notification',
+                    method : 'GET'
+                }
+            },
+            providesTags : ['notification']
+        }),
+        updateNotification : builder.mutation({
+            query : (id)=>{
+                return {
+                    url : '/notification/mark-as-read',
+                    method :'PATCH',
+                    body : id
+                }
+            },
+            invalidatesTags :['notification']
+        })
     })
 })
-export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery} =  infoApi; 
+export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery , useGetAllNotificationQuery , useUpdateNotificationMutation} =  infoApi; 
