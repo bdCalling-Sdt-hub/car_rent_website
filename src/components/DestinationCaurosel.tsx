@@ -53,7 +53,7 @@ const DestinationCaurosel = async () => {
           })}
         </CarouselContent>
         <CarouselPrevious className="-top-8 right-12 " />
-        <CarouselNext className="-top-8 right-1 " />
+        <CarouselNext className="-top-8 right-1" />
       </Carousel>
     </div>
   );
