@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import React from 'react'
-import img from '../../../assets/heroImg.jpg'
-import img1 from '../../../assets/car5.png'
+import img from '../../../assets/aboutHeading.png'
+import img1 from '../../../assets/explore.jpg'
 import team from '../../../assets/team.png'
 import HeadingTitle from '@/components/shared/HeadingTitle'
 const AboutUsPage = () => {
     return (
         <div className='container mx-auto px-2 md:px-0'>
-            <div className=' md:py-10 py-5 relative md:mb-20'>
-                <div className='md:flex items-center gap-24'>
+            <div className='md:py-10 py-5 relative md:mb-20  flex justify-center'>
+                <div className='md:flex items-center gap-24 '>
                     <Image alt='about' className='z-20 ' height={600} width={600} src={img} />
                     <div className='mt-5 md:mt-0'>
                         <HeadingTitle title='About Nardo' />
@@ -17,9 +17,9 @@ const AboutUsPage = () => {
                             marketplace</p>
                     </div>
                 </div>
-                <div className='bg-[#BCBABA26] h-72 hidden md:block w-[50%] z-0 absolute top-1/3 left-24 '></div>
+                <div className='bg-[#BCBABA26] h-72 hidden md:block w-[50%] z-0 absolute top-1/3 left-1/4 '></div>
             </div>
-            <div className='md:py-10 py-5'>
+            <div className='md:py-10 py-5 bg-[]'>
                 <div className='text-center pb-10'>
                     <HeadingTitle title='Your perfect vehicle awaits' />
                 </div>
@@ -36,9 +36,11 @@ const AboutUsPage = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-between '>
                     <div>
                         <p className='font-semibold text-[32px]'>Meet the founders</p>
-                        <p className='max-w-sm mt-5'>Meet the minds behind the movement, from executive leadership to the board of directors, working to unlock the potential of the UKs 34 million cars</p>
+                        <p className='max-w-sm mt-5 leading-7'>Meet the minds behind the movement, from executive leadership to the board of directors, working to unlock the potential of the UKs 34 million cars</p>
+                        <button className='mt-5 bg-[#0CFEE8] px-4 py-2 rounded-md shadow-md'>Meet the team</button>
+
                     </div>
-                    <Image height={800} width={800} className='' src={img1} alt='img' />
+                    <Image height={800} width={800} className='h-[50%] rounded-md' src={img1} alt='img' />
                 </div>
             </div>
 
@@ -47,8 +49,10 @@ const AboutUsPage = () => {
                 <Image height={1500} width={1500} className='' src={team} alt='img' />
 
                     <div className=' mx-auto'>
-                        {/* <p className='font-semibold text-[32px]'>Meet the team</p> */}
-                        <p className='max-w-sm mt-5'>Nardo, recognized as a Great Place to Work, is dedicated to building a supportive, approachable, innovative, and efficient workplace.Explore our open positions and become part of our team!</p>
+                        <p className='font-semibold text-[32px]'>Join the nardo family</p>
+                        <p className='max-w-sm mt-5 leading-7'>Nardo, recognized as a Great Place to Work, is dedicated to building a supportive, approachable, innovative, and efficient workplace.Explore our open positions and become part of our team!</p>
+                        <button className='mt-5 bg-[#0CFEE8] px-4 py-2 rounded-md shadow-md'>Join Nardo</button>
+
                     </div>
                 </div>
             </div>

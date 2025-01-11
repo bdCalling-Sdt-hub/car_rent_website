@@ -14,10 +14,10 @@ const HostHomePage = () => {
                     <p className='mb-5'>FIND YOUR DRIVE</p>
                     <HeadingTitle title='Start a car sharing' />
                     <p className='pt-5 text-4xl font-medium pb-8'>business on Nardo</p>
-                    <Link href='/host-home/License-plate' className='bg-[#8D8D8D] text-white px-8 py-4 rounded-sm'>Get Start</Link>
+                    <Link href='/host-home/License-plate' className='bg-[#8D8D8D] text-white px-8 py-4 rounded-sm shadow-md'>Get Start</Link>
                 </div>
                 <div className='mt-10 '>
-                    <Image src={img} alt='img' height={1600} width={1600} className='w-full h-[50vh]' />
+                    <Image src={img} alt='img' height={1600} width={1600} className='w-full  h-[50vh]' />
                 </div>
             </div>
             <div className='max-w-5xl mx-auto space-y-10 mt-10'>
@@ -31,7 +31,7 @@ const HostHomePage = () => {
 
             <div>
                 <div className='flex justify-center my-8'>
-                <Link href='/host-home/License-plate'><button className='bg-[#0CFEE8] py-2 px-8 rounded '>Get Start</button></Link>
+                <Link href='/host-home/License-plate'><button className='bg-[#0CFEE8] py-2 px-8 rounded shadow-md'>Get Start</button></Link>
                 </div>
             <div className='mt-20 text-center'>
                 <HeadingTitle title='Create a buisiness that is...' />
@@ -61,7 +61,7 @@ const HostHomePage = () => {
             <div className='text-center mt-20 max-w-xl mx-auto space-y-4'>
                 <p className='text-4xl font-bold'>Start building your business plan</p>
                 <p className='pb-10'>List your first car to get started today and build your plan to take control of your financial future tomorrow.</p>
-                <Link href='/host-home/License-plate' className='bg-[#0CFEE8]  px-8 py-3 rounded-sm '>Get Start</Link>
+                <Link href='/host-home/License-plate' className='bg-[#0CFEE8]  px-8 py-3 rounded-sm shadow-md '>Get Start</Link>
 
             </div>
         </div>

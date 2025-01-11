@@ -19,7 +19,7 @@ import HitRoad from "@/components/HitRoad/HitRoad";
 import MapParent from "@/components/Map/MapParent";
 import TopHostedCar from "@/components/TopHostedCar/TopHostedCar";
 import { useSearchParams } from "next/navigation";
-import { useGetBrowseByDestinationQuery } from "@/redux/Api/carsApi";
+import { useGetBrowseByDestinationQuery, useGetTopHostedCarQuery } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 
 
@@ -106,11 +106,13 @@ const BrowseByDestinationPage = () => {
     toTime,
     destination,
   });
-  console.log(getAllCars?.data?.availableCars);
 
-  // const destination = searchParams?.destination
+//   console.log("des",destination);
 
-  // console.log("Destination:", destination);
+  const {data : topHostedCar} = useGetTopHostedCarQuery(destination);
+  console.log(topHostedCar?.data?.topHostsWithCar);
+
+
 
   return (
     <div className="container mx-auto my-10 font-lora px-2 md:px-0">
@@ -145,22 +147,23 @@ const BrowseByDestinationPage = () => {
                 <p className="font-semibold text-xl capitalize">{car?.make} {car?.model} {car?.year}</p>
                 <div className="flex items-center justify-between text-[#528AAE]">
                   <p className="flex items-center gap-2">
-                    <FaCar /> 4 Passenger
+                    <FaCar /> {car?.seats} Passenger
                   </p>
                   <p className="flex items-center gap-2">
-                    <LuDoorClosed />4 Door
+                    <LuDoorClosed />{car?.doors} Door
                   </p>
                 </div>
                 <div className="flex items-center justify-between text-[#528AAE] border-b pb-4">
                   <p className="flex items-center gap-2">
                     {" "}
                     <LuFuel />
-                    petrol
+                    {car?.fuelType}
                   </p>
                   <p className="flex items-center gap-2">
                     {" "}
                     <RiShoppingBagLine />
-                    Auto
+                    
+                    {car?.bags} Bags
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
@@ -168,7 +171,7 @@ const BrowseByDestinationPage = () => {
                     <span className="font-semibold">£{car?.pricePerDay} </span>/ per day
                   </p>
                   <Link
-                    className="bg-[#0CFEE8] text-white p-3 rounded-full "
+                    className="bg-[#0CFEE8] text-white p-3 rounded-full"
                     href={`/browse-by-destination/:id`}
                   >
                     <MdArrowOutward />

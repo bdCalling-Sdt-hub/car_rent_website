@@ -9,8 +9,16 @@ const allCars = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        getTopHostedCar : builder.query({
+            query : (destination)=>{
+                return {
+                    url : `/car/top-hosts-in-destination?destination=${destination}`,
+                    method : 'GET'
+                }
+            }
         })
     })
 })
 
-export const { useGetBrowseByDestinationQuery } = allCars;
+export const { useGetBrowseByDestinationQuery , useGetTopHostedCarQuery } = allCars;

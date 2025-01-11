@@ -168,7 +168,6 @@ const TopHostedCar = () => {
                                     </div>
                                 </div>
                             </CarouselItem>
-
                         </CarouselContent>
                         <CarouselPrevious className="-top-8 right-12 " />
                         <CarouselNext className="-top-8 right-1 " />
