@@ -6,6 +6,7 @@ import { Checkbox, Form, Input } from "antd";
 import { useLoginUserMutation } from "@/redux/Api/authApi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type TLoginProps = {
   email: string;
@@ -56,7 +57,7 @@ const LoginPage = () => {
           </Form.Item>
           <div className="flex justify-between items-center pb-5">
             <Checkbox>Remember me</Checkbox>
-            <p className="font-medium font-lora">Forget Password?</p>
+            <Link href={'/forget-password'} className="font-medium font-lora cursor-pointer">Forget Password?</Link>
           </div>
           <Form.Item>
             <button className="bg-black w-full text-white rounded-md py-2 font-lora">
@@ -66,7 +67,7 @@ const LoginPage = () => {
         </Form>
         <p className="text-center mt-8">
           Don&apos;t have an account?{" "}
-          <span className="font-semibold">Sign Up</span>
+          <Link href={'/register'} className="font-semibold">Sign Up</Link>
         </p>
       </div>
     </div>

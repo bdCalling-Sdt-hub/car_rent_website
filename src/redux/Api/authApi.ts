@@ -56,8 +56,17 @@ const authApi = baseApi.injectEndpoints({
         }
       },
       invalidatesTags : ['profile']
+    }),
+    forgetPassword :  builder.mutation({
+      query : (data)=>{
+        return {
+          url : '/auth/forgot-password',
+          method : 'POST',
+          body : data,
+        }
+      }
     })
 
   }),
 });
-export const { useRegisterUserMutation  , useActiveAccountOtpMutation , useGetProfileQuery , useChangePasswordMutation , useLoginUserMutation , useUpdateProfileMutation} = authApi
+export const { useRegisterUserMutation  , useActiveAccountOtpMutation , useGetProfileQuery , useChangePasswordMutation , useLoginUserMutation , useUpdateProfileMutation , useForgetPasswordMutation} = authApi
