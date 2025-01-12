@@ -86,4 +86,12 @@ interface Location {
     updatedAt: string;
     __v: number;
   }
+
+  export interface location {
+    createdAt : string,
+    destination_image  :  string,
+    name : string,
+    updatedAt  : string,
+    _id : string
+  }
   

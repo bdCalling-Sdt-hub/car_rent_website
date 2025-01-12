@@ -17,9 +17,13 @@ import { PiSignInLight } from 'react-icons/pi';
 import { LuUser } from 'react-icons/lu';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useGetProfileQuery } from '@/redux/Api/authApi';
+import { imageUrl } from '@/redux/baseApi';
 
 const Navbar = () => {
     const [popoverOpen, setPopoverOpen] = useState(false);
+    const {data : getUserInfo} = useGetProfileQuery({})
+    // console.log(getUserInfo);
 
     const closePopover = () => setPopoverOpen(false);
     return (
@@ -28,6 +32,7 @@ const Navbar = () => {
                 <Link href={'/'}>
                     <div className='flex items-center gap-1 ml-10'>
                         <p className='font-bold text-[20px] md:text-[40px]'>NARDO</p>
+
                         <Image src={img} height={100} width={100} className=' h-5 md:h-10 w-5 md:w-10' alt='logo' />
                     </div>
                 </Link>
@@ -38,7 +43,12 @@ const Navbar = () => {
                     </div>
                     <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
                         <PopoverTrigger>
-                            <p className='border flex px-5 py-2 items-center gap-2 rounded-full '> <MdMenu /> <CiUser /></p>
+                            <p className='border flex px-5 py-2 items-center gap-2 rounded-full '> <MdMenu /> 
+                            {
+                                getUserInfo?.data?.profile_image ? <Image src={`${imageUrl}/${getUserInfo?.data?.profile_image}`} height={100} width={100} className='h-5 md:h-7 w-5 md:w-7 rounded-full object-cover' alt='logo' /> : <CiUser />
+                            }
+                            
+                            </p>
                         </PopoverTrigger>
                         <PopoverContent>
                             <div className='font-lora grid grid-cols-1 md:grid-cols-2'>
