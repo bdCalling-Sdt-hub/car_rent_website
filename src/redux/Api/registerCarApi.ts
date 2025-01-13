@@ -17,7 +17,16 @@ const registerCarApi = baseApi.injectEndpoints({
         //             method :'GET'
         //         }
         //     }
-        // })
+        // }),
+        addLicensePlate : builder.mutation({
+            query  : (data)=>{
+                return {
+                    url : '/car/update-car-license',
+                    method : 'PATCH',
+                    body : data
+                }
+            }
+        })
     })
 })
-export const { useGetCityQuery  } = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation } = registerCarApi

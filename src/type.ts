@@ -94,4 +94,10 @@ interface Location {
     updatedAt  : string,
     _id : string
   }
+
+  export interface Step2Props {
+    handleNext: () => void;
+    currentStep: number;  
+  }
+  
   
