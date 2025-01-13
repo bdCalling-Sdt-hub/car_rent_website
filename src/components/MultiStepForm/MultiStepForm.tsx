@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
@@ -21,9 +21,10 @@ import ViewStep from "../ViewStep/ViewStep";
 import Link from "next/link";
 import {
   useAddLicensePlateMutation,
+  useAddMakeModelYearMutation,
   useGetCityQuery,
 } from "@/redux/Api/registerCarApi";
-import { location, Step2Props } from "@/type";
+import { CarModel, location, Step2Props } from "@/type";
 import { toast } from "sonner";
 
 const TotalSteps = 7;
@@ -69,7 +70,9 @@ const MultiStepForm = () => {
         {currentStep === 2 && (
           <Step2 handleNext={handleNext} currentStep={currentStep} />
         )}
-        {currentStep === 3 && <Step3 />}
+        {currentStep === 3 && (
+          <Step3 handleNext={handleNext} currentStep={currentStep} />
+        )}
         {currentStep === 4 && <Step4 />}
         {currentStep === 5 && <DriverLicense />}
         {currentStep === 6 && <CarDetails />}
@@ -97,7 +100,7 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   // console.log(getLocation);
   // Get city api
   const { data: getCity } = useGetCityQuery({});
-  console.log(getCity?.data?.destinations);
+  //   console.log(getCity?.data?.destinations);
   const handleContinue = () => {
     console.log("License Plate:");
     handleNext();
@@ -146,7 +149,6 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
 
   const handleContinue = () => {
-
     const data = {
       carId: "67849009decda04907565f36",
       licensePlateNum: licensePlate,
@@ -183,63 +185,160 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
-const Step3 = () => (
-  <div className="md:max-w-[60%] w-full">
-    <HeadingTitle title="Make and model" />
+interface CarMake {
+  make_id: string;
+  make_display: string;
+}
 
-    <div className="w-full mt-5">
-      <p className="my-2">Year</p>
-      <Select>
-        <SelectTrigger className="w-[100%]">
-          <SelectValue placeholder="Enter year" />
-        </SelectTrigger>
-        <SelectContent className="h-full">
-          <SelectGroup>
-            <SelectItem value="est">2012</SelectItem>
-            <SelectItem value="cst">2013</SelectItem>
-            <SelectItem value="mst">2014</SelectItem>
-            <SelectItem value="mst">2015</SelectItem>
-            <SelectItem value="mst">2016</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
+  const [addMakeModelYear] = useAddMakeModelYearMutation();
+
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(currentYear.toString());
+  const [selectedMake, setSelectedMake] = useState<string>();
+  const [selectedModel, setSelectedModel] = useState<string>();
+  const years = Array.from({ length: currentYear - 1940 }, (_, i) => 1941 + i);
+  const [carMakes, setCarMakes] = useState<CarMake[]>([]);
+  const [carModels, setCarModels] = useState<CarModel[]>([]);
+
+  useEffect(() => {
+    const fetchCarData = async () => {
+      try {
+        const response = await fetch(`/api/car-data?year=${selectedYear}`);
+        const text = await response.text();
+        const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
+        setCarMakes(json.Makes || []);
+      } catch (error) {
+        console.error("Error fetching car data:", error);
+      }
+    };
+
+    fetchCarData();
+  }, [selectedYear]);
+
+  useEffect(() => {
+    const fetchCarModels = async () => {
+      try {
+        const response = await fetch(
+          `/api/car-models?make=${selectedMake}&year=${selectedYear}`
+        );
+
+        if (!response.ok) {
+          console.error("Error fetching car models:", response.statusText);
+          return;
+        }
+
+        const text = await response.text();
+        const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
+        setCarModels(json.Models || []);
+      } catch (error) {
+        console.error("Error fetching car models:", error);
+      }
+    };
+
+    fetchCarModels();
+  }, [selectedMake, selectedYear]);
+
+  //   console.log(selectedMake);
+  console.log(carModels);
+
+  // Handle year selection
+  const handleYearChange = (value: string) => {
+    setSelectedYear(value);
+  };
+
+  const handleMakeChange = (value: string) => {
+    setSelectedMake(value);
+  };
+  const handleModelChange = (value: string) => {
+    setSelectedModel(value);
+  };
+  const handleContinue = () => {
+    const data = {
+      carId: "67849009decda04907565f36",
+      make: selectedMake,
+      model: selectedModel,
+      year: selectedYear,
+    };
+    addMakeModelYear(data)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+        handleNext();
+      })
+      .catch((error) => toast.error(error?.data?.message));
+
+    // console.log(selectedModel);
+    // console.log(selectedMake);
+    // console.log(selectedYear);
+  };
+//   console.log(selectedModel);
+
+  return (
+    <div className="md:max-w-[60%] w-full">
+      <HeadingTitle title="Make and model" />
+
+      <div className="w-full mt-5">
+        <p className="my-2">Year</p>
+        <Select value={selectedYear} onValueChange={handleYearChange}>
+          <SelectTrigger className="w-[100%]">
+            <SelectValue placeholder="Enter year" />
+          </SelectTrigger>
+          <SelectContent className="h-full">
+            <SelectGroup>
+              {years?.map((year) => (
+                <SelectItem key={year} value={year?.toString()}>
+                  {year}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="w-full mt-5">
+        <p className="my-2">Make</p>
+        <Select onValueChange={handleMakeChange}>
+          <SelectTrigger className="w-[100%]">
+            <SelectValue placeholder="Enter year" />
+          </SelectTrigger>
+          <SelectContent className="h-full">
+            <SelectGroup>
+              {carMakes?.map((car) => (
+                <SelectItem key={car?.make_id} value={car?.make_id}>
+                  {car?.make_id}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="w-full mt-5">
+        <p className="my-2">Model</p>
+        <Select onValueChange={handleModelChange}>
+          <SelectTrigger className="w-[100%]">
+            <SelectValue placeholder="Enter year" />
+          </SelectTrigger>
+          <SelectContent className="h-full">
+            <SelectGroup>
+              {carModels?.map((model) => (
+                <SelectItem key={model?.model_name} value={model?.model_name}>
+                  {model?.model_name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Button
+          className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
+          onClick={handleContinue}
+          disabled={currentStep === TotalSteps}
+        >
+          Continue
+        </Button>
+      </div>
     </div>
-    <div className="w-full mt-5">
-      <p className="my-2">Make</p>
-      <Select>
-        <SelectTrigger className="w-[100%]">
-          <SelectValue placeholder="Enter year" />
-        </SelectTrigger>
-        <SelectContent className="h-full">
-          <SelectGroup>
-            <SelectItem value="est">2012</SelectItem>
-            <SelectItem value="cst">2013</SelectItem>
-            <SelectItem value="mst">2014</SelectItem>
-            <SelectItem value="mst">2015</SelectItem>
-            <SelectItem value="mst">2016</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
-    <div className="w-full mt-5">
-      <p className="my-2">Model</p>
-      <Select>
-        <SelectTrigger className="w-[100%]">
-          <SelectValue placeholder="Enter year" />
-        </SelectTrigger>
-        <SelectContent className="h-full">
-          <SelectGroup>
-            <SelectItem value="est">Acura</SelectItem>
-            <SelectItem value="cst">Audi</SelectItem>
-            <SelectItem value="mst">Cadilac</SelectItem>
-            <SelectItem value="mst">Ford</SelectItem>
-            <SelectItem value="mst">Fiat</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
-  </div>
-);
+  );
+};
 
 const Step4 = () => (
   <div>

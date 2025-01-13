@@ -26,7 +26,24 @@ const registerCarApi = baseApi.injectEndpoints({
                     body : data
                 }
             }
+        }),
+        getCarYear : builder.query({
+            query : (year)=>{
+                return {
+                    url : `https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getMakes&year=${year}`,
+                    method : 'GET'
+                }
+            }
+        }),
+        addMakeModelYear : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/car/update-make-model-year',
+                    method : 'PATCH',
+                    body : data 
+                }
+            }
         })
     })
 })
-export const { useGetCityQuery , useAddLicensePlateMutation } = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation} = registerCarApi

@@ -99,5 +99,8 @@ interface Location {
     handleNext: () => void;
     currentStep: number;  
   }
-  
+  export interface CarModel {
+    model_id: string;
+    model_name: string;
+  }
   
