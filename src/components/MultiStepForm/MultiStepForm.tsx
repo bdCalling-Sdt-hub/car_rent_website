@@ -20,6 +20,7 @@ import CarPhoto from "../CarPhoto/CarPhoto";
 import ViewStep from "../ViewStep/ViewStep";
 import Link from "next/link";
 import {
+  useAddCarTransmissionMutation,
   useAddLicensePlateMutation,
   useAddMakeModelYearMutation,
   useGetCityQuery,
@@ -73,8 +74,10 @@ const MultiStepForm = () => {
         {currentStep === 3 && (
           <Step3 handleNext={handleNext} currentStep={currentStep} />
         )}
-        {currentStep === 4 && <Step4 />}
-        {currentStep === 5 && <DriverLicense />}
+        {currentStep === 4 && (
+          <Step4 handleNext={handleNext} currentStep={currentStep} />
+        )}
+        {currentStep === 5 && <DriverLicense handleNext={handleNext} currentStep={currentStep} />}
         {currentStep === 6 && <CarDetails />}
         {currentStep === 7 && <CarPhoto />}
       </div>
@@ -240,7 +243,6 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   }, [selectedMake, selectedYear]);
 
   //   console.log(selectedMake);
-  console.log(carModels);
 
   // Handle year selection
   const handleYearChange = (value: string) => {
@@ -272,7 +274,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     // console.log(selectedMake);
     // console.log(selectedYear);
   };
-//   console.log(selectedModel);
+  //   console.log(selectedModel);
 
   return (
     <div className="md:max-w-[60%] w-full">
@@ -340,74 +342,127 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
-const Step4 = () => (
-  <div>
-    <HeadingTitle title="Transmission" />
-    <div className="mt-10">
-      <p className="pb-2">Transmission</p>
-      <RadioGroup defaultValue="option-one" className="flex gap-10">
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Automatic</Label>
-        </div>
-        <div className="flex items-center space-x-2 mt-2">
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">Manual</Label>
-        </div>
-      </RadioGroup>
+const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
+  const [addCarTransmission] = useAddCarTransmissionMutation();
+  const [formValues, setFormValues] = useState({
+    transmission: "automatic",
+    isElectric: "yes",
+    carType: "luxury",
+    vehicleType: "car",
+  });
+
+  const handleChange = (field: string, value: string) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: value,
+    }));
+  };
+  const handleContinue = () => {
+    const data = {
+      carId: "67849009decda04907565f36",
+      ...formValues,
+    };
+    addCarTransmission(data)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+        handleNext();
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
+
+  return (
+    <div>
+      <HeadingTitle title="Transmission" />
+      <div className="mt-10">
+        <p className="pb-2">Transmission</p>
+        <RadioGroup
+          value={formValues.transmission}
+          onValueChange={(value) => handleChange("transmission", value)}
+          className="flex gap-10"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="automatic" id="automatic" />
+            <Label htmlFor="automatic">Automatic</Label>
+          </div>
+          <div className="flex items-center space-x-2 mt-2">
+            <RadioGroupItem value="manual" id="manual" />
+            <Label htmlFor="manual">Manual</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      <div className="mt-10">
+        <p className="pb-3">Electric Vehicle</p>
+        <RadioGroup
+          value={formValues.isElectric}
+          onValueChange={(value) => handleChange("isElectric", value)}
+          className="flex gap-10"
+        >
+          <div className="flex items-center space-x-2 mt-2">
+            <RadioGroupItem value="yes" id="electric-yes" />
+            <Label htmlFor="yes">Yes</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="no" id="electric-no" />
+            <Label htmlFor="no">No</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      <div className="mt-10">
+        <p className="pb-2">Car Type</p>
+        <RadioGroup
+          value={formValues.carType}
+          onValueChange={(value) => handleChange("carType", value)}
+          className="flex gap-10"
+        >
+          <div className="flex items-center space-x-2 mt-2">
+            <RadioGroupItem value="luxury" id="luxury" />
+            <Label htmlFor="luxury">Luxury</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="economy" id="economy" />
+            <Label htmlFor="economy">Economy</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      <div className="mt-10 mb-5">
+        <p className="pb-2">Vehicle type</p>
+        <RadioGroup
+          value={formValues.vehicleType}
+          onValueChange={(value) => handleChange("vehicleType", value)}
+          className="md:flex gap-10"
+        >
+          <div className="flex items-center space-x-2 mt-2">
+            <RadioGroupItem value="car" id="car" />
+            <Label htmlFor="car">Car</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="suv" id="suv" />
+            <Label htmlFor="suv">SUV</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="minivans" id="minivans" />
+            <Label htmlFor="minivans">Minivans</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="trucks" id="trucks" />
+            <Label htmlFor="trucks">Trucks</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="cargo" id="cargo" />
+            <Label htmlFor="cargo">Cargo Vans</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      <Button
+        className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
+        onClick={handleContinue}
+        disabled={currentStep === TotalSteps}
+      >
+        Continue
+      </Button>
     </div>
-    <div className="mt-10">
-      <p className="pb-3">Electric Vehicle</p>
-      <RadioGroup defaultValue="option-one" className="flex gap-10">
-        <div className="flex items-center space-x-2 mt-2">
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Yes</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">No</Label>
-        </div>
-      </RadioGroup>
-    </div>
-    <div className="mt-10">
-      <p className="pb-2">Car Type</p>
-      <RadioGroup defaultValue="option-one" className="flex gap-10">
-        <div className="flex items-center space-x-2 mt-2">
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Luxury</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">Economy</Label>
-        </div>
-      </RadioGroup>
-    </div>
-    <div className="mt-10 mb-5">
-      <p className="pb-2">Vehicle type</p>
-      <RadioGroup defaultValue="option-one" className="md:flex gap-10">
-        <div className="flex items-center space-x-2 mt-2">
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Car</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">SUV</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="minivans" id="minivans" />
-          <Label htmlFor="option-two">Minivans</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="trucks" id="trucks" />
-          <Label htmlFor="option-two">Trucks</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="cargo" id="cargo" />
-          <Label htmlFor="option-two">Cargo Vans</Label>
-        </div>
-      </RadioGroup>
-    </div>
-  </div>
-);
+  );
+};
 
 export default MultiStepForm;

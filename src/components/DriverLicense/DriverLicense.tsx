@@ -1,102 +1,165 @@
-"use client"
-import React from 'react'
-import HeadingTitle from '../shared/HeadingTitle'
-import { Input } from '../ui/input'
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
- 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+"use client";
+import React, { useState } from "react";
+import HeadingTitle from "../shared/HeadingTitle";
+import { Input } from "../ui/input";
+import { Form, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import type { UploadFile, UploadChangeParam } from "antd/es/upload/interface";
+import { Step2Props } from "@/type";
+import { Button } from "../ui/button";
+import { useAddHostLicenseMutation } from "@/redux/Api/registerCarApi";
+import { toast } from "sonner";
 
-const DriverLicense = () => {
-    const [date, setDate] = React.useState<Date>()
-    return (
-        <div className='md:max-w-[60%] w-full'>
-            <HeadingTitle title='Driver Licence' />
-            <p className='mt-10'>Enter your info exactly as it appears on your license so Nardo can verify your eligibility
-                to drive</p>
-
-
-            <p className='mt-5'>Price per day</p>
-            <Input placeholder='Type here...' />
-            <div className='flex items-center gap-2 w-full'>
-                <div className='w-full'>
-                    <p className='mt-5 pb-2'>maximum travel distance for one day</p>
-                    <Input placeholder='Type here...' />
-                </div>
-                <div className='w-full'>
-                    <p className='mt-5 pb-2'>Per kilometer charge after crossing maximum distance </p>
-                    <Input placeholder='Type here...' />
-                </div>
-            </div>
-            <div className='flex items-center gap-2 w-full'>
-                <div className='w-full'>
-                    <p className='mt-5 pb-2'>First Name</p>
-                    <Input placeholder='Type here...' />
-                </div>
-                <div className='w-full'>
-                    <p className='mt-5 pb-2'>Last Name</p>
-                    <Input placeholder='Type here...' />
-                </div>
-            </div>
-            <div className='mt-5'>
-                <p className='pb-2'>Licence expiration date</p>
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant={"outline"}
-                            className={cn(
-                                "w-[100%] justify-start text-left font-normal",
-                                !date && "text-muted-foreground"
-                            )}
-                        >
-                            <CalendarIcon />
-                            {date ? format(date, "P") : <span>Pick a date</span>}
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                        <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            initialFocus
-                        />
-                    </PopoverContent>
-                </Popover>
-            </div>
-            <div className='mt-5'>
-                <p className='pb-2'>Licence date of birth</p>
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant={"outline"}
-                            className={cn(
-                                "w-[100%] justify-start text-left font-normal",
-                                !date && "text-muted-foreground"
-                            )}
-                        >
-                            <CalendarIcon />
-                            {date ? format(date, "P") : <span>Pick a date</span>}
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                        <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            initialFocus
-                        />
-                    </PopoverContent>
-                </Popover>
-            </div>
-        </div>
-    )
+interface TLicense {
+    pricePerDay : string,
+    maxTravelDistancePerDay : string,
+    finePerKm : string
 }
 
-export default DriverLicense
+const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [backFileList, setBackFileList] = useState<UploadFile[]>([]);
+
+  //  Update driving license api
+  const [updateDrivingLicense] = useAddHostLicenseMutation();
+
+  //   License front image upload
+  const handleUploadChange = ({
+    fileList: newFileList,
+  }: UploadChangeParam<UploadFile>) => {
+    setFileList(newFileList);
+  };
+  //   License back image upload
+  const handleBackImageUploadChange = ({
+    fileList: newFileList,
+  }: UploadChangeParam<UploadFile>) => {
+    setBackFileList(newFileList);
+  };
+
+  //   Handle upload driver license details function
+  const handleUpdateDrivingLicense = (values: TLicense) => {
+    const formData = new FormData();
+    formData.append('carId', "67849009decda04907565f36")
+    formData.append("pricePerDay", values?.pricePerDay);
+    formData.append("maxTravelDistancePerDay", values?.maxTravelDistancePerDay);
+    formData.append("finePerKm", values?.finePerKm);
+
+    if (fileList.length > 0) {
+      const file = fileList[0].originFileObj;
+      if (file) {
+        formData.append("hostLicenseFrontImage", file);
+      }
+    }
+    if (backFileList.length > 0) {
+      const file = backFileList[0].originFileObj;
+      if (file) {
+        formData.append("hostLicenseBackImage", file);
+      }
+    }
+    updateDrivingLicense(formData)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message)
+        handleNext()
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
+  return (
+    <div className="md:max-w-[60%] w-full">
+      <HeadingTitle title="Driver Licence" />
+      <p className="my-10">
+        Enter your info exactly as it appears on your license so Nardo can
+        verify your eligibility to drive
+      </p>
+
+      <Form layout={"vertical"} onFinish={handleUpdateDrivingLicense}>
+        <div className="flex gap-5 items-center">
+          <Form.Item
+            label={"Price per day"}
+            name={"pricePerDay"}
+            className="w-full"
+          >
+            <Input placeholder="Type here..." />
+          </Form.Item>
+          <Form.Item
+            label={"Maximum travel distance for one day"}
+            name={"maxTravelDistancePerDay"}
+            className="w-full"
+          >
+            <Input placeholder="Type here..." />
+          </Form.Item>
+        </div>
+        <Form.Item
+          label={"Per kilometer charge after crossing maximum distance"}
+          className="w-full"
+          name={"finePerKm"}
+        >
+          <Input placeholder="Type here..." />
+        </Form.Item>
+
+        <div className="flex gap-5">
+          <Form.Item
+            label="License Front Image"
+            className="w-full"
+            style={{
+              width: "100%",
+            }}
+          >
+            <Upload
+              listType="picture-card"
+              fileList={fileList}
+              onChange={handleUploadChange}
+              beforeUpload={() => false}
+              multiple={false}
+              className="upload-full-width w-full"
+              maxCount={1}
+            >
+              {fileList.length >= 1 ? null : (
+                <div className="flex items-center gap-2">
+                  <PlusOutlined />
+                  <div>Add Image</div>
+                </div>
+              )}
+            </Upload>
+          </Form.Item>
+          <Form.Item
+            label="License Back Image"
+            className="w-full"
+            style={{
+              width: "100%",
+            }}
+          >
+            <Upload
+              listType="picture-card"
+              fileList={backFileList}
+              onChange={handleBackImageUploadChange}
+              beforeUpload={() => false}
+              multiple={false}
+              className="upload-full-width w-full"
+              maxCount={1}
+            >
+              {backFileList.length >= 1 ? null : (
+                <div className="flex items-center gap-2">
+                  <PlusOutlined />
+                  <div>Add Image</div>
+                </div>
+              )}
+            </Upload>
+          </Form.Item>
+        </div>
+        <Button
+          className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
+          //   onClick={handleContinue}
+          //   disabled={currentStep === TotalSteps}
+        >
+          Continue
+        </Button>
+      </Form>
+
+      {/* Upload license font image */}
+      <div style={{ width: "100%" }}></div>
+    </div>
+  );
+};
+
+export default DriverLicense;
