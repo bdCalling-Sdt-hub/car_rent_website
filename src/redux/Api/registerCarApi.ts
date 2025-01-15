@@ -61,7 +61,33 @@ const registerCarApi = baseApi.injectEndpoints({
                     body : data
                 }
             }
+        }),
+        addCarDetails : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/car/update-details',
+                    method :"PATCH",
+                    body : data,
+                }
+            }
+        }),
+        addCarPhotos : builder.mutation({
+            query : (formData)=>{
+                return{
+                    url : '/car/update-photos',
+                    method : 'PATCH',
+                    body : formData
+                }
+            }
+        }),
+        sendCarRequest :  builder.mutation({
+            query : (id)=>{
+                return {
+                    url : `/car/send-add-car-req?carId=${id}`,
+                    method : 'PATCH'
+                }
+            }
         })
     })
 })
-export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation} = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation} = registerCarApi

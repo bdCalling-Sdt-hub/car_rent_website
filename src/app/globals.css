@@ -104,3 +104,9 @@ body {
   height: 300px;
   padding: 0;
 }
+
+.upload-car:where(.css-dev-only-do-not-override-49qm).ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select, :where(.css-dev-only-do-not-override-49qm).ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload.ant-upload-select {
+  width: 18% !important;
+  height: 50px;
+  background-color: #0CFEE8;
+}

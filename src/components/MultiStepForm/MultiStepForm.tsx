@@ -18,7 +18,6 @@ import DriverLicense from "../DriverLicense/DriverLicense";
 import CarDetails from "../CarDetails/CarDetails";
 import CarPhoto from "../CarPhoto/CarPhoto";
 import ViewStep from "../ViewStep/ViewStep";
-import Link from "next/link";
 import {
   useAddCarTransmissionMutation,
   useAddLicensePlateMutation,
@@ -78,12 +77,12 @@ const MultiStepForm = () => {
           <Step4 handleNext={handleNext} currentStep={currentStep} />
         )}
         {currentStep === 5 && <DriverLicense handleNext={handleNext} currentStep={currentStep} />}
-        {currentStep === 6 && <CarDetails />}
+        {currentStep === 6 && <CarDetails  handleNext={handleNext} currentStep={currentStep}  />}
         {currentStep === 7 && <CarPhoto />}
       </div>
 
       {/* Navigation controls */}
-      <div className=" mt-4">
+      {/* <div className=" mt-4">
         {currentStep === 7 && (
           <Link
             href={"/host-history"}
@@ -92,7 +91,7 @@ const MultiStepForm = () => {
             Send Request
           </Link>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
