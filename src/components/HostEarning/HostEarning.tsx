@@ -1,21 +1,22 @@
-"use client"
+"use client";
 import React from "react";
-import img from "../../assets/car.jpg";
-import img1 from "../../assets/car1.png";
 import Image from "next/image";
-import { CiLocationOn } from "react-icons/ci";
 import Chart from "../Chart/Chart";
 import back from "../../assets/backh.png";
-import { useGetHostIncomeQuery } from "@/redux/Api/hostHistoryApi";
+import {
+  useGetHostIncomeQuery,
+  useGetHostTripsQuery,
+} from "@/redux/Api/hostHistoryApi";
+import { imageUrl } from "@/redux/baseApi";
 const HostEarning = () => {
   // All APIs
-  const {data :  getAllIncome} =  useGetHostIncomeQuery({})
-  
-
+  const { data: getAllIncome } = useGetHostIncomeQuery({});
+  const { data: getHosOngoingTrip } = useGetHostTripsQuery({});
+  console.log(getHosOngoingTrip?.data?.trips);
 
   return (
     <div className="font-lora ">
-      <div className="md:flex justify-between  gap-20 space-y-4 md:space-y-0">
+      <div className="md:flex justify-between  gap-20 space-y-4 md:space-y-0 shadow-md">
         <div
           className=" w-full text-center rounded-sm text-[32px] font-medium"
           style={{
@@ -26,7 +27,7 @@ const HostEarning = () => {
             height: "330px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center", 
+            justifyContent: "center",
           }}
         >
           <div>
@@ -44,8 +45,8 @@ const HostEarning = () => {
             backgroundPosition: "center",
             height: "330px",
             display: "flex",
-            alignItems: "center", 
-            justifyContent: "center", 
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <div>
@@ -80,98 +81,57 @@ const HostEarning = () => {
       <div className="mt-10 space-y-10">
         <p className=" text-[18px] md:text-[30px]  ">Income-In-Progress</p>
 
-        <div className="grid  grid-cols-1 md:grid-cols-12 items-center gap-5 bg-[#BCBABA26] rounded-sm ">
-          <div className="col-span-4">
-            <Image
-              alt="img"
-              className="w-full h-60"
-              height={600}
-              width={600}
-              src={img}
-            />
-          </div>
-          <div className="col-span-4 ">
-            <div className="space-y-2">
-              <p className="text-xl font-medium">Mercedes-Benz E-Class 2017</p>
-              <p>Start Date : 05-12-2024 Time : 07 : 30 AM</p>
-              <p>End Date : 05-12-2024 Time : 07 : 30 AM</p>
-              <p>
-                Duration : 1 days{" "}
-                <span className=" ml-2">
-                  Price : £125.00 Pending
-                </span>
-              </p>
-            </div>
-            <div className="mt-5">
-              <p>Renter:</p>
-              <div className="flex mt-2 gap-2">
+        {getHosOngoingTrip?.data?.trips?.map((trip: any) => {
+          console.log(trip);
+          return (
+            <div key={trip?._id} className="grid  grid-cols-1 md:grid-cols-12 items-center gap-5 bg-[#BCBABA26] rounded-sm ">
+              <div className="col-span-4">
                 <Image
                   alt="img"
-                  className="h-12 w-12 rounded-full"
-                  height={300}
-                  width={300}
-                  src={img1}
+                  className="w-full h-60"
+                  height={600}
+                  width={600}
+                  src={`${imageUrl}/${trip?.car_image?.[0]}`}
                 />
-                <div>
-                  <p>MD: Jahid Hasan</p>
-                  <p className="flex items-center gap-2">
-                    <CiLocationOn /> London
+              </div>
+              <div className="col-span-4 ">
+                <div className="space-y-2">
+                  <p className="text-xl font-medium">
+                    {trip?.car?.make} {trip?.car?.model} {trip?.car?.year}
+                  </p>
+                  <p>Start Date : {trip?.tripStartDateTime?.split("T")[0]} Time : {trip?.tripStartTime}</p>
+                  <p>End Date : {trip?.tripEndDateTime?.split("T")[0]} Time : {trip?.tripEndTime}</p>
+                  <p>
+                    Duration : 1 days{" "}
+                    <span className=" ml-2">Price : £{trip?.tripPrice} Pending</span>
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-span-4 text-center text-[18px] md:text-[32px]  ">
-            <p>Price :</p>
-            <p> £125.00 Pending</p>
-          </div>
-        </div>
-        <div className="grid  grid-cols-1 md:grid-cols-12 items-center gap-5 bg-[#BCBABA26] rounded-sm ">
-          <div className="col-span-4">
-            <Image
-              alt="img"
-              className="w-full h-60"
-              height={600}
-              width={600}
-              src={img}
-            />
-          </div>
-          <div className="col-span-4 ">
-            <div className="space-y-2">
-              <p className="text-xl font-medium">Mercedes-Benz E-Class 2017</p>
-              <p>Start Date : 05-12-2024 Time : 07 : 30 AM</p>
-              <p>End Date : 05-12-2024 Time : 07 : 30 AM</p>
-              <p>
-                Duration : 1 days{" "}
-                <span className=" ml-2">
-                  Price : £125.00 Pending
-                </span>
-              </p>
-            </div>
-            <div className="mt-5">
-              <p>Renter:</p>
-              <div className="flex mt-2 gap-2">
-                <Image
-                  alt="img"
-                  className="h-12 w-12 rounded-full"
-                  height={300}
-                  width={300}
-                  src={img1}
-                />
-                <div>
-                  <p>MD: Jahid Hasan</p>
-                  <p className="flex items-center gap-2">
-                    <CiLocationOn /> London
-                  </p>
+                <div className="mt-5">
+                  <p>Renter:</p>
+                  <div className="flex mt-2 gap-2">
+                    <Image
+                      alt="img"
+                      className="h-12 w-12 rounded-full"
+                      height={300}
+                      width={300}
+                      src={`${imageUrl}/${trip?.user?.profile_image}`}
+                    />
+                    <div>
+                      <p>{trip?.user?.name}</p>
+                      <p className="flex items-center gap-2">
+                         {trip?.user?.email}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="col-span-4 text-center text-[18px] md:text-[32px]  ">
+                <p>Price :</p>
+                <p> £{trip?.tripPrice} Pending</p>
+              </div>
             </div>
-          </div>
-          <div className="col-span-4 text-center text-[18px] md:text-[32px]  ">
-            <p>Price :</p>
-            <p> £125.00 Pending</p>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

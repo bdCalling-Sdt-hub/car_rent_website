@@ -44,8 +44,15 @@ const hostHistoryApi = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        getHostTrips :  builder.query({
+            query : ()=>{
+                return {
+                    url : `/trip/get-my-trip-order?status=ongoing`
+                }
+            }
         })
     })
 })
 
-export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation , useGetHostIncomeQuery , useGetHostRevenueChartQuery} =  hostHistoryApi;
+export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation , useGetHostIncomeQuery , useGetHostRevenueChartQuery , useGetHostTripsQuery} =  hostHistoryApi;
