@@ -11,8 +11,7 @@ import { imageUrl } from "@/redux/baseApi";
 const HostEarning = () => {
   // All APIs
   const { data: getAllIncome } = useGetHostIncomeQuery({});
-  const { data: getHosOngoingTrip } = useGetHostTripsQuery({});
-  console.log(getHosOngoingTrip?.data?.trips);
+  const { data: getHosOngoingTrip } = useGetHostTripsQuery("ongoing");
 
   return (
     <div className="font-lora ">

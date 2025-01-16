@@ -19,7 +19,7 @@ import { imageUrl } from '@/redux/baseApi'
 
 const HostHistoryPage = () => {
     const {data: getProfile} = useGetProfileQuery(undefined);
-    console.log(getProfile?.data);
+    // console.log(getProfile?.data);
    
     return (
         <div className='my-10 container mx-auto px-2 md:px-0'>
@@ -42,16 +42,14 @@ const HostHistoryPage = () => {
                 <Tabs defaultValue="car" className="w-full">
                     <TabsList className="grid grid-cols-4 md:w-[70%] w-full gap-5 mb-10">
                         <TabsTrigger value="car" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Car</TabsTrigger>
-                        <TabsTrigger value="order" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Order</TabsTrigger>
+                        <TabsTrigger  value="requested" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Requested</TabsTrigger>
                         <TabsTrigger value="history" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>History</TabsTrigger>
                         <TabsTrigger value="earning" className='bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]'>Earning</TabsTrigger>
                     </TabsList>
                     <TabsContent value="car">
-
                         <HostCars />
-
                     </TabsContent>
-                    <TabsContent value="order">
+                    <TabsContent value="requested">
                         <HostOrder/>
                     </TabsContent>
                     <TabsContent value="history">

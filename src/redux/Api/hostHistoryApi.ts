@@ -46,13 +46,25 @@ const hostHistoryApi = baseApi.injectEndpoints({
             }
         }),
         getHostTrips :  builder.query({
-            query : ()=>{
+            query : (status)=>{
                 return {
-                    url : `/trip/get-my-trip-order?status=ongoing`
+                    url : `/trip/get-my-trip-order?status=${status}`,
+                    method : 'GET'
                 }
-            }
-        })
+            },
+            providesTags : ["tripStatus"]
+        }),
+        acceptCarRentRequest : builder.mutation({
+            query : (data)=>{
+                return{
+                    url : '/trip/update-trip-status',
+                    method :"PATCH",
+                    body : data
+                }
+            },
+            invalidatesTags : ['tripStatus']
+        }) 
     })
 })
 
-export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation , useGetHostIncomeQuery , useGetHostRevenueChartQuery , useGetHostTripsQuery} =  hostHistoryApi;
+export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation , useGetHostIncomeQuery , useGetHostRevenueChartQuery , useGetHostTripsQuery , useAcceptCarRentRequestMutation} =  hostHistoryApi;
