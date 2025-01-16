@@ -1,5 +1,5 @@
+"use client"
 import React from 'react'
-import img from '../../../assets/car2.png'
 import Image from 'next/image'
 import { CiStar } from 'react-icons/ci'
 import Link from 'next/link'
@@ -14,16 +14,23 @@ import HostCars from '@/components/HostCars/HostCars'
 import HostOrder from '@/components/HostOrder/HostOrder'
 import HostHistoryInfo from '@/components/HostHistoryInfo/HostHistoryInfo'
 import HostEarning from '@/components/HostEarning/HostEarning'
+import { useGetProfileQuery } from '@/redux/Api/authApi'
+import { imageUrl } from '@/redux/baseApi'
+
 const HostHistoryPage = () => {
+    const {data: getProfile} = useGetProfileQuery(undefined);
+    console.log(getProfile?.data);
+   
     return (
         <div className='my-10 container mx-auto px-2 md:px-0'>
             <div className='md:flex items-center  justify-between '>
                 <div className='flex items-center gap-5'>
-                    <Image className='rounded-full h-20 w-20 object-cover' src={img} height={200} width={200} alt='img' />
+                    <Image className='rounded-full h-20 w-20 object-cover' src={`${imageUrl}/${getProfile?.data?.profile_image}`} height={200} width={200} alt='img' />
                     <div className='font-lora space-y-1'>
-                        <p className='font-medium text-[24px]'>MD. Hasan</p>
-                        <p className='flex items-center gap-1'><CiStar /> 4.5 Total Trip : 204</p>
-                        <p>Total Car : 10</p>
+                        <p className='font-medium text-[24px]'>{getProfile?.data?.name}</p>
+                        <p className='font-medium '>{getProfile?.data?.email}</p>
+                        <p className='flex items-center gap-1'><CiStar size={22}/> {getProfile?.data?.rating}</p>
+                        <p>Total Car : {getProfile?.data?.carCount}</p>
                     </div>
                 </div>
                 <div>
@@ -41,7 +48,7 @@ const HostHistoryPage = () => {
                     </TabsList>
                     <TabsContent value="car">
 
-                        <HostCars/>
+                        <HostCars />
 
                     </TabsContent>
                     <TabsContent value="order">

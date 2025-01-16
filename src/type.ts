@@ -103,4 +103,47 @@ interface Location {
     model_id: string;
     model_name: string;
   }
+
+
+
+  export interface CarData {
+    _id: string;
+    user: string;
+    carAddress: string;
+    destination: string;
+    isElectric: boolean;
+    features: string[];
+    car_image: string[];
+    location: {
+      coordinates: [number, number];
+      type: string;
+    };
+    rating: number;
+    trip: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    licensePlateNum: string;
+    make: string;
+    model: string;
+    year: number;
+    carType: string;
+    transmission: string;
+    vehicleType: string;
+    finePerKm: number;
+    hostLicenseBackImage: string;
+    hostLicenseFrontImage: string;
+    maxTravelDistancePerDay: number;
+    pricePerDay: number;
+    description: string;
+    bags: number;
+    deliveryFee: number;
+    discountAmount: number;
+    discountDays: number;
+    doors: number;
+    fuelType: string;
+    seats: number;
+    status: string;
+  }
+  
   
