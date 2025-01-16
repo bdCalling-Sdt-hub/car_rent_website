@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import img from "../../assets/car.jpg";
 import img1 from "../../assets/car1.png";
@@ -5,7 +6,13 @@ import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import Chart from "../Chart/Chart";
 import back from "../../assets/backh.png";
+import { useGetHostIncomeQuery } from "@/redux/Api/hostHistoryApi";
 const HostEarning = () => {
+  // All APIs
+  const {data :  getAllIncome} =  useGetHostIncomeQuery({})
+  
+
+
   return (
     <div className="font-lora ">
       <div className="md:flex justify-between  gap-20 space-y-4 md:space-y-0">
@@ -24,7 +31,7 @@ const HostEarning = () => {
         >
           <div>
             <p>Total Income</p>
-            <p>$15,836</p>
+            <p>${getAllIncome?.data?.totalIncome || 0}</p>
           </div>
         </div>
 
@@ -42,8 +49,8 @@ const HostEarning = () => {
           }}
         >
           <div>
-            <p>Total Income</p>
-            <p>$15,836</p>
+            <p>Total Monthly Income</p>
+            <p>${getAllIncome?.data?.averageMonthlyIncome || 0}</p>
           </div>
         </div>
         <div
@@ -60,8 +67,8 @@ const HostEarning = () => {
           }}
         >
           <div>
-            <p>Total Income</p>
-            <p>$15,836</p>
+            <p>Total Yearly Income</p>
+            <p>${getAllIncome?.data?.averageYearlyIncome || 0}</p>
           </div>
         </div>
       </div>

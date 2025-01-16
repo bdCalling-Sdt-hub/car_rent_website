@@ -24,7 +24,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["profile", "event", 'notification'],
+  tagTypes: ["profile", "event", 'notification', "carDetails"],
   endpoints: () => ({}),
 });
 export const fetchServerData = async (endpoint: string) => {

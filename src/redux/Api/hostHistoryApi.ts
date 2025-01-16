@@ -16,7 +16,8 @@ const hostHistoryApi = baseApi.injectEndpoints({
                     url : `/car/get-single-car-details?carId=${id}`,
                     method : 'GET'
                 }
-            }
+            },
+            providesTags : ['carDetails']
         }),
         updateCarDetails :  builder.mutation({
             query : (data)=>{
@@ -25,9 +26,26 @@ const hostHistoryApi = baseApi.injectEndpoints({
                     method : 'PATCH',
                     body : data
                 }
+            },
+            invalidatesTags : ["carDetails"]
+        }),
+        getHostIncome :  builder.query({
+            query : ()=>{
+                return {
+                    url : '/payment/host-income-details',
+                    method : 'GET'
+                }
+            }
+        }),
+        getHostRevenueChart : builder.query({
+            query : (year)=>{
+                return {
+                    url : `/payment/host-revenue-chart?year=${year}`,
+                    method : 'GET'
+                }
             }
         })
     })
 })
 
-export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation} =  hostHistoryApi;
+export const { useGetMyCarsQuery , useGetCarDetailsQuery , useUpdateCarDetailsMutation , useGetHostIncomeQuery , useGetHostRevenueChartQuery} =  hostHistoryApi;

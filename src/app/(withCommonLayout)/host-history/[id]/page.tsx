@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   useGetCarDetailsQuery,
   useUpdateCarDetailsMutation,
@@ -86,6 +86,8 @@ const EditHostCarPage = () => {
   const { data: getCarDetails, isLoading } = useGetCarDetailsQuery(carId);
   const [updateCarDetails] = useUpdateCarDetailsMutation();
 
+  console.log(getCarDetails);
+
   // Update form values when car details are fetched
   useEffect(() => {
     if (getCarDetails?.data) {
@@ -129,16 +131,21 @@ const EditHostCarPage = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
+
+  const router = useRouter()
   const handleUpdateCarDetails = () => {
     const data = {
       ...formValues,
       features: formValues?.selectedFeatures,
     };
 
+    console.log(data);
+
     updateCarDetails(data)
       .unwrap()
       .then((payload) => {
         toast.success(payload?.message);
+        router.push('/host-history')
       })
       .catch((error) => toast.error(error?.data?.message));
   };
