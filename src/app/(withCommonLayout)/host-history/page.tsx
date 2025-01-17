@@ -12,6 +12,8 @@ import HostEarning from "@/components/HostEarning/HostEarning";
 import { useGetProfileQuery } from "@/redux/Api/authApi";
 import { imageUrl } from "@/redux/baseApi";
 import OngoingOrder from "@/components/OngoingOrder/OngoingOrder";
+import CancelOrder from "@/components/CancelOrder/CancelOrder";
+import CompleteOrder from "@/components/CompleteOrder/CompleteOrder";
 
 const HostHistoryPage = () => {
   const { data: getProfile } = useGetProfileQuery(undefined);
@@ -96,6 +98,12 @@ const HostHistoryPage = () => {
           </TabsContent>
           <TabsContent value="ongoing">
             <OngoingOrder/>
+          </TabsContent>
+          <TabsContent value="canceled">
+            <CancelOrder/>
+          </TabsContent>
+          <TabsContent value="completed">
+            <CompleteOrder/>
           </TabsContent>
           <TabsContent value="history">
             <HostHistoryInfo />
