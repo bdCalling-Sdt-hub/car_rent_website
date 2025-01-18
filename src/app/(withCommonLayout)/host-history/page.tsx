@@ -42,7 +42,7 @@ const HostHistoryPage = () => {
         <div>
           <Link
             className="flex items-center bg-black text-white px-4 py-2 rounded-sm gap-1 justify-center  mt-5 md:mt-0"
-            href={""}
+            href={"/host-home/License-plate"}
           >
             Add a new car <IoAdd />{" "}
           </Link>

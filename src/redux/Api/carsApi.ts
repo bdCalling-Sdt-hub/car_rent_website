@@ -17,8 +17,16 @@ const allCars = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        getFilteredCar :  builder.query({
+            query : ({ location, pickupDate, returnDate, pickupTime, returnTime })=>{
+                return {
+                    url : `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&destination=${location}`,
+                    method :  "GET"
+                }
+            }
         })
     })
 })
 
-export const { useGetBrowseByDestinationQuery , useGetTopHostedCarQuery } = allCars;
+export const { useGetBrowseByDestinationQuery , useGetTopHostedCarQuery , useGetFilteredCarQuery } = allCars;

@@ -4,13 +4,15 @@ import ClientReview from '@/components/ClientReview/ClientReview'
 import Faqs from '@/components/Faqs/Faqs'
 import Hero from '@/components/Hero/Hero'
 import Overview from '@/components/Overview/Overview'
-import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
+import TakenDateTimeWrapper from '@/components/TakenDateTime/TakeDateTimeWrapper'
+// import TakenDateTime from '@/components/TakenDateTime/TakenDateTime'
 import React from 'react'
 
 const page = () => {
     return (
         <>
-            <TakenDateTime />
+            {/* <TakenDateTime /> */}
+            <TakenDateTimeWrapper/>
             <Hero />
             <BrowseBrand />
             <BrowseDestination />
