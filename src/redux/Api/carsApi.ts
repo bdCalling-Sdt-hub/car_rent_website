@@ -19,14 +19,29 @@ const allCars = baseApi.injectEndpoints({
             }
         }),
         getFilteredCar :  builder.query({
-            query : ({ location, pickupDate, returnDate, pickupTime, returnTime })=>{
+            query : ({ location, pickupDate, returnDate, pickupTime, returnTime , maxPrice , minPrice , selectedVehicle , selectedMake})=>{
+                let url = `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&minPrice=${minPrice}&maxPrice=${maxPrice}&destination=${location}`
+                if(selectedVehicle){
+                    url += `&vehicleType=${selectedVehicle}`
+                }
+                if(selectedMake){
+                    url += `&make=${selectedMake}`
+                }
                 return {
-                    url : `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&destination=${location}`,
+                    url ,
                     method :  "GET"
+                }
+            }
+        }),
+        getMakeModelYear : builder.query({
+            query : ()=>{
+                return {
+                    url : '/car/get-make-model-year',
+                    method :'GET'
                 }
             }
         })
     })
 })
 
-export const { useGetBrowseByDestinationQuery , useGetTopHostedCarQuery , useGetFilteredCarQuery } = allCars;
+export const { useGetBrowseByDestinationQuery , useGetTopHostedCarQuery , useGetFilteredCarQuery , useGetMakeModelYearQuery } = allCars;

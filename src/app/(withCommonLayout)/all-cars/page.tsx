@@ -1,17 +1,38 @@
 "use client";
 import MapParent from "@/components/Map/MapParent";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { GoLocation } from "react-icons/go";
-import FilterBar from "@/components/FilterBar/FilterBar";
+// import FilterBar from "@/components/FilterBar/FilterBar";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useGetFilteredCarQuery } from "@/redux/Api/carsApi";
+import {
+  useGetFilteredCarQuery,
+  useGetMakeModelYearQuery,
+} from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Slider } from "antd";
+
+
+
 const AllCarsPage = () => {
   // Retrieve query parameters
   const searchParams = useSearchParams();
+  const [sliderValue, setSliderValue] = useState([20, 100]);
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [selectedMake, setSelectedMake] = useState<string>("");
+  const [isElectric, setIsElectric] = useState(false);
+  console.log(isElectric);
 
   const location = searchParams.get("location");
   const pickupDate = searchParams.get("pickupDate");
@@ -20,7 +41,7 @@ const AllCarsPage = () => {
   const returnTime = searchParams.get("returnTime");
 
   // Debugging: Log the parameters
-  console.log({ location, pickupDate, returnDate, pickupTime, returnTime });
+  // console.log({ location, pickupDate, returnDate, pickupTime, returnTime });
 
   //---------------ALl APIs-----------//
   const { data: getAllCarLocation } = useGetFilteredCarQuery({
@@ -29,12 +50,145 @@ const AllCarsPage = () => {
     returnDate,
     pickupTime,
     returnTime,
+    maxPrice,
+    minPrice,
+    selectedVehicle,
+    selectedMake
   });
-  // console.log(getAllCarLocation?.data?.availableCars);
+  // Get make model year api integrate
+  const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
+
+  const handleSelectChange = (value: string) => {
+    // console.log(value);
+    setSelectedVehicle(value);
+  };
+  const makeArray = getMakeModelYear?.data[0]?.make || [];
+  console.log(selectedMake);
+
+  // Price range slider function
+  const handleSliderChange = (value: any) => {
+    setSliderValue(value);
+    setMaxPrice(value[1]);
+    setMinPrice(value[0]);
+  };
+
+  const handleMakeChange = (value : string)=>{
+    setSelectedMake(value)
+  }
 
   return (
     <div className="my-10 font-lora px-5 mx-2 md:px-0">
-      <FilterBar />
+      {/* <FilterBar /> */}
+
+      <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2 w-full my-2">
+        {/* Daily Price */}
+        <Select>
+          <SelectTrigger className="select-trigger">
+            <span>Select Price Range</span>
+          </SelectTrigger>
+          <SelectContent className="select-content">
+            <div style={{ padding: "10px", width: "200px" }}>
+              <p>Price Range</p>
+              <Slider
+                range
+                min={10}
+                max={500}
+                defaultValue={sliderValue}
+                onChange={handleSliderChange}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "5px",
+                }}
+              >
+                <span>${sliderValue[0]}</span>
+                <span>${sliderValue[1]}</span>
+              </div>
+            </div>
+          </SelectContent>
+        </Select>
+        {/* Vehicle Type */}
+        <Select onValueChange={(value) => handleSelectChange(value)}>
+          <SelectTrigger className="">
+            {" "}
+            {selectedVehicle ? selectedVehicle : "Vehicle Type"}{" "}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="car">Car</SelectItem>
+            <SelectItem value="suv">Suv</SelectItem>
+            <SelectItem value="bus">Bus</SelectItem>
+            <SelectItem value="minivan">Minivan</SelectItem>
+            <SelectItem value="truck">Truck</SelectItem>
+            <SelectItem value="van">Van</SelectItem>
+            <SelectItem value="cargo-van">cargo-van</SelectItem>
+          </SelectContent>
+        </Select>
+
+        {/* Make */}
+
+        <Select onValueChange={handleMakeChange}>
+          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+            {selectedMake || "Select Make"}
+          </SelectTrigger>
+          <SelectContent>
+            {makeArray.map((make : string, index : string) => (
+              <SelectItem key={index} value={make}>
+                {make || "Unknown"} 
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Year */}
+        {/* <Select onValueChange={(value) => handleSelectChange("year", value)}>
+          <SelectTrigger className="">Year</SelectTrigger>
+          <SelectContent>
+            <SelectItem value="2022">2022</SelectItem>
+            <SelectItem value="2021">2021</SelectItem>
+          </SelectContent>
+        </Select> */}
+
+        {/* Model */}
+        {/* <Select onValueChange={(value) => handleSelectChange("model", value)}>
+          <SelectTrigger className="">Model</SelectTrigger>
+          <SelectContent>
+            <SelectItem value="sedan">Sedan</SelectItem>
+            <SelectItem value="suv">SUV</SelectItem>
+          </SelectContent>
+        </Select> */}
+
+        {/* Seats */}
+        {/* <Select onValueChange={(value) => handleSelectChange("seats", value)}>
+          <SelectTrigger className="">Seats</SelectTrigger>
+          <SelectContent>
+            <SelectItem value="2">2</SelectItem>
+            <SelectItem value="5">5</SelectItem>
+          </SelectContent>
+        </Select> */}
+
+        {/* Electric Button */}
+        <Button
+          className="bg-white text-black border hover:text-white"
+          onClick={() => setIsElectric(true)}
+        >
+          Electric
+        </Button>
+
+        {/* All Filters Button */}
+        <Button
+          className="flex items-center bg-gray-200 hover:bg-gray-200 text-gray-800"
+          // onClick={resetFilters}
+        >
+          <span className="text-sm">
+            {/* All Filters ({Object.values(filters).filter((val) => val).length}) */}
+          </span>
+        </Button>
+      </div>
+
+      {/* Get all cars */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between  gap-5">
         <div>
           <p className="text-[24px] font-semibold">

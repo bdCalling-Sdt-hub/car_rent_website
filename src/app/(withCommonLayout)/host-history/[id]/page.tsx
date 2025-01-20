@@ -80,13 +80,13 @@ const EditHostCarPage = () => {
   });
 
   const params = useParams();
-  const carId = params?.id || ""; // Always define carId, even if empty
+  const carId = params?.id || "";
 
   // Call hooks unconditionally
   const { data: getCarDetails, isLoading } = useGetCarDetailsQuery(carId);
   const [updateCarDetails] = useUpdateCarDetailsMutation();
 
-  console.log(getCarDetails);
+  // console.log(getCarDetails);
 
   // Update form values when car details are fetched
   useEffect(() => {
