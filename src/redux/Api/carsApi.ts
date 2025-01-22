@@ -19,13 +19,16 @@ const allCars = baseApi.injectEndpoints({
             }
         }),
         getFilteredCar :  builder.query({
-            query : ({ location, pickupDate, returnDate, pickupTime, returnTime , maxPrice , minPrice , selectedVehicle , selectedMake})=>{
+            query : ({ location, pickupDate, returnDate, pickupTime, returnTime , maxPrice , minPrice , selectedVehicle , selectedMake , selectedYear})=>{
                 let url = `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&minPrice=${minPrice}&maxPrice=${maxPrice}&destination=${location}`
                 if(selectedVehicle){
                     url += `&vehicleType=${selectedVehicle}`
                 }
                 if(selectedMake){
                     url += `&make=${selectedMake}`
+                }
+                if(selectedYear){
+                    url += `&year=${selectedYear}`
                 }
                 return {
                     url ,

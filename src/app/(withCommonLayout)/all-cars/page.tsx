@@ -31,6 +31,7 @@ const AllCarsPage = () => {
   const [minPrice, setMinPrice] = useState("");
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [selectedMake, setSelectedMake] = useState<string>("");
+  const [selectedYear, setSelectedYear] = useState<string>("");
   const [isElectric, setIsElectric] = useState(false);
   console.log(isElectric);
 
@@ -53,7 +54,8 @@ const AllCarsPage = () => {
     maxPrice,
     minPrice,
     selectedVehicle,
-    selectedMake
+    selectedMake,
+    selectedYear
   });
   // Get make model year api integrate
   const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
@@ -63,7 +65,7 @@ const AllCarsPage = () => {
     setSelectedVehicle(value);
   };
   const makeArray = getMakeModelYear?.data[0]?.make || [];
-  console.log(selectedMake);
+  const makeYearArray = getMakeModelYear?.data[0]?.year || [];
 
   // Price range slider function
   const handleSliderChange = (value: any) => {
@@ -74,6 +76,11 @@ const AllCarsPage = () => {
 
   const handleMakeChange = (value : string)=>{
     setSelectedMake(value)
+  }
+
+  // Handle year change
+  const handleYearChange = (value :  string)=>{
+    setSelectedYear(value)
   }
 
   return (
@@ -136,6 +143,20 @@ const AllCarsPage = () => {
             {makeArray.map((make : string, index : string) => (
               <SelectItem key={index} value={make}>
                 {make || "Unknown"} 
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Year */}
+        <Select onValueChange={handleYearChange}>
+          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+            {selectedYear || "Select Year"}
+          </SelectTrigger>
+          <SelectContent>
+            {makeYearArray.map((year : string, index : string) => (
+              <SelectItem key={index} value={year}>
+                {year || "Unknown"} 
               </SelectItem>
             ))}
           </SelectContent>
