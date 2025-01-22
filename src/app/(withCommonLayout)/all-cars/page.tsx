@@ -32,8 +32,10 @@ const AllCarsPage = () => {
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [selectedMake, setSelectedMake] = useState<string>("");
   const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedModel, setSelectedModel] = useState<string>("");
+  const [seat, setSeat] = useState<string>("");
   const [isElectric, setIsElectric] = useState(false);
-  console.log(isElectric);
+  // console.log(isElectric);
 
   const location = searchParams.get("location");
   const pickupDate = searchParams.get("pickupDate");
@@ -55,8 +57,12 @@ const AllCarsPage = () => {
     minPrice,
     selectedVehicle,
     selectedMake,
-    selectedYear
+    selectedYear,
+    selectedModel,
+    seat,
+    isElectric
   });
+  // console.log(selectedModel);
   // Get make model year api integrate
   const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
 
@@ -66,6 +72,8 @@ const AllCarsPage = () => {
   };
   const makeArray = getMakeModelYear?.data[0]?.make || [];
   const makeYearArray = getMakeModelYear?.data[0]?.year || [];
+  const makeModelArray = getMakeModelYear?.data[0]?.model || [];
+  // console.log(makeModelArray);
 
   // Price range slider function
   const handleSliderChange = (value: any) => {
@@ -82,7 +90,16 @@ const AllCarsPage = () => {
   const handleYearChange = (value :  string)=>{
     setSelectedYear(value)
   }
+  // Handle Model change
+  const handleModelChange = (value :  string)=>{
+    setSelectedModel(value)
+  }
 
+  // Handle Seat change
+  const handleSeatChange = (value : string)=>{
+    setSeat(value)
+  }
+  // console.log(seat);
   return (
     <div className="my-10 font-lora px-5 mx-2 md:px-0">
       {/* <FilterBar /> */}
@@ -161,38 +178,37 @@ const AllCarsPage = () => {
             ))}
           </SelectContent>
         </Select>
-
-        {/* Year */}
-        {/* <Select onValueChange={(value) => handleSelectChange("year", value)}>
-          <SelectTrigger className="">Year</SelectTrigger>
-          <SelectContent>
-            <SelectItem value="2022">2022</SelectItem>
-            <SelectItem value="2021">2021</SelectItem>
-          </SelectContent>
-        </Select> */}
-
         {/* Model */}
-        {/* <Select onValueChange={(value) => handleSelectChange("model", value)}>
-          <SelectTrigger className="">Model</SelectTrigger>
+        <Select onValueChange={handleModelChange}>
+          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+            {selectedModel || "Select Model"}
+          </SelectTrigger>
           <SelectContent>
-            <SelectItem value="sedan">Sedan</SelectItem>
-            <SelectItem value="suv">SUV</SelectItem>
+            {makeModelArray.map((model : string, index : string) => (
+              <SelectItem key={index} value={model}>
+                {model || "Unknown"} 
+              </SelectItem>
+            ))}
           </SelectContent>
-        </Select> */}
+        </Select>
+
 
         {/* Seats */}
-        {/* <Select onValueChange={(value) => handleSelectChange("seats", value)}>
-          <SelectTrigger className="">Seats</SelectTrigger>
+        <Select onValueChange={(value) => handleSeatChange(value)} >
+          <SelectTrigger className="">{seat ||  "Seats"}</SelectTrigger>
           <SelectContent>
-            <SelectItem value="2">2</SelectItem>
-            <SelectItem value="5">5</SelectItem>
+            {
+              Array.from({length : 20}, (_, index)=>(
+                <SelectItem key={index+1} value={String(index+1)}>{index + 1}</SelectItem>
+              ))
+            }
           </SelectContent>
-        </Select> */}
+        </Select>
 
         {/* Electric Button */}
         <Button
-          className="bg-white text-black border hover:text-white"
-          onClick={() => setIsElectric(true)}
+          className={`bg-white text-black border hover:text-white ${isElectric && "bg-black text-white"}`}
+          onClick={() => setIsElectric(!isElectric)}
         >
           Electric
         </Button>
@@ -204,6 +220,7 @@ const AllCarsPage = () => {
         >
           <span className="text-sm">
             {/* All Filters ({Object.values(filters).filter((val) => val).length}) */}
+            All Filters
           </span>
         </Button>
       </div>
