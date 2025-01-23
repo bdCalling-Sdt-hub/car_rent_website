@@ -28,6 +28,7 @@ const MyTripPage = () => {
   const { data: getMyTrips } = useGetMyTripsQuery(trip);
   console.log(getMyTrips?.data?.trips);
 
+
   return (
     //     <div className=''
     // style={{
@@ -69,6 +70,10 @@ const MyTripPage = () => {
               Complete Trip
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="requested">
+              <h1>hell</h1>
+          </TabsContent>
           <TabsContent value="account">
             {getMyTrips?.data?.trips?.map((trip : Trip) => (
             <>

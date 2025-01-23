@@ -100,6 +100,7 @@ const handleBookCar = ()=>{
     const formattedEndDate =  formatDate(formData?.endDate)
     const formattedStartTime = formatTime(formData?.startTime)
     const formattedEndTime = formatTime(formData?.endTime)
+    
     const data = {
         carId: cars?._id,
         hostId: cars?.user?._id,           
@@ -132,6 +133,8 @@ const handleBookCar = ()=>{
     addTripInfo(data).unwrap()
     .then((payload) => {
         toast.success(payload?.message)
+        localStorage.setItem("carId",cars?._id)
+        localStorage.setItem("amount" ,totalPrice)
         router.push('/get-approved-driver')
     })
     .catch((error) => {

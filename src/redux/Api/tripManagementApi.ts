@@ -26,8 +26,17 @@ const tripManagementApi = baseApi.injectEndpoints({
                     body : data
                 }
             }
+        }),
+        paymentTrip : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/payment/checkout',
+                    method : 'POST',
+                    body : data
+                }
+            }
         })
     })
 })
 
-export const { useGetMyTripsQuery , useAddTripsMutation} = tripManagementApi;
+export const { useGetMyTripsQuery , useAddTripsMutation , usePaymentTripMutation} = tripManagementApi;
