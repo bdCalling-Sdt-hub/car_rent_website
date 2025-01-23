@@ -239,8 +239,8 @@ const AllCarsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             {getAllCarLocation?.data?.availableCars?.map((car: any) => {
               return (
-                <Link key={car?._id} href={"/browse-by-destination/:id"}>
-                  <div className="mt-5  md:flex md:h-full items-center gap-4 border rounded-md">
+                <Link key={car?._id} href={`/browse-by-destination/${car?._id}`}>
+                 <div className="mt-5  md:flex md:h-full items-center gap-4 border rounded-md">
                     <Image
                       alt="img"
                       height={200}

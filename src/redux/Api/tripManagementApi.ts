@@ -17,8 +17,17 @@ const tripManagementApi = baseApi.injectEndpoints({
                     method  :'GET'
                 }
             }
+        }),
+        addTrips : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/trip/add-trip',
+                    method : 'POST',
+                    body : data
+                }
+            }
         })
     })
 })
 
-export const { useGetMyTripsQuery } = tripManagementApi;
+export const { useGetMyTripsQuery , useAddTripsMutation} = tripManagementApi;
