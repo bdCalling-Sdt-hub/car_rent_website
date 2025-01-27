@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
@@ -15,7 +16,7 @@ import {
   useSendCarRequestMutation,
 } from "@/redux/Api/registerCarApi";
 import { toast } from "sonner";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface TCarInfo {
     seats : string,

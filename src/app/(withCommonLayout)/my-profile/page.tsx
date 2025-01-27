@@ -41,6 +41,7 @@ const MyProfilePage = () => {
     isLoading,
     isError,
   } = useGetProfileQuery(undefined);
+
   const [updatePassword] = useChangePasswordMutation();
   const [updateProfile ] = useUpdateProfileMutation()
 

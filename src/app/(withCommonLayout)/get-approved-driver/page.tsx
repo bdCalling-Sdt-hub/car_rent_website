@@ -35,7 +35,6 @@ const GetApprovedDriverPage = () => {
     }
   }, [getProfile, form]);
 
-  console.log(getProfile?.data?.licenseFrontImage);
 
   //   const handleCountryChange = (code: string) => {
   //     const country = europeanCountries.find((country) => country.code === code);

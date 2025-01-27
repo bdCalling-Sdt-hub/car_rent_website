@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev -p 3000",
-  "build": "next build",
-  "start": "next start -p 3000",
-  "lint": "next lint"
-},
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@next/font": "^14.2.15",
@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.1",
+    "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.456.0",
     "maplibre-gl": "^4.7.1",
@@ -41,6 +42,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-redux": "^9.2.0",
     "recharts": "^2.13.3",
+    "socket.io-client": "^4.8.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"

@@ -5,6 +5,7 @@ import { Lora } from "next/font/google";
 import "maplibre-gl/dist/maplibre-gl.css";
 import ReduxProvider from "@/provider/ReduxProvider";
 import { Toaster } from "sonner";
+import { SocketProvider } from "@/provider/SocketProvider";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -36,10 +37,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
       >
+        <SocketProvider>
         <ReduxProvider>
           <Toaster position="top-right" richColors />
           {children}
         </ReduxProvider>
+        </SocketProvider>
       </body>
     </html>
   );

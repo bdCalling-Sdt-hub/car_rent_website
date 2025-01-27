@@ -9,7 +9,7 @@ const HostCars = () => {
   // All APIs
   const { data: getMyAllCars } = useGetMyCarsQuery({});
   
-
+console.log(getMyAllCars);
   return (
     <div className="space-y-5">
       {getMyAllCars?.data?.map((car : CarData) => {

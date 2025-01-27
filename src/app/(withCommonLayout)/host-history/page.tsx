@@ -17,7 +17,7 @@ import CompleteOrder from "@/components/CompleteOrder/CompleteOrder";
 
 const HostHistoryPage = () => {
   const { data: getProfile } = useGetProfileQuery(undefined);
-
+// console.log(getProfile?.data);
 
   return (
     <div className="my-10 container mx-auto px-2 md:px-0">

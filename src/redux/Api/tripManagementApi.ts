@@ -35,8 +35,16 @@ const tripManagementApi = baseApi.injectEndpoints({
                     body : data
                 }
             }
+        }),
+        getAllChat :  builder.query({
+            query : (chatId)=>{
+                return {
+                    url : `/chat/get-chat-messages?chatId=${chatId}`,
+                    method : 'GET'
+                }
+            }
         })
     })
 })
 
-export const { useGetMyTripsQuery , useAddTripsMutation , usePaymentTripMutation} = tripManagementApi;
+export const { useGetMyTripsQuery , useAddTripsMutation , usePaymentTripMutation , useGetAllChatQuery} = tripManagementApi;
