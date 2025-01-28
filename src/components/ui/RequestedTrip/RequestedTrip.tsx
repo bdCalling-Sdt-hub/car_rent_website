@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { FaRegStar, FaStar } from "react-icons/fa6";
-import img1 from "../../../assets/driver.png";
+import {  FaStar } from "react-icons/fa6";
 import { imageUrl } from "@/redux/baseApi";
 
 const RequestedTrip = ({ myTrip }: any) => {

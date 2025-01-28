@@ -67,6 +67,15 @@ const allCars = baseApi.injectEndpoints({
         };
       },
     }),
+    sendFeedback : builder.mutation({
+      query : (data)=>{
+        return {
+          url : '/review/post-review',
+          method : 'POST',
+          body: data
+        }
+      }
+    })
   }),
 });
 
@@ -75,4 +84,5 @@ export const {
   useGetTopHostedCarQuery,
   useGetFilteredCarQuery,
   useGetMakeModelYearQuery,
+  useSendFeedbackMutation
 } = allCars;

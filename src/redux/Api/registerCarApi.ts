@@ -10,14 +10,15 @@ const registerCarApi = baseApi.injectEndpoints({
                 }
             }
         }),
-        // getLocation : builder.query({
-        //     query : (location)=>{
-        //         return {
-        //             url : `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=dhaka&key=AIzaSyCwUpKs-yq_9gvqjQEVYLXlBPV7qbw0xJQ`,
-        //             method :'GET'
-        //         }
-        //     }
-        // }),
+        addCarLocation : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/car/add-location',
+                    method : "POST",
+                    body :  data
+                }
+            }
+        }),
         addLicensePlate : builder.mutation({
             query  : (data)=>{
                 return {
@@ -87,7 +88,8 @@ const registerCarApi = baseApi.injectEndpoints({
                     method : 'PATCH'
                 }
             }
-        })
+        }),
+     
     })
 })
-export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation} = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation , useAddCarLocationMutation } = registerCarApi

@@ -12,6 +12,7 @@ import img2 from '../../assets/driver.png'
 import img3 from '../../assets/driver2.png'
 import { CiStar } from 'react-icons/ci'
 const TopHostedCar = () => {
+    
     return (
         <div className='md:my-20 my-10'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5 px-2 md:px-0'>

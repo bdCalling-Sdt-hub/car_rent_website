@@ -5,7 +5,7 @@ import bg from "../../../assets/back.jpg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
-import { Form, Input } from "antd";
+import { Button, Form, Input, Upload } from "antd";
 import {
   useChangePasswordMutation,
   useGetProfileQuery,
@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { imageUrl } from "@/redux/baseApi";
 import { IoCameraOutline } from "react-icons/io5";
+import { UploadOutlined } from "@ant-design/icons";
+import type { RcFile } from "antd/es/upload/interface";
 
 type TPassword = {
   oldPassword: string;
@@ -29,11 +31,26 @@ type TProfile = {
   address: string;
 };
 
+const normFile = (e: any) => {
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
+
 const MyProfilePage = () => {
   const [form] = Form.useForm();
   const router = useRouter();
   const [image, setImage] = useState<File | undefined>(undefined);
   const [selectedTab, setSelectedTab] = useState("account");
+  const [licenseFrontImage, setLicenseFrontImage] = useState<RcFile | null>(
+    null
+  );
+  const [licenseBackImage, setLicenseBackImage] =useState<RcFile | null>(
+    null
+  );
+
+  // console.log(licenseFrontImage);
 
   // ----ALL API -----//
   const {
@@ -42,8 +59,10 @@ const MyProfilePage = () => {
     isError,
   } = useGetProfileQuery(undefined);
 
+  console.log(getProfile?.data);
+
   const [updatePassword] = useChangePasswordMutation();
-  const [updateProfile ] = useUpdateProfileMutation()
+  const [updateProfile] = useUpdateProfileMutation();
 
   if (isLoading) {
     return (
@@ -55,7 +74,6 @@ const MyProfilePage = () => {
   if (isError) {
     return <div>Error loading profile</div>;
   }
-
 
   //------ Handle password update function ------------//
   const handleUpdatePassword = (values: TPassword) => {
@@ -75,17 +93,23 @@ const MyProfilePage = () => {
 
   //   -----------Handle update profile function--------//
   const handleUpdateProfile = (values: TProfile) => {
-    const formData = new FormData()
-    if(image){
-        formData.append('profile_image', image)
+    const formData = new FormData();
+    if (image) {
+      formData.append("profile_image", image);
     }
-    formData?.append('name' , values?.name)
-    formData?.append('phone_number' , values?.phone_number)
-    formData?.append('address' , values?.address)
-    updateProfile(formData).unwrap()
-    .then((payload) => toast.success(payload?.message))
-    .catch((error) => toast.error(error?.data?.message));
-
+    formData?.append("name", values?.name);
+    formData?.append("phone_number", values?.phone_number);
+    formData?.append("address", values?.address);
+    if(licenseFrontImage){
+      formData?.append("licenseFrontImage", licenseFrontImage)
+    }
+    if(licenseBackImage){
+      formData?.append("licenseBackImage", licenseBackImage)
+    }
+    updateProfile(formData)
+      .unwrap()
+      .then((payload) => toast.success(payload?.message))
+      .catch((error) => toast.error(error?.data?.message));
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +118,6 @@ const MyProfilePage = () => {
       setImage(file);
     }
   };
-
 
   const handleTabChange = (value: string) => {
     setSelectedTab(value);
@@ -202,6 +225,44 @@ const MyProfilePage = () => {
                 </Form.Item>
                 <Form.Item label="Address" name={"address"}>
                   <Input placeholder="68/Joker vita, gotham city" />
+                </Form.Item>
+                <Form.Item
+                  label="Front License"
+                  name="licenseFrontImage"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Upload
+                    name="licenseFrontImage"
+                    beforeUpload={(file: RcFile) => {
+                      setLicenseFrontImage(file);
+                      return false;
+                    }}
+                    listType="picture"
+                  >
+                    <Button icon={<UploadOutlined />}>
+                      Upload Front License
+                    </Button>
+                  </Upload>
+                </Form.Item>
+                <Form.Item
+                  label="Back License"
+                  name="licenseBackImage"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Upload
+                    name="licenseBackImage"
+                    beforeUpload={(file: RcFile) => {
+                      setLicenseBackImage(file);
+                      return false; // Prevent automatic upload
+                    }}
+                    listType="picture"
+                  >
+                    <Button icon={<UploadOutlined />}>
+                      Upload Back License
+                    </Button>
+                  </Upload>
                 </Form.Item>
 
                 <Form.Item className=" text-center">

@@ -26,7 +26,6 @@ import { toast } from "sonner";
 // import background from "../../../assets/back.jpg";
 
 const MyTripPage = () => {
-  const [selectedValue, setSelectedValue] = useState("");
   const [trip, setTrip] = useState("requested");
   const [updateCarStatus] = useAcceptCarRentRequestMutation();
 
@@ -251,7 +250,7 @@ const MyTripPage = () => {
           </TabsContent>
           <TabsContent value="password">
             <div>
-              <CompleteTrip />
+              <CompleteTrip trip={getMyTrips?.data?.trips} />
             </div>
           </TabsContent>
         </Tabs>

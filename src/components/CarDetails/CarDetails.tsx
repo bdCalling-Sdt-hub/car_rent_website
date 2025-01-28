@@ -49,7 +49,7 @@ const CarDetails: React.FC<Step2Props> = ({ handleNext }) => {
  
   const handleContinue = () => {
     const data = {
-      carId: "67849009decda04907565f36",
+      carId: localStorage.getItem("currentCarSubmissionID"),
       features: selectedFeatures,
       description: description,
     };

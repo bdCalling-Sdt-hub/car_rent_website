@@ -21,7 +21,7 @@ export const useSocket = () => {
 type tDecode = {
   authId: string;
   email: string;
-  exp:number;
+  exp: number;
   iat: number;
   role: string;
   userId: string;
@@ -37,21 +37,22 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     // Get token from localStorage or some async API (e.g., authentication context)
     const savedToken = localStorage.getItem("_token");
-    const decoded : tDecode = jwtDecode(savedToken as string);
-    if (decoded) {
-      setId(decoded?.userId);
+    if (savedToken) {
+      const decoded: tDecode = jwtDecode(savedToken as string);
+      if (decoded) {
+        setId(decoded?.userId);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (!id) return; 
+    if (!id) return;
 
     const socketConnection = io(`http://10.0.60.26:8056`, {
       query: {
         userId: id,
       },
     });
-
 
     socketConnection.on("onlineUser", (data) => {
       setOnlineUser(data); // Update onlineUser in context

@@ -1,12 +1,11 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import background from "../../../assets/back.jpg";
 import { useGetProfileQuery } from "@/redux/Api/authApi";
-import { Form, Upload } from "antd";
+import { Form } from "antd";
 import Image from "next/image";
 import { imageUrl } from "@/redux/baseApi";
-import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { usePaymentTripMutation } from "@/redux/Api/tripManagementApi";
@@ -17,8 +16,6 @@ import { toast } from "sonner";
 const GetApprovedDriverPage = () => {
   const router = useRouter();
   const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([]);
-  const [fileBackImageList, setBackImageFileList] = useState([]);
 
   // ----ALL API -----//
   const {
@@ -41,21 +38,7 @@ const GetApprovedDriverPage = () => {
   //     if (country) setSelectedCountry(country);
   //   };
 
-  //   / handle upload image
-  const handleUploadChange = ({ fileList: newFileList }: any) => {
-    setFileList(newFileList);
-  };
 
-  const handleRemove = (file: any) => {
-    setFileList(fileList.filter((item: any) => item.uid !== file.uid));
-  };
-  const handleUploadBackImageChange = ({ fileList: newFileList }: any) => {
-    setBackImageFileList(newFileList);
-  };
-
-  const handleRemoveBackImage = (file: any) => {
-    setBackImageFileList(fileList.filter((item: any) => item.uid !== file.uid));
-  };
 
   const handleBookingCarInfo = () => {
     if (
@@ -79,6 +62,9 @@ const GetApprovedDriverPage = () => {
         .catch((error) => {
           toast.error(error?.data?.message);
         });
+    }else{
+      toast.success("Please update your profile!")
+      router.push("/my-profile")
     }
   };
 
@@ -110,7 +96,7 @@ const GetApprovedDriverPage = () => {
               <Input placeholder="Phone Number" />
             </Form.Item>
 
-            <div className="flex justify-between items-center gap-10">
+            <div className="flex justify-between items-center gap-10 mb-10">
               <Image
                 src={`${imageUrl}/${getProfile?.data?.licenseFrontImage}`}
                 height={200}
@@ -127,7 +113,7 @@ const GetApprovedDriverPage = () => {
               />
             </div>
 
-            <div className="flex justify-between items-center mt-5">
+            {/* <div className="flex justify-between items-center mt-5">
               <Form.Item label="Upload License Front Images">
                 <Upload
                   listType="picture-card"
@@ -162,7 +148,7 @@ const GetApprovedDriverPage = () => {
                   )}
                 </Upload>
               </Form.Item>
-            </div>
+            </div> */}
             <Button
               onClick={() => handleBookingCarInfo()}
               className="w-full bg-[#6A6A6A] px-10 py-2 rounded-md text-white"

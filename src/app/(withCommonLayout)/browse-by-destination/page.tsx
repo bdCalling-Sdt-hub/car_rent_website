@@ -172,7 +172,7 @@ const BrowseByDestinationPage = () => {
                   </p>
                   <Link
                     className="bg-[#0CFEE8] text-white p-3 rounded-full"
-                    href={`/browse-by-destination/:id`}
+                    href={`/browse-by-destination/${car?._id}`}
                   >
                     <MdArrowOutward />
                   </Link>

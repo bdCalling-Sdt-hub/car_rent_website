@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
@@ -19,6 +19,7 @@ import CarDetails from "../CarDetails/CarDetails";
 import CarPhoto from "../CarPhoto/CarPhoto";
 import ViewStep from "../ViewStep/ViewStep";
 import {
+  useAddCarLocationMutation,
   useAddCarTransmissionMutation,
   useAddLicensePlateMutation,
   useAddMakeModelYearMutation,
@@ -76,46 +77,161 @@ const MultiStepForm = () => {
         {currentStep === 4 && (
           <Step4 handleNext={handleNext} currentStep={currentStep} />
         )}
-        {currentStep === 5 && <DriverLicense handleNext={handleNext} currentStep={currentStep} />}
-        {currentStep === 6 && <CarDetails  handleNext={handleNext} currentStep={currentStep}  />}
+        {currentStep === 5 && (
+          <DriverLicense handleNext={handleNext} currentStep={currentStep} />
+        )}
+        {currentStep === 6 && (
+          <CarDetails handleNext={handleNext} currentStep={currentStep} />
+        )}
         {currentStep === 7 && <CarPhoto />}
       </div>
-
-      {/* Navigation controls */}
-      {/* <div className=" mt-4">
-        {currentStep === 7 && (
-          <Link
-            href={"/host-history"}
-            className="bg-[#0CFEE8] py-2 rounded-md  px-10"
-          >
-            Send Request
-          </Link>
-        )}
-      </div> */}
     </div>
   );
 };
 
+interface LatLng {
+  lat: number;
+  lng: number;
+}
+
 const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
-  // const [location, setLocation] = useState<string | undefined>()
-  // const {data : getLocation} = useGetLocationQuery(location)
-  // console.log(getLocation);
-  // Get city api
+  const inputRef = useRef<HTMLInputElement>(null);
   const { data: getCity } = useGetCityQuery({});
-  //   console.log(getCity?.data?.destinations);
-  const handleContinue = () => {
-    console.log("License Plate:");
-    handleNext();
+  const [addCarLocation] = useAddCarLocationMutation();
+
+  const [inputValue, setInputValue] = useState("");
+  const [suggestions, setSuggestions] = useState<
+    { description: string; place_id: string }[]
+  >([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
+  const [latLng, setLatLng] = useState<LatLng>({ lat: 0, lng: 0 });
+  const [destination, setDestination] = useState("");
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (inputValue.length > 2) {
+        try {
+          const response = await fetch(
+            `/api/location-data?input=${inputValue}`
+          );
+          const text = await response.text();
+          const json = JSON.parse(
+            text.replace(/^\?\(/, "").replace(/\);$/, "")
+          );
+          const predictions = json?.predictions || [];
+          setSuggestions(
+            predictions.map((p: any) => ({
+              description: p.description,
+              place_id: p.place_id,
+            }))
+          );
+          setShowSuggestions(true);
+        } catch (error) {
+          console.error("Error fetching suggestions:", error);
+        }
+      }
+    };
+
+    // Add debounce to prevent too many API calls
+    const debounceTimer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(debounceTimer);
+  }, [inputValue]);
+
+  const handleSelectSuggestion = (suggestion: {
+    description: string;
+    place_id: string;
+  }) => {
+    setInputValue(suggestion.description);
+    setSelectedPlaceId(suggestion.place_id);
+    setShowSuggestions(false);
+
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+  };
+
+  // const handleContinue = () => {
+  //   handleNext();
+  // };
+
+  useEffect(() => {
+    const fetchCarData = async () => {
+      try {
+        const response = await fetch(
+          `/api/lat-log?place_id=${selectedPlaceId}`
+        );
+        const text = await response.text();
+        const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
+        setLatLng(json?.result?.geometry?.location);
+      } catch (error) {
+        console.error("Error fetching car data:", error);
+      }
+    };
+
+    fetchCarData();
+  }, [selectedPlaceId]);
+
+
+  const handleAddCarLocation = () => {
+    const data = {
+      carAddress: inputValue,
+      longitude: latLng?.lat,
+      latitude: latLng?.lng,
+      destination: destination,
+    };
+    addCarLocation(data)
+      .unwrap()
+      .then((payload) => console.log("fulfilled", payload))
+      .catch((error) => {
+        console.error("rejected", error)
+
+        const errorMessage = error?.data?.message ?? "";
+        if(errorMessage.includes("ERR_CAR_SUBMISSION_INCOMPLETE")){
+
+          const match = errorMessage?.match(/ID: ([a-f0-9]+)/);
+          // console.log(match);
+          if (match && match[1]) {
+            const id = match[1];
+  
+            // Save the ID to localStorage
+            localStorage.setItem("currentCarSubmissionID", id);
+            handleNext();
+          }
+        }
+      });
   };
 
   return (
     <div className="md:max-w-[60%] w-full ">
       <HeadingTitle title="Location" />
       <p className="mt-10 mb-1">Where is your car located?</p>
-      <Input placeholder="Where your car located?" />
+      <div className="relative">
+        <Input
+          ref={inputRef}
+          placeholder="Where your car located?"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onFocus={() => setShowSuggestions(true)}
+        />
+
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                onClick={() => handleSelectSuggestion(suggestion)}
+              >
+                {suggestion.description}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <div className="w-full">
         <p className="my-2">Select City</p>
-        <Select>
+        <Select onValueChange={(value) => setDestination(value)}>
           <SelectTrigger className="w-[100%]">
             <SelectValue placeholder="Select a city" />
           </SelectTrigger>
@@ -132,7 +248,7 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 
         <Button
           className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
-          onClick={handleContinue}
+          onClick={() => handleAddCarLocation()}
           disabled={currentStep === TotalSteps}
         >
           Continue
@@ -151,8 +267,9 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
 
   const handleContinue = () => {
+    
     const data = {
-      carId: "67849009decda04907565f36",
+      carId: localStorage.getItem("currentCarSubmissionID"),
       licensePlateNum: licensePlate,
     };
 
@@ -256,7 +373,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
   const handleContinue = () => {
     const data = {
-      carId: "67849009decda04907565f36",
+      carId: localStorage.getItem('currentCarSubmissionID'),
       make: selectedMake,
       model: selectedModel,
       year: selectedYear,
@@ -358,7 +475,7 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
   const handleContinue = () => {
     const data = {
-      carId: "67849009decda04907565f36",
+      carId: localStorage.getItem("currentCarSubmissionID"),
       ...formValues,
     };
     addCarTransmission(data)

@@ -54,7 +54,8 @@ const CarPhoto = () => {
   const handleUploadCarPhotos = (values: TCarInfo) => {
     // console.log(values);
     const formData = new FormData();
-    formData.append("carId", "67849009decda04907565f36");
+    const carId = localStorage.getItem("currentCarSubmissionID") || ""
+    formData.append("carId", carId);
     formData.append("seats", values?.seats);
     formData.append("bags", values?.bags);
     formData.append("doors", values?.doors);
@@ -81,7 +82,8 @@ const CarPhoto = () => {
   //   Car register function
   const handleCarRegister = () => {
     // href={"/host-history"}
-    registerCar("67849009decda04907565f36")
+    const getCarId = localStorage.getItem("currentCarSubmissionID")
+    registerCar(getCarId)
       .unwrap()
       .then((payload) =>{
         toast.success(payload?.message)
