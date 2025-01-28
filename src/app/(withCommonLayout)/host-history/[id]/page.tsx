@@ -163,7 +163,7 @@ const EditHostCarPage = () => {
   return (
     <div className="container mx-auto my-10 font-lora px-2 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {getCarDetails?.data?.car_image?.map((car: string, i: number) => (
+        {getCarDetails?.data?.car_image?.slice(0,3)?.map((car: string, i: number) => (
           <Image
             key={i}
             alt="img"
@@ -175,7 +175,7 @@ const EditHostCarPage = () => {
         ))}
       </div>
 
-      <div className="max-w-4xl space-y-8 mt-10">
+      <div className="max-w-4xl space-y-8 ">
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Where is your car located?</h2>
           <div className="grid grid-cols-2 gap-4">

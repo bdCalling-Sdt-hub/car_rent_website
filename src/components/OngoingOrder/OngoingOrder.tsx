@@ -3,39 +3,44 @@ import img from "../../assets/car.jpg";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import {
-    useAcceptCarRentRequestMutation,
+  useAcceptCarRentRequestMutation,
   useGetHostTripsQuery,
 } from "@/redux/Api/hostHistoryApi";
 import { imageUrl } from "@/redux/baseApi";
 import { toast } from "sonner";
+import Link from "next/link";
+import { IoChatbubbleOutline } from "react-icons/io5";
+
 const OngoingOrder = () => {
   // ALL APIs
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("ongoing");
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
+  // console.log(getMyProfile?.data?._id);
 
-
-    const handleCompleteTrip = (id : string)=>{
-        const data = {
-              tripId: id,
-              status: "completed",
-            };
-            acceptCarRequest(data)
-              .unwrap()
-              .then((payload) => {
-                toast.success(payload?.message)
-              })
-              .catch((error) => toast.error(error?.data?.message));
-    }
-
-
+  const handleCompleteTrip = (id: string) => {
+    const data = {
+      tripId: id,
+      status: "completed",
+    };
+    acceptCarRequest(data)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
 
   return (
     <div className="font-lora">
       <p className="pb-5">Request order </p>
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
+        console.log(order);
         return (
-          <div key={order?._id} className="grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mb-8">
+          <div
+            key={order?._id}
+            className="grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mb-8"
+          >
             <div className="col-span-1">
               <Image
                 alt="img"
@@ -101,6 +106,14 @@ const OngoingOrder = () => {
               >
                 Complete
               </p>
+              <div className="mt-5">
+                <Link
+                  className="bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3"
+                  href={`/conversationChat?senderId=${order?.host?._id}&receiverId=${order?.user?._id}`}
+                >
+                  Chat With Host <IoChatbubbleOutline />
+                </Link>
+              </div>
             </div>
           </div>
         );

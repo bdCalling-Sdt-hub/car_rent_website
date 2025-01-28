@@ -11,12 +11,12 @@ const RequestedTrip = ({ myTrip }: any) => {
         {myTrip?.map((trip: any) => {
 
           return (
-            <div key={trip?._id} className="grid grid-cols-1 md:grid-cols-12 gap-5 font-lora border-b pt-10 ">
+            <div key={trip?._id} className="grid grid-cols-1 md:grid-cols-12 gap-5 font-lora border-b pt-10 pb-8 ">
                 <div className="md:col-span-6 col-span-1">
                   <Image
                     src={`${imageUrl}/${trip?.car?.car_image[0]}`}
                     alt="img"
-                    className="w-full rounded-md"
+                    className="w-full rounded-sm max-h-[600px]"
                     height={600}
                     width={600}
                   />

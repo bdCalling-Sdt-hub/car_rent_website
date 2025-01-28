@@ -139,7 +139,7 @@ const MyTripPage = () => {
                         <div className="space-y-2 ">
                           <Link
                             className="bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3"
-                            href={`/conversationChat?hostId=${trip?.host?._id}&userId=${trip?.user?._id}`}
+                            href={`/conversationChat?senderId=${trip?.user?._id}&receiverId=${trip?.host?._id}`}
                           >
                             Chat With Host <IoChatbubbleOutline />
                           </Link>
