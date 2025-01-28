@@ -23,7 +23,7 @@ import { Trip } from "@/type";
 import RequestedTrip from "@/components/ui/RequestedTrip/RequestedTrip";
 import { useAcceptCarRentRequestMutation } from "@/redux/Api/hostHistoryApi";
 import { toast } from "sonner";
-// import background from "../../../assets/back.jpg";
+import CancelTrips from "@/components/CancelTrips/CancelTrips";
 
 const MyTripPage = () => {
   const [trip, setTrip] = useState("requested");
@@ -47,13 +47,7 @@ const MyTripPage = () => {
   };
 
   return (
-    //     <div className=''
-    // style={{
-    //     backgroundImage: `url(${background.src})`,
-    //     backgroundSize: 'cover',
-    //     backgroundRepeat: 'no-repeat',
-    //     backgroundPosition: 'center',
-    // }}>
+   
     <div className="container mx-auto px-2 md:px-0">
       <div className="md:py-10 py-2">
         <HeadingTitle title="My Trip" />
@@ -252,6 +246,9 @@ const MyTripPage = () => {
             <div>
               <CompleteTrip trip={getMyTrips?.data?.trips} />
             </div>
+          </TabsContent>
+          <TabsContent value="canceled">
+              <CancelTrips trip={getMyTrips?.data?.trips}/>
           </TabsContent>
         </Tabs>
       </div>

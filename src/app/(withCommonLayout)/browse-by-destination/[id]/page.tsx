@@ -17,7 +17,6 @@ const CarDetailsPage : FC<TProductId> = async( {params})=> {
 
     const res = await fetch(`http://10.0.60.26:8056/car/get-single-car-details?carId=${id}`)
     const cars = await res.json()
-    console.log(cars?.data);
 
 
     const response = await fetch(`http://10.0.60.26:8056/review/get-all-review?carId=${id}`)

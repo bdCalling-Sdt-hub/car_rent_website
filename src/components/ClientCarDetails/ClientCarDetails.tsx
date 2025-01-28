@@ -146,6 +146,8 @@ const handleBookCar = ()=>{
 
 }
 
+console.log(cars);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20">
       <div className="col-span-1">
@@ -258,10 +260,15 @@ const handleBookCar = ()=>{
                                 <span>FREE</span>
                             </div> */}
 
-            <div className="flex justify-between items-center">
-              <span>3+ days discount</span>
-              <span className="">-£10.35</span>
+
+            {
+              cars?.discountDays <= totalDays &&  <div className="flex justify-between items-center">
+              <span>{cars?.discountDays}+ days discount</span>
+              <span className="">- £{cars?.discountAmount}</span>
             </div>
+            }
+
+           
             <div className="flex justify-between items-center  bg-[#BCBABA26]  px-4 rounded-md py-2">
               <span className="font-bold">Total</span>
               <span className="font-bold text-lg">£ {totalPrice}</span>
@@ -280,7 +287,7 @@ const handleBookCar = ()=>{
 
                 <span className="font-semibold">200 mi</span>
               </div>
-              <span>£0.25/mi fee for additional miles driven</span>
+              <span>£ {cars?.finePerKm}/mi fee for additional miles driven</span>
             </div>
           </div>
 
