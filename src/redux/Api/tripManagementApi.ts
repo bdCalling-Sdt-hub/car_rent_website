@@ -16,7 +16,8 @@ const tripManagementApi = baseApi.injectEndpoints({
                     url : `/trip/get-my-trip-order?status=${trip}`,
                     method  :'GET'
                 }
-            }
+            },
+            providesTags : ['myTrip']
         }),
         addTrips : builder.mutation({
             query : (data)=>{
@@ -34,7 +35,8 @@ const tripManagementApi = baseApi.injectEndpoints({
                     method : 'POST',
                     body : data
                 }
-            }
+            },
+            invalidatesTags : ['myTrip']
         }),
         getAllChat :  builder.query({
             query : (chatId)=>{
@@ -43,8 +45,16 @@ const tripManagementApi = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        addFavorite : builder.mutation({
+            query : (id)=>{
+                return {
+                    url  : `/favorite/add-remove-favorite?carId=${id}`,
+                    method : 'POST'
+                }
+            }
         })
     })
 })
 
-export const { useGetMyTripsQuery , useAddTripsMutation , usePaymentTripMutation , useGetAllChatQuery} = tripManagementApi;
+export const { useGetMyTripsQuery , useAddTripsMutation , usePaymentTripMutation , useGetAllChatQuery , useAddFavoriteMutation} = tripManagementApi;

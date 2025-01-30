@@ -107,11 +107,6 @@ const BrowseByDestinationPage = () => {
     destination,
   });
 
-  // console.log("des",destination);
-
-  // const {data : topHostedCar} = useGetTopHostedCarQuery(destination);
-  // console.log(getAllCars?.data?.availableCars);
-
 
 
   return (
@@ -135,7 +130,7 @@ const BrowseByDestinationPage = () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
             <CarouselItem key={car?._id} className="md:basis-1/4 basic-1/2">
               <div className="bg-[#F9F9F9] p-4 rounded-md space-y-4">
-                <Image src={`${imageUrl}/${car?.car_image[0]}`} height={300} width={300} alt="img" />
+                <Image src={`${imageUrl}/${car?.car_image[0]}`} className="w-full max-h-[200px]" height={300} width={300} alt="img" />
                 <div className="flex items-center gap-2">
                   <p className="bg-[#BCBABA26] px-2 py-1 rounded-full">
                     {car?.carType}
@@ -171,7 +166,7 @@ const BrowseByDestinationPage = () => {
                     <span className="font-semibold">£{car?.pricePerDay} </span>/ per day
                   </p>
                   <Link
-                    className="bg-[#0CFEE8] text-white p-3 rounded-full"
+                    className="bg-[#0CFEE8] hover:rotate-45 duration-300 cursor-pointer text-white p-3 rounded-full"
                     href={`/browse-by-destination/${car?._id}`}
                   >
                     <MdArrowOutward />

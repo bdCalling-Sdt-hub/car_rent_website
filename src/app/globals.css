@@ -119,3 +119,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.data-\[state\=active\]\:bg-\[\#272121\][data-state="active"] {
+  background-color:  #0CFEE8 !important;
+  color: black !important;
+}

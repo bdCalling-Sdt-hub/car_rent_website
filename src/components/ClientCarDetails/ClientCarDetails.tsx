@@ -12,24 +12,25 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { useAddTripsMutation } from "@/redux/Api/tripManagementApi";
+import {
+  useAddFavoriteMutation,
+  useAddTripsMutation,
+} from "@/redux/Api/tripManagementApi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+const formatTime = (time: string) => {
+  const [hour, minute] = time?.split(":").map(Number);
+  const period = hour >= 12 ? "PM" : "AM";
+  const formattedHour = hour % 12 || 12;
+  return `${formattedHour}:${minute?.toString()?.padStart(2, "0")} ${period}`;
+};
 
-
-const formatTime = (time : string) => {
-    const [hour, minute] = time?.split(":").map(Number);
-    const period = hour >= 12 ? "PM" : "AM";
-    const formattedHour = hour % 12 || 12; 
-    return `${formattedHour}:${minute?.toString()?.padStart(2, "0")} ${period}`;
-  };
-
-  // Helper function to format date in MM/DD/YYYY
-  const formatDate = (date : string) => {
-    const [year, month, day] = date?.split("-");
-    return `${month}/${day}/${year}`;
-  };
+// Helper function to format date in MM/DD/YYYY
+const formatDate = (date: string) => {
+  const [year, month, day] = date?.split("-");
+  return `${month}/${day}/${year}`;
+};
 
 const calculateTotalDays = (startDate: string, endDate: string) => {
   if (!startDate || !endDate) return 0;
@@ -51,14 +52,14 @@ type ClientCarDetailsProps = {
   cars: any;
 };
 
-
 // -----------Car details function -------------------//
 const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
-    const router = useRouter()
-    const [returnLocation , setReturnLocation] = useState('')
-    const [pickupLocation , setPickupLocation] = useState('')
-    // ALL API
-    const [addTripInfo] = useAddTripsMutation()
+  const router = useRouter();
+  const [returnLocation, setReturnLocation] = useState("");
+  const [pickupLocation, setPickupLocation] = useState("");
+  // ALL API
+  const [addTripInfo] = useAddTripsMutation();
+  const [addFavorite] = useAddFavoriteMutation();
 
   const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,7 +68,6 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     endDate: "",
     endTime: "",
   });
-
   const handleInputChange = (data: {
     startDate?: string;
     startTime?: string;
@@ -92,61 +92,67 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     setIsChecked(e.target.checked);
   };
 
-//   Handle booking car function
-const handleBookCar = ()=>{
+  //   Handle booking car function
+  const handleBookCar = () => {
     // console.log(formData);
-    const formattedStartDate =  formatDate(formData?.startDate)
-    const formattedEndDate =  formatDate(formData?.endDate)
-    const formattedStartTime = formatTime(formData?.startTime)
-    const formattedEndTime = formatTime(formData?.endTime)
-    
+    const formattedStartDate = formatDate(formData?.startDate);
+    const formattedEndDate = formatDate(formData?.endDate);
+    const formattedStartTime = formatTime(formData?.startTime);
+    const formattedEndTime = formatTime(formData?.endTime);
+
     const data = {
-        carId: cars?._id,
-        hostId: cars?.user?._id,           
-        tripStartDate: formattedStartDate,                  
-        tripStartTime: formattedStartTime,              
-        tripEndDate: formattedEndDate,
-        tripEndTime: formattedEndTime,
-        returnLocation: returnLocation,
-        tripPrice: totalPrice,                              
-        maxTripDistance: cars?.maxTravelDistancePerDay                          
-    } as { 
-        carId: any;
-        hostId: any;
-        tripStartDate: string;
-        tripStartTime: string;
-        tripEndDate: string;
-        tripEndTime: string;
-        returnLocation: string;
-        tripPrice: any;
-        maxTripDistance: any;
-        isPickupAtLocation?: boolean; 
-        pickupLocation? : string;
+      carId: cars?._id,
+      hostId: cars?.user?._id,
+      tripStartDate: formattedStartDate,
+      tripStartTime: formattedStartTime,
+      tripEndDate: formattedEndDate,
+      tripEndTime: formattedEndTime,
+      returnLocation: returnLocation,
+      tripPrice: totalPrice,
+      maxTripDistance: cars?.maxTravelDistancePerDay,
+    } as {
+      carId: any;
+      hostId: any;
+      tripStartDate: string;
+      tripStartTime: string;
+      tripEndDate: string;
+      tripEndTime: string;
+      returnLocation: string;
+      tripPrice: any;
+      maxTripDistance: any;
+      isPickupAtLocation?: boolean;
+      pickupLocation?: string;
     };
-    if(isChecked){
-        data.isPickupAtLocation = true
+    if (isChecked) {
+      data.isPickupAtLocation = true;
     }
-    if(pickupLocation){
-        data.pickupLocation = pickupLocation
+    if (pickupLocation) {
+      data.pickupLocation = pickupLocation;
     }
-    addTripInfo(data).unwrap()
-    .then((payload) => {
-      // console.log(payload);
+    addTripInfo(data)
+      .unwrap()
+      .then((payload) => {
+        // console.log(payload);
+        toast.success(payload?.message);
+        localStorage.setItem("carId", cars?._id);
+        localStorage.setItem("amount", totalPrice);
+        localStorage.setItem("tripId", payload?.data?._id);
+        router.push("/get-approved-driver");
+      })
+      .catch((error) => {
+        toast.error(error?.data?.message);
+      });
+  };
+
+  const handleAddFavorite = (id: string) => {
+    // console.log(id);
+    addFavorite(id)
+      .unwrap()
+      .then((payload) =>{
         toast.success(payload?.message)
-        localStorage.setItem("carId",cars?._id)
-        localStorage.setItem("amount" ,totalPrice)
-        localStorage.setItem("tripId", payload?.data?._id)
-        router.push('/get-approved-driver')
-    })
-    .catch((error) => {
-        toast.error(error?.data?.message)
-    });
-
-
-    
-
-}
-
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20">
@@ -219,8 +225,16 @@ const handleBookCar = ()=>{
 
           {/* Pickup and Return */}
           <div className="space-y-4">
-            {!isChecked && <Input onChange={(e)=> setPickupLocation(e.target.value)} placeholder="Type pickup location" />}
-            <Input onChange={(e)=> setReturnLocation(e.target.value)} placeholder="Type return location" />
+            {!isChecked && (
+              <Input
+                onChange={(e) => setPickupLocation(e.target.value)}
+                placeholder="Type pickup location"
+              />
+            )}
+            <Input
+              onChange={(e) => setReturnLocation(e.target.value)}
+              placeholder="Type return location"
+            />
           </div>
 
           {/* Discount */}
@@ -236,7 +250,7 @@ const handleBookCar = ()=>{
           <div className="text-center">
             {" "}
             <Button
-            onClick={()=> handleBookCar()}
+              onClick={() => handleBookCar()}
               className="w-full bg-[#0CFEE8]  px-16 rounded-md  py-2 text-black hover:bg-[#0CFEE8]"
             >
               Continue
@@ -260,15 +274,13 @@ const handleBookCar = ()=>{
                                 <span>FREE</span>
                             </div> */}
 
+            {cars?.discountDays <= totalDays && (
+              <div className="flex justify-between items-center">
+                <span>{cars?.discountDays}+ days discount</span>
+                <span className="">- £{cars?.discountAmount}</span>
+              </div>
+            )}
 
-            {
-              cars?.discountDays <= totalDays &&  <div className="flex justify-between items-center">
-              <span>{cars?.discountDays}+ days discount</span>
-              <span className="">- £{cars?.discountAmount}</span>
-            </div>
-            }
-
-           
             <div className="flex justify-between items-center  bg-[#BCBABA26]  px-4 rounded-md py-2">
               <span className="font-bold">Total</span>
               <span className="font-bold text-lg">£ {totalPrice}</span>
@@ -285,15 +297,21 @@ const handleBookCar = ()=>{
               <div className="flex justify-between pb-2">
                 <span className="text-2xl">Distance included</span>
 
-                <span className="font-semibold">200 mi</span>
+                {/* <span className="font-semibold">200 mi</span> */}
               </div>
-              <span>£ {cars?.finePerKm}/mi fee for additional miles driven</span>
+              <span>
+                £ {cars?.finePerKm}/mi fee for additional miles driven
+              </span>
             </div>
           </div>
 
           {/* Add to Favorites Button */}
           <div className="text-center">
-            <Button variant="outline" className="">
+            <Button
+              onClick={() => handleAddFavorite(cars?._id)}
+              variant="outline"
+              className=""
+            >
               Add to favorites <CiHeart />
             </Button>
           </div>

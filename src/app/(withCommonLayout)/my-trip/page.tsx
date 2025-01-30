@@ -41,13 +41,12 @@ const MyTripPage = () => {
     updateCarStatus(data)
       .unwrap()
       .then((payload) => {
-        toast.success(payload?.message)
+        toast.success(payload?.message);
       })
       .catch((error) => toast.success(error?.data?.message));
   };
 
   return (
-   
     <div className="container mx-auto px-2 md:px-0">
       <div className="md:py-10 py-2">
         <HeadingTitle title="My Trip" />
@@ -94,7 +93,7 @@ const MyTripPage = () => {
                 >
                   <div className="md:col-span-6 col-span-1">
                     <Image
-                      src={img}
+                      src={`${imageUrl}/${trip?.car?.car_image[0]}`}
                       alt="img"
                       className="w-full rounded-md"
                       height={600}
@@ -105,27 +104,30 @@ const MyTripPage = () => {
                   <div className="md:col-span-6  col-span-1  gap-5  ">
                     <div className="flex justify-between">
                       <div className="">
-                        <p className="font-semibold">Hosted By :</p>
-                        <div className="flex  items-center gap-2 shadow-md p-4 rounded-md">
-                          <Image
-                            alt="img"
-                            className="h-10 w-10 rounded-full "
-                            src={`${imageUrl}/${trip?.host?.profile_image}`}
-                            height={200}
-                            width={200}
-                          />
-                          <div>
-                            <p className="font-medium">{trip?.host?.name}</p>
-                            <p className="flex items-center gap-2">
-                              <FaStar className="text-[#0CFEE8]" />{" "}
-                              {trip?.host?.rating}{" "}
-                            </p>
-                            <p>
-                              {trip?.host?.trip} trips. Joined{" "}
-                              {trip?.host?.createdAt?.split("T")[0]}
-                            </p>
+                        <div>
+                          <p className="font-semibold">Hosted By :</p>
+                          <div className="flex  items-center gap-2 shadow-md p-4 rounded-md">
+                            <Image
+                              alt="img"
+                              className="h-10 w-10 rounded-full "
+                              src={`${imageUrl}/${trip?.host?.profile_image}`}
+                              height={200}
+                              width={200}
+                            />
+                            <div>
+                              <p className="font-medium">{trip?.host?.name}</p>
+                              <p className="flex items-center gap-2">
+                                <FaStar className="text-[#0CFEE8]" />{" "}
+                                {trip?.host?.rating}{" "}
+                              </p>
+                              <p>
+                                {trip?.host?.trip} trips. Joined{" "}
+                                {trip?.host?.createdAt?.split("T")[0]}
+                              </p>
+                            </div>
                           </div>
                         </div>
+                        
                       </div>
 
                       <div>
@@ -248,7 +250,7 @@ const MyTripPage = () => {
             </div>
           </TabsContent>
           <TabsContent value="canceled">
-              <CancelTrips trip={getMyTrips?.data?.trips}/>
+            <CancelTrips trip={getMyTrips?.data?.trips} />
           </TabsContent>
         </Tabs>
       </div>

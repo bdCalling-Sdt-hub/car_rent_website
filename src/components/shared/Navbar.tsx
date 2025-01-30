@@ -23,7 +23,6 @@ import { imageUrl } from '@/redux/baseApi';
 const Navbar = () => {
     const [popoverOpen, setPopoverOpen] = useState(false);
     const {data : getUserInfo} = useGetProfileQuery({})
-    console.log(getUserInfo?.data?.authId?.role);
 
     const closePopover = () => setPopoverOpen(false);
     return (
@@ -54,7 +53,7 @@ const Navbar = () => {
                             <div className='font-lora grid grid-cols-1 md:grid-cols-2'>
                                 <div className='col-span-1'>
                                     <Link href='/my-trip' onClick={closePopover} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GoGitMerge /> Trips</Link>
-                                    <Link onClick={closePopover} href={'/host-history'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</Link>
+                                    <Link onClick={closePopover} href={'/my-favorite-cars'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><GrHistory /> History</Link>
                                     <Link onClick={closePopover} href={'/'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><RiHomeLine /> Home</Link>
                                     <Link onClick={closePopover} href={'/about-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><IoIosInformationCircleOutline /> About Us</Link>
                                     <Link onClick={closePopover} href={'/Contact-us'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><FiPhone /> Contact Us</Link>

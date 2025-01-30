@@ -85,8 +85,8 @@ const EditHostCarPage = () => {
   // Call hooks unconditionally
   const { data: getCarDetails, isLoading } = useGetCarDetailsQuery(carId);
   const [updateCarDetails] = useUpdateCarDetailsMutation();
-
-  // console.log(getCarDetails);
+  console.log(carId);
+  console.log(getCarDetails);
 
   // Update form values when car details are fetched
   useEffect(() => {
@@ -158,7 +158,6 @@ const EditHostCarPage = () => {
     return <p>Loading...</p>;
   }
 
-
   return (
     <div className="container mx-auto my-10 font-lora px-2 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ]">
@@ -166,7 +165,7 @@ const EditHostCarPage = () => {
           <Image
             key={i}
             alt="img"
-            className="w-full h-full object-contain max-h-[200px]"
+            className="w-full h-full object-cover max-h-[400px]"
             height={800}
             width={800}
             src={`${imageUrl}/${car}`}
@@ -174,7 +173,7 @@ const EditHostCarPage = () => {
         ))}
       </div>
 
-      <div className="max-w-4xl space-y-8 ">
+      <div className="max-w-4xl space-y-8 mt-5">
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Where is your car located?</h2>
           <div className="grid grid-cols-2 gap-4">

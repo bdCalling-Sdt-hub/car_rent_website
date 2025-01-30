@@ -16,7 +16,7 @@ import { useGetTopHostedCarQuery } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 const TopHostedCar = () => {
   const { data: getTopHost } = useGetTopHostedCarQuery("london");
-  //   console.log(getTopHost?.data?.topHostsInDestination);
+    console.log(getTopHost?.data?.topHostsInDestination);
 
   return (
     <div className="md:my-20 my-10">
@@ -74,8 +74,8 @@ const TopHostedCar = () => {
                 })}
               </div>
               <div className="col-span-1">
-                <p className="text-xl mb-10 font-semibold ">
-                  MD. Hasan vehicles
+                <p className="text-xl mb-10 font-semibold capitalize">
+                 {host?.name}
                 </p>
                 <Carousel>
                   <CarouselContent>
@@ -131,7 +131,7 @@ const TopHostedCar = () => {
                                 / per day
                               </p>
                               <Link
-                                className="bg-[#0CFEE8] text-white p-3 rounded-full"
+                                className="bg-[#0CFEE8] text-white p-3 hover:rotate-45 duration-300 cursor-pointer rounded-full"
                                 href={`/browse-by-destination/${car?._id}`}
                               >
                                 <MdArrowOutward />

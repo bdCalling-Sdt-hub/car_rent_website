@@ -1,34 +1,34 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import {  FaStar } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6";
 import { imageUrl } from "@/redux/baseApi";
 
 const RequestedTrip = ({ myTrip }: any) => {
+
+
   return (
     <div>
       <div className="">
         {myTrip?.map((trip: any) => {
-
           return (
-            <div key={trip?._id} className="grid grid-cols-1 md:grid-cols-12 gap-5 font-lora border-b pt-10 pb-8 ">
-                <div className="md:col-span-6 col-span-1">
-                  <Image
-                    src={`${imageUrl}/${trip?.car?.car_image[0]}`}
-                    alt="img"
-                    className="w-full rounded-sm max-h-[600px]"
-                    height={600}
-                    width={600}
-                  />
+            <div
+              key={trip?._id}
+              className="grid grid-cols-1 md:grid-cols-12 gap-5 font-lora border-b pt-10 pb-8 "
+            >
+              <div className="md:col-span-6 col-span-1">
+                <Image
+                  src={`${imageUrl}/${trip?.car?.car_image[0]}`}
+                  alt="img"
+                  className="w-full rounded-sm max-h-[600px]"
+                  height={600}
+                  width={600}
+                />
+              </div>
 
-
-                </div>
-
-
-
-                <div className="md:col-span-6  col-span-1  gap-5  ">
-                  <div className="flex justify-between">
-                    <div className="">
+              <div className="md:col-span-6  col-span-1  gap-5  ">
+                <div className="flex justify-between">
+                  <div className="">
                       <p className="font-semibold">Hosted By :</p>
                       <div className="flex  items-center gap-2 shadow-md p-4 rounded-md">
                         <Image
@@ -41,58 +41,71 @@ const RequestedTrip = ({ myTrip }: any) => {
                         <div>
                           <p className="font-medium">{trip?.host?.name}</p>
                           <p className="flex items-center gap-2">
-                            <FaStar className="text-[#0CFEE8]" /> {trip?.host?.rating}{" "}
+                            <FaStar className="text-[#0CFEE8]" />{" "}
+                            {trip?.host?.rating}{" "}
                           </p>
-                          <p>{trip?.host?.trip} trips. Joined {trip?.host?.createdAt?.split("T")[0]}</p>
-                        </div>
+                          <p>
+                            {trip?.host?.trip} trips. Joined{" "}
+                            {trip?.host?.createdAt?.split("T")[0]}
+                          </p>
                       </div>
                     </div>
-
-                    <div>
-                      
-                    </div>
+                    
                   </div>
 
-                  <p className="mt-4 text-[#272121]">
-                    {trip?.car?.description}
+                  <div>
+                  </div>
+                </div>
+
+                <p className="mt-4 text-[#272121]">{trip?.car?.description}</p>
+
+                <div className="mt-10">
+                  <p className="font-semibold ">
+                    {trip?.car?.make} {trip?.car?.model} {trip?.car?.year}
                   </p>
-
-                  <div className="mt-10">
-                    <p className="font-semibold ">{trip?.car?.make} {trip?.car?.model} {trip?.car?.year}</p>
-                    <div className="flex items-center gap-5 my-2">
-                      <p>
-                        <span className="font-semibold">£ {trip?.car?.pricePerDay} </span>/  Day
-                      </p>
-                    </div>
-                    <div className="py-2">
-                      <span className="font-semibold">Trip Start </span>{" "}
-                      <span className="text-[#525252]">
-                        {" "}
-                        Date: {trip?.tripStartDate} Time: {trip?.tripStartDateTime?.split("T")[1]?.split(".")[0]}
+                  <div className="flex items-center gap-5 my-2">
+                    <p>
+                      <span className="font-semibold">
+                        £ {trip?.car?.pricePerDay}{" "}
                       </span>
-                    </div>
-                    <div>
-                      <span className="font-semibold">Trip End </span>{" "}
-                      <span className="text-[#525252]">
-                        {" "}
-                        Date: {trip?.tripEndDate} Time: {trip?.tripEndDateTime?.split("T")[1]?.split(".")[0]}
-                      </span>
-                    </div>
+                      / Day
+                    </p>
                   </div>
+                  <div className="py-2">
+                    <span className="font-semibold">Trip Start </span>{" "}
+                    <span className="text-[#525252]">
+                      {" "}
+                      Date: {trip?.tripStartDate} Time:{" "}
+                      {trip?.tripStartDateTime?.split("T")[1]?.split(".")[0]}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Trip End </span>{" "}
+                    <span className="text-[#525252]">
+                      {" "}
+                      Date: {trip?.tripEndDate} Time:{" "}
+                      {trip?.tripEndDateTime?.split("T")[1]?.split(".")[0]}
+                    </span>
+                  </div>
+                </div>
 
-                  {/* Pick up location */}
-                  <div className="mt-5 text-[#272121] space-y-2">
-                    <p className="font-semibold">PICKUP AT CAR LOCATION</p>
-                    <p className="text-sm">{trip?.pickupLocation ? trip?.pickupLocation :  "Not Available"}</p>
-                    {/* <p className="text-sm">
+                {/* Pick up location */}
+                <div className="mt-5 text-[#272121] space-y-2">
+                  <p className="font-semibold">PICKUP AT CAR LOCATION</p>
+                  <p className="text-sm">
+                    {trip?.pickupLocation
+                      ? trip?.pickupLocation
+                      : "Not Available"}
+                  </p>
+                  {/* <p className="text-sm">
                       Statue of Liberty, Times Square, Central Park, Empire
                       State Building
                     </p> */}
-                  </div>
+                </div>
 
-                  {/* delivery location */}
+                {/* delivery location */}
 
-                  <div className="mt-5">
+                <div className="mt-5">
                   <p className="font-semibold text-[16px] text-[#272121]">
                     Delivery Location
                   </p>
@@ -120,10 +133,8 @@ const RequestedTrip = ({ myTrip }: any) => {
                     <p>£ {trip?.car?.discountAmount}</p>
                   </div>
                 </div>
-
-
-                </div>
               </div>
+            </div>
           );
         })}
       </div>
