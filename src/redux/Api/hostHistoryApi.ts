@@ -8,7 +8,8 @@ const hostHistoryApi = baseApi.injectEndpoints({
                     url : '/car/get-my-car',
                     method : 'GET'
                 }
-            }
+            },
+            providesTags : ['carDetails']
         }),
         getCarDetails : builder.query({
             query : (id)=>{

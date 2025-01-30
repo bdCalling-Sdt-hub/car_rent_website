@@ -21,8 +21,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "antd";
 
-
-
 const AllCarsPage = () => {
   // Retrieve query parameters
   const searchParams = useSearchParams();
@@ -60,7 +58,7 @@ const AllCarsPage = () => {
     selectedYear,
     selectedModel,
     seat,
-    isElectric
+    isElectric,
   });
   // console.log(selectedModel);
   // Get make model year api integrate
@@ -82,23 +80,23 @@ const AllCarsPage = () => {
     setMinPrice(value[0]);
   };
 
-  const handleMakeChange = (value : string)=>{
-    setSelectedMake(value)
-  }
+  const handleMakeChange = (value: string) => {
+    setSelectedMake(value);
+  };
 
   // Handle year change
-  const handleYearChange = (value :  string)=>{
-    setSelectedYear(value)
-  }
+  const handleYearChange = (value: string) => {
+    setSelectedYear(value);
+  };
   // Handle Model change
-  const handleModelChange = (value :  string)=>{
-    setSelectedModel(value)
-  }
+  const handleModelChange = (value: string) => {
+    setSelectedModel(value);
+  };
 
   // Handle Seat change
-  const handleSeatChange = (value : string)=>{
-    setSeat(value)
-  }
+  const handleSeatChange = (value: string) => {
+    setSeat(value);
+  };
   // console.log(seat);
   return (
     <div className="my-10 font-lora px-5 mx-2 md:px-0">
@@ -157,9 +155,9 @@ const AllCarsPage = () => {
             {selectedMake || "Select Make"}
           </SelectTrigger>
           <SelectContent>
-            {makeArray.map((make : string, index : string) => (
+            {makeArray.map((make: string, index: string) => (
               <SelectItem key={index} value={make}>
-                {make || "Unknown"} 
+                {make || "Unknown"}
               </SelectItem>
             ))}
           </SelectContent>
@@ -171,9 +169,9 @@ const AllCarsPage = () => {
             {selectedYear || "Select Year"}
           </SelectTrigger>
           <SelectContent>
-            {makeYearArray.map((year : string, index : string) => (
+            {makeYearArray.map((year: string, index: string) => (
               <SelectItem key={index} value={year}>
-                {year || "Unknown"} 
+                {year || "Unknown"}
               </SelectItem>
             ))}
           </SelectContent>
@@ -184,30 +182,31 @@ const AllCarsPage = () => {
             {selectedModel || "Select Model"}
           </SelectTrigger>
           <SelectContent>
-            {makeModelArray.map((model : string, index : string) => (
+            {makeModelArray.map((model: string, index: string) => (
               <SelectItem key={index} value={model}>
-                {model || "Unknown"} 
+                {model || "Unknown"}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
 
-
         {/* Seats */}
-        <Select onValueChange={(value) => handleSeatChange(value)} >
-          <SelectTrigger className="">{seat ||  "Seats"}</SelectTrigger>
+        <Select onValueChange={(value) => handleSeatChange(value)}>
+          <SelectTrigger className="">{seat || "Seats"}</SelectTrigger>
           <SelectContent>
-            {
-              Array.from({length : 20}, (_, index)=>(
-                <SelectItem key={index+1} value={String(index+1)}>{index + 1}</SelectItem>
-              ))
-            }
+            {Array.from({ length: 20 }, (_, index) => (
+              <SelectItem key={index + 1} value={String(index + 1)}>
+                {index + 1}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
 
         {/* Electric Button */}
         <Button
-          className={`bg-white text-black border hover:text-white ${isElectric && "bg-black text-white"}`}
+          className={`bg-white text-black border hover:text-white ${
+            isElectric && "bg-black text-white"
+          }`}
           onClick={() => setIsElectric(!isElectric)}
         >
           Electric
@@ -236,16 +235,26 @@ const AllCarsPage = () => {
           <p className="text-sm mb-8">
             These cars are located in and around London
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+          <div>
+            {getAllCarLocation?.data?.availableCars?.length === 0 && (
+              <p className="flex justify-center items-center  text-[#0CFEE8] mt-28 font-semibold text-[28px]">
+                No cars available at the moment.
+              </p>
+            )}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-screen overflow-y-auto hide-scrollbar">
             {getAllCarLocation?.data?.availableCars?.map((car: any) => {
               return (
-                <Link key={car?._id} href={`/browse-by-destination/${car?._id}`}>
-                 <div className="mt-5  md:flex md:h-full items-center gap-4 border rounded-md">
+                <Link
+                  key={car?._id}
+                  href={`/browse-by-destination/${car?._id}`}
+                >
+                  <div className="md:flex md:h-full items-center gap-4 border rounded-md shadow-sm p-3">
                     <Image
                       alt="img"
                       height={200}
                       width={300}
-                      className="w-full md:w-[50%] h-[100%]"
+                      className="w-full md:w-[50%]  rounded-sm h-[100%]"
                       src={`${imageUrl}/${car?.car_image[0]}`}
                     />
                     <div className="space-y-4 p-2 md:p-0">
@@ -277,7 +286,7 @@ const AllCarsPage = () => {
         </div>
         <div className="-z-10 mt-20 ">
           <MapParent
-            height={950}
+            height={920}
             cars={getAllCarLocation?.data?.availableCars}
           />
         </div>

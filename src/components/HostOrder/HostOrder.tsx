@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../assets/car.jpg";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import {
@@ -8,13 +7,13 @@ import {
 } from "@/redux/Api/hostHistoryApi";
 import { imageUrl } from "@/redux/baseApi";
 import { toast } from "sonner";
+import { Popconfirm } from "antd";
 const HostOrder = () => {
   // ALL APIs
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("requested");
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
-
-//   Handle accept car request
+  //   Handle accept car request
   const handleAcceptCarRequest = (value: any) => {
     const data = {
       tripId: value,
@@ -23,39 +22,41 @@ const HostOrder = () => {
     acceptCarRequest(data)
       .unwrap()
       .then((payload) => {
-        toast.success(payload?.message)
+        toast.success(payload?.message);
       })
       .catch((error) => toast.error(error?.data?.message));
   };
 
-
-//   Handle reject car request
-const handleCancelRequest =(id : string)=>{
+  //   Handle reject car request
+  const handleCancelRequest = (id: string) => {
     const data = {
-        tripId: id,
-        status: "canceled",
-      };
-      acceptCarRequest(data)
-        .unwrap()
-        .then((payload) => {
-          toast.success(payload?.message)
-        })
-        .catch((error) => toast.error(error?.data?.message));
-}
+      tripId: id,
+      status: "canceled",
+    };
+    acceptCarRequest(data)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
 
   return (
     <div className="font-lora">
       <p className="pb-5">Request order </p>
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
         return (
-          <div key={order?._id} className="grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mb-8">
+          <div
+            key={order?._id}
+            className="grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mb-8"
+          >
             <div className="col-span-1">
               <Image
                 alt="img"
-                className="w-full"
+                className="w-full h-full max-h-[260px] rounded-md"
                 height={300}
                 width={300}
-                src={img}
+                src={`${imageUrl}/${order?.car?.car_image[0]}`}
               />
             </div>
             <div className="md:col-span-4 col-span-1">
@@ -108,13 +109,26 @@ const handleCancelRequest =(id : string)=>{
               </div>
             </div>
             <div className=" col-span-1 space-x-2">
-              <p
-                className="bg-[#91BAD6] inline-block px-4 py-2 rounded-sm cursor-pointer"
-                onClick={() => handleAcceptCarRequest(order?._id)}
+              <Popconfirm
+                title="Are you sure?"
+                description="Do you really want to accept this car request?"
+                onConfirm={() => handleAcceptCarRequest(order?._id)}
+                okText="Yes"
+                cancelText="No"
               >
-                {order?.status}
-              </p>
-              <p onClick={()=>handleCancelRequest(order?._id)} className="bg-red-500 text-white inline-block px-4 py-2 rounded-sm cursor-pointer ">Cancel</p>
+                <p className="bg-[#1E3F66] text-white inline-block px-4 py-2 rounded-sm cursor-pointer">
+                  Accept
+                </p>
+              </Popconfirm>
+              <Popconfirm
+                title="Are you sure?"
+                description="Do you really want to cancel this car request?"
+                onConfirm={() => handleCancelRequest(order?._id)}
+              >
+                <p className="bg-red-500 text-white inline-block px-4 py-2 rounded-sm cursor-pointer ">
+                  Cancel
+                </p>
+              </Popconfirm>
             </div>
           </div>
         );

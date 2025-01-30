@@ -24,14 +24,23 @@ import {
   useAddLicensePlateMutation,
   useAddMakeModelYearMutation,
   useGetCityQuery,
+  useGetMakeYearQuery,
+  useGetModelYearQuery,
 } from "@/redux/Api/registerCarApi";
-import { CarModel, location, Step2Props } from "@/type";
+import { location, Step2Props } from "@/type";
 import { toast } from "sonner";
 
 const TotalSteps = 7;
 
 const MultiStepForm = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const storedStep = localStorage.getItem("currentStep");
+      return storedStep ? Number(storedStep) : 1;
+    }
+
+    return 1;
+  });
 
   // Calculate progress based on current step
   const progress = (currentStep / TotalSteps) * 100;
@@ -41,6 +50,11 @@ const MultiStepForm = () => {
       setCurrentStep((prev) => prev + 1);
     }
   };
+
+  // Update local storage when currentStep changes
+  useEffect(() => {
+    localStorage.setItem("currentStep", currentStep.toString());
+  }, [currentStep]);
 
   return (
     <div className="container mx-auto py-10 font-lora px-2 md:px-0">
@@ -163,6 +177,8 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         );
         const text = await response.text();
         const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
+        console.log(json?.result?.geometry);
+
         setLatLng(json?.result?.geometry?.location);
       } catch (error) {
         console.error("Error fetching car data:", error);
@@ -172,32 +188,35 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     fetchCarData();
   }, [selectedPlaceId]);
 
-
   const handleAddCarLocation = () => {
     const data = {
       carAddress: inputValue,
-      longitude: latLng?.lat,
-      latitude: latLng?.lng,
+      longitude: latLng?.lng,
+      latitude: latLng?.lat,
       destination: destination,
     };
     addCarLocation(data)
       .unwrap()
-      .then((payload) => console.log("fulfilled", payload))
+      .then((payload) => {
+        localStorage.setItem("carId", payload?.data?._id)
+        toast.success(payload?.message)
+        handleNext();
+      })
       .catch((error) => {
-        console.error("rejected", error)
-
         const errorMessage = error?.data?.message ?? "";
-        if(errorMessage.includes("ERR_CAR_SUBMISSION_INCOMPLETE")){
-
+        if (errorMessage.includes("ERR_CAR_SUBMISSION_INCOMPLETE")) {
           const match = errorMessage?.match(/ID: ([a-f0-9]+)/);
           // console.log(match);
           if (match && match[1]) {
             const id = match[1];
-  
+
             // Save the ID to localStorage
-            localStorage.setItem("currentCarSubmissionID", id);
+            localStorage.setItem("carId", id);
+            toast.success("Please Submit Incomplete car!")
             handleNext();
           }
+        }else{
+          toast.error(error?.data?.message)
         }
       });
   };
@@ -267,9 +286,10 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
 
   const handleContinue = () => {
-    
+
+
     const data = {
-      carId: localStorage.getItem("currentCarSubmissionID"),
+      carId: localStorage.getItem("carId"),
       licensePlateNum: licensePlate,
     };
 
@@ -304,63 +324,30 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
-interface CarMake {
-  make_id: string;
-  make_display: string;
-}
+
 
 const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   const [addMakeModelYear] = useAddMakeModelYearMutation();
-
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState(currentYear.toString());
   const [selectedMake, setSelectedMake] = useState<string>();
   const [selectedModel, setSelectedModel] = useState<string>();
   const years = Array.from({ length: currentYear - 1940 }, (_, i) => 1941 + i);
-  const [carMakes, setCarMakes] = useState<CarMake[]>([]);
-  const [carModels, setCarModels] = useState<CarModel[]>([]);
+ 
 
-  useEffect(() => {
-    const fetchCarData = async () => {
-      try {
-        const response = await fetch(`/api/car-data?year=${selectedYear}`);
-        const text = await response.text();
-        const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
-        setCarMakes(json.Makes || []);
-      } catch (error) {
-        console.error("Error fetching car data:", error);
-      }
-    };
+  const { data: getMakeYear } = useGetMakeYearQuery(selectedYear);
+  const { data: getModelYear } = useGetModelYearQuery({
+    year: selectedYear,
+    make: selectedMake,
+  });
 
-    fetchCarData();
-  }, [selectedYear]);
 
-  useEffect(() => {
-    const fetchCarModels = async () => {
-      try {
-        const response = await fetch(
-          `/api/car-models?make=${selectedMake}&year=${selectedYear}`
-        );
 
-        if (!response.ok) {
-          console.error("Error fetching car models:", response.statusText);
-          return;
-        }
 
-        const text = await response.text();
-        const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
-        setCarModels(json.Models || []);
-      } catch (error) {
-        console.error("Error fetching car models:", error);
-      }
-    };
-
-    fetchCarModels();
-  }, [selectedMake, selectedYear]);
-
-  //   console.log(selectedMake);
+  
 
   // Handle year selection
+
   const handleYearChange = (value: string) => {
     setSelectedYear(value);
   };
@@ -373,7 +360,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
   const handleContinue = () => {
     const data = {
-      carId: localStorage.getItem('currentCarSubmissionID'),
+      carId: localStorage.getItem("carId"),
       make: selectedMake,
       model: selectedModel,
       year: selectedYear,
@@ -385,12 +372,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         handleNext();
       })
       .catch((error) => toast.error(error?.data?.message));
-
-    // console.log(selectedModel);
-    // console.log(selectedMake);
-    // console.log(selectedYear);
   };
-  //   console.log(selectedModel);
 
   return (
     <div className="md:max-w-[60%] w-full">
@@ -421,7 +403,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
           </SelectTrigger>
           <SelectContent className="h-full">
             <SelectGroup>
-              {carMakes?.map((car) => (
+              {getMakeYear?.result?.res?.Makes?.map((car: any) => (
                 <SelectItem key={car?.make_id} value={car?.make_id}>
                   {car?.make_id}
                 </SelectItem>
@@ -438,7 +420,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
           </SelectTrigger>
           <SelectContent className="h-full">
             <SelectGroup>
-              {carModels?.map((model) => (
+              {getModelYear?.result?.res?.Models?.map((model: any) => (
                 <SelectItem key={model?.model_name} value={model?.model_name}>
                   {model?.model_name}
                 </SelectItem>
@@ -475,7 +457,7 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
   const handleContinue = () => {
     const data = {
-      carId: localStorage.getItem("currentCarSubmissionID"),
+      carId: localStorage.getItem("carId"),
       ...formValues,
     };
     addCarTransmission(data)
@@ -536,8 +518,8 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
             <Label htmlFor="luxury">Luxury</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="economy" id="economy" />
-            <Label htmlFor="economy">Economy</Label>
+            <RadioGroupItem value="standard" id="standard" />
+            <Label htmlFor="standard">Standard</Label>
           </div>
         </RadioGroup>
       </div>
@@ -557,16 +539,20 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
             <Label htmlFor="suv">SUV</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="minivans" id="minivans" />
-            <Label htmlFor="minivans">Minivans</Label>
+            <RadioGroupItem value="bus" id="bus" />
+            <Label htmlFor="bus">BUS</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="trucks" id="trucks" />
-            <Label htmlFor="trucks">Trucks</Label>
+            <RadioGroupItem value="minivan" id="minivan" />
+            <Label htmlFor="minivan">Minivan</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="cargo" id="cargo" />
-            <Label htmlFor="cargo">Cargo Vans</Label>
+            <RadioGroupItem value="truck" id="truck" />
+            <Label htmlFor="truck">Truck</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="cargo-van" id="cargo-van" />
+            <Label htmlFor="cargo-van">Cargo Vans</Label>
           </div>
         </RadioGroup>
       </div>

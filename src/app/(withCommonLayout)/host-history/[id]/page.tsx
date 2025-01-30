@@ -139,7 +139,6 @@ const EditHostCarPage = () => {
       features: formValues?.selectedFeatures,
     };
 
-    console.log(data);
 
     updateCarDetails(data)
       .unwrap()
@@ -162,12 +161,12 @@ const EditHostCarPage = () => {
 
   return (
     <div className="container mx-auto my-10 font-lora px-2 md:px-0">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ]">
         {getCarDetails?.data?.car_image?.slice(0,3)?.map((car: string, i: number) => (
           <Image
             key={i}
             alt="img"
-            className="w-full h-[80%] rounded-md"
+            className="w-full h-full object-contain max-h-[200px]"
             height={800}
             width={800}
             src={`${imageUrl}/${car}`}

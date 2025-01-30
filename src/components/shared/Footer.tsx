@@ -9,8 +9,8 @@ import { LuPhone } from 'react-icons/lu';
 import Link from 'next/link';
 const Footer = () => {
     return (
-        <div className=' bg-gradient-to-b from-[#060606] to-[#505050] py-20'>
-            <div className='container grid grid-cols-1 md:grid-cols-2 pl-10 lg:pl-0  lg:grid-cols-4 justify-between items-center mx-auto  w-full text-white'>
+        <div className=' bg-[#F9F9F9] py-20'>
+            <div className='container grid grid-cols-1 md:grid-cols-2 pl-10 lg:pl-0  lg:grid-cols-4 justify-between items-center mx-auto  w-full '>
                 <div>
                     <div className='flex items-center gap-2 '>
                         <p className='font-bold text-[49px]'>NARDO</p>

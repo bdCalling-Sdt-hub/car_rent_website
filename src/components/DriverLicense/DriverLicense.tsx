@@ -39,7 +39,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
   //   Handle upload driver license details function
   const handleUpdateDrivingLicense = (values: TLicense) => {
     const formData = new FormData();
-    const carId =  localStorage.getItem('currentCarSubmissionID') || "";
+    const carId =  localStorage.getItem('carId') || "";
     formData.append('carId', carId)
     formData.append("pricePerDay", values?.pricePerDay);
     formData.append("maxTravelDistancePerDay", values?.maxTravelDistancePerDay);

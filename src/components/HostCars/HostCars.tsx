@@ -9,7 +9,6 @@ const HostCars = () => {
   // All APIs
   const { data: getMyAllCars } = useGetMyCarsQuery({});
   
-console.log(getMyAllCars);
   return (
     <div className="space-y-5">
       {getMyAllCars?.data?.map((car : CarData) => {
@@ -18,7 +17,7 @@ console.log(getMyAllCars);
             <div className="md:col-span-4  col-span-1 ">
               <Image
                 alt="car"
-                className="w-full rounded-sm"
+                className="w-full h-full max-h-[260px] object-cover rounded-sm"
                 src={`${imageUrl}/${car?.car_image[0]}`}
                 height={300}
                 width={300}

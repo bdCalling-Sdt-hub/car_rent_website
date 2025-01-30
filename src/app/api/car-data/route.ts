@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     // Fetch data from the Car Query API
     // const response = await fetch(`https://www.carqueryapi.com/api/0.3/?year=${year}`);
     const response = await fetch(`https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getMakes&year=${year}`);
-    // console.log(response);
+    console.log(response);
     const data = await response.text();
 
     // Return the response to the client

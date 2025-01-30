@@ -60,9 +60,10 @@ const infoApi = baseApi.injectEndpoints({
             }
         }),
         getAllNotification : builder.query({
-            query : ()=>{
+            query : (page)=>{
+                console.log(page);
                 return {
-                    url : '/notification/get-all-notification',
+                    url : `/notification/get-all-notification?page=${page}`,
                     method : 'GET'
                 }
             },

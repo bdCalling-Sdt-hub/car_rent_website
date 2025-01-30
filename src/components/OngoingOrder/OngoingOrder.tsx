@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../assets/car.jpg";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 import {
@@ -35,7 +34,7 @@ const OngoingOrder = () => {
     <div className="font-lora">
       <p className="pb-5">Request order </p>
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
-        console.log(order);
+        console.log(order?.car?.car_image); 
         return (
           <div
             key={order?._id}
@@ -44,10 +43,10 @@ const OngoingOrder = () => {
             <div className="col-span-1">
               <Image
                 alt="img"
-                className="w-full"
+                className="w-full h-full rounded-sm max-h-[260px]"
                 height={300}
                 width={300}
-                src={img}
+                src={`${imageUrl}/${order?.car?.car_image[0]}`}
               />
             </div>
             <div className="md:col-span-4 col-span-1">
@@ -101,7 +100,7 @@ const OngoingOrder = () => {
             </div>
             <div className=" col-span-1 space-x-2">
               <p
-                className="bg-[#91BAD6] inline-block px-4 py-2 rounded-sm cursor-pointer"
+                className="bg-[#1E3F66] text-white text-center px-4 py-2 rounded-sm cursor-pointer"
                 onClick={() => handleCompleteTrip(order?._id)}
               >
                 Complete

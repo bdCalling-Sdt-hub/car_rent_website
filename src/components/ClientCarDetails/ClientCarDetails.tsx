@@ -19,15 +19,15 @@ import { useRouter } from "next/navigation";
 
 
 const formatTime = (time : string) => {
-    const [hour, minute] = time.split(":").map(Number);
+    const [hour, minute] = time?.split(":").map(Number);
     const period = hour >= 12 ? "PM" : "AM";
     const formattedHour = hour % 12 || 12; 
-    return `${formattedHour}:${minute.toString().padStart(2, "0")} ${period}`;
+    return `${formattedHour}:${minute?.toString()?.padStart(2, "0")} ${period}`;
   };
 
   // Helper function to format date in MM/DD/YYYY
   const formatDate = (date : string) => {
-    const [year, month, day] = date.split("-");
+    const [year, month, day] = date?.split("-");
     return `${month}/${day}/${year}`;
   };
 
@@ -38,7 +38,7 @@ const calculateTotalDays = (startDate: string, endDate: string) => {
   const end = new Date(endDate);
 
   // Calculate the difference in milliseconds
-  const diffInMs = end.getTime() - start.getTime();
+  const diffInMs = end?.getTime() - start?.getTime();
 
   // Convert milliseconds to days
   const totalDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
@@ -79,7 +79,6 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
       ...data,
     }));
   };
-  console.log(cars);
 
   const totalDays = calculateTotalDays(formData.startDate, formData.endDate);
 
@@ -132,9 +131,11 @@ const handleBookCar = ()=>{
     }
     addTripInfo(data).unwrap()
     .then((payload) => {
+      // console.log(payload);
         toast.success(payload?.message)
         localStorage.setItem("carId",cars?._id)
         localStorage.setItem("amount" ,totalPrice)
+        localStorage.setItem("tripId", payload?.data?._id)
         router.push('/get-approved-driver')
     })
     .catch((error) => {
@@ -146,7 +147,6 @@ const handleBookCar = ()=>{
 
 }
 
-console.log(cars);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20">

@@ -19,6 +19,7 @@ const CancelOrder = () => {
     <div className="font-lora">
       <p className="pb-5">Request order </p>
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
+        console.log(order);
         return (
           <div key={order?._id} className="grid grid-cols-1 md:grid-cols-6 gap-10 border-b pb-8 mb-8">
             <div className="col-span-1">

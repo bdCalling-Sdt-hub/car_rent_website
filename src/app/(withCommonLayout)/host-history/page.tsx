@@ -14,10 +14,9 @@ import { imageUrl } from "@/redux/baseApi";
 import OngoingOrder from "@/components/OngoingOrder/OngoingOrder";
 import CancelOrder from "@/components/CancelOrder/CancelOrder";
 import CompleteOrder from "@/components/CompleteOrder/CompleteOrder";
-
+import withRoleAuth from "@/components/whitRoleAuth/whitRoleAuth";
 const HostHistoryPage = () => {
   const { data: getProfile } = useGetProfileQuery(undefined);
-// console.log(getProfile?.data);
 
   return (
     <div className="my-10 container mx-auto px-2 md:px-0">
@@ -56,7 +55,7 @@ const HostHistoryPage = () => {
               value="car"
               className="bg-white data-[state=active]:text-black  data-[state=active]:bg-[#0CFEE8]"
             >
-              Car
+              My Car
             </TabsTrigger>
             <TabsTrigger
               value="requested"
@@ -117,4 +116,4 @@ const HostHistoryPage = () => {
   );
 };
 
-export default HostHistoryPage;
+export default withRoleAuth(HostHistoryPage , "HOST");

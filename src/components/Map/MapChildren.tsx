@@ -18,7 +18,7 @@ interface LeafletMapProps {
     _id: string;
     carAddress: string;
     location: {
-      coordinates: [number, number]; // Longitude, Latitude
+      coordinates: [number, number]; 
     };
   }[];
 }
@@ -26,6 +26,8 @@ interface LeafletMapProps {
 const LeafletMap: React.FC<LeafletMapProps> = ({ height, cars }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const leafletMap = useRef<L.Map | null>(null);
+
+  console.log(cars);
 
   useEffect(() => {
     fixLeafletIcons();

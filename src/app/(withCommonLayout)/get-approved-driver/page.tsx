@@ -50,6 +50,7 @@ const GetApprovedDriverPage = () => {
       const data = {
         carId: localStorage.getItem("carId"),
         amount: localStorage.getItem("amount"),
+        tripId: localStorage.getItem("tripId"),
       };
       paymentTrip(data)
         .unwrap()
@@ -57,6 +58,7 @@ const GetApprovedDriverPage = () => {
           toast.success(payload?.message);
           localStorage.removeItem("carId");
           localStorage.removeItem("amount");
+          localStorage.removeItem("tripId");
           router.push("/my-trip");
         })
         .catch((error) => {

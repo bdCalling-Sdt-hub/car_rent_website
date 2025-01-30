@@ -1,7 +1,7 @@
 "use client"
 import img from '../../assets/logo.png';
 import Image from 'next/image';
-import { MdArrowOutward, MdCarRental, MdMenu } from 'react-icons/md';
+import { MdArrowOutward, MdCarRental, MdMenu, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import {
     Popover,
     PopoverContent,
@@ -23,7 +23,7 @@ import { imageUrl } from '@/redux/baseApi';
 const Navbar = () => {
     const [popoverOpen, setPopoverOpen] = useState(false);
     const {data : getUserInfo} = useGetProfileQuery({})
-    // console.log(getUserInfo);
+    console.log(getUserInfo?.data?.authId?.role);
 
     const closePopover = () => setPopoverOpen(false);
     return (
@@ -61,7 +61,10 @@ const Navbar = () => {
                                     <Link onClick={closePopover} href={'/host-home'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdCarRental /> Become Host</Link>
                                 </div>
                                 <div className='col-span-1'>
-
+                                    {
+                                        getUserInfo?.data?.authId?.role === "HOST" &&  <Link onClick={closePopover} href={'/host-history'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><MdOutlineAdminPanelSettings />Host History</Link>
+                                    }
+                                   
                                     <Link onClick={closePopover} href={'/my-profile'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><LuUser /> Profile</Link>
                                     <Link onClick={closePopover} href={'/login'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight />Sign in</Link>
                                     <Link onClick={closePopover} href={'/register'} className='hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer'><PiSignInLight /> Sign Up</Link>

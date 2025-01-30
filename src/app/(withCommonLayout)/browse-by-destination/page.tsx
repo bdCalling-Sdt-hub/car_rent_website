@@ -19,7 +19,7 @@ import HitRoad from "@/components/HitRoad/HitRoad";
 import MapParent from "@/components/Map/MapParent";
 import TopHostedCar from "@/components/TopHostedCar/TopHostedCar";
 import { useSearchParams } from "next/navigation";
-import { useGetBrowseByDestinationQuery, useGetTopHostedCarQuery } from "@/redux/Api/carsApi";
+import { useGetBrowseByDestinationQuery } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 
 
@@ -107,10 +107,10 @@ const BrowseByDestinationPage = () => {
     destination,
   });
 
-//   console.log("des",destination);
+  // console.log("des",destination);
 
-  const {data : topHostedCar} = useGetTopHostedCarQuery(destination);
-  console.log(topHostedCar?.data?.topHostsWithCar);
+  // const {data : topHostedCar} = useGetTopHostedCarQuery(destination);
+  // console.log(getAllCars?.data?.availableCars);
 
 
 
@@ -196,7 +196,7 @@ const BrowseByDestinationPage = () => {
       <div>
         <p className="py-5 text-2xl text-center">Rental Car in {destination}</p>
         <div className="">
-          <MapParent height={500} />
+          <MapParent height={500} cars={getAllCars?.data?.availableCars} />
         </div>
       </div>
     </div>

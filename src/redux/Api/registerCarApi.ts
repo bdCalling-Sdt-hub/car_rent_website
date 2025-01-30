@@ -89,7 +89,24 @@ const registerCarApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        getMakeYear :  builder.query({
+            query : (year)=>{
+                return {
+                    url : `/car/get-make-from-api?year=${year}`,
+                    method : 'GET'
+                }
+            }
+        }),
+        getModelYear :  builder.query({
+            query : ({year, make})=>{
+                return {
+                    url : `/car/get-model-from-api?year=${year}&make=${make}`,
+                    method : 'GET'
+                }
+            }
+        })
+
      
     })
 })
-export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation , useAddCarLocationMutation } = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation , useAddCarLocationMutation  , useGetMakeYearQuery , useGetModelYearQuery} = registerCarApi

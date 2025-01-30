@@ -54,7 +54,7 @@ const CarPhoto = () => {
   const handleUploadCarPhotos = (values: TCarInfo) => {
     // console.log(values);
     const formData = new FormData();
-    const carId = localStorage.getItem("currentCarSubmissionID") || ""
+    const carId = localStorage.getItem("carId") || ""
     formData.append("carId", carId);
     formData.append("seats", values?.seats);
     formData.append("bags", values?.bags);
@@ -74,7 +74,6 @@ const CarPhoto = () => {
       .unwrap()
       .then((payload) => {
         toast.success(payload?.message);
-        router.push('/host-history')
       })
       .catch((error) => toast.error(error?.data?.message));
   };
@@ -82,11 +81,13 @@ const CarPhoto = () => {
   //   Car register function
   const handleCarRegister = () => {
     // href={"/host-history"}
-    const getCarId = localStorage.getItem("currentCarSubmissionID")
+    const getCarId = localStorage.getItem("carId")
     registerCar(getCarId)
       .unwrap()
       .then((payload) =>{
         toast.success(payload?.message)
+        router.push('/host-history')
+        localStorage.removeItem("currentStep")
 
       })
       .catch((error) => toast.error(error?.data?.message));
@@ -174,7 +175,7 @@ const CarPhoto = () => {
 
       <div
         onClick={() => handleCarRegister()}
-        className="bg-[#0CFEE8] shadow-md py-2 rounded-md mt-10 px-10 cursor-pointer "
+        className="bg-[#0CFEE8] shadow-md py-2 rounded-md mt-5 px-16 cursor-pointer inline-block "
       >
         Send Request
       </div>
