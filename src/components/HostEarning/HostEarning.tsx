@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import Chart from "../Chart/Chart";
-import back from "../../assets/backh.png";
 import {
   useGetHostIncomeQuery,
   useGetHostTripsQuery,
@@ -15,60 +14,33 @@ const HostEarning = () => {
 
   return (
     <div className="font-lora ">
-      <div className="md:flex justify-between  gap-20 space-y-4 md:space-y-0 shadow-md">
+      <div className="md:flex justify-between  gap-16 space-y-4 md:space-y-0 ">
         <div
-          className=" w-full text-center rounded-sm text-[32px] font-medium"
-          style={{
-            backgroundImage: `url(${back.src})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            height: "330px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          className=" w-full text-center rounded-sm text-[28px] font-medium bg-black text-white py-5"
+          
         >
           <div>
             <p>Total Income</p>
-            <p>${getAllIncome?.data?.totalIncome || 0}</p>
+            <p>£ {getAllIncome?.data?.totalIncome || 0}</p>
           </div>
         </div>
 
         <div
-          className=" w-full text-center rounded-sm text-[32px] font-medium"
-          style={{
-            backgroundImage: `url(${back.src})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            height: "330px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          className=" w-full text-center rounded-sm text-[28px]  font-medium bg-black text-white py-5" 
+         
         >
           <div>
             <p>Total Monthly Income</p>
-            <p>${getAllIncome?.data?.averageMonthlyIncome || 0}</p>
+            <p>£ {getAllIncome?.data?.averageMonthlyIncome || 0}</p>
           </div>
         </div>
         <div
-          className=" w-full text-center rounded-sm text-[32px] font-medium"
-          style={{
-            backgroundImage: `url(${back.src})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            height: "330px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          className=" w-full text-center rounded-sm text-[28px]  font-medium bg-black text-white py-5"
+         
         >
           <div>
             <p>Total Yearly Income</p>
-            <p>${getAllIncome?.data?.averageYearlyIncome || 0}</p>
+            <p>£ {getAllIncome?.data?.averageYearlyIncome || 0}</p>
           </div>
         </div>
       </div>
@@ -81,7 +53,6 @@ const HostEarning = () => {
         <p className=" text-[18px] md:text-[30px]  ">Income-In-Progress</p>
 
         {getHosOngoingTrip?.data?.trips?.map((trip: any) => {
-          console.log(trip);
           return (
             <div key={trip?._id} className="grid  grid-cols-1 md:grid-cols-12 items-center gap-5 bg-[#BCBABA26] rounded-sm ">
               <div className="col-span-4">

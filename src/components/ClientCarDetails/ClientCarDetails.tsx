@@ -7,17 +7,17 @@ import { LuDoorClosed, LuFuel } from "react-icons/lu";
 import { RiShoppingBagLine } from "react-icons/ri";
 import Image from "next/image";
 import { imageUrl } from "@/redux/baseApi";
-import { CiHeart, CiStar } from "react-icons/ci";
+import { CiStar } from "react-icons/ci";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import {
-  useAddFavoriteMutation,
   useAddTripsMutation,
 } from "@/redux/Api/tripManagementApi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useGetProfileQuery } from "@/redux/Api/authApi";
 
 const formatTime = (time: string) => {
   const [hour, minute] = time?.split(":").map(Number);
@@ -59,9 +59,11 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
   const [pickupLocation, setPickupLocation] = useState("");
   // ALL API
   const [addTripInfo] = useAddTripsMutation();
-  const [addFavorite] = useAddFavoriteMutation();
+  // const [addFavorite] = useAddFavoriteMutation();
 
+  // console.log(cars?.youngDriverFee);
   const [isChecked, setIsChecked] = useState(false);
+  const [isYoung, setIsYoung] = useState(false);
   const [formData, setFormData] = useState({
     startDate: "",
     startTime: "",
@@ -88,8 +90,22 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     totalPrice = totalPrice - cars?.discountAmount;
   }
 
+  //  Cleaning fee calculation
+  if(cars?.cleaningFee){
+    totalPrice = totalPrice + cars?.cleaningFee
+  }
+
+  if(cars?.youngDriverFee && isYoung){
+    totalPrice = totalPrice + cars?.youngDriverFee
+  }
+
+
+
   const handleCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsChecked(e.target.checked);
+  };
+  const youngCheckBox = (e: CheckboxChangeEvent) => {
+    setIsYoung(e.target.checked);
   };
 
   //   Handle booking car function
@@ -129,30 +145,46 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     if (pickupLocation) {
       data.pickupLocation = pickupLocation;
     }
-    addTripInfo(data)
-      .unwrap()
-      .then((payload) => {
-        // console.log(payload);
-        toast.success(payload?.message);
-        localStorage.setItem("carId", cars?._id);
-        localStorage.setItem("amount", totalPrice);
-        localStorage.setItem("tripId", payload?.data?._id);
-        router.push("/get-approved-driver");
-      })
-      .catch((error) => {
-        toast.error(error?.data?.message);
-      });
+
+    if( getProfile?.data?.address &&
+      getProfile?.data?.phone_number &&
+      getProfile?.data?.licenseFrontImage &&
+      getProfile?.data?.licenseBackImage){
+        addTripInfo(data)
+        .unwrap()
+        .then((payload) => {
+          // console.log(payload);
+          toast.success(payload?.message);
+          localStorage.setItem("carId", cars?._id);
+          localStorage.setItem("amount", totalPrice);
+          localStorage.setItem("tripId", payload?.data?._id);
+          router.push("/get-approved-driver");
+        })
+        .catch((error) => {
+          toast.error(error?.data?.message);
+        });
+      }
+      else{
+        toast.error("Please Update Your Profile!")
+        router.push("/my-profile");
+      }
+   
   };
 
-  const handleAddFavorite = (id: string) => {
-    // console.log(id);
-    addFavorite(id)
-      .unwrap()
-      .then((payload) =>{
-        toast.success(payload?.message)
-      })
-      .catch((error) => toast.error(error?.data?.message));
-  };
+  // const handleAddFavorite = (id: string) => {
+  //   // console.log(id);
+  //   addFavorite(id)
+  //     .unwrap()
+  //     .then((payload) =>{
+  //       toast.success(payload?.message)
+  //     })
+  //     .catch((error) => toast.error(error?.data?.message));
+  // };
+
+
+  const { data: getProfile } = useGetProfileQuery(undefined);
+
+ 
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20">
@@ -222,6 +254,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
             Pick up at car location (free)
           </Checkbox>
+          
 
           {/* Pickup and Return */}
           <div className="space-y-4">
@@ -238,6 +271,10 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           </div>
 
           {/* Discount */}
+
+          <Checkbox checked={isYoung} onChange={youngCheckBox}>
+            Young Driver Fee
+          </Checkbox>
 
           {cars?.discountDays && (
             <div className="flex justify-between items-center p-2 border border-gray-300 rounded-lg bg-[#0CFEE8]">
@@ -281,6 +318,21 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
               </div>
             )}
 
+            {
+              cars?.cleaningFee &&  <div className="flex justify-between items-center">
+              <span>Cleaning Fee</span>
+              <span className="">£{cars?.cleaningFee}</span>
+            </div>
+ 
+            }
+            {
+              cars?.youngDriverFee && isYoung &&  <div className="flex justify-between items-center">
+              <span>Young Driver Fee</span>
+              <span className="">£{cars?.youngDriverFee}</span>
+            </div>
+ 
+            }
+
             <div className="flex justify-between items-center  bg-[#BCBABA26]  px-4 rounded-md py-2">
               <span className="font-bold">Total</span>
               <span className="font-bold text-lg">£ {totalPrice}</span>
@@ -306,7 +358,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           </div>
 
           {/* Add to Favorites Button */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <Button
               onClick={() => handleAddFavorite(cars?._id)}
               variant="outline"
@@ -314,7 +366,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             >
               Add to favorites <CiHeart />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

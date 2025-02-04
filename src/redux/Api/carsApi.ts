@@ -18,6 +18,7 @@ const allCars = baseApi.injectEndpoints({
         };
       },
     }),
+   
     getFilteredCar: builder.query({
       query: ({
         location,
@@ -34,7 +35,13 @@ const allCars = baseApi.injectEndpoints({
         seat,
         isElectric,
       }) => {
-        let url = `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&minPrice=${minPrice}&maxPrice=${maxPrice}&destination=${location}`;
+        let url = `/car/get-all-car?fromDate=${pickupDate}&fromTime=${pickupTime}&toDate=${returnDate}&toTime=${returnTime}&destination=${location}`;
+        if(minPrice){
+          url += `&minPrice=${minPrice}`
+        }
+        if(maxPrice){
+          url += `&maxPrice=${maxPrice}`
+        }
         if (selectedVehicle) {
           url += `&vehicleType=${selectedVehicle}`;
         }
@@ -75,7 +82,15 @@ const allCars = baseApi.injectEndpoints({
           body: data
         }
       }
-    })
+    }),
+    testApi : builder.query({
+      query : ()=>{
+        return {
+          url : '/car/get-all-car?destination=london&fromDate=03/01/2029&fromTime=3:03 am&toDate=03/07/2029&toTime=2:01 am',
+          method : 'GET'
+        }
+      }
+    }),
   }),
 });
 
@@ -84,5 +99,6 @@ export const {
   useGetTopHostedCarQuery,
   useGetFilteredCarQuery,
   useGetMakeModelYearQuery,
-  useSendFeedbackMutation
+  useSendFeedbackMutation,
+  useTestApiQuery
 } = allCars;

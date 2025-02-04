@@ -29,7 +29,7 @@ interface review {
 }
 const ClientReview = async () => {
   const response = await fetch(
-    "http://10.0.60.26:8056/review/get-all-review?sort=-rating&limit=20",
+    "http://178.128.174.197:8001/review/get-all-review?sort=-rating&limit=20",
     {
       next: {
         revalidate: 30,

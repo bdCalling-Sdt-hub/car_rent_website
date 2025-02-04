@@ -23,8 +23,8 @@ import { imageUrl } from '@/redux/baseApi';
 const Navbar = () => {
     const [popoverOpen, setPopoverOpen] = useState(false);
     const {data : getUserInfo} = useGetProfileQuery({})
-
     const closePopover = () => setPopoverOpen(false);
+    
     return (
         <div className='bg-[#F9F9F9] py-4 md:py-0'>
             <div className='container flex items-center justify-between'>

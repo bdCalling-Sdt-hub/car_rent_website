@@ -15,11 +15,11 @@ const CarDetailsPage : FC<TProductId> = async( {params})=> {
 
     const { id } = await params;
 
-    const res = await fetch(`http://10.0.60.26:8056/car/get-single-car-details?carId=${id}`)
+    const res = await fetch(`http://178.128.174.197:8001/car/get-single-car-details?carId=${id}`)
     const cars = await res.json()
 
 
-    const response = await fetch(`http://10.0.60.26:8056/review/get-all-review?carId=${id}`)
+    const response = await fetch(`http://178.128.174.197:8001/review/get-all-review?carId=${id}`)
     const rating =  await response.json()
   
     return (
@@ -32,8 +32,8 @@ const CarDetailsPage : FC<TProductId> = async( {params})=> {
                     <Image alt='img' className='w-full h-[330px] md:h-[675px]   rounded-sm' src={`${imageUrl}/${cars?.data?.car_image[0]}`} height={1200} width={1200} />
                 </div>
                 <div className='md:col-span-5 space-y-4'>
-                    <Image alt='img' className='w-full  max-h-[330px] rounded-sm'  src={`${imageUrl}/${cars?.data?.car_image[1]}`} height={300} width={300} />
-                    <Image alt='img' className='w-full   max-h-[330px] rounded-sm'  src={`${imageUrl}/${cars?.data?.car_image[2]}`} height={300} width={300} />
+                    <Image alt='img' className='w-full object-cover  max-h-[330px] rounded-sm'  src={`${imageUrl}/${cars?.data?.car_image[1]}`} height={300} width={300} />
+                    <Image alt='img' className='w-full object-cover  max-h-[330px] rounded-sm'  src={`${imageUrl}/${cars?.data?.car_image[2]}`} height={300} width={300} />
 
                 </div>
             </div>

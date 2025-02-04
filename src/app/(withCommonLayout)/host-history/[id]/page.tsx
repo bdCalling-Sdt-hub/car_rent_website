@@ -56,6 +56,9 @@ type FormValuesType = {
   discountAmount: string;
   description: string;
   selectedFeatures: string[];
+  cleaningFee : string,
+  youngDriverFee : string
+
 };
 
 const EditHostCarPage = () => {
@@ -77,10 +80,13 @@ const EditHostCarPage = () => {
     discountAmount: "",
     description: "",
     selectedFeatures: [],
+    cleaningFee: "",
+    youngDriverFee: ""
   });
 
   const params = useParams();
   const carId = params?.id || "";
+  console.log(carId);
 
   // Call hooks unconditionally
   const { data: getCarDetails, isLoading } = useGetCarDetailsQuery(carId);
@@ -92,6 +98,7 @@ const EditHostCarPage = () => {
   useEffect(() => {
     if (getCarDetails?.data) {
       const data = getCarDetails.data;
+      console.log(data);
 
       setFormValues({
         carId: data?._id,
@@ -111,6 +118,8 @@ const EditHostCarPage = () => {
         discountAmount: data.discountAmount || "",
         description: data.description || "",
         selectedFeatures: data.features || [],
+        cleaningFee : data?.cleaningFee,
+        youngDriverFee : data?.youngDriverFee
       });
     }
   }, [getCarDetails]);
@@ -302,6 +311,10 @@ const EditHostCarPage = () => {
               />
             </div>
           </div>
+        </div>
+
+        <div>
+          
         </div>
 
         <div className="md:flex items-center gap-4">

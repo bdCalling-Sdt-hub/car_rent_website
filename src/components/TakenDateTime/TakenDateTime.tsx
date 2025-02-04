@@ -18,11 +18,12 @@ import type { TimePickerProps } from "antd";
 import { TimePicker } from "antd";
 import { RiSearch2Line } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+import dayjs from "dayjs";
 
 const TakenDateTime = () => {
-    const router = useRouter()
-    // All APIs
-    // const {data :  get}
+  const router = useRouter();
+  // All APIs
+  // const {data :  get}
   const [pickupDate, setPickupDate] = React.useState<Date | undefined>(
     undefined
   );
@@ -39,7 +40,6 @@ const TakenDateTime = () => {
 
   const [location, setLocation] = React.useState("");
 
-
   const handlePickupDateSelect = (selectedDate: Date | undefined) => {
     setPickupDate(selectedDate);
     if (selectedDate) {
@@ -54,39 +54,41 @@ const TakenDateTime = () => {
     }
   };
 
-  const handlePickupTimeChange: TimePickerProps["onChange"] = (_, timeString) => {
+  const handlePickupTimeChange: TimePickerProps["onChange"] = (
+    _,
+    timeString
+  ) => {
     if (typeof timeString === "string") {
-      setPickupTime(timeString); 
+      setPickupTime(timeString);
     }
   };
 
-  const handleReturnTimeChange: TimePickerProps["onChange"] = (_, timeString) => {
+  const handleReturnTimeChange: TimePickerProps["onChange"] = (
+    _,
+    timeString
+  ) => {
     if (typeof timeString === "string") {
-      setReturnTime(timeString); 
+      setReturnTime(timeString);
     }
   };
 
-
-//   handle search params
-const handleSearchClick = ()=>{
+  //   handle search params
+  const handleSearchClick = () => {
     if (!router) {
-        console.error("Router is not available.");
-        return;
-      }
-  
-      const queryParams = new URLSearchParams({
-        location: location || "", 
-        pickupDate: pickupDate ? format(pickupDate, "MM/dd/yyyy") : "",
-        returnDate: returnDate ? format(returnDate, "MM/dd/yyyy") : "",
-        pickupTime: pickupTime || "",
-        returnTime: returnTime || "",
-      });
-    
+      console.error("Router is not available.");
+      return;
+    }
 
-      router.push(`/all-cars?${queryParams.toString()}`);
-  
+    const queryParams = new URLSearchParams({
+      location: location || "",
+      pickupDate: pickupDate ? format(pickupDate, "MM/dd/yyyy") : "",
+      returnDate: returnDate ? format(returnDate, "MM/dd/yyyy") : "",
+      pickupTime: pickupTime || "",
+      returnTime: returnTime || "",
+    });
 
-}
+    router.push(`/all-cars?${queryParams.toString()}`);
+  };
 
   return (
     <div className="py-10 hidden md:block container mx-auto font-lora">
@@ -128,11 +130,14 @@ const handleSearchClick = ()=>{
                 </div>
               </PopoverContent>
             </Popover>
+            {/* Time Picker (30-minute intervals) */}
             <TimePicker
               className="bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none"
               use12Hours
               format="h:mm a"
+              minuteStep={30} // Ensures 30-minute interval selection
               onChange={handlePickupTimeChange}
+              value={pickupTime ? dayjs(pickupTime, "h:mm A") : null}
             />
           </div>
         </div>
@@ -165,11 +170,20 @@ const handleSearchClick = ()=>{
                 </div>
               </PopoverContent>
             </Popover>
-            <TimePicker
+            {/* <TimePicker
               className="bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none"
               use12Hours
               format="h:mm a"
               onChange={handleReturnTimeChange}
+            /> */}
+             {/* Time Picker (30-minute intervals) */}
+             <TimePicker
+              className="bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none"
+              use12Hours
+              format="h:mm a"
+              minuteStep={30} // Ensures 30-minute interval selection
+              onChange={handleReturnTimeChange}
+              value={returnTime ? dayjs(returnTime, "h:mm A") : null}
             />
           </div>
         </div>

@@ -1,8 +1,8 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
-import { Form, Upload, UploadFile } from "antd";
+import { Form, Modal, Upload, UploadFile } from "antd";
 import {
   Carousel,
   CarouselContent,
@@ -17,21 +17,30 @@ import {
 } from "@/redux/Api/registerCarApi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useGetProfileQuery } from "@/redux/Api/authApi";
 
 interface TCarInfo {
-    seats : string,
-    bags :  string,
-    doors :  string,
-    fuelType : string,
-    discountDays : string,
-    discountAmount : string,
-    deliveryFee : string
+  seats: string;
+  bags: string;
+  doors: string;
+  fuelType: string;
+  discountDays: string;
+  discountAmount: string;
+  deliveryFee: string;
 }
 
 const CarPhoto = () => {
-    const router = useRouter()
+  const router = useRouter();
+  const [userRole, setUserRole] = useState("");
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [imagesFiles, setImagesFile] = useState<UploadFile[]>([]);
+  const { data: getUserInfo } = useGetProfileQuery({});
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+  console.log(userRole);
+
+  useEffect(() => {
+    setUserRole(getUserInfo?.data?.role);
+  }, [getUserInfo]);
 
   //   All APIs
   const [addCarPhotos] = useAddCarPhotosMutation();
@@ -53,8 +62,9 @@ const CarPhoto = () => {
   //   Handle upload car images and information
   const handleUploadCarPhotos = (values: TCarInfo) => {
     // console.log(values);
+
     const formData = new FormData();
-    const carId = localStorage.getItem("carId") || ""
+    const carId = localStorage.getItem("carId") || "";
     formData.append("carId", carId);
     formData.append("seats", values?.seats);
     formData.append("bags", values?.bags);
@@ -81,14 +91,24 @@ const CarPhoto = () => {
   //   Car register function
   const handleCarRegister = () => {
     // href={"/host-history"}
-    const getCarId = localStorage.getItem("carId")
+    const getCarId = localStorage.getItem("carId");
     registerCar(getCarId)
       .unwrap()
-      .then((payload) =>{
-        toast.success(payload?.message)
-        router.push('/host-history')
-        localStorage.removeItem("currentStep")
+      .then((payload) => {
+        if (userRole === "HOST") {
+          router.push("/host-history");
+          toast.success(payload?.message);
+        } else {
+          setOpenConfirmModal(true)
+          setTimeout(()=>{
+            router.push("/");
 
+          } , 2000)
+          // toast.success("Your role is change please login again!");
+          // localStorage.removeItem("_token");
+        }
+
+        localStorage.removeItem("currentStep");
       })
       .catch((error) => toast.error(error?.data?.message));
   };
@@ -179,6 +199,16 @@ const CarPhoto = () => {
       >
         Send Request
       </div>
+
+      <Modal centered footer={false} open={openConfirmModal} onCancel={()=> setOpenConfirmModal(false)} >
+        <div>
+          <h1></h1>
+          <p>
+            Your car registration request has been submitted successfully. You
+            will receive an email once the admin approves your request
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 };

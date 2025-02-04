@@ -15,6 +15,7 @@ type FieldType = {
     phone_number?:number;
     password?:string;
     confirmPassword:string;
+    age : number,
     remember?: string;
   };
 
@@ -26,6 +27,7 @@ const RegisterPage = () => {
       ...data,
       role: "USER",
     };
+
 
 
     userRegistration(value)
@@ -76,6 +78,12 @@ const RegisterPage = () => {
           <Form.Item label="Confirm Password" name={"confirmPassword"}>
             <Input.Password
               placeholder="Enter Confirm Password"
+              className="p-2"
+            />
+          </Form.Item>
+          <Form.Item label="Age" name={"age"}>
+            <Input.Password
+              placeholder="Enter Your Age"
               className="p-2"
             />
           </Form.Item>

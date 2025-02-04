@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 import {
   useGetFilteredCarQuery,
   useGetMakeModelYearQuery,
+  useTestApiQuery,
 } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 import {
@@ -60,6 +61,12 @@ const AllCarsPage = () => {
     seat,
     isElectric,
   });
+
+  const {data :  test} = useTestApiQuery({})
+  console.log("data",test);
+
+  console.log(getAllCarLocation);
+
   // console.log(selectedModel);
   // Get make model year api integrate
   const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
@@ -98,6 +105,16 @@ const AllCarsPage = () => {
     setSeat(value);
   };
   // console.log(seat);
+
+  const resetFilters =()=>{
+    setMaxPrice("")
+    setMinPrice("")
+    setSelectedVehicle("")
+    setSelectedModel("")
+    setSelectedMake("");
+    setSelectedYear("");
+    setSeat("");
+  }
   return (
     <div className="my-10 font-lora px-5 mx-2 md:px-0">
       {/* <FilterBar /> */}
@@ -178,7 +195,7 @@ const AllCarsPage = () => {
         </Select>
         {/* Model */}
         <Select onValueChange={handleModelChange}>
-          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+          <SelectTrigger className="px-4 py-2 border rounded-md text-left z-30">
             {selectedModel || "Select Model"}
           </SelectTrigger>
           <SelectContent>
@@ -215,11 +232,11 @@ const AllCarsPage = () => {
         {/* All Filters Button */}
         <Button
           className="flex items-center bg-gray-200 hover:bg-gray-200 text-gray-800"
-          // onClick={resetFilters}
+          onClick={()=>resetFilters()}
         >
           <span className="text-sm">
             {/* All Filters ({Object.values(filters).filter((val) => val).length}) */}
-            All Filters
+            Reset All Filters
           </span>
         </Button>
       </div>
@@ -249,20 +266,20 @@ const AllCarsPage = () => {
                   key={car?._id}
                   href={`/browse-by-destination/${car?._id}`}
                 >
-                  <div className="md:flex md:h-full items-center gap-4 border rounded-md shadow-sm p-3">
+                  <div className="md:flex max-h-[300px] h-full items-center gap-4 border rounded-md shadow-sm p-3">
                     <Image
                       alt="img"
                       height={200}
                       width={300}
-                      className="w-full md:w-[50%]  rounded-sm h-[100%]"
+                      className="w-full md:w-[50%] object-cover  rounded-sm h-[100%]"
                       src={`${imageUrl}/${car?.car_image[0]}`}
                     />
                     <div className="space-y-4 p-2 md:p-0">
-                      <p className="md:text-18px capitalize">
+                      <p className="md:text-18px capitalize inline-block">
                         {car?.make} {car?.model} {car?.year}
                       </p>
-                      <p className=" flex-col md:flex items-center gap-5 mt-2">
-                        <span className="bg-[#DFDEDE] px-4 py-1 rounded-full ">
+                      <p className=" flex-col md:flex   gap-5 mt-2">
+                        <span className="bg-[#DFDEDE] px-4 py-1 rounded-full w-[100px] text-center ">
                           {car?.carType}
                         </span>{" "}
                         <span className="flex items-center gap-1 text-[#0CFEE8]">
@@ -284,7 +301,7 @@ const AllCarsPage = () => {
             })}
           </div>
         </div>
-        <div className="-z-10 mt-20 ">
+        <div className=" mt-20 z-10 ">
           <MapParent
             height={920}
             cars={getAllCarLocation?.data?.availableCars}

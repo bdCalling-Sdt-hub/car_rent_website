@@ -13,7 +13,9 @@ import { toast } from "sonner";
 interface TLicense {
     pricePerDay : string,
     maxTravelDistancePerDay : string,
-    finePerKm : string
+    finePerKm : string,
+    youngDriverFee : string,
+    cleaningFee : string
 }
 
 const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
@@ -44,6 +46,8 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
     formData.append("pricePerDay", values?.pricePerDay);
     formData.append("maxTravelDistancePerDay", values?.maxTravelDistancePerDay);
     formData.append("finePerKm", values?.finePerKm);
+    // formData.append("youngDriverFee", values?.youngDriverFee);
+    // formData.append("cleaningFee", values?.cleaningFee);
 
     if (fileList.length > 0) {
       const file = fileList[0].originFileObj;
@@ -90,6 +94,22 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             <Input placeholder="Type here..." />
           </Form.Item>
         </div>
+        {/* <div className="flex gap-5 items-center">
+          <Form.Item
+            label={"Young Driver Fee"}
+            name={"youngDriverFee"}
+            className="w-full"
+          >
+            <Input placeholder="Type here..." />
+          </Form.Item>
+          <Form.Item
+            label={"Cleaning Fee"}
+            name={"cleaningFee"}
+            className="w-full"
+          >
+            <Input placeholder="Type here..." />
+          </Form.Item>
+        </div> */}
         <Form.Item
           label={"Per kilometer charge after crossing maximum distance"}
           className="w-full"

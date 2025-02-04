@@ -48,7 +48,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (!id) return;
 
-    const socketConnection = io(`http://10.0.60.26:8056`, {
+    const socketConnection = io(`http://178.128.174.197:8001`, {
       query: {
         userId: id,
       },

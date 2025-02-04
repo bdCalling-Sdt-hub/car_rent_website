@@ -1,7 +1,7 @@
 // src/Redux/baseApi.ts
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = "http://10.0.60.26:8056";
+const baseUrl = "http://178.128.174.197:8001";
 // Helper function to get the token
 const getToken = () => {
   if (typeof window === "undefined") {
@@ -60,4 +60,4 @@ export const fetchServerData = async (endpoint: string) => {
 export default baseApi;
 
 
-export const imageUrl = "http://10.0.60.26:8056";
+export const imageUrl = "http://178.128.174.197:8001";

@@ -104,9 +104,26 @@ const registerCarApi = baseApi.injectEndpoints({
                     method : 'GET'
                 }
             }
+        }),
+        createPaymentInfo : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/payment/update-host-payment-details',
+                    method : 'POST',
+                    body : data,
+                }
+            }
+        }),
+        getPaymentInfo : builder.query({
+            query : ()=>{
+                return  {
+                    url : '/payment/get-payout-info',
+                    method : "GET"
+                }
+            }
         })
 
      
     })
 })
-export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation , useAddCarLocationMutation  , useGetMakeYearQuery , useGetModelYearQuery} = registerCarApi
+export const { useGetCityQuery , useAddLicensePlateMutation , useGetCarYearQuery , useAddMakeModelYearMutation , useAddCarTransmissionMutation , useAddHostLicenseMutation , useAddCarDetailsMutation , useAddCarPhotosMutation , useSendCarRequestMutation , useAddCarLocationMutation  , useGetMakeYearQuery , useGetModelYearQuery , useCreatePaymentInfoMutation , useGetPaymentInfoQuery} = registerCarApi

@@ -20,7 +20,7 @@ interface Destination {
 const DestinationCaurosel = async () => {
 
   const res = await fetch(
-    "http://10.0.60.26:8056/dashboard/get-all-destination",
+    "http://178.128.174.197:8001/dashboard/get-all-destination",
     {
       next: {
         revalidate: 30,

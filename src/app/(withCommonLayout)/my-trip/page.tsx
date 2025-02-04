@@ -3,7 +3,6 @@ import HeadingTitle from "@/components/shared/HeadingTitle";
 import React, { useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import img from "../../../assets/car.jpg";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import Link from "next/link";

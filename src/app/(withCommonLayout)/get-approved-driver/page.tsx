@@ -1,9 +1,9 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import background from "../../../assets/back.jpg";
 import { useGetProfileQuery } from "@/redux/Api/authApi";
-import { Form, Modal } from "antd";
+import { Form } from "antd";
 import Image from "next/image";
 import { imageUrl } from "@/redux/baseApi";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { usePaymentTripMutation } from "@/redux/Api/tripManagementApi";
 import { toast } from "sonner";
 
 const GetApprovedDriverPage = () => {
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
   // const [paymentLink, setPaymentLink] = useState("")
   const router = useRouter();
   const [form] = Form.useForm();

@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import DriverLicense from "../DriverLicense/DriverLicense";
 import CarDetails from "../CarDetails/CarDetails";
+import AddPaymentInfo from "../AddPaymentInfo/AddPaymentInfo";
 import CarPhoto from "../CarPhoto/CarPhoto";
 import ViewStep from "../ViewStep/ViewStep";
 import {
@@ -26,12 +27,13 @@ import {
   useGetCityQuery,
   useGetMakeYearQuery,
   useGetModelYearQuery,
+  useGetPaymentInfoQuery,
 } from "@/redux/Api/registerCarApi";
 import { location, Step2Props } from "@/type";
 import { toast } from "sonner";
 
-const TotalSteps = 7;
 
+const TotalSteps = 8;
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState<number>(() => {
     if (typeof window !== "undefined") {
@@ -92,12 +94,15 @@ const MultiStepForm = () => {
           <Step4 handleNext={handleNext} currentStep={currentStep} />
         )}
         {currentStep === 5 && (
-          <DriverLicense handleNext={handleNext} currentStep={currentStep} />
+          <AddPaymentInfo handleNext={handleNext} currentStep={currentStep} />
         )}
         {currentStep === 6 && (
+          <DriverLicense handleNext={handleNext} currentStep={currentStep} />
+        )}
+        {currentStep === 7 && (
           <CarDetails handleNext={handleNext} currentStep={currentStep} />
         )}
-        {currentStep === 7 && <CarPhoto />}
+        {currentStep === 8 && <CarPhoto />}
       </div>
     </div>
   );
@@ -441,13 +446,24 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 };
 
 const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
+
+
   const [addCarTransmission] = useAddCarTransmissionMutation();
+  const [stripeAccount , setStripeAccount] = useState("")
+  const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
   const [formValues, setFormValues] = useState({
     transmission: "automatic",
     isElectric: "yes",
     carType: "luxury",
     vehicleType: "car",
   });
+
+
+  useEffect(()=>{
+    setStripeAccount(getPaymentInfo?.data?.stripe_account_id)
+  },[getPaymentInfo])
+
+
 
   const handleChange = (field: string, value: string) => {
     setFormValues((prevValues) => ({
@@ -465,6 +481,9 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
       .then((payload) => {
         toast.success(payload?.message);
         handleNext();
+        if (stripeAccount) {
+          handleNext();
+        }
       })
       .catch((error) => toast.error(error?.data?.message));
   };

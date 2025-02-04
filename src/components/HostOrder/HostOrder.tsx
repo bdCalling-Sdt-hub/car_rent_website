@@ -13,7 +13,7 @@ const HostOrder = () => {
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("requested");
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
-  console.log(getHosOngoingTrip?.data);
+  console.log(getHosOngoingTrip?.data?.trips);
 
   //   Handle accept car request
   const handleAcceptCarRequest = (value: any) => {
@@ -46,6 +46,9 @@ const HostOrder = () => {
   return (
     <div className="font-lora">
       <p className="pb-5">Request order </p>
+      {
+        getHosOngoingTrip?.data?.trips.length === 0 && <p className=" text-center text-xl">No Car Request</p>
+       }
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
         return (
           <div
