@@ -63,7 +63,6 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
 
   // console.log(cars?.youngDriverFee);
   const [isChecked, setIsChecked] = useState(false);
-  const [isYoung, setIsYoung] = useState(false);
   const [formData, setFormData] = useState({
     startDate: "",
     startTime: "",
@@ -95,18 +94,14 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     totalPrice = totalPrice + cars?.cleaningFee
   }
 
-  if(cars?.youngDriverFee && isYoung){
-    totalPrice = totalPrice + cars?.youngDriverFee
-  }
+
 
 
 
   const handleCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsChecked(e.target.checked);
   };
-  const youngCheckBox = (e: CheckboxChangeEvent) => {
-    setIsYoung(e.target.checked);
-  };
+
 
   //   Handle booking car function
   const handleBookCar = () => {
@@ -272,9 +267,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
 
           {/* Discount */}
 
-          <Checkbox checked={isYoung} onChange={youngCheckBox}>
-            Young Driver Fee
-          </Checkbox>
+        
 
           {cars?.discountDays && (
             <div className="flex justify-between items-center p-2 border border-gray-300 rounded-lg bg-[#0CFEE8]">
@@ -325,13 +318,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             </div>
  
             }
-            {
-              cars?.youngDriverFee && isYoung &&  <div className="flex justify-between items-center">
-              <span>Young Driver Fee</span>
-              <span className="">£{cars?.youngDriverFee}</span>
-            </div>
- 
-            }
+           
 
             <div className="flex justify-between items-center  bg-[#BCBABA26]  px-4 rounded-md py-2">
               <span className="font-bold">Total</span>

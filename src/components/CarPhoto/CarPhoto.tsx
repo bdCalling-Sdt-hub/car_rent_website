@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
-import { Form, Modal, Upload, UploadFile } from "antd";
+import { Form, Modal, Spin, Upload, UploadFile } from "antd";
 import {
   Carousel,
   CarouselContent,
@@ -29,6 +29,10 @@ interface TCarInfo {
   deliveryFee: string;
 }
 
+import { LoadingOutlined } from "@ant-design/icons";
+
+const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+
 const CarPhoto = () => {
   const router = useRouter();
   const [userRole, setUserRole] = useState("");
@@ -36,15 +40,14 @@ const CarPhoto = () => {
   const [imagesFiles, setImagesFile] = useState<UploadFile[]>([]);
   const { data: getUserInfo } = useGetProfileQuery({});
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  console.log(userRole);
 
   useEffect(() => {
     setUserRole(getUserInfo?.data?.role);
   }, [getUserInfo]);
 
   //   All APIs
-  const [addCarPhotos] = useAddCarPhotosMutation();
-  const [registerCar] = useSendCarRequestMutation();
+  const [addCarPhotos , {isLoading}] = useAddCarPhotosMutation();
+  const [registerCar , {isLoading : registerLoad}] = useSendCarRequestMutation();
 
   //   Image file upload function
   const handleImageSelection = ({ fileList }: { fileList: UploadFile[] }) => {
@@ -103,7 +106,7 @@ const CarPhoto = () => {
           setTimeout(()=>{
             router.push("/");
 
-          } , 2000)
+          } , 3000)
           // toast.success("Your role is change please login again!");
           // localStorage.removeItem("_token");
         }
@@ -189,7 +192,7 @@ const CarPhoto = () => {
           <Input placeholder="type here" />
         </Form.Item>
         <button className="bg-[#0CFEE8] py-2 rounded-md  px-10 shadow-md">
-          Upload Car Information
+        {isLoading ?  <Spin indicator={customSpinner} className="px-[65px] w-full" /> : "Upload Car Information"}
         </button>
       </Form>
 
@@ -197,13 +200,13 @@ const CarPhoto = () => {
         onClick={() => handleCarRegister()}
         className="bg-[#0CFEE8] shadow-md py-2 rounded-md mt-5 px-16 cursor-pointer inline-block "
       >
-        Send Request
+        {registerLoad ?  <Spin indicator={customSpinner} className="px-[19px] w-full" /> : "Send Request"}
       </div>
 
       <Modal centered footer={false} open={openConfirmModal} onCancel={()=> setOpenConfirmModal(false)} >
         <div>
-          <h1></h1>
-          <p>
+          <h1 className="text-center mt-2 text-2xl text-[#0CFEE8] font-semibold">Congratulation!!</h1>
+          <p className="text-center mt-2">
             Your car registration request has been submitted successfully. You
             will receive an email once the admin approves your request
           </p>

@@ -2,13 +2,17 @@
 import React, { useState } from "react";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
-import { Form, Upload } from "antd";
+import { Form, Spin, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadChangeParam } from "antd/es/upload/interface";
 import { Step2Props } from "@/type";
 import { Button } from "../ui/button";
 import { useAddHostLicenseMutation } from "@/redux/Api/registerCarApi";
 import { toast } from "sonner";
+
+import { LoadingOutlined } from "@ant-design/icons";
+
+const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
 
 interface TLicense {
     pricePerDay : string,
@@ -23,7 +27,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
   const [backFileList, setBackFileList] = useState<UploadFile[]>([]);
 
   //  Update driving license api
-  const [updateDrivingLicense] = useAddHostLicenseMutation();
+  const [updateDrivingLicense , {isLoading}] = useAddHostLicenseMutation();
 
   //   License front image upload
   const handleUploadChange = ({
@@ -170,10 +174,9 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
         </div>
         <Button
           className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
-          //   onClick={handleContinue}
-          //   disabled={currentStep === TotalSteps}
+         
         >
-          Continue
+          {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
         </Button>
       </Form>
 

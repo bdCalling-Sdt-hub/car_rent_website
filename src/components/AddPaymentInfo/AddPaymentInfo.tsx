@@ -1,13 +1,17 @@
 "use client";
 import { Step2Props } from "@/type";
-import { Button, DatePicker, Form, Input } from "antd";
+import { DatePicker, Form, Input, Spin } from "antd";
 import HeadingTitle from "../shared/HeadingTitle";
 import { useCreatePaymentInfoMutation } from "@/redux/Api/registerCarApi";
 import { toast } from "sonner";
 
+import { LoadingOutlined } from "@ant-design/icons";
+
+const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+
 const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
   const [form] = Form.useForm();
-  const [addPaymentDetails] = useCreatePaymentInfoMutation()
+  const [addPaymentDetails , {isLoading}] = useCreatePaymentInfoMutation()
 
   const handlePaymentInfo = (values: Record<string, any>) => {
 
@@ -101,12 +105,12 @@ const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
             </Form.Item>
           </div>
 
-          <Button
-            htmlType="submit"
-            className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
+          <button
+            // htmlType="submit"
+            className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5 py-2 rounded-sm"
           >
-            Continue
-          </Button>
+            {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
+          </button>
         </Form>
       </div>
     </div>

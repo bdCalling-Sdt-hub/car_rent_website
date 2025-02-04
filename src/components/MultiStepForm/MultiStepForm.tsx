@@ -31,6 +31,10 @@ import {
 } from "@/redux/Api/registerCarApi";
 import { location, Step2Props } from "@/type";
 import { toast } from "sonner";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
+const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
 
 
 const TotalSteps = 8;
@@ -332,7 +336,7 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 
 
 const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
-  const [addMakeModelYear] = useAddMakeModelYearMutation();
+  const [addMakeModelYear , {isLoading}] = useAddMakeModelYearMutation();
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState(currentYear.toString());
   const [selectedMake, setSelectedMake] = useState<string>();
@@ -438,7 +442,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
           onClick={handleContinue}
           disabled={currentStep === TotalSteps}
         >
-          Continue
+          {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
         </Button>
       </div>
     </div>
@@ -448,7 +452,7 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 
 
-  const [addCarTransmission] = useAddCarTransmissionMutation();
+  const [addCarTransmission , {isLoading}] = useAddCarTransmissionMutation();
   const [stripeAccount , setStripeAccount] = useState("")
   const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
   const [formValues, setFormValues] = useState({
@@ -580,7 +584,7 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         onClick={handleContinue}
         disabled={currentStep === TotalSteps}
       >
-        Continue
+        {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
       </Button>
     </div>
   );

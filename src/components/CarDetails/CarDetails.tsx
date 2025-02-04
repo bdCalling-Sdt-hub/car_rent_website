@@ -30,12 +30,20 @@ const features = [
   "Toll pass",
   "Wheelchair accessible",
 ];
+
+
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
+
+const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+
+
 const CarDetails: React.FC<Step2Props> = ({ handleNext }) => {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [description, setDescription] = useState("");
 
   // Car details apis
-  const [addCarDetails] = useAddCarDetailsMutation();
+  const [addCarDetails , {isLoading}] = useAddCarDetailsMutation();
 
   // Checkbox all data function
   const handleCheckboxChange = (feature: string) => {
@@ -102,7 +110,7 @@ const CarDetails: React.FC<Step2Props> = ({ handleNext }) => {
           onClick={handleContinue}
           //   disabled={currentStep === TotalSteps}
         >
-          Continue
+          {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
         </Button>
       </div>
     </div>

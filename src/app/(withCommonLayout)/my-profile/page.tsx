@@ -120,6 +120,8 @@ const MyProfilePage = () => {
     setSelectedTab(value);
   };
 
+  console.log(getProfile?.data?.licenseFrontImage );
+
   return (
     <div className="container mx-auto px-2 md:px-0">
       <div className="my-10">
