@@ -32,7 +32,7 @@ const OngoingOrder = () => {
 
   return (
     <div className="font-lora">
-      <p className="pb-5">Request order </p>
+      <p className="pb-5">Ongoing order </p>
       {getHosOngoingTrip?.data?.trips?.map((order: any) => {
         console.log(order?.car?.car_image); 
         return (
