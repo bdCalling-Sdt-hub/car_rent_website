@@ -34,7 +34,7 @@ const withRoleAuth = (WrappedComponent: any, allowedRole: any) => {
     }, [decoded, router]);
 
     if (!decoded) {
-      return null; // Prevent rendering until we have the token
+      return null; 
     }
 
     return <WrappedComponent {...props} />;

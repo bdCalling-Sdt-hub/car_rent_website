@@ -160,7 +160,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
         });
       }
       else{
-        toast.error("Please Update Your Profile!")
+        // toast.error("Please Update Your Profile!")
         router.push("/my-profile");
       }
    

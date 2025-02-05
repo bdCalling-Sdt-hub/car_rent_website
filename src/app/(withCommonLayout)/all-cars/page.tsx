@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Slider } from "antd";
+import TakenDateTime from "@/components/TakenDateTime/TakenDateTime";
 
 const AllCarsPage = () => {
   // Retrieve query parameters
@@ -108,6 +109,8 @@ const AllCarsPage = () => {
   return (
     <div className="my-10 font-lora px-5 mx-2 md:px-0">
       {/* <FilterBar /> */}
+
+      <div><TakenDateTime/></div>
 
       <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2 w-full my-2">
         {/* Daily Price */}

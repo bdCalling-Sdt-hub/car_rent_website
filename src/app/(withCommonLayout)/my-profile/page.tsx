@@ -48,14 +48,12 @@ const MyProfilePage = () => {
   );
   const [licenseBackImage, setLicenseBackImage] = useState<RcFile | null>(null);
 
-
   // ----ALL API -----//
   const {
     data: getProfile,
     isLoading,
     isError,
   } = useGetProfileQuery(undefined);
-
 
   const [updatePassword] = useChangePasswordMutation();
   const [updateProfile] = useUpdateProfileMutation();
@@ -68,7 +66,8 @@ const MyProfilePage = () => {
     );
   }
   if (isError) {
-    return <div>Error loading profile</div>;
+      toast.success("You don't have account please login first!!")
+      router.push("/login")
   }
 
   //------ Handle password update function ------------//
@@ -118,7 +117,6 @@ const MyProfilePage = () => {
   const handleTabChange = (value: string) => {
     setSelectedTab(value);
   };
-
 
   return (
     <div className="container mx-auto px-2 md:px-0">
@@ -223,61 +221,64 @@ const MyProfilePage = () => {
                 <Form.Item label="Address" name={"address"}>
                   <Input placeholder="68/Joker vita, gotham city" />
                 </Form.Item>
-                {getProfile?.data?.licenseFrontImage &&
-               
+                {getProfile?.data?.licenseFrontImage && (
                   <div className="flex h-[200px] gap-5 w-full">
                     <Image
-                      height={100} width={100} alt="Front Image"
+                      height={100}
+                      width={100}
+                      alt="Front Image"
                       src={`${imageUrl}/${getProfile?.data?.licenseFrontImage}`}
                       className="w-[50%] border-2 rounded-sm p-1 border-[#0CFEE8]"
                     />
-                    <Image 
-                      height={100} width={100} alt="Front Image"
+                    <Image
+                      height={100}
+                      width={100}
+                      alt="Front Image"
                       src={`${imageUrl}/${getProfile?.data?.licenseBackImage}`}
                       className="w-[50%]  border-2 rounded-sm p-1 border-[#0CFEE8]"
                     />
                   </div>
-                }
-                  <div className="flex justify-between mt-5">
-                    <Form.Item
-                      label="Front License"
+                )}
+                <div className="flex justify-between mt-5">
+                  <Form.Item
+                    label="Front License"
+                    name="licenseFrontImage"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                  >
+                    <Upload
                       name="licenseFrontImage"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
+                      beforeUpload={(file: RcFile) => {
+                        setLicenseFrontImage(file);
+                        return false;
+                      }}
+                      listType="picture"
                     >
-                      <Upload
-                        name="licenseFrontImage"
-                        beforeUpload={(file: RcFile) => {
-                          setLicenseFrontImage(file);
-                          return false;
-                        }}
-                        listType="picture"
-                      >
-                        <Button icon={<UploadOutlined />}>
-                          Upload Front License
-                        </Button>
-                      </Upload>
-                    </Form.Item>
-                    <Form.Item
-                      label="Back License"
+                      <Button icon={<UploadOutlined />}>
+                        Upload Front License
+                      </Button>
+                    </Upload>
+                  </Form.Item>
+                  <Form.Item
+                    label="Back License"
+                    name="licenseBackImage"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                  >
+                    <Upload
                       name="licenseBackImage"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
+                      beforeUpload={(file: RcFile) => {
+                        setLicenseBackImage(file);
+                        return false; // Prevent automatic upload
+                      }}
+                      listType="picture"
                     >
-                      <Upload
-                        name="licenseBackImage"
-                        beforeUpload={(file: RcFile) => {
-                          setLicenseBackImage(file);
-                          return false; // Prevent automatic upload
-                        }}
-                        listType="picture"
-                      >
-                        <Button icon={<UploadOutlined />}>
-                          Upload Back License
-                        </Button>
-                      </Upload>
-                    </Form.Item>
-                  </div>
+                      <Button icon={<UploadOutlined />}>
+                        Upload Back License
+                      </Button>
+                    </Upload>
+                  </Form.Item>
+                </div>
 
                 <Form.Item className=" text-center">
                   <button className="bg-black  text-white px-4 py-2 rounded-sm mt-10">

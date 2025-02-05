@@ -20,22 +20,37 @@ import { RiSearch2Line } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 
+
+
+const getRoundedTime = () => {
+  const now = dayjs();
+  const minutes = now.minute();
+  const roundedMinutes = Math.ceil(minutes / 30) * 30; 
+  return now.minute(roundedMinutes).second(0);
+};
+
+const today = new Date();
+const initialTime = getRoundedTime();
+
+
+
+
 const TakenDateTime = () => {
   const router = useRouter();
   // All APIs
   // const {data :  get}
   const [pickupDate, setPickupDate] = React.useState<Date | undefined>(
-    undefined
+    today
   );
   const [returnDate, setReturnDate] = React.useState<Date | undefined>(
-    undefined
+    today
   );
 
   const [pickupTime, setPickupTime] = React.useState<string | undefined>(
-    undefined
+    initialTime.format("h:mm A")
   );
   const [returnTime, setReturnTime] = React.useState<string | undefined>(
-    undefined
+    initialTime.format("h:mm A")
   );
 
   const [location, setLocation] = React.useState("");
@@ -130,6 +145,8 @@ const TakenDateTime = () => {
                 </div>
               </PopoverContent>
             </Popover>
+
+
             {/* Time Picker (30-minute intervals) */}
             <TimePicker
               className="bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none"

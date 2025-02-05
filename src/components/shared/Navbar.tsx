@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/popover";
 import { CiUser } from "react-icons/ci";
 import { GoGitMerge } from "react-icons/go";
-import { GrHistory } from "react-icons/gr";
 import { RiHomeLine } from "react-icons/ri";
 import {
   IoIosInformationCircleOutline,
@@ -92,20 +91,22 @@ const Navbar = () => {
             <PopoverContent>
               <div className="font-lora grid grid-cols-1 md:grid-cols-2">
                 <div className="col-span-1">
-                  <Link
+                  { getUserInfo?.data?.authId?.role &&
+                    <Link
                     href="/my-trip"
                     onClick={closePopover}
                     className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
                   >
                     <GoGitMerge /> Trips
                   </Link>
-                  <Link
+                  }
+                  {/* <Link
                     onClick={closePopover}
                     href={"/my-favorite-cars"}
                     className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
                   >
                     <GrHistory /> History
-                  </Link>
+                  </Link> */}
                   <Link
                     onClick={closePopover}
                     href={"/"}
@@ -147,13 +148,17 @@ const Navbar = () => {
                     </Link>
                   )}
 
-                  <Link
+                  {
+                    getUserInfo?.data?.authId?.role && <Link
                     onClick={closePopover}
                     href={"/my-profile"}
                     className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
                   >
                     <LuUser /> Profile
                   </Link>
+                  }
+
+                  
 
                   {!getUserInfo?.data?.authId?.role && (
                     <>
@@ -174,13 +179,16 @@ const Navbar = () => {
                       </Link>
                     </>
                   )}
-                  <button
-                  onClick={()=> handleLogOut()}
-                  className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer w-full"
-                  >
-                    <IoLogOutOutline />
-                    Logout
-                  </button>
+                  {
+                    getUserInfo?.data?.authId?.role &&  <button
+                    onClick={()=> handleLogOut()}
+                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer w-full"
+                    >
+                      <IoLogOutOutline />
+                      Logout
+                    </button>
+                  }
+                 
 
                   <Link
                     onClick={closePopover}
