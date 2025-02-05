@@ -16,7 +16,6 @@ import { useGetTopHostedCarQuery } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 const TopHostedCar = () => {
   const { data: getTopHost } = useGetTopHostedCarQuery("london");
-    console.log(getTopHost?.data?.topHostsInDestination);
 
   return (
     <div className="md:my-20 my-10">

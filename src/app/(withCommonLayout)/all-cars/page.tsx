@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 import {
   useGetFilteredCarQuery,
   useGetMakeModelYearQuery,
-  useTestApiQuery,
 } from "@/redux/Api/carsApi";
 import { imageUrl } from "@/redux/baseApi";
 import {
@@ -34,7 +33,6 @@ const AllCarsPage = () => {
   const [selectedModel, setSelectedModel] = useState<string>("");
   const [seat, setSeat] = useState<string>("");
   const [isElectric, setIsElectric] = useState(false);
-  // console.log(isElectric);
 
   const location = searchParams.get("location");
   const pickupDate = searchParams.get("pickupDate");
@@ -43,7 +41,6 @@ const AllCarsPage = () => {
   const returnTime = searchParams.get("returnTime");
 
   // Debugging: Log the parameters
-  // console.log({ location, pickupDate, returnDate, pickupTime, returnTime });
 
   //---------------ALl APIs-----------//
   const { data: getAllCarLocation } = useGetFilteredCarQuery({
@@ -62,23 +59,17 @@ const AllCarsPage = () => {
     isElectric,
   });
 
-  const {data :  test} = useTestApiQuery({})
-  console.log("data",test);
 
-  console.log(getAllCarLocation);
 
-  // console.log(selectedModel);
   // Get make model year api integrate
   const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
 
   const handleSelectChange = (value: string) => {
-    // console.log(value);
     setSelectedVehicle(value);
   };
   const makeArray = getMakeModelYear?.data[0]?.make || [];
   const makeYearArray = getMakeModelYear?.data[0]?.year || [];
   const makeModelArray = getMakeModelYear?.data[0]?.model || [];
-  // console.log(makeModelArray);
 
   // Price range slider function
   const handleSliderChange = (value: any) => {
@@ -104,7 +95,6 @@ const AllCarsPage = () => {
   const handleSeatChange = (value: string) => {
     setSeat(value);
   };
-  // console.log(seat);
 
   const resetFilters =()=>{
     setMaxPrice("")

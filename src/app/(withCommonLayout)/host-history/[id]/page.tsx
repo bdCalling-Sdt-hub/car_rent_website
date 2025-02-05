@@ -86,19 +86,15 @@ const EditHostCarPage = () => {
 
   const params = useParams();
   const carId = params?.id || "";
-  console.log(carId);
 
   // Call hooks unconditionally
   const { data: getCarDetails, isLoading } = useGetCarDetailsQuery(carId);
   const [updateCarDetails] = useUpdateCarDetailsMutation();
-  console.log(carId);
-  console.log(getCarDetails);
 
   // Update form values when car details are fetched
   useEffect(() => {
     if (getCarDetails?.data) {
       const data = getCarDetails.data;
-      console.log(data);
 
       setFormValues({
         carId: data?._id,

@@ -29,7 +29,6 @@ const MyTripPage = () => {
   const [updateCarStatus] = useAcceptCarRentRequestMutation();
 
   const { data: getMyTrips } = useGetMyTripsQuery(trip);
-  console.log(getMyTrips?.data?.trips);
 
   const handleValueChange = (value: string) => {
     const data = {

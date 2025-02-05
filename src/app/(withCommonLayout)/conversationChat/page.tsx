@@ -99,7 +99,6 @@ const [senderDetails, setSenderDetails] = useState<TReceiverDetails | null>(null
         <div className="w-full mt-5  bg-white  rounded-lg overflow-hidden flex flex-col justify-between p-4">
           <div className="flex flex-col space-y-4 overflow-auto h-[600px] p-4">
             {messages?.map((msg: any) => {
-              // console.log(msg);
               return (
                 <div key={msg?._id}>
                   {msg?.sender !== senderId && (

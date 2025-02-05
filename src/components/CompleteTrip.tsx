@@ -31,7 +31,6 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
       rating: rating,
       review: value?.review,
     };
-    console.log(data);
 
     sendRating(data)
       .unwrap()
@@ -45,7 +44,6 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
     <div>
       <div className=" ">
         {trip?.map((car: any) => {
-          console.log(car);
           return (
             <div
               key={car?._id}

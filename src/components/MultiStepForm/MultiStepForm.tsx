@@ -186,7 +186,6 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         );
         const text = await response.text();
         const json = JSON.parse(text.replace(/^\?\(/, "").replace(/\);$/, ""));
-        console.log(json?.result?.geometry);
 
         setLatLng(json?.result?.geometry?.location);
       } catch (error) {

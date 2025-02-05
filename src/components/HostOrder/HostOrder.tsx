@@ -13,7 +13,6 @@ const HostOrder = () => {
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("requested");
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
-  console.log(getHosOngoingTrip?.data?.trips);
 
   //   Handle accept car request
   const handleAcceptCarRequest = (value: any) => {

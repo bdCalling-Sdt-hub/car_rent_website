@@ -27,7 +27,6 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ height, cars }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const leafletMap = useRef<L.Map | null>(null);
 
-  console.log(cars);
 
   useEffect(() => {
     fixLeafletIcons();

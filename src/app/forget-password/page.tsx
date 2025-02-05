@@ -1,18 +1,22 @@
 "use client";
 import React from "react";
 import { Form, Input } from "antd";
-import Link from "next/link";
-// import { useForgetPasswordMutation } from "@/redux/Api/authApi";
+import { useForgetPasswordMutation } from "@/redux/Api/authApi";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const forgetPasswordPage = () => {
-  // const [sendOtpCode] = useForgetPasswordMutation()
+const ForgetPasswordPage = () => {
+  const [sendOtpCode] = useForgetPasswordMutation()
+  const navigate = useRouter() 
 
-  const handleLogin = (values: string) => {
-
-    console.log(values);
-    // sendOtpCode(values).unwrap()
-    // .then((payload) => console.log('fulfilled', payload))
-    // .catch((error) => console.error('rejected', error));
+  const handleLogin = (values:{ email :  string}) => {
+    sendOtpCode(values).unwrap()
+    .then((payload) =>{
+      toast.success(payload?.message)
+      localStorage.setItem("forgetPass", values?.email)
+      navigate.push('/forget-password/otp')
+    })
+    .catch((error) => toast.error(error?.data?.message));
   };
   return (
     <div className="px-10 flex items-center justify-center gap-20 min-h-screen">
@@ -29,9 +33,9 @@ const forgetPasswordPage = () => {
           </Form.Item>
 
           <Form.Item className="flex justify-center">
-            <Link href={'/forget-password/otp'} className="bg-black w-full text-white  px-5 rounded-md py-2 font-lora">
+            <button   className="bg-black w-full text-white  px-5 rounded-md py-2 font-lora">
               Send Otp
-            </Link>
+            </button>
           </Form.Item>
         </Form>
         {/* <p className="text-center mt-8">
@@ -43,4 +47,4 @@ const forgetPasswordPage = () => {
   );
 };
 
-export default forgetPasswordPage;
+export default ForgetPasswordPage;

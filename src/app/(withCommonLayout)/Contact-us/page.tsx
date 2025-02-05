@@ -29,7 +29,6 @@ const ContactUsPage = () => {
       .catch((error) => toast.error(error?.data?.message));
   };
 
-//   console.log(getContactUse?.data?.writeToUs[0]);
 
   return (
     <div className="container mx-auto">

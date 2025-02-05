@@ -61,7 +61,6 @@ const infoApi = baseApi.injectEndpoints({
         }),
         getAllNotification : builder.query({
             query : (page)=>{
-                console.log(page);
                 return {
                     url : `/notification/get-all-notification?page=${page}`,
                     method : 'GET'

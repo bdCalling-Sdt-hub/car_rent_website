@@ -56,7 +56,6 @@ const MyProfilePage = () => {
     isError,
   } = useGetProfileQuery(undefined);
 
-  console.log(getProfile?.data?.licenseBackImage);
 
   const [updatePassword] = useChangePasswordMutation();
   const [updateProfile] = useUpdateProfileMutation();
@@ -120,7 +119,6 @@ const MyProfilePage = () => {
     setSelectedTab(value);
   };
 
-  console.log(getProfile?.data?.licenseFrontImage );
 
   return (
     <div className="container mx-auto px-2 md:px-0">

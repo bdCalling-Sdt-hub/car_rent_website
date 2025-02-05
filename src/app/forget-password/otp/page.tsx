@@ -1,12 +1,30 @@
 "use client";
 import OtpInput from "react-otp-input";
 import React, { useState } from "react";
-import Link from "next/link";
+import { useSendOtpMutation } from "@/redux/Api/authApi";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const Otp = () => {
   const [otp, setOtp] = useState("");
+  const [sendOtp] = useSendOtpMutation();
 
-//   const handleVerifyOtp = () => {};
+  const navigate = useRouter()
+  const handleVerifyOtp = () => {
+    const email = localStorage.getItem("forgetPass");
+    const data = {
+      email: email,
+      code: otp,
+    };
+    // console.log(data);
+    sendOtp(data)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message)
+        navigate.push("/forget-password/change-password")
+      })
+      .catch((error) => toast.error(error?.data?.message));
+  };
 
   return (
     <div className="flex items-center justify-center bg-[#EBEBEB] py-10 min-h-[100vh]">
@@ -63,9 +81,12 @@ const Otp = () => {
         </div>
 
         <div className="flex justify-center">
-          <Link href={"/forget-password/change-password"} className="bg-black text-white py-2 px-5 rounded-md">
+          <button
+            onClick={() => handleVerifyOtp()}
+            className="bg-black text-white py-2 px-5 rounded-md"
+          >
             Continue
-          </Link>
+          </button>
         </div>
       </div>
     </div>

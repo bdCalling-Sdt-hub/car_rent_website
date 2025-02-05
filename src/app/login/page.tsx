@@ -23,7 +23,6 @@ const LoginPage = () => {
       password: values?.password,
     };
 
-    console.log(data);
     loginUser(data)
       .unwrap()
       .then((payload) => {

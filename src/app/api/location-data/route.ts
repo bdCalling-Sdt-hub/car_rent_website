@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const make = searchParams.get("input");
-//   console.log(make);
 //   const year = searchParams.get("year");
 
 //   if (!make || !year) {
