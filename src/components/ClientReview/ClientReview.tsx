@@ -38,7 +38,7 @@ const ClientReview = async () => {
   );
   const reviews = await response.json();
   return (
-    <div className="font-lora container mx-auto px-2">
+    <div className="font-lora container mx-auto px-2 ">
       <div className="text-center my-5 md:my-14">
         <HeadingTitle title={"Client Review"} />
         <p className="mt-2">Testimonials</p>

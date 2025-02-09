@@ -1,6 +1,6 @@
 "use client";
 import MapParent from "@/components/Map/MapParent";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { GoLocation } from "react-icons/go";
@@ -60,8 +60,6 @@ const AllCarsPage = () => {
     isElectric,
   });
 
-
-
   // Get make model year api integrate
   const { data: getMakeModelYear } = useGetMakeModelYearQuery({});
 
@@ -71,6 +69,15 @@ const AllCarsPage = () => {
   const makeArray = getMakeModelYear?.data[0]?.make || [];
   const makeYearArray = getMakeModelYear?.data[0]?.year || [];
   const makeModelArray = getMakeModelYear?.data[0]?.model || [];
+  const [sortedYear , setSortedYear] = useState<number[]>([])
+
+  
+  useEffect(()=>{
+    console.log(makeYearArray);
+    const sortYear = [...makeYearArray].sort((a : any, b : any)=> b - a)
+    setSortedYear(sortYear)
+  }, [getMakeModelYear])
+
 
   // Price range slider function
   const handleSliderChange = (value: any) => {
@@ -97,22 +104,24 @@ const AllCarsPage = () => {
     setSeat(value);
   };
 
-  const resetFilters =()=>{
-    setMaxPrice("")
-    setMinPrice("")
-    setSelectedVehicle("")
-    setSelectedModel("")
+  const resetFilters = () => {
+    setMaxPrice("");
+    setMinPrice("");
+    setSelectedVehicle("");
+    setSelectedModel("");
     setSelectedMake("");
     setSelectedYear("");
     setSeat("");
-  }
+  };
   return (
-    <div className="my-10 font-lora px-5 mx-2 md:px-0">
+    <div className=" font-lora px-5 mx-2 md:px-0">
       {/* <FilterBar /> */}
 
-      <div><TakenDateTime/></div>
+      <div>
+        <TakenDateTime />
+      </div>
 
-      <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2 w-full my-2">
+      <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2 w-full ">
         {/* Daily Price */}
         <Select>
           <SelectTrigger className="select-trigger">
@@ -135,8 +144,8 @@ const AllCarsPage = () => {
                   marginTop: "5px",
                 }}
               >
-                <span>${sliderValue[0]}</span>
-                <span>${sliderValue[1]}</span>
+                <span>£{sliderValue[0]}</span>
+                <span>£{sliderValue[1]}</span>
               </div>
             </div>
           </SelectContent>
@@ -161,12 +170,12 @@ const AllCarsPage = () => {
         {/* Make */}
 
         <Select onValueChange={handleMakeChange}>
-          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+          <SelectTrigger className="px-4 py-2 border rounded-md text-left capitalize">
             {selectedMake || "Select Make"}
           </SelectTrigger>
           <SelectContent>
             {makeArray.map((make: string, index: string) => (
-              <SelectItem key={index} value={make}>
+              <SelectItem key={index} value={make} className="capitalize">
                 {make || "Unknown"}
               </SelectItem>
             ))}
@@ -179,7 +188,7 @@ const AllCarsPage = () => {
             {selectedYear || "Select Year"}
           </SelectTrigger>
           <SelectContent>
-            {makeYearArray.map((year: string, index: string) => (
+            {sortedYear.map((year: any, index: any) => (
               <SelectItem key={index} value={year}>
                 {year || "Unknown"}
               </SelectItem>
@@ -225,7 +234,7 @@ const AllCarsPage = () => {
         {/* All Filters Button */}
         <Button
           className="flex items-center bg-gray-200 hover:bg-gray-200 text-gray-800"
-          onClick={()=>resetFilters()}
+          onClick={() => resetFilters()}
         >
           <span className="text-sm">
             {/* All Filters ({Object.values(filters).filter((val) => val).length}) */}
@@ -252,7 +261,7 @@ const AllCarsPage = () => {
               </p>
             )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-screen overflow-y-auto hide-scrollbar">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-screen overflow-y-auto ">
             {getAllCarLocation?.data?.availableCars?.map((car: any) => {
               return (
                 <Link
@@ -285,7 +294,7 @@ const AllCarsPage = () => {
                       </p>
                       <p>£{car?.pricePerDay}/day</p>
                       <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">
-                        {car?.discountDays} day -{car?.discountAmount}£
+                        {car?.discountDays} day - £{car?.discountAmount}
                       </p>
                     </div>
                   </div>

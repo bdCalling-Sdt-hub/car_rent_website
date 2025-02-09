@@ -16,13 +16,13 @@ const Footer = () => {
                         <p className='font-bold text-[49px]'>NARDO</p>
                         <Image height={50} width={50} alt='logo' src={img} />
                     </div>
-                    <p className='max-w-[80%]'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    {/* <p className='max-w-[80%]'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p> */}
                 </div>
                 <div className='space-y-6'>
                     <p className='font-bold text-[20px] '>Contact Info</p>
                     <p className='flex items-center gap-2'><HiOutlineMailOpen /> Contact@gmail.com</p>
-                    <p  className='flex items-center gap-2'><LuPhone /> 302-158-125</p>
-                    <p className='flex items-center gap-2'><IoLocationOutline /> 3651 25th st, Milami, Florida, USA</p>
+                    {/* <p  className='flex items-center gap-2'><LuPhone /> 302-158-125</p>
+                    <p className='flex items-center gap-2'><IoLocationOutline /> 3651 25th st, Milami, Florida, USA</p> */}
                 </div>
                 <div className='space-y-4 flex flex-col'>
                     <p className='font-bold text-[20px] '>Useful Link</p>

@@ -13,7 +13,7 @@ const AboutUsPage = () => {
                     <div className='mt-5 md:mt-0'>
                         <HeadingTitle title='About Nardo' />
                         <p className='max-w-xs'>Take a look under the hood of the
-                            world s largest car sharing
+                            world&apos;s largest car sharing
                             marketplace</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const AboutUsPage = () => {
                 <Image height={1500} width={1500} className='' src={team} alt='img' />
 
                     <div className=' mx-auto'>
-                        <p className='font-semibold text-[32px]'>Join the nardo family</p>
+                        <p className='font-semibold text-[32px]'>Join the Nardo family</p>
                         <p className='max-w-sm mt-5 leading-7'>Nardo, recognized as a Great Place to Work, is dedicated to building a supportive, approachable, innovative, and efficient workplace.Explore our open positions and become part of our team!</p>
                         <button className='mt-5 bg-[#0CFEE8] px-4 py-2 rounded-md shadow-md'>Join Nardo</button>
 
