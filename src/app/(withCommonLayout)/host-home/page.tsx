@@ -49,13 +49,13 @@ const HostHomePage = () => {
                 <div className='absolute flex items-center justify-center  h-full w-full'>
                     <div className='text-center space-y-4 text-white '>
                         <p className='font-bold text-4xl font-lora'>NARDO</p>
-                        <p className='text-4xl'>You cold earn</p>
-                        <p className='font-lora text-2xl pb-10'>Static rate of average £40 per day</p>
-                        <Link href='/host-home/License-plate' className='bg-[#0CFEE8] text-black  px-8 py-4 rounded-sm '>Get Start</Link>
+                        <p className=' text-xl md:text-4xl'>You could earn</p>
+                        <p className='font-lora text-sm md:text-2xl pb-5 md:pb-10'>Static rate of average £40 per day</p>
+                        <Link href='/host-home/License-plate' className='bg-[#0CFEE8] text-black  px-8 py-4 rounded-sm  '>Get Start</Link>
                     </div>
                 </div>
-                <div className=' mt-8 md:mt-0 bg-red-400 '>
-                    <Image src={img2} alt='img' className='w-full h-[60vh] ' height={1200} width={1200} />
+                <div className=' mt-8 md:mt-0 '>
+                    <Image src={img2} alt='img' className='w-full h-[400px] md:h-[600px] object-cover ' height={1200} width={1200} />
                 </div>
             </div>
             <div className='text-center mt-20 max-w-xl mx-auto space-y-4'>
