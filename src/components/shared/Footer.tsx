@@ -1,11 +1,10 @@
 import React from 'react'
 import img from '../../assets/logo.png'
 import Image from 'next/image'
-import { IoLocationOutline, IoLogoFacebook, IoLogoYoutube } from "react-icons/io5";
+import {  IoLogoFacebook, IoLogoYoutube } from "react-icons/io5";
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { HiOutlineMailOpen } from 'react-icons/hi';
-import { LuPhone } from 'react-icons/lu';
 import Link from 'next/link';
 const Footer = () => {
     return (

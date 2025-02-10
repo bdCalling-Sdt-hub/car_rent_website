@@ -72,14 +72,14 @@ const Overview = () => {
  * Reusable Component for Animating Sections
  */
 const SectionAnimation = ({ children, direction }: { children: React.ReactNode; direction: "left" | "right" }) => {
-  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.3 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 1, x: direction === "left" ? -200 : 200 }}
+      initial={{ opacity: 1, x: direction === "left" ? -100 : 100 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.1, ease: "easeOut" }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="relative w-full sm:w-[100%] lg:w-[632px] flex items-center justify-center"
     >
       <div className="w-full">

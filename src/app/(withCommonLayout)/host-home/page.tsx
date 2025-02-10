@@ -1,3 +1,4 @@
+"use client";
 import HeadingTitle from "@/components/shared/HeadingTitle";
 import Link from "next/link";
 import React from "react";
@@ -5,6 +6,7 @@ import img from "../../../assets/hostHome.jpg";
 import img2 from "../../../assets/newCar.png";
 import Image from "next/image";
 import CreateBusiness from "@/components/CreateBusiness/CreateBusiness";
+import AnimateButton from "@/components/AnimateButton/AnimateButton";
 
 const HostHomePage = () => {
   return (
@@ -14,12 +16,14 @@ const HostHomePage = () => {
           <p className="mb-5">FIND YOUR DRIVE</p>
           <HeadingTitle title="Start a car sharing" />
           <p className="pt-5 text-4xl font-medium pb-8">business on Nardo</p>
-          <Link
-            href="/host-home/License-plate"
-            className="bg-[#8D8D8D] text-white px-8 py-4 rounded-sm shadow-md "
-          >
-            Get Start
-          </Link>
+          <AnimateButton>
+            <Link
+              href="/host-home/License-plate"
+              // className="bg-[#8D8D8D] text-white px-8 py-4 rounded-sm shadow-md "
+            >
+              Get Start
+            </Link>
+          </AnimateButton>
         </div>
         <div className="absolute inset-0 bg-black opacity-25 z-0 pointer-events-none"></div>
         <div className="mt-10 ">
@@ -35,7 +39,7 @@ const HostHomePage = () => {
       <div className="max-w-5xl mx-auto space-y-10 mt-10">
         <p className="">
           Seize control of your financial future and fuel your entrepreneurial
-          drive with nardo, the world s largest car-sharing marketplace.
+          drive with nardo, the worlds largest car-sharing marketplace.
         </p>
         <p>
           nardo equips aspiring entrepreneurs with the resources to build a
@@ -50,11 +54,15 @@ const HostHomePage = () => {
 
       <div>
         <div className="flex justify-center my-8 ">
-          <Link href="/host-home/License-plate">
-            <button className="bg-[#0CFEE8] py-2 px-8 rounded shadow-md">
-              Get Start
-            </button>
-          </Link>
+          <AnimateButton>
+            <Link href="/host-home/License-plate">
+              <button
+              //  className="bg-[#0CFEE8] py-2 px-8 rounded shadow-md"
+              >
+                Get Start
+              </button>
+            </Link>
+          </AnimateButton>
         </div>
         <div className="mt-20 text-center">
           <HeadingTitle title="Create a buisiness that is..." />
@@ -79,12 +87,14 @@ const HostHomePage = () => {
             <p className="font-lora text-sm md:text-2xl pb-5 md:pb-10">
               an average of £40 per day
             </p>
-            <Link
-              href="/host-home/License-plate"
-              className="bg-[#0CFEE8] text-black  px-8 py-4 rounded-sm  "
-            >
-              Get Start
-            </Link>
+            <AnimateButton>
+              <Link
+                href="/host-home/License-plate"
+                // className="bg-[#0CFEE8] text-black  px-8 py-4 rounded-sm  "
+              >
+                Get Start
+              </Link>
+            </AnimateButton>
           </div>
         </div>
         <div className=" mt-8 md:mt-0 ">
@@ -103,12 +113,14 @@ const HostHomePage = () => {
           List your first car to get started today and build your plan to take
           control of your financial future tomorrow.
         </p>
-        <Link
-          href="/host-home/License-plate"
-          className="bg-[#0CFEE8]  px-8 py-3 rounded-sm shadow-md "
-        >
-          Get Start
-        </Link>
+        <AnimateButton>
+          <Link
+            href="/host-home/License-plate"
+            // className="bg-[#0CFEE8]  px-8 py-3 rounded-sm shadow-md "
+          >
+            Get Start
+          </Link>
+        </AnimateButton>
       </div>
     </div>
   );
