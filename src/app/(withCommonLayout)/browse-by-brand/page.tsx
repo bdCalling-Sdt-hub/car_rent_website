@@ -21,7 +21,7 @@ const BrowseByBrandPage = () => {
                 <HeadingTitle title='Rent a Tesla' />
                 <p className='mt-4 mb-14'>Discover the Nardo car rental marketplace</p>
             </div>
-            <TakenDateTime />
+            <TakenDateTime className={'py-2'} />
             <div>
                 <Carousel>
                     <CarouselContent>

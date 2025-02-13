@@ -117,7 +117,7 @@ const BrowseByDestinationPage = () => {
           Discover the Nardo car rental marketplace
         </p>
       </div>
-      <TakenDateTime />
+      <TakenDateTime className={'py-2'} />
 
       <div className="my-5">
         <p className="md:text-[32px] text-[18px] mb-20 md:mb-0 font-semibold">

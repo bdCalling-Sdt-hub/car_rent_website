@@ -26,7 +26,7 @@ const Footer = () => {
                 <div className='space-y-4 flex flex-col'>
                     <p className='font-bold text-[20px] '>Useful Link</p>
                     <Link href={'/about-us'} >About Us</Link>
-                    <Link href={'/Contact-us'}>contact Us</Link>
+                    <Link href={'/Contact-us'}>Contact Us</Link>
                     <Link href={'/privacy-policy'}>Privacy Policy</Link>
                     <Link href={'/terms-condition'}>Terms & Condition</Link>
                 </div>
@@ -34,8 +34,8 @@ const Footer = () => {
                     <p className='font-bold text-[20px] '>Social Media Links</p>
                     <p className='flex items-center gap-2'><IoLogoFacebook />Facebook</p>
                     <p className='flex items-center gap-2'> <FaSquareInstagram /> Instagram</p>
-                    <p className='flex items-center gap-2'> <RiTwitterXFill /> Twitter</p>
-                    <p className='flex items-center gap-2'><IoLogoYoutube /> You tube</p>
+                    <p className='flex items-center gap-2'> <RiTwitterXFill />  X</p>
+                    <p className='flex items-center gap-2'><IoLogoYoutube /> Youtube</p>
                 </div>
                 <div>
 

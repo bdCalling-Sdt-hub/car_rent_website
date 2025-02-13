@@ -26,7 +26,7 @@ const carBrands = [
     { src: bmw, name: "BMW" },
     { src: img2, name: "Hyundai" },
     { src: img3, name: "Volvo" },
-    { src: img4, name: "VW" },
+    { src: img4, name: "Volkswagen" },
     { src: img5, name: "Lexus" },
     { src: img6, name: "Vauxhall" },
     { src: mercedes, name: "Mercedes" },

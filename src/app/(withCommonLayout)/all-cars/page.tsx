@@ -68,7 +68,7 @@ const AllCarsPage = () => {
   };
   const makeArray = getMakeModelYear?.data[0]?.make || [];
   const makeYearArray = getMakeModelYear?.data[0]?.year || [];
-  const makeModelArray = getMakeModelYear?.data[0]?.model || [];
+  // const makeModelArray = getMakeModelYear?.data[0]?.model || [];
   const [sortedYear , setSortedYear] = useState<number[]>([])
 
   
@@ -95,9 +95,9 @@ const AllCarsPage = () => {
     setSelectedYear(value);
   };
   // Handle Model change
-  const handleModelChange = (value: string) => {
-    setSelectedModel(value);
-  };
+  // const handleModelChange = (value: string) => {
+  //   setSelectedModel(value);
+  // };
 
   // Handle Seat change
   const handleSeatChange = (value: string) => {
@@ -117,11 +117,11 @@ const AllCarsPage = () => {
     <div className=" font-lora px-5 mx-2 md:px-0">
       {/* <FilterBar /> */}
 
-      <div>
-        <TakenDateTime />
+      <div className="flex justify-start w-[50%]">
+        <TakenDateTime className={"py-2"} />
       </div>
 
-      <div className="grid grid-cols-2 justify-center md:grid-cols-8 gap-2 w-full ">
+      <div className="grid grid-cols-2 justify-center md:grid-cols-12 gap-2 mb-2 ">
         {/* Daily Price */}
         <Select>
           <SelectTrigger className="select-trigger">
@@ -184,7 +184,7 @@ const AllCarsPage = () => {
 
         {/* Year */}
         <Select onValueChange={handleYearChange}>
-          <SelectTrigger className="px-4 py-2 border rounded-md text-left">
+          <SelectTrigger className=" py-1 border rounded-md text-left">
             {selectedYear || "Select Year"}
           </SelectTrigger>
           <SelectContent>
@@ -196,7 +196,7 @@ const AllCarsPage = () => {
           </SelectContent>
         </Select>
         {/* Model */}
-        <Select onValueChange={handleModelChange}>
+        {/* <Select onValueChange={handleModelChange}>
           <SelectTrigger className="px-4 py-2 border rounded-md text-left z-30">
             {selectedModel || "Select Model"}
           </SelectTrigger>
@@ -207,7 +207,7 @@ const AllCarsPage = () => {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>
+        </Select> */}
 
         {/* Seats */}
         <Select onValueChange={(value) => handleSeatChange(value)}>
@@ -233,10 +233,10 @@ const AllCarsPage = () => {
 
         {/* All Filters Button */}
         <Button
-          className="flex items-center bg-gray-200 hover:bg-gray-200 text-gray-800"
+          className="flex items-center  bg-gray-200 hover:bg-[#0CFEE8] transition-all duration-200 text-gray-800"
           onClick={() => resetFilters()}
         >
-          <span className="text-sm">
+          <span className="text-sm ">
             {/* All Filters ({Object.values(filters).filter((val) => val).length}) */}
             Reset All Filters
           </span>
@@ -268,12 +268,12 @@ const AllCarsPage = () => {
                   key={car?._id}
                   href={`/browse-by-destination/${car?._id}`}
                 >
-                  <div className="md:flex max-h-[300px] h-full items-center gap-4 border rounded-md shadow-sm p-3">
+                  <div className="md:flex h-full items-center gap-4 border rounded-md shadow-sm p-3">
                     <Image
                       alt="img"
                       height={200}
                       width={300}
-                      className="w-full md:w-[50%] object-cover  rounded-sm h-[100%]"
+                      className="w-full md:w-[50%] object-cover rounded-sm md:h-[100%] "
                       src={`${imageUrl}/${car?.car_image[0]}`}
                     />
                     <div className="space-y-4 p-2 md:p-0">

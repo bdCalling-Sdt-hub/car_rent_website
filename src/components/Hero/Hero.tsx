@@ -4,16 +4,54 @@ import heroImage from "../../assets/heroImg.jpg";
 import Image from "next/image";
 import { MdArrowOutward, MdDirectionsCar } from "react-icons/md";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import dayjs from "dayjs";
+import { format } from "date-fns";
+
+
+const getRoundedTime = () => {
+  const now = dayjs();
+  const minutes = now.minute();
+  const roundedMinutes = Math.ceil(minutes / 30) * 30; 
+  return now.minute(roundedMinutes).second(0);
+};
+
+const today = new Date();
+const initialTime = getRoundedTime();
 
 const Hero = () => {
+  const router = useRouter();
+
+  
+  
+
+  //   handle search params
+  const handleSearchClick = () => {
+   
+    const queryParams = new URLSearchParams({
+      location: "",
+      pickupDate: today ? format(today, "MM/dd/yyyy") : "",
+      returnDate: today ? format(today, "MM/dd/yyyy") : "",
+      pickupTime: initialTime.format("h:mm A") || "",
+      returnTime: initialTime.format("h:mm A") || "",
+    });
+
+    router.push(`/all-cars?${queryParams.toString()}`);
+  };
+
   return (
     <div className="relative overflow-hidden">
       {/* Background Image */}
       <div>
         <motion.div
-         initial={{ scale: 1.2 }}
-         animate={{ scale: 1, opacity: 1 }}
-         transition={{ duration: 10, ease: "easeOut", repeat : Infinity , repeatType :'reverse' }}
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 10,
+            ease: "easeOut",
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
         >
           <Image
             height={800}
@@ -42,7 +80,7 @@ const Hero = () => {
 
         {/* Animated Heading with Color Animation */}
         <motion.p
-          initial={{   scale: 0.8 , }}
+          initial={{ scale: 0.8 }}
           animate={{
             opacity: 1,
             scale: 1,
@@ -54,10 +92,7 @@ const Hero = () => {
         </motion.p>
 
         {/* Animated Description with Color Change */}
-        <p
-         
-          className="max-w-screen-md text-center text-[10px] md:text-[18px] font-lora"
-        >
+        <p className="max-w-screen-md text-center text-[10px] md:text-[18px] font-lora">
           Whether you are planning a weekend getaway, a business trip, or just
           need a reliable ride for the day, we offer a wide range of vehicles to
           suit your needs.
@@ -70,14 +105,15 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="flex items-center cursor-pointer"
         >
-          <motion.p
-            whileHover={{ scale: 1.05 }}
+          <p
+            onClick={() => handleSearchClick()}
             className="bg-[#272121] mt-5 md:py-4 py-2 rounded-full px-4 md:px-8 text-[10px] md:text-[18px] font-lora"
           >
             Whether you are planning a weekend getaway
-          </motion.p>
+          </p>
 
           <motion.div
+          onClick={()=>handleSearchClick()}
             whileHover={{ rotate: 45 }}
             transition={{ duration: 0.3 }}
             className="bg-[#272121] mt-5 md:p-4 p-2 transform transition-transform rounded-full"
