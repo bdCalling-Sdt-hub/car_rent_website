@@ -293,7 +293,7 @@ const AllCarsPage = () => {
                         <GoLocation /> {car?.destination}
                       </p>
                       <p>£{car?.pricePerDay}/day</p>
-                      <p className="bg-[#E7EDF3] rounded-sm text-[#528AAE] inline-block mt-2 px-2">
+                      <p className="bg-[#DFDEDE] rounded-sm  inline-block mt-2 px-2">
                         {car?.discountDays} day - £{car?.discountAmount}
                       </p>
                     </div>
