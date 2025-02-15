@@ -35,7 +35,7 @@ const initialTime = getRoundedTime();
 
 
 
-const TakenDateTime = () => {
+const TakenDateTime = ({className } : {className : any} ) => {
   const router = useRouter();
   // All APIs
   // const {data :  get}
@@ -106,10 +106,10 @@ const TakenDateTime = () => {
   };
 
   return (
-    <div className="py-10 hidden md:block container mx-auto font-lora">
+    <div className={` ${className} hidden md:block container mx-auto font-lora`}>
       <div className="flex items-center justify-between bg-[#EBEBEB] rounded-full px-8 py-2 max-w-4xl mx-auto">
         <div>
-          <p className="flex items-center gap-1">
+          <p className="flex items-center gap-1 text-sm">
             <CiLocationOn /> Location
           </p>
           <Input
@@ -119,7 +119,7 @@ const TakenDateTime = () => {
           />
         </div>
         <div className="flex flex-col">
-          <p>Pick up date & time</p>
+          <p className="text-sm">Pick up date & time</p>
           <div className="flex gap-2 items-center">
             <Popover>
               <PopoverTrigger asChild className="px-0 hover:bg-[#EBEBEB]">
@@ -159,7 +159,7 @@ const TakenDateTime = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <p>Return date & time</p>
+          <p className="text-sm">Return date & time</p>
           <div className="flex gap-2 items-center">
             <Popover>
               <PopoverTrigger asChild className="px-0 hover:bg-[#EBEBEB]">
@@ -172,7 +172,7 @@ const TakenDateTime = () => {
                   {returnDate ? (
                     format(returnDate, "MM/dd/yyyy")
                   ) : (
-                    <span className="flex items-center gap-2">Pick a date</span>
+                    <span className="flex items-center gap-2 text-sm">Pick a date</span>
                   )}
                   <IoIosArrowDown />
                 </Button>

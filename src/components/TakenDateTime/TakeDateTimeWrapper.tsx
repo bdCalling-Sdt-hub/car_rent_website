@@ -5,7 +5,7 @@ import TakenDateTime from "./TakenDateTime";
 
 
 const TakenDateTimeWrapper = () => {
-  return <TakenDateTime />;
+  return <TakenDateTime className={'py-10'} />;
 };
 
 export default TakenDateTimeWrapper;

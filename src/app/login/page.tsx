@@ -27,6 +27,7 @@ const LoginPage = () => {
       .unwrap()
       .then((payload) => {
         toast.success(payload?.message)
+        localStorage.removeItem("currentStep")
         if(payload?.success){
           localStorage.setItem('_token', payload?.data?.accessToken)
           router.push('/')

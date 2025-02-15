@@ -50,7 +50,7 @@ const RegisterPage = () => {
       </div>
       <div>
         <p className="font-lora text-[25px]  md:text-[50px] font-medium">
-          Welcome Back
+          Welcome
         </p>
         <p className="mb-10 font-lora">
           Enter your email and password to access your account

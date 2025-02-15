@@ -182,7 +182,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
  
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20">
+    <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20  ">
       <div className="col-span-1">
         <h1 className="font-bold text-[48px] capitalize">
           {cars?.make} {cars?.model} {cars?.year}
@@ -204,7 +204,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             {cars?.doors} Door
           </p>
         </div>
-        <div className="flex items-center justify-between  mt-5  pb-4  max-w-xl">
+      <div className="flex items-center justify-between  mt-5  pb-10  max-w-xl border-b border-1 pb-">
           <p className="flex items-center gap-2 text-[#525252]">
             {" "}
             <LuFuel />
@@ -216,7 +216,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             {cars?.bags}
           </p>
         </div>
-        <p>Hosted By</p>
+        <p className="mt-5">Hosted By</p>
         <div className="my-5 flex items-center gap-5">
           <Image
             alt="img"
@@ -239,10 +239,10 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
         <p>Description : </p>
         <p className="mt-5 font-thin leading-8">{cars?.description}</p>
       </div>
-      <div className="col-span-1">
+      <div className="col-span-1 border border-1  p-2 rounded-sm shadow-md">
         <p className="text-5xl">
           <span className="font-bold">£{cars?.pricePerDay}</span>{" "}
-          <span className="text-[#525252]">/ day</span>
+          <span className="text-[#525252]">/ days</span>
         </p>
         <div className="mx-auto p-4 space-y-6">
           <TripStartDataAndEndTime onChange={handleInputChange} />
