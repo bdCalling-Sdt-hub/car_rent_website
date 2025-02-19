@@ -174,9 +174,7 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     }
   };
 
-  // const handleContinue = () => {
-  //   handleNext();
-  // };
+  
 
   useEffect(() => {
     const fetchCarData = async () => {
@@ -203,6 +201,13 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
       latitude: latLng?.lat,
       destination: destination,
     };
+    if(!data?.carAddress){
+      return toast.error("Car Location is required!")
+    }
+    if(!data?.destination){
+      return toast.error("City is required")
+    }
+
     addCarLocation(data)
       .unwrap()
       .then((payload) => {
@@ -214,7 +219,6 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         const errorMessage = error?.data?.message ?? "";
         if (errorMessage.includes("ERR_CAR_SUBMISSION_INCOMPLETE")) {
           const match = errorMessage?.match(/ID: ([a-f0-9]+)/);
-          // console.log(match);
           if (match && match[1]) {
             const id = match[1];
 
@@ -285,6 +289,8 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
+
+// Step 2
 const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   const [addLicensePlateNumber] = useAddLicensePlateMutation();
   const [licensePlate, setLicensePlate] = useState("");
@@ -300,6 +306,10 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
       carId: localStorage.getItem("carId"),
       licensePlateNum: licensePlate,
     };
+
+    if(!data?.licensePlateNum){
+      return toast.error("License Plate Number Required!")
+    }
 
     addLicensePlateNumber(data)
       .unwrap()

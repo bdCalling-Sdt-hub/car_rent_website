@@ -1,6 +1,6 @@
 "use client";
 import HeadingTitle from "@/components/shared/HeadingTitle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bg from "../../../assets/back.jpg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
@@ -51,9 +51,15 @@ const MyProfilePage = () => {
   // ----ALL API -----//
   const {
     data: getProfile,
+    refetch,
     isLoading,
     isError,
   } = useGetProfileQuery(undefined);
+
+
+  useEffect(()=>{
+    refetch()
+  },[])
 
   const [updatePassword] = useChangePasswordMutation();
   const [updateProfile] = useUpdateProfileMutation();

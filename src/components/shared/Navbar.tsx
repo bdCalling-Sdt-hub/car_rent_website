@@ -23,17 +23,20 @@ import { FiPhone } from "react-icons/fi";
 import { PiSignInLight } from "react-icons/pi";
 import { LuUser } from "react-icons/lu";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetProfileQuery } from "@/redux/Api/authApi";
 import { imageUrl } from "@/redux/baseApi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-
 const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const { data: getUserInfo } = useGetProfileQuery({});
+  const { data: getUserInfo , refetch } = useGetProfileQuery({});
   const closePopover = () => setPopoverOpen(false);
     const navigate  = useRouter()
+
+    useEffect(()=>{
+      refetch()
+    },[])
 
   const handleLogOut = ()=>{
     localStorage.removeItem("_token")

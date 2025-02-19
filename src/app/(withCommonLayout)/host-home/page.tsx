@@ -42,7 +42,6 @@ import { motion } from "framer-motion";
 // };
 
 const HostHomePage = () => {
-
   const SectionAnimation = ({
     children,
     direction,
@@ -51,11 +50,15 @@ const HostHomePage = () => {
     direction: "left" | "right";
   }) => {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-    const animationDistance = typeof window !== "undefined" && window.innerWidth < 768 ? 200 : 800;
+    const animationDistance =
+      typeof window !== "undefined" && window.innerWidth < 768 ? 200 : 800;
     return (
       <motion.div
         ref={ref}
-        initial={{ opacity: 1, x: direction === "left" ? -animationDistance : animationDistance }}
+        initial={{
+          opacity: 1,
+          x: direction === "left" ? -animationDistance : animationDistance,
+        }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
         transition={{
           duration: 1,
@@ -68,8 +71,7 @@ const HostHomePage = () => {
       </motion.div>
     );
   };
-  
-  
+
   return (
     <div className="container mx-auto py-10 px-2 md:px-0 overflow-hidden">
       <SectionAnimation direction="right">
@@ -77,17 +79,21 @@ const HostHomePage = () => {
           <div className="absolute top-0 p-10">
             <p className="mb-5">FIND YOUR DRIVE</p>
             <HeadingTitle title="Start a car sharing" />
-            <p className="pt-5 text-4xl font-medium pb-8">business on Nardo</p>
-            <AnimateButton>
-              <Link
-                href="/host-home/License-plate"
-                // className="bg-[#8D8D8D] text-white px-8 py-4 rounded-sm shadow-md "
-              >
-                Get Start
-              </Link>
-            </AnimateButton>
+            <div className="  h-full mt-20 md:mt-0">
+              <p className="pt-5 text-4xl font-medium pb-8  text-[#09BEAE] md:text-black z-10 ">
+                business on Nardo
+              </p>
+              <AnimateButton>
+                <Link
+                  href="/host-home/License-plate"
+                  // className="bg-[#8D8D8D] text-white px-8 py-4 rounded-sm shadow-md "
+                >
+                  Get Start
+                </Link>
+              </AnimateButton>
+            </div>
           </div>
-          <div className="absolute inset-0 bg-black opacity-25 z-0 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-black opacity-25 z-0 pointer-events-none "></div>
           <div className="mt-10 ">
             <Image
               src={img}
@@ -138,7 +144,7 @@ const HostHomePage = () => {
         {/* <p className='pt-5 text-5xl font-bold pb-8'>welcome</p> */}
         <p className="mt-20 max-w-3xl mx-auto leading-8 ">
           Whether you want to host a few cars to earn extra income to pay for
-          life  expenses, or build a small shop with a portfolio of cars, start
+          life expenses, or build a small shop with a portfolio of cars, start
           with one car and scale how you want.
         </p>
       </div>
