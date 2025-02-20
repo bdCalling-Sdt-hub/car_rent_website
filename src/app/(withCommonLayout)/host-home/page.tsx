@@ -80,7 +80,7 @@ const HostHomePage = () => {
             <p className="mb-5">FIND YOUR DRIVE</p>
             <HeadingTitle title="Start a car sharing" />
             <div className="  h-full mt-20 md:mt-0">
-              <p className="pt-5 text-4xl font-medium pb-8  text-[#09BEAE] md:text-black z-10 ">
+              <p className="pt-5 text-4xl font-medium pb-8  hidden md:block md:text-black z-10 ">
                 business on Nardo
               </p>
               <AnimateButton>
