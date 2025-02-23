@@ -15,11 +15,11 @@ const CarDetailsPage : FC<TProductId> = async( {params})=> {
 
     const { id } = await params;
 
-    const res = await fetch(`http://178.128.174.197:8001/car/get-single-car-details?carId=${id}`)
+    const res = await fetch(`https://api.nardo.app/car/get-single-car-details?carId=${id}`)
     const cars = await res.json()
 
 
-    const response = await fetch(`http://178.128.174.197:8001/review/get-all-review?carId=${id}`)
+    const response = await fetch(`https://api.nardo.app/review/get-all-review?carId=${id}`)
     const rating =  await response.json()
   
     return (

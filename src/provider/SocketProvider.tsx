@@ -48,7 +48,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (!id) return;
 
-    const socketConnection = io(`http://178.128.174.197:8001`, {
+    const socketConnection = io(`https://api.nardo.app`, {
       query: {
         userId: id,
       },
