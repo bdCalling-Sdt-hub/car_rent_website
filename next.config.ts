@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "https://api.nardo.app",
+        hostname: "api.nardo.app",
         pathname: "/**", 
       },
     ],
