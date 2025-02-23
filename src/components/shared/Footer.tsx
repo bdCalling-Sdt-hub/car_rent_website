@@ -19,7 +19,7 @@ const Footer = () => {
                 </div>
                 <div className='space-y-6'>
                     <p className='font-bold text-[20px] '>Contact Info</p>
-                    <p className='flex items-center gap-2'><HiOutlineMailOpen /> Contact@gmail.com</p>
+                    <p className='flex items-center gap-2'><HiOutlineMailOpen />nardolimited@gmail.com</p>
                     {/* <p  className='flex items-center gap-2'><LuPhone /> 302-158-125</p>
                     <p className='flex items-center gap-2'><IoLocationOutline /> 3651 25th st, Milami, Florida, USA</p> */}
                 </div>

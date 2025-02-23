@@ -55,15 +55,15 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     });
 
     socketConnection.on("onlineUser", (data) => {
-      setOnlineUser(data); // Update onlineUser in context
+      setOnlineUser(data); 
     });
 
-    setSocket(socketConnection); // Set socket in state
+    setSocket(socketConnection);
 
     return () => {
-      socketConnection.disconnect(); // Clean up when component unmounts
+      socketConnection.disconnect(); 
     };
-  }, [id]); // Only run this effect when token is set
+  }, [id]); 
 
   return (
     <SocketContext.Provider value={{ socket, onlineUser }}>

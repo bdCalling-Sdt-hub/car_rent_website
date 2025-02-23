@@ -324,7 +324,7 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     <div className="md:max-w-[60%] w-full ">
       <HeadingTitle title="License Plate" />
       <p className="mt-5">
-        Your Licence plate information won t be publicly visible
+        Your Licence plate information won{`&apos`}t be publicly visible
       </p>
       <p className="mt-10 pb-2">Plate Number</p>
       <Input
