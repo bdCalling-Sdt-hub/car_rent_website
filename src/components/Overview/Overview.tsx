@@ -8,11 +8,11 @@ import { useInView } from "react-intersection-observer";
 
 const Overview = () => {
   return (
-    <div className="pb-8 px-4 md:px-0 container mx-auto">
+    <div className="pb-8 px-4 md:px-0 container mx-auto overflow-hidden">
       <div className="lg:flex justify-center lg:justify-between gap-6 mt-10">
         {/* Section 1 - Slide from Left */}
         <SectionAnimation direction="left">
-          <h1 className="text-black font-semibold text-[20px] sm:text-[24px] md:text-[32px]">
+          <h1 className="text-black font-semibold text-[16px] sm:text-[24px] md:text-[32px]">
             {`  “Become a host”`}
           </h1>
           <p className="mt-2 text-sm sm:text-base">
@@ -23,7 +23,7 @@ const Overview = () => {
 
         {/* Section 2 - Slide from Right */}
         <SectionAnimation direction="right">
-          <h1 className="font-semibold text-[20px] sm:text-[20px] md:text-[32px]">
+          <h1 className="font-semibold text-[14px] sm:text-[20px] md:text-[32px]">
             “EARN AN INCOME”
           </h1>
           <p className="mt-2 text-sm sm:text-base">

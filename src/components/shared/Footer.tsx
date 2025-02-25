@@ -9,7 +9,7 @@ import Link from 'next/link';
 const Footer = () => {
     return (
         <div className=' bg-[#F9F9F9] py-20'>
-            <div className='container grid grid-cols-1 md:grid-cols-2 pl-10 lg:pl-0  lg:grid-cols-4 justify-between items-center mx-auto  w-full '>
+            <div className='container grid grid-cols-1 md:grid-cols-2 pl-10 lg:pl-0  lg:grid-cols-4 justify-between mx-auto  w-full '>
                 <div>
                     <div className='flex items-center gap-2 '>
                         <p className='font-bold text-[49px]'>NARDO</p>
@@ -17,9 +17,9 @@ const Footer = () => {
                     </div>
                     {/* <p className='max-w-[80%]'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p> */}
                 </div>
-                <div className='space-y-6'>
+                <div className='space-y-2 mb-5'>
                     <p className='font-bold text-[20px] '>Contact Info</p>
-                    <p className='flex items-center gap-2'><HiOutlineMailOpen />nardolimited@gmail.com</p>
+                    <p className='flex items-center gap-2 '><HiOutlineMailOpen />nardolimited@gmail.com</p>
                     {/* <p  className='flex items-center gap-2'><LuPhone /> 302-158-125</p>
                     <p className='flex items-center gap-2'><IoLocationOutline /> 3651 25th st, Milami, Florida, USA</p> */}
                 </div>

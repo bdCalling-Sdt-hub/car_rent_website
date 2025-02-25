@@ -82,7 +82,7 @@ const RegisterPage = () => {
             />
           </Form.Item>
           <Form.Item label="Age" name={"age"}>
-            <Input.Password
+            <Input
               placeholder="Enter Your Age"
               className="p-2"
             />

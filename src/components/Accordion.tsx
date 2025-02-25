@@ -32,7 +32,7 @@ const Accordion = async () => {
             <AccordionTrigger className="text-sm md:text-[20px]">
               {faq?.question}
             </AccordionTrigger>
-            <AccordionContent className="text-[16px] leading-7">{faq?.answer}</AccordionContent>
+            <AccordionContent className=" text-[13px] md:text-[16px] leading-7">{faq?.answer}</AccordionContent>
           </AccordionItem>
         );
       })}

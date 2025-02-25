@@ -138,6 +138,13 @@ const Navbar = () => {
                   >
                     <MdCarRental /> Become Host
                   </Link>
+                  <Link
+                    onClick={closePopover}
+                    href={"/browse-by-destination?destination=London"}
+                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
+                  >
+                    <MdCarRental /> Car Rental Search
+                  </Link>
                 </div>
                 <div className="col-span-1">
                   {getUserInfo?.data?.authId?.role === "HOST" && (
