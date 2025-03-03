@@ -7,32 +7,34 @@ import { toast } from "sonner";
 
 import { LoadingOutlined } from "@ant-design/icons";
 
-const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+const customSpinner = (
+  <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />
+);
 
 const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
   const [form] = Form.useForm();
-  const [addPaymentDetails , {isLoading}] = useCreatePaymentInfoMutation()
+  const [addPaymentDetails, { isLoading }] = useCreatePaymentInfoMutation();
 
   const handlePaymentInfo = (values: Record<string, any>) => {
+    const formData = new FormData();
 
-    const formData = new FormData()
+    const data = {
+      ...values,
+      dateOfBirth: values.dateOfBirth?.format("MM/DD/YYYY"),
+    };
 
-    const data ={
-        ...values,
-        dateOfBirth: values.dateOfBirth?.format("MM/DD/YYYY")
-    }
-    
-     // Append each key-value pair to formData
-     Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
+    // Append each key-value pair to formData
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
     });
 
-    addPaymentDetails(formData).unwrap()
-    .then((payload) => {
-        toast.success(payload?.message)
-        handleNext()
-    })
-    .catch((error) => toast.error(error?.data?.message));
+    addPaymentDetails(formData)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+        handleNext();
+      })
+      .catch((error) => toast.error(error?.data?.message));
   };
 
   return (
@@ -40,27 +42,11 @@ const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
       <HeadingTitle title="Payment Info" />
       <div className="mt-10">
         <Form layout="vertical" form={form} onFinish={handlePaymentInfo}>
-          <Form.Item
-            label="Website URL"
-            name="website_url"
-            className="w-full"
-          >
-            <Input placeholder="Type here..." />
-          </Form.Item>
-
           <div className="flex items-center gap-2">
-            <Form.Item
-              label="First Name"
-              name="first_name"
-              className="w-full"
-            >
+            <Form.Item label="First Name" name="first_name" className="w-full">
               <Input placeholder="Type here..." />
             </Form.Item>
-            <Form.Item
-              label="Last Name"
-              name="last_name"
-              className="w-full"
-            >
+            <Form.Item label="Last Name" name="last_name" className="w-full">
               <Input placeholder="Type here..." />
             </Form.Item>
           </div>
@@ -78,7 +64,13 @@ const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
               <DatePicker format="MM/DD/YYYY" className="w-full" />
             </Form.Item>
           </div>
-
+          <Form.Item
+            label="Routing Number"
+            name="routing_no"
+            className="w-full"
+          >
+            <Input placeholder="Enter Routing Number..." />
+          </Form.Item>
           <div className="flex items-center gap-2">
             <Form.Item
               label="Bank account no."
@@ -109,7 +101,11 @@ const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
             // htmlType="submit"
             className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5 py-2 rounded-sm"
           >
-            {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
+            {isLoading ? (
+              <Spin indicator={customSpinner} className="px-[19px]" />
+            ) : (
+              "Continue"
+            )}
           </button>
         </Form>
       </div>
