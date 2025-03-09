@@ -24,11 +24,10 @@ const Overview = () => {
         {/* Section 2 - Slide from Right */}
         <SectionAnimation direction="right">
           <h1 className="font-semibold text-[14px] sm:text-[20px] md:text-[32px]">
-            “EARN AN INCOME”
+            “Earn an income”
           </h1>
           <p className="mt-2 text-sm sm:text-base">
-            {`Fuel your financial goals! There's no better feeling than seeing extra
-            income coming into your bank accounts.`}
+            {`Extra income from a side hustle can allow you to feel more confident in your ability to manage and build your finances`}
           </p>
         </SectionAnimation>
       </div>

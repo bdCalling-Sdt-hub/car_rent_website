@@ -26,7 +26,7 @@ const HostCars = () => {
             <div className="md:col-span-8 col-span-1 space-y-2">
               <div className="md:flex justify-between">
                 <div>
-                  <p className="text-[24px]">{car?.make} {car?.model} {car?.year}</p>
+                  <p className="text-[24px] capitalize">{car?.make} {car?.model} {car?.year}</p>
                   <div className="flex items-center gap-2">
                     <p className="bg-[#E3E1E1] px-4 py-1 rounded-full">
                       {car?.carType}

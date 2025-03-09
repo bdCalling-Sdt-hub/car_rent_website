@@ -65,7 +65,7 @@ const AddPaymentInfo: React.FC<Step2Props> = ({ handleNext }) => {
             </Form.Item>
           </div>
           <Form.Item
-            label="Routing Number"
+            label="Sort code"
             name="routing_no"
             className="w-full"
           >

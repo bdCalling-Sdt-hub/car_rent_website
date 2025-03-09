@@ -122,9 +122,9 @@ const CarPhoto = () => {
       <p className="mt-5">
         High-quality photos increase your earning potential by attracting more
         guests. Upload at least 6 photos, including multiple exterior angles
-        with the whole car in frame, as well as interior shots. Learn more here.
+        with the whole car in frame, as well as interior shots.
       </p>
-      <p>How much advance notice do you need before a trip starts?</p>
+
 
       {/* Image Slider */}
       <Carousel className="mt-10">

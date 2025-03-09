@@ -23,8 +23,8 @@ const TopHostedCar = () => {
         ?.slice(0, 2)
         ?.map((host: any) => {
           return (
-            <div key={host?._id} className="grid grid-cols-1 md:grid-cols-2 gap-5 px-2 md:px-0 mb-16">
-              <div className="col-span-1">
+            <div key={host?._id} className="grid grid-cols-1 md:grid-cols-2  gap-5 px-2 md:px-0 mb-16">
+              <div className="col-span-1 md:mt-20">
                 <div className="flex items-center gap-5">
                   <Image
                     src={`${imageUrl}/${host?.profile_image}`}

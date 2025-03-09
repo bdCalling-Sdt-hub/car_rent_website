@@ -33,7 +33,8 @@ const Footer = () => {
                 <div className='space-y-4'>
                     <p className='font-bold text-[20px] '>Social Media Links</p>
                     <p className='flex items-center gap-2'><IoLogoFacebook />Facebook</p>
-                    <p className='flex items-center gap-2'> <FaSquareInstagram /> Instagram</p>
+                    <p className='flex items-center gap-2'> <a className='flex items-center gap-2' href="https://www.instagram.com/nardo.app/?igsh=MThoY2o4Y2lyem54cQ%3D%3D&utm_source=qr#" target="_blank" rel="noopener noreferrer"><FaSquareInstagram /> Instagram</a></p>
+                    {/* <Link href={""}></Link> */}
                     <p className='flex items-center gap-2'> <RiTwitterXFill />  X</p>
                     <p className='flex items-center gap-2'><IoLogoYoutube /> Youtube</p>
                 </div>

@@ -43,10 +43,10 @@ const ContactUsPage = () => {
               {/* <a href="mailto:youremail@gmail.com">youremail@gmail.com</a> */}
             </span>
           </div>
-          <div className="text-sm flex items-center gap-2">
+          {/* <div className="text-sm flex items-center gap-2">
             <FiPhone />
             <span>Phone: {getContactUse?.data?.callToUs[0]}</span>
-          </div>
+          </div> */}
         </div>
 
         {/* Title */}
@@ -68,7 +68,7 @@ const ContactUsPage = () => {
           <Form.Item label="Opinions" name={"feedback"}>
             <Textarea placeholder="Type your message here." />
           </Form.Item>
-          <button className="bg-[#6A6A6A] w-full rounded-sm text-white py-2">
+          <button className="bg-black text-white text-xl w-full rounded-sm  py-2">
             Send
           </button>
         </Form>

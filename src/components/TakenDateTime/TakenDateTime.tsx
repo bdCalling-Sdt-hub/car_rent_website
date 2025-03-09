@@ -198,7 +198,7 @@ const TakenDateTime = ({className } : {className : any} ) => {
               className="bg-[#EBEBEB] hover:bg-[#EBEBEB] border-none"
               use12Hours
               format="h:mm a"
-              minuteStep={30} // Ensures 30-minute interval selection
+              minuteStep={30} 
               onChange={handleReturnTimeChange}
               value={returnTime ? dayjs(returnTime, "h:mm A") : null}
             />

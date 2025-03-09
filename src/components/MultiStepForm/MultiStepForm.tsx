@@ -324,7 +324,7 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     <div className="md:max-w-[60%] w-full ">
       <HeadingTitle title="License Plate" />
       <p className="mt-5">
-        Your Licence plate information won{`&apos`}t be publicly visible
+        Your Licence plate information won&apos;t be publicly visible
       </p>
       <p className="mt-10 pb-2">Plate Number</p>
       <Input
@@ -509,13 +509,13 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         <RadioGroup
           value={formValues.transmission}
           onValueChange={(value) => handleChange("transmission", value)}
-          className="flex gap-10"
+          className="flex gap-10 items-center mt-2"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="automatic" id="automatic" />
             <Label htmlFor="automatic">Automatic</Label>
           </div>
-          <div className="flex items-center space-x-2 mt-2">
+          <div className="flex items-center space-x-2 ">
             <RadioGroupItem value="manual" id="manual" />
             <Label htmlFor="manual">Manual</Label>
           </div>
@@ -526,9 +526,9 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         <RadioGroup
           value={formValues.isElectric}
           onValueChange={(value) => handleChange("isElectric", value)}
-          className="flex gap-10"
+          className="flex items-center gap-10 mt-2"
         >
-          <div className="flex items-center space-x-2 mt-2">
+          <div className="flex items-center space-x-2 ">
             <RadioGroupItem value="yes" id="electric-yes" />
             <Label htmlFor="yes">Yes</Label>
           </div>
@@ -543,9 +543,9 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         <RadioGroup
           value={formValues.carType}
           onValueChange={(value) => handleChange("carType", value)}
-          className="flex gap-10"
+          className="flex items-center gap-10 mt-2"
         >
-          <div className="flex items-center space-x-2 mt-2">
+          <div className="flex items-center space-x-2 ">
             <RadioGroupItem value="luxury" id="luxury" />
             <Label htmlFor="luxury">Luxury</Label>
           </div>
@@ -560,9 +560,9 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         <RadioGroup
           value={formValues.vehicleType}
           onValueChange={(value) => handleChange("vehicleType", value)}
-          className="md:flex gap-10"
+          className="md:flex items-center mt-2 gap-10"
         >
-          <div className="flex items-center space-x-2 mt-2">
+          <div className="flex items-center space-x-2 ">
             <RadioGroupItem value="car" id="car" />
             <Label htmlFor="car">Car</Label>
           </div>

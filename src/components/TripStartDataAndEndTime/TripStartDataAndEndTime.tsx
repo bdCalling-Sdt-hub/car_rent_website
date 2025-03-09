@@ -1,7 +1,7 @@
-'use client';
-
-import React from 'react';
-
+"use client";
+import { TimePicker } from "antd";
+import React from "react";
+import type { TimePickerProps } from "antd";
 type DateTimePickerProps = {
   onChange: (data: {
     startDate?: string;
@@ -11,21 +11,29 @@ type DateTimePickerProps = {
   }) => void;
 };
 
-const TripStartDataAndEndTime: React.FC<DateTimePickerProps> = ({ onChange }) => {
+const TripStartDataAndEndTime: React.FC<DateTimePickerProps> = ({
+  onChange,
+}) => {
   const handleStartDateChange = (value: string) => {
     onChange({ startDate: value });
   };
 
-  const handleStartTimeChange = (value: string) => {
-    onChange({ startTime: value });
+  const handleStartTimeChange: TimePickerProps["onChange"] = (time) => {
+    if (time) {
+      const time24Format = time.format("HH:mm"); 
+      onChange({ startTime: time24Format});
+    }
   };
 
   const handleEndDateChange = (value: string) => {
     onChange({ endDate: value });
   };
 
-  const handleEndTimeChange = (value: string) => {
-    onChange({ endTime: value });
+  const handleEndTimeChange: TimePickerProps["onChange"] = (time) => {
+    if (time) {
+      const time24Format = time.format("HH:mm"); 
+      onChange({ endTime: time24Format});
+    }
   };
 
   return (
@@ -37,12 +45,20 @@ const TripStartDataAndEndTime: React.FC<DateTimePickerProps> = ({ onChange }) =>
           <input
             type="date"
             onChange={(e) => handleStartDateChange(e.target.value)}
-            className="w-1/2 border p-2 rounded"
+            className="w-full border p-2 rounded"
           />
-          <input
+          {/* <input
             type="time"
             onChange={(e) => handleStartTimeChange(e.target.value)}
             className="w-1/2 border p-2 rounded"
+          /> */}
+          <TimePicker
+            className=" bg-white w-full"
+            use12Hours
+            format="h:mm A"
+            minuteStep={30}
+            onChange={handleStartTimeChange}
+            // value={pickupTime ? dayjs(pickupTime, "h:mm A") : null}
           />
         </div>
       </div>
@@ -54,12 +70,21 @@ const TripStartDataAndEndTime: React.FC<DateTimePickerProps> = ({ onChange }) =>
           <input
             type="date"
             onChange={(e) => handleEndDateChange(e.target.value)}
-            className="w-1/2 border p-2 rounded"
+            className="w-full border p-2 rounded"
           />
-          <input
+          {/* <input
             type="time"
             onChange={(e) => handleEndTimeChange(e.target.value)}
             className="w-1/2 border p-2 rounded"
+          /> */}
+
+          <TimePicker
+            className=" bg-white w-full"
+            use12Hours
+            format="h:mm A"
+            minuteStep={30}
+            onChange={handleEndTimeChange}
+            // value={pickupTime ? dayjs(pickupTime, "h:mm A") : null}
           />
         </div>
       </div>

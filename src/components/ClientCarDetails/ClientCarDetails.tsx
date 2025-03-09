@@ -111,6 +111,9 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     const formattedStartTime = formatTime(formData?.startTime);
     const formattedEndTime = formatTime(formData?.endTime);
 
+    console.log(formattedStartTime);
+    console.log(formattedEndTime);
+
     const data = {
       carId: cars?._id,
       hostId: cars?.user?._id,
