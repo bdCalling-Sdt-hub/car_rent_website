@@ -4,7 +4,6 @@ import { Form } from "antd";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { CiMail } from "react-icons/ci";
-import { FiPhone } from "react-icons/fi";
 import { useGetContactUsQuery, usePostFeedbackMutation } from "@/redux/Api/infoApi";
 import { toast } from "sonner";
 
