@@ -272,12 +272,12 @@ const AllCarsPage = () => {
                   key={car?._id}
                   href={`/browse-by-destination/${car?._id}`}
                 >
-                  <div className="md:flex h-full items-center gap-4 border rounded-md shadow-sm p-3">
+                  <div className="md:flex  items-center gap-4 border rounded-md shadow-sm p-3">
                     <Image
                       alt="img"
                       height={200}
                       width={300}
-                      className="w-full md:w-[50%] object-cover rounded-sm md:h-[100%] "
+                      className="w-full md:w-[50%] object-cover rounded-sm md:h-[250px] "
                       src={`${imageUrl}/${car?.car_image[0]}`}
                     />
                     <div className="space-y-4 p-2 md:p-0">
