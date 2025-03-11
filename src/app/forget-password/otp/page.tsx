@@ -16,7 +16,6 @@ const Otp = () => {
       email: email,
       code: otp,
     };
-    // console.log(data);
     sendOtp(data)
       .unwrap()
       .then((payload) => {

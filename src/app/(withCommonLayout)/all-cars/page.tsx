@@ -69,15 +69,12 @@ const AllCarsPage = () => {
   const makeArray = getMakeModelYear?.data[0]?.make || [];
   const makeYearArray = getMakeModelYear?.data[0]?.year || [];
   // const makeModelArray = getMakeModelYear?.data[0]?.model || [];
-  const [sortedYear , setSortedYear] = useState<number[]>([])
+  const [sortedYear, setSortedYear] = useState<number[]>([]);
 
-  
-  useEffect(()=>{
-    console.log(makeYearArray);
-    const sortYear = [...makeYearArray].sort((a : any, b : any)=> b - a)
-    setSortedYear(sortYear)
-  }, [getMakeModelYear])
-
+  useEffect(() => {
+    const sortYear = [...makeYearArray].sort((a: any, b: any) => b - a);
+    setSortedYear(sortYear);
+  }, [getMakeModelYear]);
 
   // Price range slider function
   const handleSliderChange = (value: any) => {
@@ -174,11 +171,18 @@ const AllCarsPage = () => {
             {selectedMake || "Select Make"}
           </SelectTrigger>
           <SelectContent>
-            {makeArray.map((make: string, index: string) => (
-              <SelectItem key={index} value={make} className="capitalize">
-                {make || "Unknown"}
-              </SelectItem>
-            ))}
+            {makeArray
+              .filter((make : any) => make.trim() !== "") 
+              .map(
+                (
+                  make: string,
+                  index: number 
+                ) => (
+                  <SelectItem key={index} value={make} className="capitalize">
+                    {make}
+                  </SelectItem>
+                )
+              )}
           </SelectContent>
         </Select>
 

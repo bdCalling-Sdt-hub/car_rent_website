@@ -14,7 +14,6 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
   const [carId, setCarId] = useState("");
   const [sendRating] = useSendFeedbackMutation();
 
-  // console.log(trip);
   // handle rating function
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -24,7 +23,6 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
     setRating(starValue);
   };
 
-  //   console.log(rating);
   const handleRatingSubmit = (value: { review: string }) => {
     const data = {
       carId: carId,

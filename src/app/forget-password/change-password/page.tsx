@@ -10,7 +10,6 @@ const UpdatePassword = () => {
   const [resetPassword] = useResetPasswordMutation();
   const navigate = useRouter()
   const onFinish = (values: any) => {
-    console.log(values);
     const data = {
       email: localStorage.getItem("forgetPass"),
       newPassword: values?.password,
