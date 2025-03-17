@@ -31,9 +31,12 @@ interface TCarInfo {
 
 import { LoadingOutlined } from "@ant-design/icons";
 
-const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+const customSpinner = (
+  <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />
+);
 
 const CarPhoto = () => {
+  const [uploadKey, setUploadKey] = useState(0);
   const router = useRouter();
   const [userRole, setUserRole] = useState("");
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
@@ -41,13 +44,16 @@ const CarPhoto = () => {
   const { data: getUserInfo } = useGetProfileQuery({});
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
+  // console.log(uploadedImages);
+
   useEffect(() => {
     setUserRole(getUserInfo?.data?.role);
   }, [getUserInfo]);
 
   //   All APIs
-  const [addCarPhotos , {isLoading}] = useAddCarPhotosMutation();
-  const [registerCar , {isLoading : registerLoad}] = useSendCarRequestMutation();
+  const [addCarPhotos, { isLoading }] = useAddCarPhotosMutation();
+  const [registerCar, { isLoading: registerLoad }] =
+    useSendCarRequestMutation();
 
   //   Image file upload function
   const handleImageSelection = ({ fileList }: { fileList: UploadFile[] }) => {
@@ -64,7 +70,6 @@ const CarPhoto = () => {
 
   //   Handle upload car images and information
   const handleUploadCarPhotos = (values: TCarInfo) => {
-    // console.log(values);
 
     const formData = new FormData();
     const carId = localStorage.getItem("carId") || "";
@@ -93,7 +98,6 @@ const CarPhoto = () => {
 
   //   Car register function
   const handleCarRegister = () => {
-    // href={"/host-history"}
     const getCarId = localStorage.getItem("carId");
     registerCar(getCarId)
       .unwrap()
@@ -102,18 +106,24 @@ const CarPhoto = () => {
           router.push("/host-history");
           toast.success(payload?.message);
         } else {
-          setOpenConfirmModal(true)
-          setTimeout(()=>{
+          setOpenConfirmModal(true);
+          setTimeout(() => {
             router.push("/");
-
-          } , 3000)
-          // toast.success("Your role is change please login again!");
-          // localStorage.removeItem("_token");
+          }, 3000);
         }
 
         localStorage.removeItem("currentStep");
       })
       .catch((error) => toast.error(error?.data?.message));
+  };
+
+
+  
+  // Clear all images
+  const clearImages = () => {
+    setUploadedImages([]);
+    setImagesFile([]);
+    setUploadKey(prevKey => prevKey + 1);
   };
 
   return (
@@ -125,9 +135,17 @@ const CarPhoto = () => {
         with the whole car in frame, as well as interior shots.
       </p>
 
-
       {/* Image Slider */}
-      <Carousel className="mt-10">
+      {uploadedImages?.length > 0 && (
+        <button
+          className="flex text-sm   justify-end w-full mt-10"
+          onClick={clearImages}
+        >
+          <p onClick={clearImages} className="bg-[#0CFEE8] p-1 rounded-sm shadow-lg">Clear All</p>
+        </button>
+      )}
+
+      <Carousel className="">
         <CarouselContent>
           {uploadedImages.map((imageUrl, index) => (
             <CarouselItem key={index} className="md:basis-1/4 basis-1/2">
@@ -143,14 +161,23 @@ const CarPhoto = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="top-1/2 -left-10" />
-        <CarouselNext className="top-1/2" />
+        {
+          uploadedImages?.length > 0 && <>
+          <CarouselPrevious className="top-1/2 -left-10 " />
+          <CarouselNext className="top-1/2" />
+          </>
+        }
+        
       </Carousel>
 
+      <p className="text-xs mt-5 text-gray-700">
+        Note: Only JPEG, PNG, JPG, and WEBP image formats are supported.
+      </p>
       {/* Image Uploader */}
-      <div className="mt-10">
+      <div className="mt-5">
         <p className="mb-2">Upload Car Photos</p>
         <Upload
+         key={uploadKey}
           listType="picture-card"
           multiple
           onChange={handleImageSelection}
@@ -192,7 +219,11 @@ const CarPhoto = () => {
           <Input placeholder="type here" />
         </Form.Item>
         <button className="bg-[#0CFEE8] py-2 rounded-md  px-10 shadow-md">
-        {isLoading ?  <Spin indicator={customSpinner} className="px-[65px] w-full" /> : "Upload Car Information"}
+          {isLoading ? (
+            <Spin indicator={customSpinner} className="px-[65px] w-full" />
+          ) : (
+            "Upload Car Information"
+          )}
         </button>
       </Form>
 
@@ -200,12 +231,23 @@ const CarPhoto = () => {
         onClick={() => handleCarRegister()}
         className="bg-[#0CFEE8] shadow-md py-2 rounded-md mt-5 px-16 cursor-pointer inline-block "
       >
-        {registerLoad ?  <Spin indicator={customSpinner} className="px-[19px] w-full" /> : "Send Request"}
+        {registerLoad ? (
+          <Spin indicator={customSpinner} className="px-[19px] w-full" />
+        ) : (
+          "Send Request"
+        )}
       </div>
 
-      <Modal centered footer={false} open={openConfirmModal} onCancel={()=> setOpenConfirmModal(false)} >
+      <Modal
+        centered
+        footer={false}
+        open={openConfirmModal}
+        onCancel={() => setOpenConfirmModal(false)}
+      >
         <div>
-          <h1 className="text-center mt-2 text-2xl text-[#0CFEE8] font-semibold">Congratulation!!</h1>
+          <h1 className="text-center mt-2 text-2xl text-[#0CFEE8] font-semibold">
+            Congratulation!!
+          </h1>
           <p className="text-center mt-2">
             Your car registration request has been submitted successfully. You
             will receive an email once the admin approves your request

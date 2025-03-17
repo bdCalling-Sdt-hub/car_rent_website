@@ -42,7 +42,15 @@ const TopHostedCar = () => {
                     <p>
                       {" "}
                       {host?.trip} trips, joined{" "}
-                      {host?.createdAt?.split("T")[0]}
+                        {new Date(host?.createdAt).toLocaleDateString(
+                          "en-GB",
+                          {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          }
+                        )}
+                      {/* {host?.createdAt?.split("T")[0]} */}
                     </p>
                   </div>
                 </div>
@@ -68,6 +76,16 @@ const TopHostedCar = () => {
                         {review?.review}
                       </p>
                       <p className="mt-5">{review?.createdAt?.split("T")[0]}</p>
+                      <p>
+                        {new Date(review?.createdAt).toLocaleDateString(
+                          "en-GB",
+                          {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          }
+                        )}
+                      </p>
                     </div>
                   );
                 })}
