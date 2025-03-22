@@ -18,8 +18,8 @@ const geistMono = localFont({
 });
 const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "700"], // Define the font weights you need
-  variable: "--font-lora", // Define a CSS variable for Lora
+  weight: ["400", "700"], 
+  variable: "--font-lora", 
 });
 
 export const metadata: Metadata = {

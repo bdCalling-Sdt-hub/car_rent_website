@@ -37,8 +37,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
 
 
-const TotalSteps = 8;
+let TotalSteps = 8;
 const MultiStepForm = () => {
+
+  const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
+
+
+
+  console.log(getPaymentInfo?.data?.stripe_account_id);
+
   const [currentStep, setCurrentStep] = useState<number>(() => {
     if (typeof window !== "undefined") {
       const storedStep = localStorage.getItem("currentStep");
@@ -68,7 +75,7 @@ const MultiStepForm = () => {
       <div>
         <p>List your car</p>
         <div className="md:flex gap-5 my-5">
-          <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${TotalSteps}`}</p>
+          <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${getPaymentInfo?.data?.stripe_account_id ?  "7" : "8"} `}</p>
           <p className="md:border-r-2 pr-3">Next Car availability</p>
           <p className="text-[#1E3F66]">Start over</p>
         </div>
