@@ -37,14 +37,13 @@ import { LoadingOutlined } from "@ant-design/icons";
 const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
 
 
-let TotalSteps = 8;
+const TotalSteps = 8;
 const MultiStepForm = () => {
 
   const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
 
 
 
-  console.log(getPaymentInfo?.data?.stripe_account_id);
 
   const [currentStep, setCurrentStep] = useState<number>(() => {
     if (typeof window !== "undefined") {
