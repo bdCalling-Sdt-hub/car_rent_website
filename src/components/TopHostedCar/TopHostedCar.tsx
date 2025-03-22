@@ -75,7 +75,7 @@ const TopHostedCar = () => {
                       <p className="max-w-xl leading-8 mt-5">
                         {review?.review}
                       </p>
-                      <p className="mt-5">{review?.createdAt?.split("T")[0]}</p>
+                      {/* <p className="mt-5">{review?.createdAt?.split("T")[0]}</p> */}
                       <p>
                         {new Date(review?.createdAt).toLocaleDateString(
                           "en-GB",
