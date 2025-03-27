@@ -115,7 +115,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
           </Form.Item>
         </div> */}
         <Form.Item
-          label={"Per kilometer charge after crossing maximum distance"}
+          label={"Per Miles charge after crossing maximum distance"}
           className="w-full"
           name={"finePerKm"}
         >

@@ -40,7 +40,6 @@ const CarDetailsPage : FC<TProductId> = async( {params})=> {
 
             <ClientCarDetails cars={cars?.data} />
 
-            
             <RatingReview rating={rating?.data?.result} />
 
         </div>

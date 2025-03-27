@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import HeadingTitle from "../shared/HeadingTitle";
 import { Input } from "../ui/input";
-import { Form, Modal, Spin, Upload, UploadFile } from "antd";
+import { Form, Modal, Select, Spin, Upload, UploadFile } from "antd";
 import {
   Carousel,
   CarouselContent,
@@ -70,7 +70,6 @@ const CarPhoto = () => {
 
   //   Handle upload car images and information
   const handleUploadCarPhotos = (values: TCarInfo) => {
-
     const formData = new FormData();
     const carId = localStorage.getItem("carId") || "";
     formData.append("carId", carId);
@@ -117,13 +116,11 @@ const CarPhoto = () => {
       .catch((error) => toast.error(error?.data?.message));
   };
 
-
-  
   // Clear all images
   const clearImages = () => {
     setUploadedImages([]);
     setImagesFile([]);
-    setUploadKey(prevKey => prevKey + 1);
+    setUploadKey((prevKey) => prevKey + 1);
   };
 
   return (
@@ -141,7 +138,12 @@ const CarPhoto = () => {
           className="flex text-sm   justify-end w-full mt-10"
           onClick={clearImages}
         >
-          <p onClick={clearImages} className="bg-[#0CFEE8] p-1 rounded-sm shadow-lg">Clear All</p>
+          <p
+            onClick={clearImages}
+            className="bg-[#0CFEE8] p-1 rounded-sm shadow-lg"
+          >
+            Clear All
+          </p>
         </button>
       )}
 
@@ -161,13 +163,12 @@ const CarPhoto = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {
-          uploadedImages?.length > 0 && <>
-          <CarouselPrevious className="top-1/2 -left-10 " />
-          <CarouselNext className="top-1/2" />
+        {uploadedImages?.length > 0 && (
+          <>
+            <CarouselPrevious className="top-1/2 -left-10 " />
+            <CarouselNext className="top-1/2" />
           </>
-        }
-        
+        )}
       </Carousel>
 
       <p className="text-xs mt-5 text-gray-700">
@@ -177,7 +178,7 @@ const CarPhoto = () => {
       <div className="mt-5">
         <p className="mb-2">Upload Car Photos</p>
         <Upload
-         key={uploadKey}
+          key={uploadKey}
           listType="picture-card"
           multiple
           onChange={handleImageSelection}
@@ -207,7 +208,10 @@ const CarPhoto = () => {
           <Input placeholder="type here" />
         </Form.Item>
         <Form.Item label={"Fuel Type"} name={"fuelType"}>
-          <Input placeholder="type here" />
+          <Select placeholder="Select fuel type">
+            <Select.Option value="diesel">Diesel</Select.Option>
+            <Select.Option value="petrol">Petrol</Select.Option>
+          </Select>
         </Form.Item>
         <Form.Item label={"Discount Days"} name={"discountDays"}>
           <Input placeholder="type here" />

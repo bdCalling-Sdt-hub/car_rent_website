@@ -50,10 +50,10 @@ const HostCars = () => {
                   </Link>
                 </div>
               </div>
-              <p>{car?.discountDays} days Discount {car?.discountAmount}£</p>
+              <p>{car?.discountDays} days Discount £{car?.discountAmount}</p>
               <p>£{car?.pricePerDay}/Per day</p>
               <p className="font-semibold">Description :</p>
-              <p className="leading-8">
+              <p className="leading-8 capitalize">
                 {car?.description}
               </p>
             </div>

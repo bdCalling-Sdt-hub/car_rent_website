@@ -111,8 +111,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
     const formattedStartTime = formatTime(formData?.startTime);
     const formattedEndTime = formatTime(formData?.endTime);
 
-    console.log(formattedStartTime);
-    console.log(formattedEndTime);
+ 
 
     const data = {
       carId: cars?._id,
@@ -181,7 +180,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
 
 
   const { data: getProfile } = useGetProfileQuery(undefined);
-
+  // console.log(cars?.user?.phone_number)
  
 
   return (
@@ -235,7 +234,15 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             </p>
             <p>
               {cars?.user?.trip} trips, joined{" "}
-              {cars?.user?.updatedAt?.split("T")[0]}
+              {new Date(cars?.user?.updatedAt).toLocaleDateString(
+                          "en-GB",
+                          {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          }
+                        )}
+              {/* {cars?.user?.updatedAt?.split("T")[0]} */}
             </p>
           </div>
         </div>
@@ -332,8 +339,8 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           {/* Additional Info */}
           <div className="space-y-2 border-t border-gray-300 pt-4">
             <div className="text-sm text-gray-600">
-              <span className="font-semibold">Free cancellation</span> <br />
-              <span className="cursor-pointer">Contact host</span>
+              <span className="font-semibold">Free cancellation</span>  <br />
+              <span className="cursor-pointer">Contact host</span><span className="text-xs">({cars?.user?.phone_number})</span>
             </div>
             <div className="text-sm text-gray-600">
               <div className="flex justify-between pb-2">

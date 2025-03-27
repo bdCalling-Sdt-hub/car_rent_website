@@ -4,10 +4,7 @@ import React from "react";
 import { FaRegStar } from "react-icons/fa6";
 import { imageUrl } from "@/redux/baseApi";
 
-
 const CompleteTrip = ({ trip }: { trip: any }) => {
-
-
   return (
     <div>
       <div className=" ">
@@ -31,7 +28,7 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
                   {/*Host details  */}
                   <div className="flex justify-between">
                     <div className="shadow-md px-10 rounded-md py-5">
-                      <p className="font-semibold">Hosted By :</p>
+                      <p className="font-semibold">Hosted Bysssss :</p>
                       <div className="flex items-center gap-2">
                         <Image
                           alt="img"
@@ -47,13 +44,19 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
                           </p>
                           <p>
                             {car?.host?.trip} trips. Joined{" "}
-                            {car?.host?.createdAt?.split("T")[0]}
+                            {new Date(car?.host?.createdAt).toLocaleDateString(
+                              "en-GB",
+                              {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                              }
+                            )}
+                            {/* {car?.host?.createdAt?.split("T")[0]} */}
                           </p>
                         </div>
                       </div>
                     </div>
-
-                    
                   </div>
 
                   {/* Details */}
@@ -105,7 +108,6 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
           );
         })}
       </div>
-
     </div>
   );
 };

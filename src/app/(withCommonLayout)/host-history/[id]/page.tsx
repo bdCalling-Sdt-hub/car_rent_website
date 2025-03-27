@@ -327,7 +327,7 @@ const EditHostCarPage = () => {
           </div>
           <div className="w-full">
             <label className="block text-sm font-medium mb-2">
-              Per kilometer charge after crossing maximum distance{" "}
+              Per Miles charge after crossing maximum distance{" "}
             </label>
             <Input
               name="finePerKm"

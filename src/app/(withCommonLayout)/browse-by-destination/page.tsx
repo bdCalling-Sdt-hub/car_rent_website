@@ -112,7 +112,7 @@ const BrowseByDestinationPage = () => {
   return (
     <div className="container mx-auto my-10 font-lora px-2 md:px-0">
       <div className="text-center">
-        <HeadingTitle title="Rent cars in United Kingdom, HI" />
+        <HeadingTitle title="Rent cars in United Kingdom" />
         <p className="mt-12 font-lora">
           Discover the Nardo car rental marketplace
         </p>
@@ -121,6 +121,7 @@ const BrowseByDestinationPage = () => {
 
       <div className="my-5">
         <p className="md:text-[32px] text-[18px] mb-20 md:mb-0 font-semibold">
+          
           Top rated rental cars in {destination}
         </p>
       </div>

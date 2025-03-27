@@ -33,6 +33,7 @@ import { location, Step2Props } from "@/type";
 import { toast } from "sonner";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import StartOverModal from "../StartOverModal/StartOverModal";
 
 const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
 
@@ -68,15 +69,24 @@ const MultiStepForm = () => {
     localStorage.setItem("currentStep", currentStep.toString());
   }, [currentStep]);
 
+
+
+  const [openModal , setOpenModal] = useState(false)
+  // Handle Start Over 
+  const handleStartOver = ()=>{
+    setOpenModal(true)
+  }
+
   return (
     <div className="container mx-auto py-10 font-lora px-2 md:px-0">
       {/* Progress bar */}
       <div>
         <p>List your car</p>
         <div className="md:flex gap-5 my-5">
-          <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${getPaymentInfo?.data?.stripe_account_id ?  "7" : "8"} `}</p>
+          {/* <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${getPaymentInfo?.data?.stripe_account_id ?  "7" : "8"} `}</p> */}
+          <p className="md:border-r-2 pr-3">{`Step ${currentStep} of   8 `}</p>
           <p className="md:border-r-2 pr-3">Next Car availability</p>
-          <p className="text-[#1E3F66]">Start over</p>
+          <p onClick={()=> handleStartOver()} className="text-[#1E3F66] cursor-pointer">Start over</p>
         </div>
       </div>
       <div className="flex items-center justify-between mb-4 gap-5">
@@ -114,6 +124,7 @@ const MultiStepForm = () => {
         )}
         {currentStep === 8 && <CarPhoto />}
       </div>
+      <StartOverModal openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 };
@@ -328,7 +339,7 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 
   return (
     <div className="md:max-w-[60%] w-full ">
-      <HeadingTitle title="License Plate" />
+      <HeadingTitle title="Licence Plate" />
       <p className="mt-5">
         Your Licence plate information won&apos;t be publicly visible
       </p>

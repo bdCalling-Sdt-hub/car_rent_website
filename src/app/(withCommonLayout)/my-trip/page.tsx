@@ -120,6 +120,7 @@ const MyTripPage = () => {
                               </p>
                               <p>
                                 {trip?.host?.trip} trips. Joined{" "}
+                             
                                 {trip?.host?.createdAt?.split("T")[0]}
                               </p>
                             </div>
