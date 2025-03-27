@@ -41,7 +41,7 @@ const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} 
 const TotalSteps = 8;
 const MultiStepForm = () => {
 
-  const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
+  // const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
 
 
 
