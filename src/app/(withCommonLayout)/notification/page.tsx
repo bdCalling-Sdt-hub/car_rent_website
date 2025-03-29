@@ -21,6 +21,7 @@ type TNotification = {
 const NotificationPage = () => {
   const [page, setPage] = useState(1);
   const { data: getAllNotification } = useGetAllNotificationQuery(page);
+ 
   const [updateNotification] = useUpdateNotificationMutation();
 
   const handleMarkAsRead = (id: string) => {
@@ -49,7 +50,7 @@ const NotificationPage = () => {
               <p className="text-[#272121]">{notification?.message}</p>
             </div>
             {!notification?.isRead && (
-              <button onClick={() => handleMarkAsRead(notification?._id)}>
+              <button className="" onClick={() => handleMarkAsRead(notification?._id)}>
                 Mark as read
               </button>
             )}

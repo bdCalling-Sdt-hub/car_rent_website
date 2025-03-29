@@ -128,9 +128,9 @@ const CompleteTrip = ({ trip }: { trip: any }) => {
                   <p className="text-xl my-2 font-light">
                     {car?.returnLocation}
                   </p>
-                  <p className="text-sm mb-2">
+                  {/* <p className="text-sm mb-2">
                     Stephen will unlock the car remotely for you.{" "}
-                  </p>
+                  </p> */}
                   {/* <div className="flex justify-between items-center mb-2">
                     <p>£69.00 * 3 days</p>
                     <p>£207.00</p>

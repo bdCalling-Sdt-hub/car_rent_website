@@ -77,7 +77,16 @@ const infoApi = baseApi.injectEndpoints({
                 }
             },
             invalidatesTags :['notification']
-        })
+        }),
+        getCountNotification : builder.query({
+            query : (page)=>{
+                return {
+                    url : `/notification/get-all-notification?page=${page}&limit=20000`,
+                    method : 'GET'
+                }
+            },
+            providesTags : ['notification']
+        }),
     })
 })
-export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery , useGetAllNotificationQuery , useUpdateNotificationMutation} =  infoApi; 
+export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery , useGetAllNotificationQuery , useUpdateNotificationMutation , useGetCountNotificationQuery} =  infoApi; 

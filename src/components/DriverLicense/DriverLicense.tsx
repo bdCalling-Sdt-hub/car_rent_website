@@ -124,7 +124,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
 
         <div className="flex gap-5">
           <Form.Item
-            label="License Front Image"
+            label="Licence Front Image"
             className="w-full"
             style={{
               width: "100%",
@@ -148,7 +148,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             </Upload>
           </Form.Item>
           <Form.Item
-            label="License Back Image"
+            label="Licence Back Image"
             className="w-full"
             style={{
               width: "100%",

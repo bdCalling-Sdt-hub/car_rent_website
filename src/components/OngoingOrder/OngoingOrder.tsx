@@ -9,13 +9,15 @@ import { imageUrl } from "@/redux/baseApi";
 import { toast } from "sonner";
 import Link from "next/link";
 import { IoChatbubbleOutline } from "react-icons/io5";
+import { useGetProfileQuery } from "@/redux/Api/authApi";
 
 const OngoingOrder = () => {
   // ALL APIs
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("ongoing");
+  const {data : getProfile} = useGetProfileQuery({})
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
-  // console.log(getMyProfile?.data?._id);
+  console.log(getProfile?.data?.role);
 
   const handleCompleteTrip = (id: string) => {
     const data = {
@@ -109,7 +111,10 @@ const OngoingOrder = () => {
                   className="bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3"
                   href={`/conversationChat?senderId=${order?.host?._id}&receiverId=${order?.user?._id}`}
                 >
-                  Chat With Host <IoChatbubbleOutline />
+                  {
+                    getProfile?.data?.role == "HOST" ? "Chat With User" : "Chat With Host"
+                  }
+                   <IoChatbubbleOutline />
                 </Link>
               </div>
             </div>

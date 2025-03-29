@@ -28,9 +28,15 @@ import { useGetProfileQuery } from "@/redux/Api/authApi";
 import { imageUrl } from "@/redux/baseApi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { useGetCountNotificationQuery } from "@/redux/Api/infoApi";
 const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const { data: getUserInfo , refetch } = useGetProfileQuery({});
+   const {data : getCountNotification} = useGetCountNotificationQuery({})
+    const unreadCount = getCountNotification?.data?.result?.filter((item : any) => item.isRead === false).length || 0;
+  
+  
+    // console.log(unreadCount);
   const closePopover = () => setPopoverOpen(false);
     const navigate  = useRouter()
 
@@ -230,9 +236,10 @@ const Navbar = () => {
           </Popover>
           <Link
             href={"/notification"}
-            className="bg-[#BCBABA26] p-2 rounded-full"
+            className="bg-[#BCBABA26] p-2 rounded-full relative"
           >
-            <IoMdNotificationsOutline size={20} />
+            <p className="absolute left-7 top-0 bg-[#0CFEE8] rounded-full w-6 h-6 text-sm flex justify-center items-center">{unreadCount}</p>
+            <IoMdNotificationsOutline size={25} />
           </Link>
         </div>
       </div>
