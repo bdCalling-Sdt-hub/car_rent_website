@@ -31,23 +31,25 @@ import { useRouter } from "next/navigation";
 import { useGetCountNotificationQuery } from "@/redux/Api/infoApi";
 const Navbar = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const { data: getUserInfo , refetch } = useGetProfileQuery({});
-   const {data : getCountNotification} = useGetCountNotificationQuery({})
-    const unreadCount = getCountNotification?.data?.result?.filter((item : any) => item.isRead === false).length || 0;
-  
-  
-    // console.log(unreadCount);
+  const { data: getUserInfo, refetch } = useGetProfileQuery({});
+  const { data: getCountNotification } = useGetCountNotificationQuery({});
+  const unreadCount =
+    getCountNotification?.data?.result?.filter(
+      (item: any) => item.isRead === false
+    ).length || 0;
+
+  // console.log(unreadCount);
   const closePopover = () => setPopoverOpen(false);
-    const navigate  = useRouter()
+  const navigate = useRouter();
 
-    useEffect(()=>{
-      refetch()
-    },[])
+  useEffect(() => {
+    refetch();
+  }, []);
 
-  const handleLogOut = ()=>{
-    localStorage.removeItem("_token")
-    navigate.push("/login")
-  }
+  const handleLogOut = () => {
+    localStorage.removeItem("_token");
+    navigate.push("/login");
+  };
   return (
     <div className="bg-[#F9F9F9] py-4 md:py-0">
       <div className="container flex items-center justify-between">
@@ -100,15 +102,15 @@ const Navbar = () => {
             <PopoverContent>
               <div className="font-lora grid grid-cols-1 md:grid-cols-2">
                 <div className="col-span-1">
-                  { getUserInfo?.data?.authId?.role &&
+                  {getUserInfo?.data?.authId?.role && (
                     <Link
-                    href="/my-trip"
-                    onClick={closePopover}
-                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
-                  >
-                    <GoGitMerge /> Trips
-                  </Link>
-                  }
+                      href="/my-trip"
+                      onClick={closePopover}
+                      className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
+                    >
+                      <GoGitMerge /> Trips
+                    </Link>
+                  )}
                   {/* <Link
                     onClick={closePopover}
                     href={"/my-favorite-cars"}
@@ -130,13 +132,15 @@ const Navbar = () => {
                   >
                     <IoIosInformationCircleOutline /> About Us
                   </Link>
-                  <Link
-                    onClick={closePopover}
-                    href={"/Contact-us"}
-                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
-                  >
-                    <FiPhone /> Contact Us
-                  </Link>
+                  {
+                    getUserInfo?.data?.authId?.role &&  <Link
+                      onClick={closePopover}
+                      href={"/Contact-us"}
+                      className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
+                    >
+                      <FiPhone /> Contact Us
+                    </Link>
+                  }
                   <Link
                     onClick={closePopover}
                     href={"/host-home"}
@@ -164,17 +168,15 @@ const Navbar = () => {
                     </Link>
                   )}
 
-                  {
-                    getUserInfo?.data?.authId?.role && <Link
-                    onClick={closePopover}
-                    href={"/my-profile"}
-                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
-                  >
-                    <LuUser /> Profile
-                  </Link>
-                  }
-
-                  
+                  {getUserInfo?.data?.authId?.role && (
+                    <Link
+                      onClick={closePopover}
+                      href={"/my-profile"}
+                      className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer"
+                    >
+                      <LuUser /> Profile
+                    </Link>
+                  )}
 
                   {!getUserInfo?.data?.authId?.role && (
                     <>
@@ -195,16 +197,15 @@ const Navbar = () => {
                       </Link>
                     </>
                   )}
-                  {
-                    getUserInfo?.data?.authId?.role &&  <button
-                    onClick={()=> handleLogOut()}
-                    className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer w-full"
+                  {getUserInfo?.data?.authId?.role && (
+                    <button
+                      onClick={() => handleLogOut()}
+                      className="hover:bg-[#BCBABA] py-2 px-3 flex items-center gap-1 cursor-pointer w-full"
                     >
                       <IoLogOutOutline />
                       Logout
                     </button>
-                  }
-                 
+                  )}
 
                   <Link
                     onClick={closePopover}
@@ -238,7 +239,9 @@ const Navbar = () => {
             href={"/notification"}
             className="bg-[#BCBABA26] p-2 rounded-full relative"
           >
-            <p className="absolute left-7 top-0 bg-[#0CFEE8] rounded-full w-6 h-6 text-sm flex justify-center items-center">{unreadCount}</p>
+            <p className="absolute left-7 top-0 bg-[#0CFEE8] rounded-full w-6 h-6 text-sm flex justify-center items-center">
+              {unreadCount}
+            </p>
             <IoMdNotificationsOutline size={25} />
           </Link>
         </div>

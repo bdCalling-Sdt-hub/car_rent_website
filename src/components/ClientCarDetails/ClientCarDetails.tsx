@@ -180,7 +180,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
 
 
   const { data: getProfile } = useGetProfileQuery(undefined);
-  // console.log(cars?.user?.phone_number)
+  console.log(getProfile?.data?.email)
  
 
   return (
@@ -340,7 +340,10 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           <div className="space-y-2 border-t border-gray-300 pt-4">
             <div className="text-sm text-gray-600">
               <span className="font-semibold">Free cancellation</span>  <br />
-              <span className="cursor-pointer">Contact host</span><span className="text-xs">({cars?.user?.phone_number})</span>
+              <span className="cursor-pointer">Contact host : </span><span className="text-xs"><a href={`mailto:${getProfile?.data?.email}`}>({getProfile?.data?.email})</a>
+
+              
+              </span>
             </div>
             <div className="text-sm text-gray-600">
               <div className="flex justify-between pb-2">
