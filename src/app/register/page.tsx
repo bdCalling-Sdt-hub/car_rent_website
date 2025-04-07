@@ -35,6 +35,10 @@ const RegisterPage = () => {
       .then((payload) => {
         toast.success(payload?.message)
         router.push('/register/otp')
+        const currentStep = localStorage.getItem("currentStep")
+        if(currentStep){
+          localStorage.removeItem("currentStep")
+        }
         if (data.email) {
           localStorage.setItem('email', data.email);
         } else {

@@ -54,7 +54,7 @@ const GetApprovedDriverPage = () => {
           localStorage.removeItem("carId");
           localStorage.removeItem("amount");
           localStorage.removeItem("tripId");
-          
+
           if (payload?.data) {
             window.open(payload.data, "_blank");
           }
@@ -98,20 +98,27 @@ const GetApprovedDriverPage = () => {
             </Form.Item>
 
             <div className="flex justify-between items-center gap-10 mb-10">
-              <Image
-                src={`${imageUrl}/${getProfile?.data?.licenseFrontImage}`}
-                height={200}
-                alt="License Not found"
-                width={200}
-                className="h-52 w-full border border-1 "
-              />
-              <Image
-                src={`${imageUrl}/${getProfile?.data?.licenseBackImage}`}
-                height={200}
-                alt="License Not found"
-                className="h-52 w-full border border-1  "
-                width={200}
-              />
+              <div className="w-full">
+                <p>Licence Front Image</p>
+                <Image
+                  src={`${imageUrl}/${getProfile?.data?.licenseFrontImage}`}
+                  height={200}
+                  alt="License Not found"
+                  width={200}
+                  className="h-52 w-full border border-1 "
+                />
+              </div>
+              <div className="w-full">
+              <p>Licence Back Image</p>
+
+                <Image
+                  src={`${imageUrl}/${getProfile?.data?.licenseBackImage}`}
+                  height={200}
+                  alt="License Not found"
+                  className="h-52 w-full border border-1  "
+                  width={200}
+                />
+              </div>
             </div>
 
             <Button

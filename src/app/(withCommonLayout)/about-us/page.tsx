@@ -47,7 +47,7 @@ const AboutUsPage = () => {
             />
             <div className="mt-5 md:mt-0">
               <HeadingTitle title="About Nardo" />
-              <p className="max-w-xs">
+              <p className="max-w-xs mt-3">
                 Take a look under the hood of the world&apos;s largest car
                 sharing marketplace
               </p>
