@@ -56,10 +56,9 @@ const MyProfilePage = () => {
     isError,
   } = useGetProfileQuery(undefined);
 
-
-  useEffect(()=>{
-    refetch()
-  },[])
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const [updatePassword] = useChangePasswordMutation();
   const [updateProfile] = useUpdateProfileMutation();
@@ -72,8 +71,8 @@ const MyProfilePage = () => {
     );
   }
   if (isError) {
-      toast.success("You don't have account please login first!!")
-      router.push("/login")
+    toast.success("You don't have account please login first!!");
+    router.push("/login");
   }
 
   //------ Handle password update function ------------//
@@ -245,6 +244,11 @@ const MyProfilePage = () => {
                     />
                   </div>
                 )}
+                <p className="mb-5 text-xs pt-2 ">
+                  <span className="font-bold ">Note:</span> Please upload your
+                  driving licence front image and back image
+                </p>
+
                 <div className="flex justify-between mt-5">
                   <Form.Item
                     label="Front License"

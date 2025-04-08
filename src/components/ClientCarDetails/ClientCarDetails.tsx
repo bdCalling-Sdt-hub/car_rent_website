@@ -180,8 +180,6 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
 
 
   const { data: getProfile } = useGetProfileQuery(undefined);
-  console.log(getProfile?.data?.email)
- 
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20  ">
@@ -228,7 +226,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
             src={`${imageUrl}/${cars?.user?.profile_image}`}
           />
           <div>
-            <p>{cars?.data?.user?.name}</p>
+            <p>{cars?.user?.name}</p>
             <p className="flex items-center gap-1">
               <CiStar /> {cars?.user?.rating}
             </p>

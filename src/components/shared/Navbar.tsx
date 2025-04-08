@@ -51,10 +51,10 @@ const Navbar = () => {
     navigate.push("/login");
   };
   return (
-    <div className="bg-[#F9F9F9] py-4 md:py-0">
+    <div className="bg-[#F9F9F9] py-4 px-5 md:px-0 md:py-0">
       <div className="container flex items-center justify-between">
         <Link href={"/"}>
-          <div className="flex items-center gap-1 ml-10">
+          <div className="flex items-center gap-1 ml-10 ">
             <p className="font-bold text-[20px] md:text-[40px]">NARDO</p>
 
             <Image

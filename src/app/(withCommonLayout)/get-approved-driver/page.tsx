@@ -97,7 +97,7 @@ const GetApprovedDriverPage = () => {
               <Input disabled placeholder="Phone Number" />
             </Form.Item>
 
-            <div className="flex justify-between items-center gap-10 mb-10">
+            <div className="flex justify-between items-center gap-10 ">
               <div className="w-full">
                 <p>Licence Front Image</p>
                 <Image
@@ -120,7 +120,7 @@ const GetApprovedDriverPage = () => {
                 />
               </div>
             </div>
-
+            <p className="mb-5 text-xs pt-1 "><span className="font-bold ">Note:</span> Please upload your driving licence front image and back image</p>
             <Button
               onClick={() => handleBookingCarInfo()}
               className="w-full bg-[#6A6A6A] px-10 py-2 rounded-md text-white"
