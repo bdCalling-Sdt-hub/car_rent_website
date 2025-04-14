@@ -35,17 +35,12 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import StartOverModal from "../StartOverModal/StartOverModal";
 
-const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
-
+const customSpinner = (
+  <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />
+);
 
 const TotalSteps = 8;
 const MultiStepForm = () => {
-
-  // const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
-
-
-
-
   const [currentStep, setCurrentStep] = useState<number>(() => {
     if (typeof window !== "undefined") {
       const storedStep = localStorage.getItem("currentStep");
@@ -69,13 +64,11 @@ const MultiStepForm = () => {
     localStorage.setItem("currentStep", currentStep.toString());
   }, [currentStep]);
 
-
-
-  const [openModal , setOpenModal] = useState(false)
-  // Handle Start Over 
-  const handleStartOver = ()=>{
-    setOpenModal(true)
-  }
+  const [openModal, setOpenModal] = useState(false);
+  // Handle Start Over
+  const handleStartOver = () => {
+    setOpenModal(true);
+  };
 
   return (
     <div className="container mx-auto py-10 font-lora px-2 md:px-0">
@@ -86,7 +79,12 @@ const MultiStepForm = () => {
           {/* <p className="md:border-r-2 pr-3">{`Step ${currentStep} of ${getPaymentInfo?.data?.stripe_account_id ?  "7" : "8"} `}</p> */}
           <p className="md:border-r-2 pr-3">{`Step ${currentStep} of   8 `}</p>
           <p className="md:border-r-2 pr-3">Next Car availability</p>
-          <p onClick={()=> handleStartOver()} className="text-[#1E3F66] cursor-pointer">Start over</p>
+          <p
+            onClick={() => handleStartOver()}
+            className="text-[#1E3F66] cursor-pointer"
+          >
+            Start over
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between mb-4 gap-5">
@@ -191,8 +189,6 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     }
   };
 
-  
-
   useEffect(() => {
     const fetchCarData = async () => {
       try {
@@ -218,18 +214,18 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
       latitude: latLng?.lat,
       destination: destination,
     };
-    if(!data?.carAddress){
-      return toast.error("Car Location is required!")
+    if (!data?.carAddress) {
+      return toast.error("Car Location is required!");
     }
-    if(!data?.destination){
-      return toast.error("City is required")
+    if (!data?.destination) {
+      return toast.error("City is required");
     }
 
     addCarLocation(data)
       .unwrap()
       .then((payload) => {
-        localStorage.setItem("carId", payload?.data?._id)
-        toast.success(payload?.message)
+        localStorage.setItem("carId", payload?.data?._id);
+        toast.success(payload?.message);
         handleNext();
       })
       .catch((error) => {
@@ -241,11 +237,11 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 
             // Save the ID to localStorage
             localStorage.setItem("carId", id);
-            toast.success("Please Submit Incomplete car!")
+            toast.success("Please Submit Incomplete car!");
             handleNext();
           }
-        }else{
-          toast.error(error?.data?.message)
+        } else {
+          toast.error(error?.data?.message);
         }
       });
   };
@@ -306,7 +302,6 @@ const Step1: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
-
 // Step 2
 const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   const [addLicensePlateNumber] = useAddLicensePlateMutation();
@@ -317,15 +312,13 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   };
 
   const handleContinue = () => {
-
-
     const data = {
       carId: localStorage.getItem("carId"),
       licensePlateNum: licensePlate,
     };
 
-    if(!data?.licensePlateNum){
-      return toast.error("License Plate Number Required!")
+    if (!data?.licensePlateNum) {
+      return toast.error("License Plate Number Required!");
     }
 
     addLicensePlateNumber(data)
@@ -359,16 +352,14 @@ const Step2: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
   );
 };
 
-
-
 const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
-  const [addMakeModelYear , {isLoading}] = useAddMakeModelYearMutation();
+  const [manually, setManually] = useState(false);
+  const [addMakeModelYear, { isLoading }] = useAddMakeModelYearMutation();
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState(currentYear.toString());
   const [selectedMake, setSelectedMake] = useState<string>();
   const [selectedModel, setSelectedModel] = useState<string>();
   const years = Array.from({ length: currentYear - 1940 }, (_, i) => 1941 + i);
- 
 
   const { data: getMakeYear } = useGetMakeYearQuery(selectedYear);
   const { data: getModelYear } = useGetModelYearQuery({
@@ -376,13 +367,9 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     make: selectedMake,
   });
 
-
-
-
-  
+  // console.log(selectedMake);
 
   // Handle year selection
-
   const handleYearChange = (value: string) => {
     setSelectedYear(value);
   };
@@ -408,67 +395,108 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
       })
       .catch((error) => toast.error(error?.data?.message));
   };
-
+  // console.log(manually);
   return (
     <div className="md:max-w-[60%] w-full">
       <HeadingTitle title="Make and model" />
-
+      <div className="mt-10">
+        <button
+          className="bg-[#0CFEE8] px-4 py-2 rounded-sm shadow-lg"
+          onClick={() => setManually(!manually)}
+        >
+          {manually ? "Select from Database" : "Manually Add Make, Model, Year"}
+        </button>
+        {
+          manually && 
+          <div className="bg-yellow-100 border mt-5 border-yellow-400 text-yellow-700 px-4 py-2 rounded-md text-sm">
+          ⚠️ <strong>Be careful!</strong> If you enter the wrong make, model, or
+          year, your car might not be found correctly on the website.
+        </div>
+        }
+      </div>
       <div className="w-full mt-5">
         <p className="my-2">Year</p>
-        <Select value={selectedYear} onValueChange={handleYearChange}>
-          <SelectTrigger className="w-[100%]">
-            <SelectValue placeholder="Enter year" />
-          </SelectTrigger>
-          <SelectContent className="h-full">
-            <SelectGroup>
-              {years?.map((year) => (
-                <SelectItem key={year} value={year?.toString()}>
-                  {year}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {manually ? (
+          <Input
+            placeholder="Year"
+            onChange={(e) => setSelectedYear(e.target.value)}
+          />
+        ) : (
+          <Select value={selectedYear} onValueChange={handleYearChange}>
+            <SelectTrigger className="w-[100%]">
+              <SelectValue placeholder="Enter year" />
+            </SelectTrigger>
+            <SelectContent className="h-full">
+              <SelectGroup>
+                {years?.map((year) => (
+                  <SelectItem key={year} value={year?.toString()}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        )}
       </div>
       <div className="w-full mt-5">
         <p className="my-2">Make</p>
-        <Select onValueChange={handleMakeChange}>
-          <SelectTrigger className="w-[100%]">
-            <SelectValue placeholder="Enter year" />
-          </SelectTrigger>
-          <SelectContent className="h-full">
-            <SelectGroup>
-              {getMakeYear?.result?.res?.Makes?.map((car: any) => (
-                <SelectItem key={car?.make_id} value={car?.make_id}>
-                  {car?.make_id}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {manually ? (
+          <Input
+            placeholder="eg : bmw"
+            onChange={(e) => setSelectedMake(e.target.value?.toLowerCase())}
+          />
+        ) : (
+          <Select onValueChange={handleMakeChange}>
+            <SelectTrigger className="w-[100%]">
+              <SelectValue placeholder="Enter year" />
+            </SelectTrigger>
+            <SelectContent className="h-full">
+              <SelectGroup>
+                {getMakeYear?.result?.res?.Makes?.map((car: any) => (
+                  <SelectItem key={car?.make_id} value={car?.make_id}>
+                    {car?.make_id}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        )}
       </div>
       <div className="w-full mt-5">
         <p className="my-2">Model</p>
-        <Select onValueChange={handleModelChange}>
-          <SelectTrigger className="w-[100%]">
-            <SelectValue placeholder="Enter year" />
-          </SelectTrigger>
-          <SelectContent className="h-full">
-            <SelectGroup>
-              {getModelYear?.result?.res?.Models?.map((model: any) => (
-                <SelectItem key={model?.model_name} value={model?.model_name}>
-                  {model?.model_name}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+
+        {manually ? (
+          <Input
+            placeholder="eg : 4 Series"
+            onChange={(e) => setSelectedModel(e.target.value)}
+          />
+        ) : (
+          <Select onValueChange={handleModelChange}>
+            <SelectTrigger className="w-[100%]">
+              <SelectValue placeholder="Enter year" />
+            </SelectTrigger>
+            <SelectContent className="h-full">
+              <SelectGroup>
+                {getModelYear?.result?.res?.Models?.map((model: any) => (
+                  <SelectItem key={model?.model_name} value={model?.model_name}>
+                    {model?.model_name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        )}
+
         <Button
           className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
           onClick={handleContinue}
           disabled={currentStep === TotalSteps}
         >
-          {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
+          {isLoading ? (
+            <Spin indicator={customSpinner} className="px-[19px]" />
+          ) : (
+            "Continue"
+          )}
         </Button>
       </div>
     </div>
@@ -476,11 +504,9 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
 };
 
 const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
-
-
-  const [addCarTransmission , {isLoading}] = useAddCarTransmissionMutation();
-  const [stripeAccount , setStripeAccount] = useState("")
-  const {data : getPaymentInfo} = useGetPaymentInfoQuery({})
+  const [addCarTransmission, { isLoading }] = useAddCarTransmissionMutation();
+  const [stripeAccount, setStripeAccount] = useState("");
+  const { data: getPaymentInfo } = useGetPaymentInfoQuery({});
   const [formValues, setFormValues] = useState({
     transmission: "automatic",
     isElectric: "yes",
@@ -488,12 +514,9 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
     vehicleType: "car",
   });
 
-
-  useEffect(()=>{
-    setStripeAccount(getPaymentInfo?.data?.stripe_account_id)
-  },[getPaymentInfo])
-
-
+  useEffect(() => {
+    setStripeAccount(getPaymentInfo?.data?.stripe_account_id);
+  }, [getPaymentInfo]);
 
   const handleChange = (field: string, value: string) => {
     setFormValues((prevValues) => ({
@@ -610,7 +633,11 @@ const Step4: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
         onClick={handleContinue}
         disabled={currentStep === TotalSteps}
       >
-        {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
+        {isLoading ? (
+          <Spin indicator={customSpinner} className="px-[19px]" />
+        ) : (
+          "Continue"
+        )}
       </Button>
     </div>
   );
