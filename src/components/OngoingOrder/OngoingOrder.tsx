@@ -10,11 +10,12 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { useGetProfileQuery } from "@/redux/Api/authApi";
+import { Popconfirm } from "antd";
 
 const OngoingOrder = () => {
   // ALL APIs
   const { data: getHosOngoingTrip } = useGetHostTripsQuery("ongoing");
-  const {data : getProfile} = useGetProfileQuery({})
+  const { data: getProfile } = useGetProfileQuery({});
   const [acceptCarRequest] = useAcceptCarRentRequestMutation();
 
   console.log(getProfile?.data?.role);
@@ -100,21 +101,31 @@ const OngoingOrder = () => {
               </div>
             </div>
             <div className=" col-span-1 space-x-2">
-              <p
-                className="bg-[#1E3F66] text-white text-center px-4 py-2 rounded-sm cursor-pointer"
-                onClick={() => handleCompleteTrip(order?._id)}
+              
+              <Popconfirm
+                title={
+                  <span className="text-xs">
+                    You should select complete when user has successfully
+                    completed journey
+                  </span>
+                }
+                okText={"Complete"}
+                onConfirm={() => handleCompleteTrip(order?._id)}
               >
-                Complete
-              </p>
+                <p className="bg-[#1E3F66] text-white text-center px-4 py-2 rounded-sm cursor-pointer">
+                  Complete
+                </p>
+              </Popconfirm>
+
               <div className="mt-5">
                 <Link
                   className="bg-[#313131] text-white px-1 w-full md:px-4 md:text-sm text-xs  justify-center  flex items-center gap-2 rounded-sm py-3"
                   href={`/conversationChat?senderId=${order?.host?._id}&receiverId=${order?.user?._id}`}
                 >
-                  {
-                    getProfile?.data?.role == "HOST" ? "Chat With User" : "Chat With Host"
-                  }
-                   <IoChatbubbleOutline />
+                  {getProfile?.data?.role == "HOST"
+                    ? "Chat With User"
+                    : "Chat With Host"}
+                  <IoChatbubbleOutline />
                 </Link>
               </div>
             </div>

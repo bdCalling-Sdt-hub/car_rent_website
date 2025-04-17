@@ -91,7 +91,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             <Input placeholder="Type here..." />
           </Form.Item>
           <Form.Item
-            label={"Maximum travel distance for one day"}
+            label={"Maximum travel distance for one day (Miles) "}
             name={"maxTravelDistancePerDay"}
             className="w-full"
           >

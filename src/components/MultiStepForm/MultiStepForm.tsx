@@ -34,6 +34,7 @@ import { toast } from "sonner";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import StartOverModal from "../StartOverModal/StartOverModal";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 const customSpinner = (
   <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />
@@ -407,10 +408,12 @@ const Step3: React.FC<Step2Props> = ({ handleNext, currentStep }) => {
           {manually ? "Select from Database" : "Manually Add Make, Model, Year"}
         </button>
         {
-          manually && 
+          manually ? 
           <div className="bg-yellow-100 border mt-5 border-yellow-400 text-yellow-700 px-4 py-2 rounded-md text-sm">
           ⚠️ <strong>Be careful!</strong> If you enter the wrong make, model, or
           year, your car might not be found correctly on the website.
+        </div> :  <div className="bg-teal-50 border mt-5 flex items-center gap-2 border-[#0CFEE8] text-black px-4 py-2 rounded-md text-sm">
+        <IoMdInformationCircleOutline size={22}  /> Manually select Make,model and year if your car is not available on the database.
         </div>
         }
       </div>
