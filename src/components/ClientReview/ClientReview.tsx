@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
+import baseApi from "@/redux/baseApi";
 
 interface User {
   name: string;
@@ -28,7 +29,7 @@ interface review {
 }
 const ClientReview = async () => {
   const response = await fetch(
-    "https://api.nardo.app/review/get-all-review?sort=-rating&limit=20",
+    "https://api.nardo.app/review/get-all-review?sort=-rating&limit=1000",
     {
       next: {
         revalidate: 30,
@@ -36,6 +37,8 @@ const ClientReview = async () => {
     }
   );
   const reviews = await response.json();
+
+  // console.log(reviews?.data?.result);
 
   return (
     <div className="font-lora container mx-auto px-2 ">
@@ -55,10 +58,10 @@ const ClientReview = async () => {
                 <div className="bg-[#F9F9F9] p-4 rounded-md space-y-4">
                   <div className="flex gap-5">
                     <Image
-                      src={img}
+                      src={`https://api.nardo.app/${review?.user?.profile_image}`}
                       height={300}
                       width={300}
-                      className="h-20 w-20"
+                      className="h-20 w-20 rounded-full"
                       alt="img"
                     />
                     <div className="space-y-1">

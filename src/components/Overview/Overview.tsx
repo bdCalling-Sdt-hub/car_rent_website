@@ -9,10 +9,10 @@ import { useInView } from "react-intersection-observer";
 const Overview = () => {
   return (
     <div className="pb-8 px-4 md:px-0 container mx-auto overflow-hidden">
-      <div className="lg:flex justify-center lg:justify-between gap-6 mt-10">
+      <div className="lg:flex justify-center lg:justify-between  mt-10">
         {/* Section 1 - Slide from Left */}
         <SectionAnimation direction="left">
-          <h1 className="text-black font-semibold text-[16px] sm:text-[24px] md:text-[32px]">
+          <h1 className="text-black font-semibold text-[16px] sm:text-[20px] md:text-[32px]">
             {`  “Become a host”`}
           </h1>
           <p className="mt-2 text-sm sm:text-base">
@@ -52,9 +52,9 @@ const Overview = () => {
       </div>
 
       {/* Section 3 - Slide from Left */}
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center md:mt-16 ">
         <SectionAnimation direction="left">
-          <h1 className="font-semibold text-[20px] sm:text-[24px] md:text-[32px]">
+          <h1 className="font-semibold text-[20px] sm:text-[20px] md:text-[32px]">
             “Book a car”
           </h1>
           <p className="mt-2 text-sm sm:text-base">
