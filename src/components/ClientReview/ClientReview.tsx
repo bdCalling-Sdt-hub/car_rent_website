@@ -1,6 +1,5 @@
 import React from "react";
 import HeadingTitle from "../shared/HeadingTitle";
-import img from "../../assets/chat.png";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
-import baseApi from "@/redux/baseApi";
 
 interface User {
   name: string;
