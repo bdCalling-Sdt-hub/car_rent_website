@@ -246,8 +246,10 @@ const MyProfilePage = () => {
                 )}
                 <p className="mb-5 text-xs pt-2 ">
                   <span className="font-bold ">Note:</span> Please upload your
-                  driving licence front image and back image
+                  driving licence front image and back image  and Only JPEG, PNG, JPG, and WEBP image formats are
+                  supported.
                 </p>
+             
 
                 <div className="flex justify-between mt-5">
                   <Form.Item

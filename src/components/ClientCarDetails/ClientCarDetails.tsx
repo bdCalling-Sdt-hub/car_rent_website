@@ -59,6 +59,9 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
   const [pickupLocation, setPickupLocation] = useState("");
   // ALL API
   const [addTripInfo] = useAddTripsMutation();
+  const { data: getProfile } = useGetProfileQuery(undefined);
+
+
   // const [addFavorite] = useAddFavoriteMutation();
 
   // console.log(cars?.youngDriverFee);
@@ -143,6 +146,8 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
       data.pickupLocation = pickupLocation;
     }
 
+
+
     if( getProfile?.data?.address &&
       getProfile?.data?.phone_number &&
       getProfile?.data?.licenseFrontImage &&
@@ -179,7 +184,6 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
   // };
 
 
-  const { data: getProfile } = useGetProfileQuery(undefined);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20  ">
