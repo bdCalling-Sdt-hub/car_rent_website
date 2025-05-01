@@ -23,12 +23,24 @@ import RequestedTrip from "@/components/ui/RequestedTrip/RequestedTrip";
 import { useAcceptCarRentRequestMutation } from "@/redux/Api/hostHistoryApi";
 import { toast } from "sonner";
 import CancelTrips from "@/components/CancelTrips/CancelTrips";
+import { useGetProfileQuery } from "@/redux/Api/authApi";
 
 const MyTripPage = () => {
   const [trip, setTrip] = useState("requested");
   const [updateCarStatus] = useAcceptCarRentRequestMutation();
+  const {data : getProfile} = useGetProfileQuery(undefined)
 
-  const { data: getMyTrips } = useGetMyTripsQuery(trip);
+
+  // Get My trip parameter
+  const tripParam = {
+    status: trip,
+    isHostMyTripsRoute: getProfile?.data?.role === "HOST"
+  };
+
+
+  const { data: getMyTrips } = useGetMyTripsQuery(tripParam);
+
+
 
   const handleValueChange = (value: string) => {
     const data = {

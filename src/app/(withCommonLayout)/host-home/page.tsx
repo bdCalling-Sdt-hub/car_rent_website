@@ -3,7 +3,8 @@ import HeadingTitle from "@/components/shared/HeadingTitle";
 import Link from "next/link";
 import React from "react";
 import img from "../../../assets/hostHome.jpg";
-import img2 from "../../../assets/newCar.png";
+import img2 from "../../../assets/hostimg3.jpg";
+// import img2 from "../../../assets/newCar.png";
 import Image from "next/image";
 import CreateBusiness from "@/components/CreateBusiness/CreateBusiness";
 import AnimateButton from "@/components/AnimateButton/AnimateButton";
@@ -151,7 +152,7 @@ const HostHomePage = () => {
       </div>
       <SectionAnimation direction="left">
         <div className=" mt-10 relative">
-          <div className="absolute flex items-center justify-center  h-full w-full">
+          <div className="absolute flex items-center justify-center z-20  h-full w-full">
             <div className="text-center space-y-4 text-white ">
               <p className="font-bold text-4xl font-lora">NARDO</p>
               <p className=" text-xl md:text-4xl">You could earn</p>
@@ -161,22 +162,24 @@ const HostHomePage = () => {
               <AnimateButton>
                 <Link
                   href="/host-home/License-plate"
-                  // className="bg-[#0CFEE8] text-black  px-8 py-4 rounded-sm  "
                 >
                   Get Start
                 </Link>
               </AnimateButton>
             </div>
           </div>
+          <div className="absolute inset-0 bg-black bg-opacity-40 z-0 pointer-events-none "></div>
+
           <div className=" mt-8 md:mt-0 ">
             <Image
               src={img2}
               alt="img"
-              className="w-full h-[400px] md:h-[600px] object-cover "
-              height={1200}
-              width={1200}
+              className="w-full h-[400px] md:h-[600px] object-center object-cover"
+              height={1500}
+              width={1500}
             />
           </div>
+
         </div>
       </SectionAnimation>
 

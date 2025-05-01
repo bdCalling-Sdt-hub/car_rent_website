@@ -2,23 +2,22 @@ import baseApi from "../baseApi";
 
 const tripManagementApi = baseApi.injectEndpoints({
     endpoints : (builder)=>({
-        getMyTrips  : builder.query({
-            query  :(trip)=>{
-                // let url = `/trip/get-my-trip-order`
-                
-                // if(trip === 'canceled'){
-                //     url += `?status=canceled`
-                // }
-                // if(trip === "completed"){
-                //     url += `?status=completed`
-                // }
-                return {
-                    url : `/trip/get-my-trip-order?status=${trip}`,
-                    method  :'GET'
-                }
+        getMyTrips: builder.query({
+            query: ({ status, isHostMyTripsRoute }) => {
+              let url = `/trip/get-my-trip-order?status=${status}`;
+              
+              // Append host flag if true
+              if (isHostMyTripsRoute) {
+                url += `&isHostMyTripsRoute=true`;
+              }
+          
+              return {
+                url,
+                method: 'GET'
+              };
             },
-            providesTags : ['myTrip']
-        }),
+            providesTags: ['myTrip']
+          }),
         addTrips : builder.mutation({
             query : (data)=>{
                 return {
