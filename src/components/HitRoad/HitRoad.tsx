@@ -8,8 +8,8 @@ const HitRoad = () => {
             <div className='col-span-1'>
                 <HeadingTitle title='Hit the road' />
                 <p className='text-2xl mt-4'>Rent cars in London</p>
-                <p className='leading-7 mt-10'>Close to the mountains, the beach, and the desert, London is perfectly situated for a mind-blowing day trip or road trip that ll make you feel like youre worlds away from the city. When you no longer want to shuttle through the LA traffic on busy avenues like Hollywood Blvd and Rodeo Drive, hit the freeways and explore the wonderful surrounding areas.</p>
-                <p className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white inline-block mt-5'>Rent the perfect car</p>
+                <p className='leading-7 mt-10'>Explore London and beyond with ease by renting a car tailored to your needs. Whether you&rsquo;re visiting for business, a weekend getaway, or a family holiday, our wide selection of vehicles—from compact city cars to luxury sedans and spacious SUVs—ensures there&rsquo;s something for everyone. Enjoy competitive rates, flexible rental periods, and convenient pickup locations across the city, including airports, train stations, and central London.</p>
+                {/* <p className='bg-[#6A6A6A] px-4 py-2 rounded-md text-white inline-block mt-5'>Rent the perfect car</p> */}
             </div>
             <div>
                 <div className='col-span-1'>
