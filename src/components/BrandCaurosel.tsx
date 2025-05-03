@@ -10,7 +10,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 // Image Imports
-import mercedes from '../assets/mercidies.png';
+import mercedes from '../assets/mercidiess.jpg';
 import img from '../assets/ford1.png';
 import img2 from '../assets/Hyundai1.png';
 import img3 from '../assets/Volvo1.png';
@@ -19,7 +19,7 @@ import img5 from '../assets/Lexus.png';
 import img6 from '../assets/Vauxhall.png';
 import img7 from '../assets/Landrover.png';
 import bmw from '../assets/bmw.png';
-import audi from '../assets/audi.png';
+import audi from '../assets/audi.jpg';
 
 const carBrands = [
     { src: img, name: "Ford" },
