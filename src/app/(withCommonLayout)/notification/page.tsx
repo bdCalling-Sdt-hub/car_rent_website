@@ -7,7 +7,9 @@ import {
 import { Pagination } from "antd";
 import React, { useState } from "react";
 import { toast } from "sonner";
-
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 type TNotification = {
   _id: string;
   toId: string;
@@ -38,6 +40,7 @@ const NotificationPage = () => {
       <HeadingTitle title={"Notification"} />
 
       {getAllNotification?.data?.result?.map((notification: TNotification) => {
+         const createdTimeAgo = dayjs(notification?.createdAt).fromNow();
         return (
           <div
             key={notification?._id}
@@ -48,9 +51,10 @@ const NotificationPage = () => {
             <div>
               <p className="text-[#6A6A6A] ">{notification?.title}</p>
               <p className="text-[#272121]">{notification?.message}</p>
+              <p className="text-xs text-gray-500 mt-1">{createdTimeAgo}</p>
             </div>
             {!notification?.isRead && (
-              <button className="" onClick={() => handleMarkAsRead(notification?._id)}>
+              <button className=" border-transparent border-b hover:border-black transform duration-300  " onClick={() => handleMarkAsRead(notification?._id)}>
                 Mark as read
               </button>
             )}
