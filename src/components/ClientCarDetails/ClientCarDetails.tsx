@@ -184,7 +184,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
   // };
 
 
-
+console.log(cars?.user?.email);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  justify-between mt-10 gap-20  ">
       <div className="col-span-1">
@@ -342,7 +342,7 @@ const ClientCarDetails: React.FC<ClientCarDetailsProps> = ({ cars }) => {
           <div className="space-y-2 border-t border-gray-300 pt-4">
             <div className="text-sm text-gray-600">
               <span className="font-semibold">Free cancellation</span>  <br />
-              <span className="cursor-pointer">Contact host : </span><span className="text-xs"><a href={`mailto:${getProfile?.data?.email}`}>({getProfile?.data?.email})</a>
+              <span className="cursor-pointer">Contact host : </span><span className="text-xs"><a href={`mailto:${cars?.user?.email}`}>({cars?.user?.email})</a>
 
               
               </span>
