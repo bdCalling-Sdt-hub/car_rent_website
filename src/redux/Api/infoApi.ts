@@ -87,6 +87,16 @@ const infoApi = baseApi.injectEndpoints({
             },
             providesTags : ['notification']
         }),
+        deleteNotification : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : "/notification/delete-notification",
+                    method : "DELETE",
+                    body :  data
+                }
+            },
+            invalidatesTags :['notification']
+        })
     })
 })
-export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery , useGetAllNotificationQuery , useUpdateNotificationMutation , useGetCountNotificationQuery} =  infoApi; 
+export const {useGetTermsAndConditionQuery , useGetPrivacyPolicyQuery , usePostFeedbackMutation , useGetContactUsQuery , useGetTipsAndTricksQuery ,useGetTrustAndSafetyQuery , useGetHostingGuideQuery , useGetAllNotificationQuery , useUpdateNotificationMutation , useGetCountNotificationQuery , useDeleteNotificationMutation} =  infoApi; 
