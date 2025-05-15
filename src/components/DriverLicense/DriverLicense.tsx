@@ -12,14 +12,16 @@ import { toast } from "sonner";
 
 import { LoadingOutlined } from "@ant-design/icons";
 
-const customSpinner = <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />;
+const customSpinner = (
+  <LoadingOutlined style={{ fontSize: 18, color: "black" }} spin />
+);
 
 interface TLicense {
-    pricePerDay : string,
-    maxTravelDistancePerDay : string,
-    finePerKm : string,
-    youngDriverFee : string,
-    cleaningFee : string
+  pricePerDay: string;
+  maxTravelDistancePerDay: string;
+  finePerKm: string;
+  youngDriverFee: string;
+  cleaningFee: string;
 }
 
 const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
@@ -27,7 +29,7 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
   const [backFileList, setBackFileList] = useState<UploadFile[]>([]);
 
   //  Update driving license api
-  const [updateDrivingLicense , {isLoading}] = useAddHostLicenseMutation();
+  const [updateDrivingLicense, { isLoading }] = useAddHostLicenseMutation();
 
   //   License front image upload
   const handleUploadChange = ({
@@ -45,8 +47,8 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
   //   Handle upload driver license details function
   const handleUpdateDrivingLicense = (values: TLicense) => {
     const formData = new FormData();
-    const carId =  localStorage.getItem('carId') || "";
-    formData.append('carId', carId)
+    const carId = localStorage.getItem("carId") || "";
+    formData.append("carId", carId);
     formData.append("pricePerDay", values?.pricePerDay);
     formData.append("maxTravelDistancePerDay", values?.maxTravelDistancePerDay);
     formData.append("finePerKm", values?.finePerKm);
@@ -68,8 +70,8 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
     updateDrivingLicense(formData)
       .unwrap()
       .then((payload) => {
-        toast.success(payload?.message)
-        handleNext()
+        toast.success(payload?.message);
+        handleNext();
       })
       .catch((error) => toast.error(error?.data?.message));
   };
@@ -87,6 +89,16 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             label={"Price per day"}
             name={"pricePerDay"}
             className="w-full"
+            rules={[
+              {
+                required: true,
+                message: "Price per day is required",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
           >
             <Input placeholder="Type here..." />
           </Form.Item>
@@ -94,30 +106,35 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             label={"Maximum travel distance for one day (Miles) "}
             name={"maxTravelDistancePerDay"}
             className="w-full"
+            rules={[
+              {
+                required: true,
+                message: "Please enter travel distance!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
           >
             <Input placeholder="Type here..." />
           </Form.Item>
         </div>
-        {/* <div className="flex gap-5 items-center">
-          <Form.Item
-            label={"Young Driver Fee"}
-            name={"youngDriverFee"}
-            className="w-full"
-          >
-            <Input placeholder="Type here..." />
-          </Form.Item>
-          <Form.Item
-            label={"Cleaning Fee"}
-            name={"cleaningFee"}
-            className="w-full"
-          >
-            <Input placeholder="Type here..." />
-          </Form.Item>
-        </div> */}
+
         <Form.Item
           label={"Per Miles charge after crossing maximum distance"}
           className="w-full"
           name={"finePerKm"}
+          rules={[
+            {
+              required: true,
+              message: "Please enter maximum distance charge!",
+            },
+            {
+              pattern: /^\d+$/,
+              message: "Only numbers are allowed",
+            },
+          ]}
         >
           <Input placeholder="Type here..." />
         </Form.Item>
@@ -172,11 +189,12 @@ const DriverLicense: React.FC<Step2Props> = ({ handleNext }) => {
             </Upload>
           </Form.Item>
         </div>
-        <Button
-          className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5"
-         
-        >
-          {isLoading ?  <Spin indicator={customSpinner} className="px-[19px]" /> : "Continue"}
+        <Button className="bg-[#0CFEE8] hover:bg-[#0CFEE8] text-black px-10 mt-5">
+          {isLoading ? (
+            <Spin indicator={customSpinner} className="px-[19px]" />
+          ) : (
+            "Continue"
+          )}
         </Button>
       </Form>
 

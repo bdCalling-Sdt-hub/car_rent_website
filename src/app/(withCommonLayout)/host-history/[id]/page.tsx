@@ -193,6 +193,7 @@ const EditHostCarPage = () => {
               value={formValues.licensePlateNum}
               onChange={handleInputChange}
               placeholder="Enter car plate number"
+              disabled
             />
           </div>
         </div>

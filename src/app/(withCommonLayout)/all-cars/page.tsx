@@ -265,7 +265,7 @@ const AllCarsPage = () => {
               </p>
             )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-screen overflow-y-auto ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 overflow-y-auto ">
             {getAllCarLocation?.data?.availableCars?.map((car: any) => {
               return (
                 <Link

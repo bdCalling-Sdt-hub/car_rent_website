@@ -198,13 +198,46 @@ const CarPhoto = () => {
       </div>
 
       <Form layout="vertical" onFinish={handleUploadCarPhotos}>
-        <Form.Item label={"Seats"} name={"seats"}>
+        <Form.Item label={"Seats"} name={"seats"}
+         rules={[
+              {
+                required: true,
+                message: "Please enter the seats!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
-        <Form.Item label={"Bags"} name={"bags"}>
+        <Form.Item label={"Bags"} name={"bags"}
+         rules={[
+              {
+                required: true,
+                message: "Please enter bags!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
-        <Form.Item label={"Doors"} name={"doors"}>
+        <Form.Item label={"Doors"} name={"doors"} 
+        rules={[
+              {
+                required: true,
+                message: "Please enter total doors!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
         <Form.Item label={"Fuel Type"} name={"fuelType"}>
@@ -213,13 +246,46 @@ const CarPhoto = () => {
             <Select.Option value="petrol">Petrol</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label={"Discount Days"} name={"discountDays"}>
+        <Form.Item label={"Discount Days"} name={"discountDays"}
+           rules={[
+              {
+                required: true,
+                message: "Please enter discount days!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
-        <Form.Item label={"Discount Amount"} name={"discountAmount"}>
+        <Form.Item label={"Discount Amount"} name={"discountAmount"}
+           rules={[
+              {
+                required: true,
+                message: "Please enter discount amount!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
-        <Form.Item label={"Delivery Fee"} name={"deliveryFee"}>
+        <Form.Item label={"Delivery Fee"} name={"deliveryFee"}
+           rules={[
+              {
+                required: true,
+                message: "Please enter delivery fee!",
+              },
+              {
+                pattern: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            ]}
+        >
           <Input placeholder="type here" />
         </Form.Item>
         <button className="bg-[#0CFEE8] py-2 rounded-md  px-10 shadow-md">
