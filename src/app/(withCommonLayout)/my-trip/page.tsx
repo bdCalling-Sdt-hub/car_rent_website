@@ -28,19 +28,15 @@ import { useGetProfileQuery } from "@/redux/Api/authApi";
 const MyTripPage = () => {
   const [trip, setTrip] = useState("requested");
   const [updateCarStatus] = useAcceptCarRentRequestMutation();
-  const {data : getProfile} = useGetProfileQuery(undefined)
-
+  const { data: getProfile } = useGetProfileQuery(undefined);
 
   // Get My trip parameter
   const tripParam = {
     status: trip,
-    isHostMyTripsRoute: getProfile?.data?.role === "HOST"
+    isHostMyTripsRoute: getProfile?.data?.role === "HOST",
   };
 
-
   const { data: getMyTrips } = useGetMyTripsQuery(tripParam);
-
-
 
   const handleValueChange = (value: string) => {
     const data = {
@@ -56,6 +52,8 @@ const MyTripPage = () => {
       .catch((error) => toast.success(error?.data?.message));
   };
 
+
+  // console.log(getMyTrips?.data?.trips);
   return (
     <div className="container mx-auto px-2 md:px-0">
       <div className="md:py-10 py-2">
@@ -132,13 +130,11 @@ const MyTripPage = () => {
                               </p>
                               <p>
                                 {trip?.host?.trip} trips. Joined{" "}
-                             
                                 {trip?.host?.createdAt?.split("T")[0]}
                               </p>
                             </div>
                           </div>
                         </div>
-                        
                       </div>
 
                       <div>
@@ -185,21 +181,25 @@ const MyTripPage = () => {
                       <div className="py-2">
                         <span className="font-semibold">Trip Start </span>{" "}
                         <span className="text-[#525252]">
-                          {" "}
-                          Date: {trip?.tripStartDate} Time:{" "}
-                          {
-                            trip?.tripStartDateTime
-                              ?.split("T")[1]
-                              ?.split(".")[0]
-                          }
+                          Date:{" "}
+                          {trip?.tripStartDateTime &&
+                            new Date(trip.tripStartDateTime).toLocaleDateString(
+                              "en-GB"
+                            )}{" "}
+                          Time:{" "}
+                          {trip?.tripStartTime}
                         </span>
                       </div>
                       <div>
                         <span className="font-semibold">Trip End </span>{" "}
                         <span className="text-[#525252]">
-                          {" "}
-                          Date: {trip?.tripEndDate} Time:{" "}
-                          {trip?.tripEndDateTime?.split("T")[1]?.split(".")[0]}
+                          Date:{" "}
+                          {trip?.tripEndDateTime &&
+                            new Date(trip.tripEndDateTime).toLocaleDateString(
+                              "en-GB"
+                            )}{" "}
+                          Time:{" "}
+                          {trip?.tripEndTime}
                         </span>
                       </div>
                     </div>
@@ -212,10 +212,7 @@ const MyTripPage = () => {
                           ? trip?.pickupLocation
                           : "Not Available"}
                       </p>
-                      {/* <p className="text-sm">
-                      Statue of Liberty, Times Square, Central Park, Empire
-                      State Building
-                    </p> */}
+                     
                     </div>
 
                     {/* delivery location */}

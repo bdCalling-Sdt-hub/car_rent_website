@@ -5,12 +5,11 @@ import { FaStar } from "react-icons/fa6";
 import { imageUrl } from "@/redux/baseApi";
 
 const RequestedTrip = ({ myTrip }: any) => {
-
-
   return (
     <div>
       <div className="">
         {myTrip?.map((trip: any) => {
+          console.log(trip?.tripEndTime);
           return (
             <div
               key={trip?._id}
@@ -29,32 +28,30 @@ const RequestedTrip = ({ myTrip }: any) => {
               <div className="md:col-span-6  col-span-1  gap-5  ">
                 <div className="flex justify-between">
                   <div className="">
-                      <p className="font-semibold">Hosted By :</p>
-                      <div className="flex  items-center gap-2 shadow-md p-4 rounded-md">
-                        <Image
-                          alt="img"
-                          className="h-10 w-10 rounded-full "
-                          src={`${imageUrl}/${trip?.host?.profile_image}`}
-                          height={200}
-                          width={200}
-                        />
-                        <div>
-                          <p className="font-medium">{trip?.host?.name}</p>
-                          <p className="flex items-center gap-2">
-                            <FaStar className="text-[#0CFEE8]" />{" "}
-                            {trip?.host?.rating}{" "}
-                          </p>
-                          <p>
-                            {trip?.host?.trip} trips. Joined{" "}
-                            {trip?.host?.createdAt?.split("T")[0]}
-                          </p>
+                    <p className="font-semibold">Hosted By :</p>
+                    <div className="flex  items-center gap-2 shadow-md p-4 rounded-md">
+                      <Image
+                        alt="img"
+                        className="h-10 w-10 rounded-full "
+                        src={`${imageUrl}/${trip?.host?.profile_image}`}
+                        height={200}
+                        width={200}
+                      />
+                      <div>
+                        <p className="font-medium">{trip?.host?.name}</p>
+                        <p className="flex items-center gap-2">
+                          <FaStar className="text-[#0CFEE8]" />{" "}
+                          {trip?.host?.rating}{" "}
+                        </p>
+                        <p>
+                          {trip?.host?.trip} trips. Joined{" "}
+                          {trip?.host?.createdAt?.split("T")[0]}
+                        </p>
                       </div>
                     </div>
-                    
                   </div>
 
-                  <div>
-                  </div>
+                  <div></div>
                 </div>
 
                 <p className="mt-4 text-[#272121]">{trip?.car?.description}</p>
@@ -74,17 +71,26 @@ const RequestedTrip = ({ myTrip }: any) => {
                   <div className="py-2">
                     <span className="font-semibold">Trip Start </span>{" "}
                     <span className="text-[#525252]">
-                      {" "}
-                      Date: {trip?.tripStartDate} Time:{" "}
-                      {trip?.tripStartDateTime?.split("T")[1]?.split(".")[0]}
+                      Date:{" "}
+                      {trip?.tripStartDateTime &&
+                        new Date(trip.tripStartDateTime).toLocaleDateString(
+                          "en-GB"
+                        )}{" "}
+                      Time: {trip?.tripStartDateTime && trip?.tripStartTime}
                     </span>
                   </div>
                   <div>
                     <span className="font-semibold">Trip End </span>{" "}
                     <span className="text-[#525252]">
-                      {" "}
-                      Date: {trip?.tripEndDate} Time:{" "}
-                      {trip?.tripEndDateTime?.split("T")[1]?.split(".")[0]}
+                      Date:{" "}
+                      {trip?.tripEndDateTime &&
+                        new Date(trip.tripEndDateTime).toLocaleDateString(
+                          "en-GB"
+                        )}{" "}
+                      Time:{" "}
+                      {trip?.tripEndDateTime &&
+                        trip?.tripEndTime
+                        }
                     </span>
                   </div>
                 </div>
