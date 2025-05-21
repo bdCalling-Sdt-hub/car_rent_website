@@ -128,7 +128,7 @@ const TakenDateTime = ({className } : {className : any} ) => {
                   className="w-[120px] justify-start text-left font-normal text-muted-foreground bg-[#EBEBEB] border-none"
                 >
                   {pickupDate ? (
-                    format(pickupDate, "MM/dd/yyyy")
+                    format(pickupDate, "dd/MM/yyyy")
                   ) : (
                     <span className="flex items-center gap-2">Pick a date</span>
                   )}
@@ -170,7 +170,7 @@ const TakenDateTime = ({className } : {className : any} ) => {
                   )}
                 >
                   {returnDate ? (
-                    format(returnDate, "MM/dd/yyyy")
+                    format(returnDate, "dd/MM/yyyy")
                   ) : (
                     <span className="flex items-center gap-2 text-sm">Pick a date</span>
                   )}
